@@ -8,11 +8,12 @@
   --bg-ice:#f2f5f7;
   --bg-dark:#051639;
   --text-primary:#2c2c2c;
-  --text-secondary:rgba(0,0,0,0.5);
-  --text-muted:#888;
+  --text-secondary:#52525b;
+  --text-muted:#5f5f66;
+  --text-faint:#8a8a90;
   --text-light:#ffffff;
-  --accent:#e17067;
-  --accent-hover:#e17067;
+  --accent:#cd6155;
+  --accent-hover:#b8534a;
   --secondary:#406b95;
   --tertiary:#295082;
   --border:rgba(0,0,0,0.08);
@@ -27,15 +28,26 @@ a{color:inherit;text-decoration:none}
 /* === UTILITY === */
 .container{max-width:1140px;margin:0 auto;padding:0 2rem}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+/* Reveals only hide when JS is present (html.js-reveal). No-JS / headless renders show content. */
+.js-reveal .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+.js-reveal .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
 .reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
+.js-reveal .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
-.reveal-scale{opacity:0;transform:scale(0.9);transition:opacity .8s ease,transform .8s ease}
+.js-reveal .reveal-scale{opacity:0;transform:scale(0.9);transition:opacity .8s ease,transform .8s ease}
 .reveal-scale.visible{opacity:1;transform:scale(1)}
 .stagger-1{transition-delay:.1s}.stagger-2{transition-delay:.2s}.stagger-3{transition-delay:.3s}.stagger-4{transition-delay:.4s}.stagger-5{transition-delay:.5s}.stagger-6{transition-delay:.6s}
+
+/* Even line lengths on headings, fewer orphans in prose */
+.section-title,.page-hero h1{text-wrap:balance}
+.section-desc{text-wrap:pretty}
+
+/* Respect reduced-motion: no reveals, pulses, parallax, or counters */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .js-reveal .reveal,.js-reveal .reveal-left,.js-reveal .reveal-right,.js-reveal .reveal-scale{opacity:1 !important;transform:none !important}
+}
 
 /* === NAV === */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);transition:all .4s}
@@ -63,6 +75,13 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
 .page-hero h1{font-family:var(--heading);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:1.25rem}
 .page-hero h1 em{font-style:normal;color:var(--accent)}
 .page-hero p{font-family:var(--body);font-size:1.15rem;line-height:1.8;color:rgba(255,255,255,.7);max-width:600px;font-weight:300}
+/* Hero parallax via CSS scroll-driven animation (no scroll listener). Off under reduced-motion / unsupported browsers. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: scroll()){
+    .page-hero{animation:heroParallax linear both;animation-timeline:scroll(root);animation-range:0 600px}
+  }
+}
+@keyframes heroParallax{from{background-position:center 0}to{background-position:center 180px}}
 
 /* === BUTTONS === */
 .btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:var(--accent);color:var(--text-light);font-family:var(--heading);font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
@@ -100,14 +119,14 @@ footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgb
 .footer-brand{max-width:300px}
 .footer-brand .nav-logo{margin-bottom:.75rem}
 .footer-brand .nav-logo img{height:36px;filter:brightness(0) invert(1)}
-.footer-brand p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;font-family:var(--body)}
+.footer-brand p{font-size:.85rem;color:rgba(255,255,255,.62);line-height:1.7;font-family:var(--body)}
 .footer-phone{display:inline-block;margin-top:.75rem;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--accent);letter-spacing:.05em;transition:color .3s}
 .footer-phone:hover{color:var(--text-light)}
 .footer-links{display:flex;gap:4rem}
 .footer-col h5{font-family:var(--heading);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.75rem}
 .footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);padding:.3rem 0;transition:color .3s;font-family:var(--body)}
 .footer-col a:hover{color:var(--text-light)}
-.footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.35);font-family:var(--body)}
+.footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.55);font-family:var(--body)}
 
 /* === GRIDS === */
 .card-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
@@ -280,10 +299,10 @@ footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgb
   gap: 0.75rem;
   font-family: var(--body);
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.55);
 }
 .footer-legal-links a {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.55);
   transition: color 0.3s;
   text-decoration: none;
 }
@@ -301,3 +320,16 @@ footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgb
     flex-wrap: wrap;
   }
 }
+
+/* === COHORT / PRICING CARDS (homepage training section) === */
+.cohort-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;position:relative}
+.cohort-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);padding:2.5rem 2rem;text-align:left;transition:transform .35s ease,border-color .35s ease}
+.cohort-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.28)}
+.cohort-card.featured{background:rgba(255,255,255,.06);border:2px solid var(--accent)}
+.cohort-eyebrow{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.cohort-price{font-family:var(--heading);color:#fff;font-size:1.4rem;font-weight:800;margin-bottom:1rem}
+.cohort-meta{color:rgba(255,255,255,.7);font-size:.75rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em}
+.cohort-card p{color:rgba(255,255,255,.8);font-size:.85rem;line-height:1.6;margin-bottom:1.5rem}
+.cohort-link{font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:inline-block;transition:color .3s}
+.cohort-link:hover{color:#fff}
+.cohort-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-family:var(--heading);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;white-space:nowrap}
