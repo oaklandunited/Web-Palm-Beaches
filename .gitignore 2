@@ -1,0 +1,20 @@
+# Log files
+error_log
+*.log
+
+# Sensitive configurations (secrets)
+wp-config.php
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# CloudMounter/FTP temporary files
+.ftpquota
+.tmb/
+.well-known/
+
+# Large WordPress core and media folders (optional to track, but recommended to ignore for static repository)
+# wp-admin/
+# wp-includes/
+# wp-content/uploads/
