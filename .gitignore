@@ -4,6 +4,7 @@ error_log
 
 # Sensitive configurations (secrets)
 wp-config.php
+wp-salt.php
 
 # OS files
 .DS_Store
@@ -14,26 +15,18 @@ Thumbs.db
 .tmb/
 .well-known/
 
-# Ignore WordPress core folders (improves Git speed on network mounts)
-wp-admin/
-wp-includes/
-wp-content/
+# Ignore all WordPress directories and core files starting with wp-
+wp-*
+wp-*/
 
-# Ignore WordPress core PHP files
-wp-activate.php
-wp-blog-header.php
-wp-comments-post.php
-wp-config-sample.php
-wp-cron.php
-wp-links-opml.php
-wp-load.php
-wp-login.php
-wp-mail.php
-wp-settings.php
-wp-signup.php
-wp-trackback.php
+# Ignore WordPress index files
+index.php
+index.php.bak
+
+# Ignore other WordPress core files and readmes
 xmlrpc.php
 license.txt
 readme.html
-index.php
-index.php.bak
+
+# Ignore GoDaddy WordPress backup connectors
+bv_connector_*.php
