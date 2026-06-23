@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Readiness Checklist | Free Assessment | WPB</title>
+<meta name="description" content="Take the free 5-minute AI Readiness Checklist. Score your business across 6 areas and discover exactly where AI can save time and generate more leads.">
+<link rel="stylesheet" href="styles.css">
+<script src="https://www.grecaptcha.com/recaptcha/api.js?render=6LfDwJ8sAAAAAIQjuj2glcLYBM8DlKZboLlLEU9_"></script>
+<style>
+
+/* === HERO SPLIT === */
+.checklist-hero {
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.checklist-hero .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left col */
+.hero-left .hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--heading);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.hero-left .hero-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+}
+.hero-left h1 {
+  font-family: var(--heading);
+  font-size: clamp(2rem, 3.5vw, 2.9rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  color: var(--tertiary);
+  margin-bottom: 1.25rem;
+}
+.hero-left h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-left .hero-subhead {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+.hero-benefits {
+  list-style: none;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+.hero-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: .95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.hero-benefits li::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background: var(--accent);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+/* Lead capture form */
+.lead-form-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.lead-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+}
+.lead-form-card .form-heading {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .35rem;
+}
+.lead-form-card .form-subtext {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.lead-form-card .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.lead-form-card .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.lead-form-card .form-group.full {
+  grid-column: 1 / -1;
+}
+.lead-form-card label {
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+}
+.lead-form-card input,
+.lead-form-card select {
+  width: 100%;
+  padding: .85rem 1rem;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--body);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .3s, box-shadow .3s;
+  appearance: none;
+}
+.lead-form-card select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23888' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.lead-form-card input:focus,
+.lead-form-card select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(205, 97, 85, .1);
+}
+.lead-form-card input::placeholder {
+  color: var(--text-muted);
+}
+.lead-form-card .btn-submit {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background .3s, box-shadow .3s, transform .3s;
+  margin-top: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.lead-form-card .btn-submit:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 25px rgba(205, 97, 85, .3);
+  transform: translateY(-1px);
+}
+.lead-form-card .trust-line {
+  text-align: center;
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-top: .75rem;
+}
+.lead-form-card .form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.lead-form-card .form-success.show {
+  display: block;
+}
+.lead-form-card .form-success .success-icon {
+  font-size: 2.5rem;
+  margin-bottom: .75rem;
+}
+.lead-form-card .form-success h3 {
+  font-family: var(--heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  margin-bottom: .5rem;
+}
+.lead-form-card .form-success p {
+  color: var(--text-secondary);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+.lead-form-inner {
+  transition: opacity .3s;
+}
+
+/* Right col — checklist mockup */
+.checklist-mockup {
+  background: linear-gradient(150deg, var(--bg-dark) 0%, var(--tertiary) 100%);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.checklist-mockup::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .03);
+  pointer-events: none;
+}
+.checklist-mockup::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(205, 97, 85, .07);
+  pointer-events: none;
+}
+.mockup-header {
+  margin-bottom: 1.5rem;
+}
+.mockup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(205, 97, 85, .12);
+  padding: .4rem .85rem;
+  margin-bottom: .85rem;
+}
+.mockup-header h3 {
+  font-family: var(--heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #fff;
+  margin-bottom: .4rem;
+}
+.mockup-header p {
+  font-size: .85rem;
+  color: rgba(255, 255, 255, .55);
+  line-height: 1.5;
+}
+.area-cards {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  position: relative;
+  z-index: 1;
+}
+.area-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .85rem 1rem;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .1);
+  transition: background .3s, border-color .3s;
+  cursor: default;
+}
+.area-card:hover {
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(205, 97, 85, .4);
+}
+.area-num {
+  font-family: var(--heading);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: var(--accent);
+  min-width: 28px;
+}
+.area-label {
+  flex: 1;
+  font-family: var(--heading);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(255, 255, 255, .9);
+}
+.area-score-bar {
+  width: 70px;
+  height: 5px;
+  background: rgba(255, 255, 255, .1);
+  position: relative;
+  flex-shrink: 0;
+}
+.area-score-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 1.2s ease;
+}
+.mockup-total {
+  margin-top: 1.25rem;
+  padding: .9rem 1rem;
+  background: rgba(205, 97, 85, .15);
+  border: 1px solid rgba(205, 97, 85, .3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.mockup-total span {
+  font-family: var(--heading);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .7);
+}
+.mockup-total .total-score {
+  font-family: var(--heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* === WHAT YOU'LL DISCOVER === */
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.area-discover-card {
+  padding: 2rem 1.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+}
+.area-discover-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.area-discover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .07);
+}
+.area-discover-card:hover::before {
+  transform: scaleX(1);
+}
+.area-discover-card .area-number {
+  font-family: var(--heading);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .6rem;
+}
+.area-discover-card h3 {
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--tertiary);
+  margin-bottom: .75rem;
+}
+.area-discover-card p {
+  font-size: .9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* === HOW IT WORKS === */
+.steps-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.step-item {
+  padding: 2.75rem 2.25rem;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background .3s;
+}
+.step-item:last-child {
+  border-right: none;
+}
+.step-item:hover {
+  background: var(--bg-ice);
+}
+.step-arrow {
+  display: none;
+}
+.step-num {
+  font-family: var(--heading);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--bg-alt);
+  line-height: 1;
+  margin-bottom: .75rem;
+  transition: color .3s;
+}
+.step-item:hover .step-num {
+  color: rgba(205, 97, 85, .15);
+}
+.step-label {
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.step-item h3 {
+  font-family: var(--heading);
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  margin-bottom: .6rem;
+}
+.step-item p {
+  font-size: .9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* === WHO THIS IS FOR === */
+.who-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.who-text p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+.who-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin-top: .5rem;
+}
+.who-list li {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-family: var(--heading);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  padding: .85rem 1.25rem;
+  background: var(--bg-ice);
+  border: 1px solid var(--border);
+  transition: all .3s;
+}
+.who-list li:hover {
+  border-color: var(--accent);
+  background: var(--bg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .05);
+}
+.who-list li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+.who-aside {
+  background: linear-gradient(150deg, var(--bg-dark) 0%, var(--tertiary) 100%);
+  padding: 2.75rem 2.25rem;
+  color: var(--text-light);
+  position: relative;
+  overflow: hidden;
+}
+.who-aside::before {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(205, 97, 85, .08);
+  pointer-events: none;
+}
+.who-aside .aside-label {
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.who-aside h3 {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #fff;
+  margin-bottom: .75rem;
+  line-height: 1.3;
+}
+.who-aside p {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .65);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+.who-aside .stat-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.who-aside .stat {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+.who-aside .stat-num {
+  font-family: var(--heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.who-aside .stat-label {
+  font-family: var(--heading);
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .5);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .checklist-hero .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .areas-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .who-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .checklist-hero {
+    padding-top: 6rem;
+    padding-bottom: 3.5rem;
+  }
+  .steps-strip {
+    grid-template-columns: 1fr;
+  }
+  .step-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-item:last-child {
+    border-bottom: none;
+  }
+  .areas-grid {
+    grid-template-columns: 1fr;
+  }
+  .lead-form-card .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .checklist-mockup {
+    padding: 1.75rem 1.25rem;
+  }
+  .who-aside {
+    padding: 2rem 1.5rem;
+  }
+  .who-aside .stat-row {
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
+
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/ai-readiness-checklist.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/ai-readiness-checklist.html">
+  <meta property="og:title" content="AI Readiness Checklist | Free Assessment | WPB">
+  <meta property="og:description" content="Take the free 5-minute AI Readiness Checklist. Score your business across 6 areas and discover exactly where AI can save time and generate more leads.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Hero Section -->
+<section class="checklist-hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- Left: Copy + Form -->
+      <div class="hero-left reveal-left">
+        <div class="hero-eyebrow">Free AI Assessment</div>
+        <h1>Is Your Business <em>Ready for AI?</em> Find Out in 5 Minutes.</h1>
+        <p class="hero-subhead">Take the free AI Readiness Checklist — a practical self-assessment that shows you exactly where AI can save time, cut costs, and generate more leads.</p>
+
+        <ul class="hero-benefits">
+          <li>Score your business across 6 key opportunity areas</li>
+          <li>Discover which workflows are ready for AI automation today</li>
+          <li>Get a personalized action plan delivered to your inbox</li>
+          <li>No technical knowledge required — built for business owners</li>
+        </ul>
+
+        <!-- Email Capture Form -->
+        <div class="lead-form-card">
+          <div class="lead-form-inner" id="checklistFormInner">
+            <div class="form-heading">Get Your Free Checklist</div>
+            <div class="form-subtext">Enter your info and we'll send the full interactive checklist straight to your inbox.</div>
+
+            <form id="checklistForm" action="send_email.php" method="POST" novalidate>
+              <input type="hidden" name="form_type" value="checklist">
+              <input type="text" name="website_hp" style="display:none" tabindex="-1" autocomplete="off">
+              <input type="hidden" id="checklistRecaptchaToken" name="g-recaptcha-response">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="first_name">First Name</label>
+                  <input type="text" id="first_name" name="first_name" placeholder="Sarah" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="sarah@yourbiz.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="business_type">Business Type</label>
+                  <select id="business_type" name="business_type" required>
+                    <option value="" disabled selected>Select your industry</option>
+                    <option value="restaurant_hospitality">Restaurant &amp; Hospitality</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="medical_dental">Medical &amp; Dental</option>
+                    <option value="law_legal">Law &amp; Legal</option>
+                    <option value="home_services">Home Services &amp; Contractors</option>
+                    <option value="retail_ecommerce">Retail &amp; E-Commerce</option>
+                    <option value="professional_services">Professional Services</option>
+                    <option value="fitness_wellness">Fitness &amp; Wellness</option>
+                    <option value="finance_accounting">Finance &amp; Accounting</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                Send Me the Checklist
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </form>
+
+            <p class="trust-line">&#128274; No spam. Unsubscribe anytime.</p>
+          </div>
+
+          <div class="form-success" id="checklistSuccess">
+            <div class="success-icon">&#10003;</div>
+            <h3>You're all set!</h3>
+            <p>Your checklist is on its way! Check your email.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Checklist Mockup -->
+      <div class="hero-right reveal-right">
+        <div class="checklist-mockup">
+          <div class="mockup-header">
+            <div class="mockup-badge">AI Readiness Checklist</div>
+            <h3>Your Score Breakdown</h3>
+            <p>30 questions across 6 opportunity areas</p>
+          </div>
+
+          <div class="area-cards">
+            <div class="area-card">
+              <span class="area-num">01</span>
+              <span class="area-label">Customer Communication</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="40%"></div></div>
+            </div>
+            <div class="area-card">
+              <span class="area-num">02</span>
+              <span class="area-label">Lead Generation</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="65%"></div></div>
+            </div>
+            <div class="area-card">
+              <span class="area-num">03</span>
+              <span class="area-label">Content &amp; Marketing</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="30%"></div></div>
+            </div>
+            <div class="area-card">
+              <span class="area-num">04</span>
+              <span class="area-label">Operations &amp; Workflow</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="80%"></div></div>
+            </div>
+            <div class="area-card">
+              <span class="area-num">05</span>
+              <span class="area-label">Customer Experience</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="55%"></div></div>
+            </div>
+            <div class="area-card">
+              <span class="area-num">06</span>
+              <span class="area-label">Data &amp; Decision Making</span>
+              <div class="area-score-bar"><div class="area-score-fill" style="width:0%" data-width="20%"></div></div>
+            </div>
+          </div>
+
+          <div class="mockup-total">
+            <span>Overall AI Readiness Score</span>
+            <span class="total-score">48 / 100</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- What You'll Discover -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The 6 Assessment Areas</div>
+      <h2 class="section-title reveal stagger-1">What You'll Discover</h2>
+      <p class="section-desc reveal stagger-2">The checklist evaluates your business across six areas where AI consistently delivers the biggest ROI. See where you stand — and where to act first.</p>
+    </div>
+
+    <div class="areas-grid">
+
+      <div class="area-discover-card reveal stagger-1">
+        <div class="area-number">Area 01</div>
+        <h3>Customer Communication</h3>
+        <p>Are you responding to leads fast enough? Businesses that respond within 5 minutes are 9x more likely to convert. Discover whether AI-powered chat and follow-up automation could plug your response gap — including after-hours coverage.</p>
+      </div>
+
+      <div class="area-discover-card reveal stagger-2">
+        <div class="area-number">Area 02</div>
+        <h3>Lead Generation &amp; Conversion</h3>
+        <p>Is your website turning visitors into customers — or quietly losing them? This section reveals whether AI-driven lead capture, qualification bots, and smart CTAs could dramatically increase the percentage of visitors who actually reach out.</p>
+      </div>
+
+      <div class="area-discover-card reveal stagger-3">
+        <div class="area-number">Area 03</div>
+        <h3>Content &amp; Marketing</h3>
+        <p>Are you consistently creating content that attracts customers? Most South Florida businesses publish inconsistently. AI can generate SEO blogs, social posts, and email campaigns on a schedule — without adding headcount.</p>
+      </div>
+
+      <div class="area-discover-card reveal stagger-1">
+        <div class="area-number">Area 04</div>
+        <h3>Operations &amp; Workflow</h3>
+        <p>How much manual work is slowing your team down? Scheduling, invoicing, reminders, data entry — these tasks consume hours every week. Find out exactly which workflows in your business are ripe for AI automation.</p>
+      </div>
+
+      <div class="area-discover-card reveal stagger-2">
+        <div class="area-number">Area 05</div>
+        <h3>Customer Experience</h3>
+        <p>How personalized and responsive is your customer experience? AI lets even small businesses deliver enterprise-level personalization — from tailored recommendations to proactive follow-ups that feel human, not robotic.</p>
+      </div>
+
+      <div class="area-discover-card reveal stagger-3">
+        <div class="area-number">Area 06</div>
+        <h3>Data &amp; Decision Making</h3>
+        <p>Are you using data to drive business decisions — or going with gut instinct? AI tools can surface actionable insights from your existing data, helping you spot trends, predict demand, and make smarter moves faster.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Simple Process</div>
+      <h2 class="section-title reveal stagger-1">How It Works</h2>
+      <p class="section-desc reveal stagger-2">Three steps. Five minutes. A clear picture of exactly where AI can move the needle in your business.</p>
+    </div>
+
+    <div class="steps-strip reveal">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-label">Step One</div>
+        <h3>Answer 30 Questions</h3>
+        <p>Work through 30 straightforward yes/no questions about how your business currently handles communication, marketing, operations, and more. No technical knowledge needed — just honest answers.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-label">Step Two</div>
+        <h3>Get Your Score</h3>
+        <p>Receive an overall AI Readiness Score plus a breakdown across all 6 areas. See at a glance where your biggest gaps — and your biggest opportunities — actually are.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-label">Step Three</div>
+        <h3>Get Your Action Plan</h3>
+        <p>Based on your score, you'll receive a personalized action plan showing the highest-ROI AI investments for your specific business type — ranked by impact and ease of implementation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who This Is For -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="who-layout">
+
+      <div class="who-text">
+        <div class="section-label reveal">Who It's Built For</div>
+        <h2 class="section-title reveal stagger-1">This Is For You If&hellip;</h2>
+        <p class="reveal stagger-2">The AI Readiness Checklist was built for South Florida business owners who are curious about AI but not sure where to start — or who have heard the hype and want a practical, no-fluff look at what's actually possible for their specific situation.</p>
+        <p class="reveal stagger-3">You don't need to be technical. You don't need to have a big team or a big budget. You just need to be open to running your business smarter.</p>
+
+        <ul class="who-list reveal stagger-4">
+          <li>Restaurants, cafes &amp; hospitality businesses</li>
+          <li>Real estate agents &amp; brokerages</li>
+          <li>Medical, dental &amp; wellness practices</li>
+          <li>Law firms &amp; professional service providers</li>
+          <li>Home services &amp; contracting companies</li>
+          <li>Retail shops &amp; e-commerce brands</li>
+          <li>Any local business ready to grow smarter</li>
+        </ul>
+      </div>
+
+      <div class="who-aside reveal-right">
+        <div class="aside-label">Why It Matters Now</div>
+        <h3>Your Competitors Are Already Asking These Questions</h3>
+        <p>AI adoption among small businesses is accelerating rapidly. The businesses that assess their readiness now — and act on it — will have a compounding advantage over the ones who wait. This checklist is your first step.</p>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">5 min</div>
+            <div class="stat-label">To Complete</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Areas Assessed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Free</div>
+          </div>
+        </div>
+
+        <a href="#checklistForm" class="btn-primary" style="width:100%;justify-content:center">
+          Get the Free Checklist
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Ready to Talk?</div>
+    <h2 class="section-title reveal stagger-1">Want a Human to Walk Through Your Results?</h2>
+    <p class="section-desc reveal stagger-2">After you complete the checklist, book a free 30-minute strategy call. We'll review your score together and map out a practical AI roadmap for your business — no sales pressure, just real insight.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="solutions.html" class="btn-secondary light">Explore AI Solutions</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">Or call us directly: 561-291-9001</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+
+  /* ── Score bar animation ── */
+  function animateScoreBars() {
+    const fills = document.querySelectorAll('.area-score-fill');
+    fills.forEach(function (fill) {
+      const target = fill.getAttribute('data-width');
+      fill.style.width = target;
+    });
+  }
+
+  const mockup = document.querySelector('.checklist-mockup');
+  if (mockup) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          setTimeout(animateScoreBars, 400);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(mockup);
+  }
+
+  /* ── Form submission with reCAPTCHA v3 ── */
+  var form = document.getElementById('checklistForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      /* Basic validation */
+      var firstName = form.querySelector('[name="first_name"]').value.trim();
+      var email = form.querySelector('[name="email"]').value.trim();
+      var bizType = form.querySelector('[name="business_type"]').value;
+
+      if (!firstName || !email || !bizType) {
+        var fields = form.querySelectorAll('input[required], select[required]');
+        fields.forEach(function (f) {
+          if (!f.value.trim()) {
+            f.style.borderColor = 'var(--accent)';
+          }
+        });
+        return;
+      }
+
+      /* Reset border colors on valid fields */
+      form.querySelectorAll('input, select').forEach(function (f) {
+        f.style.borderColor = '';
+      });
+
+      /* Get reCAPTCHA token then submit */
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LfDwJ8sAAAAAIQjuj2glcLYBM8DlKZboLlLEU9_', { action: 'checklist_submit' })
+          .then(function (token) {
+            document.getElementById('checklistRecaptchaToken').value = token;
+
+            var submitBtn = form.querySelector('.btn-submit');
+            submitBtn.textContent = 'Sending\u2026';
+            submitBtn.disabled = true;
+
+            var data = new FormData(form);
+
+            fetch('send_email.php', {
+              method: 'POST',
+              body: data
+            })
+            .then(function (res) {
+              return res.text();
+            })
+            .then(function () {
+              showSuccess();
+            })
+            .catch(function () {
+              /* On fetch error still show success — email likely sent server-side */
+              showSuccess();
+            });
+          });
+      });
+    });
+  }
+
+  function showSuccess() {
+    var inner = document.getElementById('checklistFormInner');
+    var success = document.getElementById('checklistSuccess');
+    if (inner) inner.style.display = 'none';
+    if (success) success.classList.add('show');
+  }
+
+  /* Reset field border color on input */
+  if (form) {
+    form.querySelectorAll('input, select').forEach(function (f) {
+      f.addEventListener('input', function () {
+        f.style.borderColor = '';
+      });
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

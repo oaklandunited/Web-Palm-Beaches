@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Solutions — Web Palm Beaches</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.solution-showcase{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:3rem 0;border:1px solid var(--border);overflow:hidden}
+.solution-showcase .visual{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:3rem;color:var(--text-light);display:flex;flex-direction:column;justify-content:center}
+.solution-showcase .visual .big-num{font-family:var(--heading);font-size:5rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.5rem}
+.solution-showcase .visual h3{font-family:var(--heading);font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}
+.solution-showcase .visual p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.65)}
+.solution-showcase .details{padding:3rem;background:var(--bg)}
+.solution-showcase .details h4{font-family:var(--heading);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.75rem}
+.solution-showcase .details p{font-size:.95rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem}
+.solution-showcase .details .benefit{display:flex;gap:.75rem;align-items:start;padding:.5rem 0}
+.solution-showcase .details .benefit-icon{width:28px;height:28px;flex-shrink:0;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:.75rem}
+.solution-showcase .details .benefit span{font-size:.9rem;color:var(--text-secondary);line-height:1.5}
+.solution-showcase:nth-child(even) .visual{order:2}
+.solution-showcase:nth-child(even) .details{order:1}
+
+.industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.industry-card{text-align:center;padding:2rem 1.5rem;border:1px solid var(--border);background:var(--bg);transition:all .4s;cursor:default}
+.industry-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.industry-card .ind-icon{font-size:2rem;margin-bottom:1rem}
+.industry-card h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:.5rem}
+.industry-card p{font-size:.8rem;color:var(--text-secondary);line-height:1.6}
+
+@media(max-width:768px){
+  .solution-showcase{grid-template-columns:1fr}
+  .solution-showcase:nth-child(even) .visual{order:0}
+  .solution-showcase:nth-child(even) .details{order:0}
+  .industries-grid{grid-template-columns:1fr 1fr}
+}
+.sol-detail-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;padding:.6rem 1.25rem;background:transparent;border:1.5px solid var(--accent);color:var(--accent);font-family:var(--heading);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s}
+.sol-detail-btn:hover{background:var(--accent);color:#fff}
+.industry-card{cursor:pointer}
+.sol-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.sol-modal-overlay.open{opacity:1;pointer-events:all}
+.sol-modal{background:#fff;max-width:780px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+.sol-modal .modal-close-bar{display:flex;justify-content:flex-end;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.sol-modal .modal-close-bar button{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-secondary);padding:.25rem .5rem}
+.sol-modal .modal-header{padding:2.5rem 2.5rem 1.5rem;background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));color:#fff}
+.sol-modal .mh-icon{font-size:2.5rem;margin-bottom:.75rem}
+.sol-modal .mh-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:.5rem}
+.sol-modal h2{font-family:var(--heading);font-size:1.6rem;font-weight:800;margin-bottom:.75rem}
+.sol-modal .modal-header p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.7)}
+.sol-modal .modal-content{padding:2rem 2.5rem}
+.sol-modal .mc-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;padding:1.5rem;background:var(--bg-ice)}
+.sol-modal .mc-meta-item{text-align:center}
+.sol-modal .mm-val{font-family:var(--heading);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.sol-modal .mm-key{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);margin-top:.25rem}
+.sol-modal .mc-section{margin-bottom:1.75rem}
+.sol-modal .mc-section h3{font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.2rem;margin-bottom:1rem}
+.sol-modal .mc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+.sol-modal .mc-list li{padding-left:1.25rem;position:relative;font-size:.9rem;color:var(--text-secondary);line-height:1.6}
+.sol-modal .mc-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.85rem}
+.sol-modal .mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sol-modal .mc-item{padding:1rem;background:var(--bg-alt);border-left:3px solid var(--accent)}
+.sol-modal .mc-item h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.4rem}
+.sol-modal .mc-item p{font-size:.82rem;color:var(--text-secondary);line-height:1.6;margin:0}
+.sol-modal .mc-cta{background:var(--bg-dark);padding:1.5rem;text-align:center;margin-top:1rem}
+.sol-modal .mc-cta h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.sol-modal .mc-cta p{font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem}
+@media(max-width:600px){.sol-modal .mc-meta{grid-template-columns:1fr 1fr}.sol-modal .mc-grid{grid-template-columns:1fr}}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/solutions.html">
+  <meta name="description" content="Explore AI solutions built for South Florida businesses — chatbots, lead generation agents, workflow automation, and custom AI integrations by Web Palm Beaches.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/solutions.html">
+  <meta property="og:title" content="AI Solutions — Web Palm Beaches">
+  <meta property="og:description" content="Explore AI solutions built for South Florida businesses — chatbots, lead generation agents, workflow automation, and custom AI integrations by Web Palm Beaches.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html" class="active">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>AI Solutions</span></div>
+    <h1 class="reveal stagger-1">Real AI Solutions for <em>Real Businesses</em></h1>
+    <p class="reveal stagger-2">AI isn't science fiction. Web Palm Beaches delivers practical, proven AI solutions that South Florida businesses are using right now to save time, reduce costs, and grow faster.</p>
+  </div>
+</section>
+
+<!-- Solutions Showcase -->
+<section>
+  <div class="container">
+    <div class="section-center" style="margin-bottom:4rem">
+      <div class="section-label reveal">AI In Action</div>
+      <h2 class="section-title reveal stagger-1">How our clients put AI to work</h2>
+      <p class="section-desc reveal stagger-2">Every solution Web Palm Beaches builds is tailored to the specific needs and goals of the business. Here's a deeper look at what's possible.</p>
+    </div>
+
+    <div class="solution-showcase reveal">
+      <div class="visual">
+        <div class="big-num">01</div>
+        <h3>Automated Customer Support</h3>
+        <p>Intelligent chatbots that handle FAQs, book appointments, and escalate complex issues in real time.</p>
+      </div>
+      <div class="details">
+        <h4>The Challenge</h4>
+        <p>Customers expect instant answers. Hiring 24/7 support staff is expensive and difficult to scale, especially for small and mid-size businesses.</p>
+        <h4>The Solution</h4>
+        <p>Web Palm Beaches deploys AI chatbots trained on your specific business knowledge. They handle common inquiries instantly, escalate complex issues to your team, and learn from every interaction.</p>
+        <div class="benefit"><div class="benefit-icon">&#9889;</div><span>Response time drops from hours to under 3 seconds</span></div>
+        <div class="benefit"><div class="benefit-icon">&#128176;</div><span>Support costs reduced by up to 60%</span></div>
+        <div class="benefit"><div class="benefit-icon">&#128200;</div><span>Customer satisfaction scores increase 25-40%</span></div>
+        <button class="sol-detail-btn" onclick="openSolModal('sol-support')">Full Breakdown →</button>
+      </div>
+    </div>
+
+    <div class="solution-showcase reveal">
+      <div class="visual">
+        <div class="big-num">02</div>
+        <h3>Content Creation Pipeline</h3>
+        <p>AI-powered systems that generate blog posts, social media, and email campaigns aligned with your brand.</p>
+      </div>
+      <div class="details">
+        <h4>The Challenge</h4>
+        <p>Consistent, high-quality content is essential for search &amp; AI visibility (SEO, AEO &amp; GEO) and engagement, but creating it is time-consuming and requires specialized skills.</p>
+        <h4>The Solution</h4>
+        <p>We build AI content pipelines that draft blog posts, social media captions, email campaigns, and more — all in your brand voice and optimized for search engines.</p>
+        <div class="benefit"><div class="benefit-icon">&#128221;</div><span>10x content output without additional headcount</span></div>
+        <div class="benefit"><div class="benefit-icon">&#127919;</div><span>SEO &amp; GEO-optimized from creation, not as an afterthought</span></div>
+        <div class="benefit"><div class="benefit-icon">&#128337;</div><span>Content calendar stays full months in advance</span></div>
+        <button class="sol-detail-btn" onclick="openSolModal('sol-content')">Full Breakdown →</button>
+      </div>
+    </div>
+
+    <div class="solution-showcase reveal">
+      <div class="visual">
+        <div class="big-num">03</div>
+        <h3>Intelligent Lead Scoring</h3>
+        <p>AI agents that analyze visitor behavior, qualify leads, and route hot prospects to your sales team.</p>
+      </div>
+      <div class="details">
+        <h4>The Challenge</h4>
+        <p>Sales teams waste time chasing cold leads while hot prospects slip through the cracks. Manual lead scoring is slow and inconsistent.</p>
+        <h4>The Solution</h4>
+        <p>Web Palm Beaches builds AI-powered lead scoring that analyzes behavior patterns, engagement signals, and demographic data to rank and route leads automatically.</p>
+        <div class="benefit"><div class="benefit-icon">&#127919;</div><span>Hot leads identified and routed in real time</span></div>
+        <div class="benefit"><div class="benefit-icon">&#128200;</div><span>Sales conversion rates increase 30-50%</span></div>
+        <div class="benefit"><div class="benefit-icon">&#128101;</div><span>Sales team focuses only on highest-value prospects</span></div>
+        <button class="sol-detail-btn" onclick="openSolModal('sol-leads')">Full Breakdown →</button>
+      </div>
+    </div>
+
+    <div class="solution-showcase reveal">
+      <div class="visual">
+        <div class="big-num">04</div>
+        <h3>Data-Driven Decisions</h3>
+        <p>Custom dashboards and AI analytics that transform raw data into actionable business insights.</p>
+      </div>
+      <div class="details">
+        <h4>The Challenge</h4>
+        <p>Businesses sit on mountains of data but lack the tools and expertise to turn it into decisions. Spreadsheets only go so far.</p>
+        <h4>The Solution</h4>
+        <p>We build custom analytics dashboards powered by AI that surface trends, predict outcomes, and recommend actions — giving you a competitive intelligence edge.</p>
+        <div class="benefit"><div class="benefit-icon">&#128202;</div><span>Real-time dashboards tailored to your KPIs</span></div>
+        <div class="benefit"><div class="benefit-icon">&#129504;</div><span>Predictive analytics that spot trends early</span></div>
+        <div class="benefit"><div class="benefit-icon">&#9889;</div><span>Automated alerts when metrics need attention</span></div>
+        <button class="sol-detail-btn" onclick="openSolModal('sol-analytics')">Full Breakdown →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industries -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center" style="margin-bottom:1rem">
+      <div class="section-label reveal">Industries We Serve</div>
+      <h2 class="section-title reveal stagger-1">AI for every industry</h2>
+      <p class="section-desc reveal stagger-2">Web Palm Beaches works with businesses across Palm Beach County and beyond, delivering AI solutions customized for each industry's unique challenges.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card reveal" onclick="openSolModal('ind-healthcare')">
+        <div class="ind-icon">&#127973;</div>
+        <h4>Healthcare</h4>
+        <p>Patient intake, appointment scheduling, and HIPAA-compliant communication automation.</p>
+      </div>
+      <div class="industry-card reveal stagger-1" onclick="openSolModal('ind-realestate')">
+        <div class="ind-icon">&#127970;</div>
+        <h4>Real Estate</h4>
+        <p>Automated lead capture, property matching, and client follow-up systems.</p>
+      </div>
+      <div class="industry-card reveal stagger-2" onclick="openSolModal('ind-legal')">
+        <div class="ind-icon">&#9878;&#65039;</div>
+        <h4>Legal</h4>
+        <p>Document processing, client intake forms, and intelligent case research.</p>
+      </div>
+      <div class="industry-card reveal stagger-3" onclick="openSolModal('ind-hospitality')">
+        <div class="ind-icon">&#127860;</div>
+        <h4>Hospitality</h4>
+        <p>Reservation management, review monitoring, and guest experience personalization.</p>
+      </div>
+      <div class="industry-card reveal stagger-4" onclick="openSolModal('ind-retail')">
+        <div class="ind-icon">&#128722;</div>
+        <h4>Retail &amp; E-Commerce</h4>
+        <p>Inventory optimization, personalized recommendations, and automated customer service.</p>
+      </div>
+      <div class="industry-card reveal stagger-5" onclick="openSolModal('ind-professional')">
+        <div class="ind-icon">&#128188;</div>
+        <h4>Professional Services</h4>
+        <p>Proposal generation, project tracking, and automated client reporting.</p>
+      </div>
+      <div class="industry-card reveal stagger-6" onclick="openSolModal('ind-homeservices')">
+        <div class="ind-icon">&#128295;</div>
+        <h4>Home Services</h4>
+        <p>Online booking, estimate automation, and review generation systems.</p>
+      </div>
+      <div class="industry-card reveal" onclick="openSolModal('ind-education')">
+        <div class="ind-icon">&#127891;</div>
+        <h4>Education</h4>
+        <p>Enrollment automation, student communication, and content delivery systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<!-- FAQ -->
+<section class="bg-ice" style="padding:5rem 0">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto">
+      <div class="section-center" style="margin-bottom:3rem">
+        <div class="section-label reveal">FAQ</div>
+        <h2 class="section-title reveal stagger-1">Common Questions About AI Solutions</h2>
+        <p class="section-desc reveal stagger-2">Straight answers to the questions we hear most often from South Florida business owners exploring AI for the first time.</p>
+      </div>
+      <div class="reveal stagger-2">
+        <div class="accordion-item">
+          <div class="accordion-header">What kinds of businesses benefit most from AI solutions?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Any business that handles repetitive tasks, manages leads, books appointments, or communicates with customers regularly. We've seen the strongest ROI in service businesses — law firms, medical practices, real estate, contractors, and restaurants — where time savings and lead response speed directly translate to revenue. If you're spending hours on tasks that follow the same pattern, AI can likely handle them.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Do I need existing technology infrastructure to get started?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>No. We work with businesses at every stage — from companies with no digital tools to those with complex tech stacks. We start with an operational audit to understand exactly what you have, identify gaps, and recommend the right tools. Many clients start with zero AI infrastructure and are fully operational within 4–8 weeks.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">How is Web Palm Beaches different from other AI consultants?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We build and implement — not just advise. Many consultants deliver a strategy deck and walk away. We stay involved through every phase: discovery, build, testing, launch, and ongoing optimization. We're also South Florida locals who understand the unique dynamics of Palm Beach County businesses, not a national firm that treats you as a ticket number.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">How quickly will I see results from an AI implementation?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Faster than most people expect. Simple automations like AI review requests or lead follow-up sequences often show measurable results within the first 30 days. More complex systems — full AI agents or multi-step automation workflows — typically reach full performance within 60–90 days as they accumulate data and we tune their behavior based on real usage.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">What's the minimum budget to get started with AI?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Focused projects — a single AI chatbot, an automated follow-up sequence, or a review request workflow — start at around $2,500. Comprehensive AI strategy and full implementation typically ranges from $10,000–$50,000 depending on scope. We always start with a free strategy call to scope your project honestly and prioritize the changes with the highest ROI first.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Will AI solutions require ongoing management from my team?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Minimal. We build systems designed to run independently, and we provide training so your team knows how to monitor and update them without relying on us for every change. We also offer optional monthly support retainers for businesses that want us to handle ongoing optimization, updates, and performance reporting.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Your Industry, Your Solution</div>
+    <h2 class="section-title reveal stagger-1">Don't see your industry?<br>We'll build a custom solution</h2>
+    <p class="section-desc reveal stagger-2" style="margin:0 auto">Web Palm Beaches tailors every AI solution to the specific needs of your business. Let's talk about yours.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book Free Strategy Call</a>
+      <a href="ai-for-small-business.html" class="btn-secondary light">AI for Small Teams →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SOLUTION MODALS -->
+<div class="sol-modal-overlay" id="sol-support">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('sol-support')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128172;</div>
+      <div class="mh-label">Solution 01</div>
+      <h2>Automated Customer Support</h2>
+      <p>Intelligent chatbots trained on your business that handle FAQs, book appointments, and escalate complex issues — 24 hours a day, without adding headcount.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">&lt;3 sec</div><div class="mm-key">Response Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">60%</div><div class="mm-key">Support Cost Reduction</div></div>
+        <div class="mc-meta-item"><div class="mm-val">40%</div><div class="mm-key">CSAT Score Increase</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>How It Works</h3>
+        <ul class="mc-list">
+          <li>We audit your top 50 customer questions and build a knowledge base the AI learns from</li>
+          <li>The chatbot is deployed on your website, SMS, and social channels from one system</li>
+          <li>Complex or sensitive issues are automatically escalated to a human with full conversation context</li>
+          <li>Every interaction improves the AI — accuracy increases week over week</li>
+          <li>Integrates with your CRM so every conversation is logged and followed up</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>What Gets Automated</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>FAQ Resolution</h4><p>Hours, pricing, services, location, and policy questions answered instantly without staff involvement.</p></div>
+          <div class="mc-item"><h4>Appointment Booking</h4><p>Customers book, reschedule, and confirm directly in the chat — synced to your calendar in real time.</p></div>
+          <div class="mc-item"><h4>Lead Capture</h4><p>Every inquiry becomes a contact. Name, email, phone, and intent captured before the conversation ends.</p></div>
+          <div class="mc-item"><h4>After-Hours Coverage</h4><p>No leads lost to competitors because you were closed. The agent keeps working when your team doesn't.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready to Never Miss a Customer Message?</h3>
+        <p>We'll map your top inquiries and show you exactly what the AI can handle in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="sol-content">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('sol-content')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128221;</div>
+      <div class="mh-label">Solution 02</div>
+      <h2>Content Creation Pipeline</h2>
+      <p>AI-powered systems that generate blog posts, social media, and email campaigns in your brand voice — keeping your content calendar full without adding a marketing hire.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">10×</div><div class="mm-key">Content Output</div></div>
+        <div class="mc-meta-item"><div class="mm-val">GEO/SEO-First</div><div class="mm-key">Built In, Not Bolted On</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Months</div><div class="mm-key">Calendar Filled in Advance</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>How It Works</h3>
+        <ul class="mc-list">
+          <li>We document your brand voice, tone, target audience, and key messages</li>
+          <li>The pipeline generates drafts for blogs, email sequences, and social posts on a set schedule</li>
+          <li>All content is keyword-researched and structured for SEO, AEO &amp; GEO from the start</li>
+          <li>Your team reviews and approves — we handle everything else</li>
+          <li>Integrates with WordPress, Mailchimp, HubSpot, and your social scheduler</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Content Types Produced</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Blog, SEO &amp; GEO Articles</h4><p>Long-form articles targeting your highest-value search and AI query intents — published on a consistent schedule search engines reward.</p></div>
+          <div class="mc-item"><h4>Email Campaigns</h4><p>Nurture sequences, promotional emails, and newsletters drafted, formatted, and ready to send.</p></div>
+          <div class="mc-item"><h4>Social Media</h4><p>Platform-specific posts for Instagram, Facebook, LinkedIn, and Google Business — written and scheduled.</p></div>
+          <div class="mc-item"><h4>Local Content</h4><p>South Florida-specific content that signals relevance to Palm Beach County searches and audiences.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Fill Your Content Calendar for the Next 3 Months</h3>
+        <p>We'll audit your current content gaps and show you exactly what the pipeline would produce for your business.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="sol-leads">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('sol-leads')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127919;</div>
+      <div class="mh-label">Solution 03</div>
+      <h2>Intelligent Lead Scoring</h2>
+      <p>AI agents that analyze visitor behavior, qualify leads automatically, and route your hottest prospects to your sales team the moment they're ready to buy.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">Real-Time</div><div class="mm-key">Lead Routing</div></div>
+        <div class="mc-meta-item"><div class="mm-val">50%</div><div class="mm-key">Higher Conversion Rate</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Zero</div><div class="mm-key">Hot Leads Slipping Through</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>How It Works</h3>
+        <ul class="mc-list">
+          <li>We define your ideal customer profile and map the behavioral signals that predict purchase intent</li>
+          <li>The AI monitors page views, form interactions, email opens, and time-on-site to build a score</li>
+          <li>High-scoring leads trigger instant alerts to your sales team with full context</li>
+          <li>Low-score leads enter automated nurture sequences until they're ready</li>
+          <li>Integrates with your CRM, email platform, and calendar booking system</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Scoring Signals We Track</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Web Behavior</h4><p>Pages visited, time spent, pricing page views, and return visit patterns — all weighted by intent signal strength.</p></div>
+          <div class="mc-item"><h4>Email Engagement</h4><p>Opens, clicks, and reply patterns analyzed to identify leads who are warming up before they reach out.</p></div>
+          <div class="mc-item"><h4>Form &amp; Chat Data</h4><p>Questions asked, budget hints, timeline signals, and service interest captured from every interaction.</p></div>
+          <div class="mc-item"><h4>Demographic Fit</h4><p>Industry, company size, location, and role matched against your best-fit customer profile for bonus scoring.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Stop Chasing Cold Leads. Start Closing Hot Ones.</h3>
+        <p>We'll show you which leads in your pipeline right now are most likely to convert — in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="sol-analytics">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('sol-analytics')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128202;</div>
+      <div class="mh-label">Solution 04</div>
+      <h2>Data-Driven Decisions</h2>
+      <p>Custom AI dashboards that transform your raw business data into clear, actionable insights — so you always know what's working, what's not, and what to do next.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">Real-Time</div><div class="mm-key">KPI Dashboards</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Early</div><div class="mm-key">Trend Detection</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Instant</div><div class="mm-key">Alerts on Metric Changes</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>How It Works</h3>
+        <ul class="mc-list">
+          <li>We identify the 5–10 metrics that most directly drive your revenue and profitability</li>
+          <li>Data is pulled from your marketing platforms, CRM, POS, and website into one unified dashboard</li>
+          <li>AI surfaces trends, anomalies, and opportunities automatically — no analyst required</li>
+          <li>Weekly summaries are delivered to your inbox with plain-English explanations and recommendations</li>
+          <li>Alerts fire immediately when a key metric deviates from your baseline</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Data Sources We Connect</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Marketing &amp; Ads</h4><p>Google Analytics, Google Ads, Meta Ads, and email platforms unified into a single performance view.</p></div>
+          <div class="mc-item"><h4>Sales &amp; CRM</h4><p>Pipeline value, close rates, average deal size, and rep performance tracked automatically.</p></div>
+          <div class="mc-item"><h4>Operations</h4><p>Booking rates, fulfillment speed, inventory levels, and capacity utilization surfaced in real time.</p></div>
+          <div class="mc-item"><h4>SEO, AEO, GEO &amp; Web</h4><p>Rankings, citations, traffic, conversions, and technical health from Google Search Console, AI engine logs, and your site analytics.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Know Exactly Where Your Business Stands — Every Day</h3>
+        <p>We'll identify the metrics that matter most for your business and show you what a dashboard could look like.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRY MODALS -->
+<div class="sol-modal-overlay" id="ind-healthcare">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-healthcare')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127973;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Healthcare Practices</h2>
+      <p>Reduce no-shows, streamline intake, and communicate with patients automatically — while staying fully HIPAA-compliant.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">40%</div><div class="mm-key">No-Show Reduction</div></div>
+        <div class="mc-meta-item"><div class="mm-val">3 hrs</div><div class="mm-key">Admin Time Saved Daily</div></div>
+        <div class="mc-meta-item"><div class="mm-val">HIPAA</div><div class="mm-key">Compliant by Design</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Healthcare</h3>
+        <ul class="mc-list">
+          <li>Automated appointment reminders via SMS and email — reducing no-shows by up to 40%</li>
+          <li>Digital intake forms that replace paper and sync directly to your EHR or PMS</li>
+          <li>AI waitlist management that fills cancellations automatically within minutes</li>
+          <li>Post-visit follow-up sequences for reviews, rebooking, and care compliance</li>
+          <li>HIPAA-compliant chat agents for patient questions and appointment requests</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>See What AI Can Do for Your Practice</h3>
+        <p>Book a free strategy call — we'll show you exactly which automations would have the highest impact.</p>
+        <a href="solutions-healthcare-ai-palm-beach.html" class="btn-primary">Healthcare AI Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-realestate">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-realestate')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127970;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Real Estate</h2>
+      <p>Capture more leads, follow up faster, and match buyers to listings automatically — so every inquiry turns into a conversation.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">5 min</div><div class="mm-key">Lead Response Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Zero</div><div class="mm-key">Leads Lost After Hours</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Follow-Up Sequences</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Real Estate</h3>
+        <ul class="mc-list">
+          <li>AI lead capture on your website that qualifies buyers and sellers before you call them back</li>
+          <li>Automated showing request and follow-up sequences via text and email</li>
+          <li>Property matching agents that send relevant listings based on stated buyer preferences</li>
+          <li>CRM integration so every lead is logged, scored, and assigned without manual entry</li>
+          <li>Review generation sequences sent automatically after closing</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Never Lose a Lead to a Faster Agent Again</h3>
+        <p>We'll show you how to respond to every inquiry in under 5 minutes — automatically.</p>
+        <a href="solutions-real-estate-ai-automation.html" class="btn-primary">Real Estate AI Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-legal">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-legal')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#9878;&#65039;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Law Firms</h2>
+      <p>Automate client intake, reduce administrative burden, and respond to prospective clients faster — without adding staff.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">80%</div><div class="mm-key">Intake Automated</div></div>
+        <div class="mc-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Prospect Response</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Hours</div><div class="mm-key">Admin Saved Per Week</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Law Firms</h3>
+        <ul class="mc-list">
+          <li>AI intake agents that qualify prospective clients and collect case details before the first call</li>
+          <li>Automated consultation scheduling with conflict checks and calendar sync</li>
+          <li>Document processing workflows that reduce manual review time</li>
+          <li>Client communication sequences for status updates and document requests</li>
+          <li>Review generation after case resolution to build your online reputation</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Win More Cases by Responding First</h3>
+        <p>The firm that responds fastest wins the client. We'll build the system that makes sure that's always you.</p>
+        <a href="solutions-legal-ai-compliance.html" class="btn-primary">Legal AI Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-hospitality">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-hospitality')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127860;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Hospitality &amp; Restaurants</h2>
+      <p>Fill more covers, respond to reviews automatically, and turn first-time guests into regulars with AI-powered guest experience systems.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">30%</div><div class="mm-key">More Repeat Visits</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Review Responses</div></div>
+        <div class="mc-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Reservation Handling</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Hospitality</h3>
+        <ul class="mc-list">
+          <li>AI reservation agents that handle booking, modification, and confirmation automatically</li>
+          <li>Post-visit SMS campaigns that drive repeat visits with personalized offers</li>
+          <li>Automated review request sequences sent at the optimal moment after a visit</li>
+          <li>AI-generated responses to Google and Yelp reviews — on-brand and timely</li>
+          <li>Loyalty trigger campaigns based on visit frequency and spend history</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Turn Every Guest Into a Regular</h3>
+        <p>We'll show you the exact automation sequence that brings guests back — in a free strategy call.</p>
+        <a href="web-design-restaurants.html" class="btn-primary">Restaurant Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-retail">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-retail')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128722;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Retail &amp; E-Commerce</h2>
+      <p>Recover abandoned carts, personalize recommendations, and automate customer service — turning more browsers into buyers.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">3×</div><div class="mm-key">Online Revenue Potential</div></div>
+        <div class="mc-meta-item"><div class="mm-val">15%</div><div class="mm-key">Cart Recovery Rate</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Inventory Reorder Triggers</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Retail</h3>
+        <ul class="mc-list">
+          <li>Abandoned cart recovery sequences via email and SMS that bring buyers back</li>
+          <li>AI product recommendation engine that increases average order value</li>
+          <li>Automated customer service chat for order status, returns, and product questions</li>
+          <li>Inventory monitoring agent that alerts you to reorder points before stockouts happen</li>
+          <li>Post-purchase review and upsell sequences that maximize lifetime value</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Make Your Store Work Harder While You Sleep</h3>
+        <p>We'll identify the revenue leaks in your current e-commerce setup and show you how to plug them.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-professional">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-professional')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128188;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Professional Services</h2>
+      <p>Win more proposals, automate client reporting, and spend less time on admin — so you can focus on the work clients actually pay for.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">70%</div><div class="mm-key">Less Proposal Writing Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Client Reports</div></div>
+        <div class="mc-meta-item"><div class="mm-val">More</div><div class="mm-key">Billable Hours Recovered</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Professional Services</h3>
+        <ul class="mc-list">
+          <li>AI proposal generator that creates customized, branded proposals in minutes from intake data</li>
+          <li>Automated client reporting pulled from your project management and analytics tools</li>
+          <li>Client intake and onboarding workflows that eliminate repetitive back-and-forth</li>
+          <li>AI assistant trained on your service knowledge to handle client FAQs and status requests</li>
+          <li>Follow-up and re-engagement sequences for past clients and warm prospects</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Spend More Time on Clients, Less on Admin</h3>
+        <p>We'll map your highest-friction workflows and show you exactly where AI can give you hours back.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-homeservices">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-homeservices')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128295;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Home Services</h2>
+      <p>Book more jobs, follow up on estimates automatically, and get more reviews — without spending more time on the phone.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Online Booking</div></div>
+        <div class="mc-meta-item"><div class="mm-val">60%</div><div class="mm-key">More Estimate Follow-Ups</div></div>
+        <div class="mc-meta-item"><div class="mm-val">5★</div><div class="mm-key">Review Generation</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Home Services</h3>
+        <ul class="mc-list">
+          <li>Online booking system that captures jobs 24/7 — even when you're on a job site</li>
+          <li>Automated estimate follow-up sequences via text and email that close more quotes</li>
+          <li>Job completion review request sent automatically at the right moment after service</li>
+          <li>AI chat agent that answers common questions about pricing, availability, and services</li>
+          <li>Seasonal campaign automations to fill your schedule during slower months</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Fill Your Schedule Without More Phone Calls</h3>
+        <p>We'll show you the booking and follow-up system that works while you're out on jobs.</p>
+        <a href="web-design-contractors.html" class="btn-primary">Contractor Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sol-modal-overlay" id="ind-education">
+  <div class="sol-modal">
+    <div class="modal-close-bar"><button onclick="closeSolModal('ind-education')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127891;</div>
+      <div class="mh-label">Industry Solutions</div>
+      <h2>AI for Education</h2>
+      <p>Automate enrollment follow-up, communicate with students and parents at scale, and deliver content more efficiently — without growing your admin team.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">Higher</div><div class="mm-key">Enrollment Conversion</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Parent &amp; Student Updates</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Less</div><div class="mm-key">Admin Overhead</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Build for Education</h3>
+        <ul class="mc-list">
+          <li>Enrollment inquiry follow-up sequences that nurture prospects through to registration</li>
+          <li>Automated parent and student communication for schedules, updates, and reminders</li>
+          <li>AI FAQ agent that handles common admissions and program questions instantly</li>
+          <li>Content delivery workflows that keep students engaged between sessions</li>
+          <li>Re-enrollment campaigns for past students at the right moment in the academic calendar</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Enroll More Students With Less Manual Follow-Up</h3>
+        <p>We'll show you the enrollment automation sequence that fills your roster before the term starts.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openSolModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSolModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.sol-modal-overlay').forEach(function(overlay){
+  overlay.addEventListener('click',function(e){
+    if(e.target===overlay) closeSolModal(overlay.id);
+  });
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.sol-modal-overlay.open').forEach(function(o){
+      closeSolModal(o.id);
+    });
+  }
+});
+</script>
+
+<script src="shared.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What kinds of businesses benefit most from AI solutions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any business that handles repetitive tasks, manages leads, books appointments, or communicates with customers regularly. We've seen the strongest ROI in service businesses — law firms, medical practices, real estate, contractors, and restaurants — where time savings and lead response speed directly translate to revenue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need existing technology infrastructure to get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We work with businesses at every stage — from companies with no digital tools to those with complex tech stacks. Many clients start with zero AI infrastructure and are fully operational within 4–8 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly will I see results from an AI implementation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simple automations like AI review requests or lead follow-up sequences often show measurable results within the first 30 days. More complex systems typically reach full performance within 60–90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the minimum budget to get started with AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Focused projects — a single AI chatbot, an automated follow-up sequence, or a review request workflow — start at around $2,500. Comprehensive AI strategy and full implementation typically ranges from $10,000–$50,000 depending on scope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will AI solutions require ongoing management from my team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Minimal. We build systems designed to run independently, and we provide training so your team knows how to monitor and update them. We also offer optional monthly support retainers for ongoing optimization."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

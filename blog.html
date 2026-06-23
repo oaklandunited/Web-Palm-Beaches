@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Web Design, AI & Local SEO | WPB</title>
+  <meta name="description" content="Practical guides on web design, AI automation, and local SEO for Palm Beach County businesses. Written by the team at Web Palm Beaches.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Blog","name":"Web Palm Beaches Blog","description":"Practical guides on web design, AI automation, and local SEO for South Florida businesses","url":"https://webpalmbeaches.com/blog.html","publisher":{"@type":"Organization","name":"Web Palm Beaches","address":{"@type":"PostalAddress","addressLocality":"West Palm Beach","addressRegion":"FL","postalCode":"33401"}}}
+  </script>
+  <style>
+    .page-hero{background:var(--tertiary);padding:5rem 0 4rem;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(205,97,85,.15) 0%,transparent 60%)}
+    .page-hero .container{position:relative;z-index:1}
+    .breadcrumb{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
+    .breadcrumb a{color:rgba(255,255,255,.5);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 .5rem;opacity:.5}
+    .page-hero h1{font-family:var(--heading);font-size:2.5rem;font-weight:700;color:var(--text-light);line-height:1.2;max-width:600px}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);margin-top:.75rem;max-width:520px;line-height:1.7}
+    .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:3rem;padding:4rem 0}
+    .blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .blog-card{border:1px solid var(--border);background:#fff;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+    .blog-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);transform:translateY(-3px)}
+    .blog-card-img{height:180px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden;position:relative}
+    .blog-card-img .cat-badge{position:absolute;top:.75rem;left:.75rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem}
+    .blog-card-img .icon-wrap{font-size:3rem;opacity:.15}
+    .blog-card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column}
+    .blog-card-body h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:var(--heading);line-height:1.4;margin-bottom:.5rem}
+    .blog-card-body p{font-size:.875rem;color:var(--text-secondary);line-height:1.65;flex:1;margin-bottom:.75rem}
+    .blog-card-meta{font-family:var(--heading);font-size:.7rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
+    .blog-card-body a.read-more{font-family:var(--heading);font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+    .blog-card-body a.read-more:hover{gap:.6rem}
+    .blog-sidebar{}
+    .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-cta{background:var(--tertiary);padding:1.75rem}
+    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
+    .category-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+    .cat-btn{background:none;border:1px solid var(--border);font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);padding:.4rem .9rem;cursor:pointer;transition:all .25s}
+    .cat-btn:hover,.cat-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+    .section-label{font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+    @media(max-width:1000px){.blog-layout{grid-template-columns:1fr}.blog-sidebar{display:none}}
+    @media(max-width:700px){.blog-grid{grid-template-columns:1fr}}
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog.html">
+  <meta property="og:title" content="Blog | Web Design, AI & Local SEO | WPB">
+  <meta property="og:description" content="Practical guides on web design, AI automation, and local SEO for Palm Beach County businesses. Written by the team at Web Palm Beaches.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span> Blog</div>
+    <h1>Insights for South Florida Business Growth</h1>
+    <p>Practical guides on web design, AI automation, local SEO, and digital strategy — written for Palm Beach County business owners.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="blog-layout">
+    <main>
+      <div class="category-filters">
+        <button class="cat-btn active" onclick="filterPosts('all', this)">All Posts</button>
+        <button class="cat-btn" onclick="filterPosts('web-design', this)">Web Design</button>
+        <button class="cat-btn" onclick="filterPosts('ai-automation', this)">AI &amp; Automation</button>
+        <button class="cat-btn" onclick="filterPosts('local-seo', this)">Local SEO</button>
+      </div>
+
+      <div class="blog-grid" id="blog-grid">
+
+        <!-- AI & Automation -->
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">📋</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">12 min read</div>
+            <h3>Florida AI Compliance Directory: Regulatory Rules for Medical &amp; Real Estate</h3>
+            <p>An authoritative compliance manual detailing FIPA breach reporting, HIPAA AI guardrails for healthcare offices, and FDUTPA virtual staging disclosures for Florida real estate brokerages.</p>
+            <a href="blog-florida-ai-compliance-directory.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">🛡️</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">9 min read</div>
+            <h3>HIPAA Compliance for AI Chatbots in Florida: A Practical Guide</h3>
+            <p>Deploying AI chatbots in healthcare practices requires strict compliance. Here is the local Florida guide to HIPAA, BAAs, FIPA, and securing your patient communication workflows.</p>
+            <a href="blog-hipaa-compliance-ai-chatbots-florida.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">⚔️</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">8 min read</div>
+            <h3>How Small Teams Beat Large Corporations Using AI Workflows in 2026</h3>
+            <p>The old rule was that bigger teams win. That rule no longer applies. Here's the exact playbook South Florida small businesses are using to outperform much larger competitors.</p>
+            <a href="blog-ai-small-teams-vs-big-teams.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">🤖</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">7 min read</div>
+            <h3>What Is AI Automation? A Plain-English Guide for South Florida Business Owners</h3>
+            <p>No jargon, no hype. What AI automation actually is, what it can realistically do, and how Palm Beach County businesses are using it right now.</p>
+            <a href="blog-what-is-ai-automation.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">⚡</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>5 Tasks Every Palm Beach Business Should Automate Right Now</h3>
+            <p>Stop doing these five tasks manually. South Florida businesses are saving 10–20 hours per week with these high-impact automations.</p>
+            <a href="blog-five-tasks-to-automate-palm-beach.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">💬</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>How to Use AI to Respond to Google Reviews (And Why You Should)</h3>
+            <p>AI can generate personalized review responses in seconds. Here's how to set it up — and why not responding is costing you rankings.</p>
+            <a href="blog-automate-google-reviews-ai.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">📈</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">7 min read</div>
+            <h3>How AI Can Generate More Leads for Your Small Business</h3>
+            <p>Speed-to-lead wins deals. AI gives South Florida small businesses the response time of a full sales team — at a fraction of the cost.</p>
+            <a href="blog-ai-lead-generation-small-business.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">🧠</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">10 min read</div>
+            <h3>AI Chatbots for Small Business: The Complete Guide</h3>
+            <p>Everything you need to know about deploying AI chatbots — what they can do, what they can't, and how to choose the right setup.</p>
+            <a href="blog-ai-chatbots-for-small-business.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="ai-automation">
+          <div class="blog-card-img"><span class="cat-badge">AI &amp; Automation</span><span class="icon-wrap">🌴</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">9 min read</div>
+            <h3>How AI Can Help Your South Florida Business Compete and Grow</h3>
+            <p>Real examples of how Palm Beach County businesses are using AI to automate operations, generate leads, and serve customers better.</p>
+            <a href="blog-how-ai-can-help-south-florida-business.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <!-- Local SEO -->
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">Local SEO</span><span class="icon-wrap">📍</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">12 min read</div>
+            <h3>The Complete Local SEO Guide for South Florida Businesses</h3>
+            <p>Seven pillars of local search dominance — from Google Business Profile to link building — with a 5-step action plan you can start today.</p>
+            <a href="resources-local-seo-guide-south-florida.html" class="read-more">Read Guide →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">Local SEO</span><span class="icon-wrap">⭐</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>How to Get More Google Reviews for Your Palm Beach Business</h3>
+            <p>Proven strategies for building a 5-star review base — systematically, without incentivizing or buying reviews.</p>
+            <a href="blog-how-to-get-more-google-reviews.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">Local SEO</span><span class="icon-wrap">🗺️</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">7 min read</div>
+            <h3>How to Rank Higher on Google Maps in West Palm Beach</h3>
+            <p>The 3 factors Google uses for local rankings — and the 8 highest-impact actions to improve each one.</p>
+            <a href="blog-rank-google-maps-west-palm-beach.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">Local SEO</span><span class="icon-wrap">📊</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>How to Optimize Your Google Business Profile for Maximum Visibility</h3>
+            <p>The full optimization checklist — photos, categories, posts, Q&amp;A, and the fields most businesses leave empty.</p>
+            <a href="blog-google-business-profile-optimization.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">Local SEO</span><span class="icon-wrap">🏆</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>Local SEO vs. National SEO: Which Strategy Does Your Business Need?</h3>
+            <p>Most Palm Beach County businesses should focus local — here's how to know which approach delivers the best ROI for you.</p>
+            <a href="blog-local-seo-vs-national-seo.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">SEO &amp; AEO</span><span class="icon-wrap">🔍</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">8 min read</div>
+            <h3>What Is AEO (Answer Engine Optimization) and Why Your Business Needs It</h3>
+            <p>More people are asking AI assistants instead of Googling. AEO is how you make sure your business gets cited when they do.</p>
+            <a href="blog-what-is-aeo-answer-engine-optimization.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="local-seo">
+          <div class="blog-card-img"><span class="cat-badge">SEO &amp; AEO</span><span class="icon-wrap">🏗️</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>What Is Schema Markup and Why Should Your Website Have It?</h3>
+            <p>Schema tells Google and AI assistants exactly what your business does. Here's what it is and which types matter most for local businesses.</p>
+            <a href="blog-what-is-schema-markup.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <!-- Web Design -->
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">💰</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">8 min read</div>
+            <h3>How Much Does a Website Cost in Palm Beach County? (2026 Guide)</h3>
+            <p>A transparent, no-fluff breakdown of what you should actually budget for a professional business website in South Florida.</p>
+            <a href="blog-website-cost-palm-beach-county.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">📱</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>Mobile-First Web Design: Why It Matters for South Florida Businesses</h3>
+            <p>Over 70% of local searches happen on mobile. If your website isn't optimized for small screens, you're losing customers daily.</p>
+            <a href="blog-mobile-first-web-design-south-florida.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">⚡</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>Why Website Speed Matters and How to Fix a Slow Site</h3>
+            <p>A slow website costs you leads, drops your rankings, and signals amateur hour. Here's how to diagnose and fix it.</p>
+            <a href="blog-website-speed-optimization.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">🔧</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">7 min read</div>
+            <h3>WordPress vs. Custom Web Design: Which Is Right for Your Business?</h3>
+            <p>An honest comparison of both approaches — performance, SEO, cost, and maintenance — to help you make the right decision.</p>
+            <a href="blog-wordpress-vs-custom-web-design.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">⏱️</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">6 min read</div>
+            <h3>How Long Does It Take to Build a Website? (Honest Answer)</h3>
+            <p>The real timeline from kickoff to launch — and the most common reasons projects run long (hint: it's usually the client).</p>
+            <a href="blog-how-long-to-build-website.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+        <div class="blog-card" data-cat="web-design">
+          <div class="blog-card-img"><span class="cat-badge">Web Design</span><span class="icon-wrap">🚨</span></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">8 min read</div>
+            <h3>5 Signs Your Website Is Costing You Customers</h3>
+            <p>Slow load times, no mobile optimization, broken contact forms — here's how to know if your website is actively working against you.</p>
+            <a href="blog-five-signs-website-costing-customers.html" class="read-more">Read Article →</a>
+          </div>
+        </div>
+
+      </div><!-- end blog-grid -->
+    </main>
+
+    <aside class="blog-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h4>Free AI Readiness Assessment</h4>
+        <p>5 minutes. Discover your highest-ROI automation opportunity.</p>
+        <a href="ai-readiness-checklist.html" class="btn-primary">Take the AI Checklist</a>
+      </div>
+      <div class="sidebar-widget">
+        <h4>Popular Guides</h4>
+        <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide for South Florida</a>
+        <a href="blog-hipaa-compliance-ai-chatbots-florida.html">HIPAA Compliance for AI Chatbots</a>
+        <a href="blog-what-is-aeo-answer-engine-optimization.html">What Is AEO?</a>
+        <a href="blog-website-cost-palm-beach-county.html">Website Cost in Palm Beach County</a>
+        <a href="blog-ai-lead-generation-small-business.html">AI Lead Generation Guide</a>
+        <a href="blog-rank-google-maps-west-palm-beach.html">Rank Higher on Google Maps</a>
+      </div>
+      <div class="sidebar-widget">
+        <h4>Industry Pages</h4>
+        <a href="web-design-restaurants.html">Restaurants</a>
+        <a href="web-design-contractors.html">Contractors</a>
+        <a href="web-design-law-firms.html">Law Firms</a>
+        <a href="web-design-medical.html">Medical Practices</a>
+        <a href="web-design-real-estate.html">Real Estate</a>
+      </div>
+      <div class="sidebar-widget">
+        <h4>Cities We Serve</h4>
+        <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+        <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+        <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+        <a href="ai-consulting-jupiter.html">Jupiter</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <div class="container">
+    <h2>Ready to Put These Ideas to Work?</h2>
+    <p>Talk to our team about web design, AI automation, or local SEO for your Palm Beach County business. First strategy call is free.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="resources.html" class="btn-secondary light">Visit Resource Hub</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

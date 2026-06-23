@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Resources | Web Design & AI Guides | WPB</title>
+  <meta name="description" content="Free guides, checklists, and articles on web design, AI for business, local SEO, and digital marketing for South Florida businesses.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* === RESOURCES HUB === */
+    .featured-resource {
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-resource::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 6px; height: 100%;
+      background: var(--accent);
+    }
+    .featured-resource-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem .75rem;
+      margin-bottom: .75rem;
+    }
+    .featured-resource-content h3 {
+      font-family: var(--heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--tertiary);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin-bottom: .5rem;
+    }
+    .featured-resource-content p {
+      font-family: var(--body);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .featured-resource-icon {
+      font-size: 4rem;
+      flex-shrink: 0;
+      opacity: .15;
+      font-family: var(--heading);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    /* === RESOURCE CATEGORY === */
+    .resource-category {
+      margin-bottom: 4rem;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .category-header h2 {
+      font-family: var(--heading);
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--tertiary);
+    }
+    .category-tag {
+      display: inline-block;
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .25rem .65rem;
+      background: var(--bg-ice);
+      color: var(--tertiary);
+      border: 1px solid var(--border);
+    }
+    .category-tag.ai { background: rgba(205,97,85,.08); color: var(--accent); border-color: rgba(205,97,85,.2); }
+    .category-tag.web { background: rgba(41,80,130,.08); color: var(--tertiary); border-color: rgba(41,80,130,.2); }
+    .category-tag.seo { background: rgba(42,157,143,.08); color: #2a9d8f; border-color: rgba(42,157,143,.2); }
+    .category-tag.advice { background: rgba(64,107,149,.08); color: var(--secondary); border-color: rgba(64,107,149,.2); }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .articles-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+    .articles-grid.one-col { grid-template-columns: 1fr; }
+
+    .article-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: all .35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.07);
+      border-color: rgba(0,0,0,.1);
+    }
+    .article-card:hover::after { transform: scaleX(1); }
+    .article-card .card-category {
+      margin-bottom: .85rem;
+    }
+    .article-card h3 {
+      font-family: var(--heading);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: var(--tertiary);
+      margin-bottom: .6rem;
+      line-height: 1.35;
+    }
+    .article-card p {
+      font-family: var(--body);
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .article-card .read-link {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: gap .25s;
+    }
+    .article-card .read-link:hover { gap: .7rem; }
+
+    /* === INDUSTRY GRID === */
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+    }
+    .industry-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      transition: all .35s;
+      text-decoration: none;
+      display: block;
+    }
+    .industry-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.07);
+    }
+    .industry-icon {
+      font-size: 2rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+    .industry-card h3 {
+      font-family: var(--heading);
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--tertiary);
+      margin-bottom: .35rem;
+    }
+    .industry-card span {
+      font-family: var(--body);
+      font-size: .78rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* === NEWSLETTER === */
+    .newsletter-section {
+      padding: 5rem 0;
+    }
+    .newsletter-form-wrap {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .newsletter-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .newsletter-form input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--body);
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .3s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-note {
+      font-family: var(--body);
+      font-size: .78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: .5rem;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .featured-resource { flex-direction: column; padding: 1.75rem; }
+      .featured-resource-icon { display: none; }
+      .articles-grid,
+      .articles-grid.two-col { grid-template-columns: 1fr; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .newsletter-form .form-row { grid-template-columns: 1fr; }
+      nav { padding: 1rem; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: 0; bottom: 0; width: 280px; background: var(--bg); padding: 5rem 2rem 2rem; box-shadow: -4px 0 30px rgba(0,0,0,.1); gap: 0; }
+      .nav-links.show { display: flex; }
+      .nav-links a { padding: .85rem 0; border-bottom: 1px solid var(--border); }
+      .nav-cta { margin-top: 1rem; text-align: center; justify-content: center; }
+      .mobile-toggle { display: block; }
+    }
+    @media (max-width: 480px) {
+      .industry-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/resources.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/resources.html">
+  <meta property="og:title" content="Free Resources | Web Design & AI Guides | WPB">
+  <meta property="og:description" content="Free guides, checklists, and articles on web design, AI for business, local SEO, and digital marketing for South Florida businesses.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<header class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Resources</span>
+    </div>
+    <h1>Free Resources to<br><em>Grow Your Business</em> Online</h1>
+    <p>Practical guides, checklists, and articles on AI for business, web design, local SEO, and digital marketing — built for South Florida business owners.</p>
+  </div>
+</header>
+
+<!-- FEATURED RESOURCE -->
+<section style="padding: 4rem 0 2rem;">
+  <div class="container">
+    <div class="featured-resource reveal">
+      <div class="featured-resource-content">
+        <div class="featured-resource-badge">&#9733; Featured Resource</div>
+        <h3>The AI Readiness Checklist</h3>
+        <p>Score your business across 6 key areas to find out exactly where AI can save you time, capture more leads, and give you an edge over competitors who aren't paying attention yet.</p>
+        <a href="ai-readiness-checklist.html" class="btn-primary" style="margin-top:1.25rem">Get the Free Checklist &rarr;</a>
+      </div>
+      <div class="featured-resource-icon">AI</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES BY CATEGORY -->
+<section style="padding: 3rem 0 5rem;">
+  <div class="container">
+
+    <!-- Web Design -->
+    <div class="resource-category reveal">
+      <div class="category-header">
+        <h2>Web Design</h2>
+        <span class="category-tag web">Web Design</span>
+      </div>
+      <div class="articles-grid">
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>How Much Does a Website Cost in Palm Beach County?</h3>
+          <p>A transparent breakdown of what businesses actually pay for websites in 2026 — from DIY builders to custom development — and what drives the price difference.</p>
+          <a href="blog-website-cost-palm-beach-county.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>WordPress vs. Custom Web Design: Which Is Right for Your Business?</h3>
+          <p>An honest comparison of WordPress and fully custom websites — covering cost, performance, control, and long-term value for South Florida business owners.</p>
+          <a href="blog-wordpress-vs-custom-web-design.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>Mobile-First Web Design for South Florida Businesses</h3>
+          <p>Over 63% of web traffic is mobile. Here's why mobile-first design matters for local businesses and how to ensure your site converts on every device.</p>
+          <a href="blog-mobile-first-web-design-south-florida.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>How Long Does It Take to Build a Website?</h3>
+          <p>Realistic timelines for every type of website project — from a simple landing page to a full custom build — so you can plan your launch without surprises.</p>
+          <a href="blog-how-long-to-build-website.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>Website Speed Optimization: Why It Matters and How to Fix It</h3>
+          <p>Slow websites lose customers and Google rankings. Learn which performance issues hurt you most and exactly how to fix them — with real impact data.</p>
+          <a href="blog-website-speed-optimization.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag web">Web Design</span></div>
+          <h3>5 Signs Your Website Is Costing You Customers</h3>
+          <p>Your website might be the reason you're losing business — and you might not know it. Here are five warning signs and practical fixes for each.</p>
+          <a href="blog-five-signs-website-costing-customers.html" class="read-link">Read Article &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI & Automation -->
+    <div class="resource-category reveal">
+      <div class="category-header">
+        <h2>AI &amp; Automation</h2>
+        <span class="category-tag ai">AI for Business</span>
+      </div>
+      <div class="articles-grid">
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag ai">AI Governance</span></div>
+          <h3>AI Tool Audit Template &amp; Checklist</h3>
+          <p>A highly structured audit framework to evaluate AI software and API integrations for safety, data privacy, and Florida regulatory compliance (HIPAA, FDUTPA, FIPA).</p>
+          <a href="resources-ai-tool-audit-template.html" class="read-link">Access Audit Template &rarr;</a>
+        </div>
+
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag ai">AI Compliance</span></div>
+          <h3>HIPAA Compliance for AI Chatbots in Florida</h3>
+          <p>Deploying AI chatbots in healthcare practices requires strict compliance. Here is the local Florida guide to HIPAA, BAAs, FIPA, and securing your patient communication workflows.</p>
+          <a href="blog-hipaa-compliance-ai-chatbots-florida.html" class="read-link">Read Article &rarr;</a>
+        </div>
+
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag ai">AI Compliance</span></div>
+          <h3>Florida AI Policy Template Library</h3>
+          <p>Get pre-drafted templates to ensure compliance with Florida Supreme Court Rule 2.515(d)(2) and Florida Bar ethics. Includes Acceptable Use Policies and Client Disclosures.</p>
+          <a href="solutions-legal-ai-compliance.html#templates" class="read-link">Access Templates &rarr;</a>
+        </div>
+
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>What Is AI Automation? A Plain-English Guide for Business Owners</h3>
+          <p>No jargon, no hype. A clear explanation of what AI automation actually is, how it works, and where small businesses in South Florida are using it right now.</p>
+          <a href="blog-what-is-ai-automation.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>5 Tasks Every Palm Beach Business Should Automate First</h3>
+          <p>The highest-ROI automations for local businesses — lead follow-up, appointment scheduling, review requests, invoicing, and reporting — and how to get started.</p>
+          <a href="blog-five-tasks-to-automate-palm-beach.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>How to Automate Google Reviews with AI</h3>
+          <p>A practical guide to using AI to request, monitor, and respond to Google reviews — automatically. More 5-star reviews with far less effort.</p>
+          <a href="blog-automate-google-reviews-ai.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>AI Lead Generation for Small Business</h3>
+          <p>How AI chatbots, automated follow-up, and smart CRM integrations are helping small businesses capture and convert more leads without adding headcount.</p>
+          <a href="blog-ai-lead-generation-small-business.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>How AI Can Help Your South Florida Business</h3>
+          <p>Five practical ways local businesses are using AI right now to save time, capture leads, and automate operations — no tech background required.</p>
+          <a href="blog-how-ai-can-help-south-florida-business.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>AI Chatbots for Small Business Websites</h3>
+          <p>Should your website have a chatbot? We break down what they actually do, what they cost, real ROI data, and how to decide if one makes sense for you.</p>
+          <a href="blog-ai-chatbots-for-small-business.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>How Small Teams Beat Large Corporations Using AI Workflows</h3>
+          <p>The Barbell Strategy, the System Architect mindset, and the exact AI stack South Florida small businesses are using to outperform much larger competitors.</p>
+          <a href="blog-ai-small-teams-vs-big-teams.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>AI for Solopreneurs &amp; Small Teams — Service Guide</h3>
+          <p>Everything small teams need to know about getting started with AI automation. Packages built for 1–10 person operations, with fast ROI and no technical overhead.</p>
+          <a href="ai-for-small-business.html" class="read-link">Explore Service &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag ai">AI for Business</span></div>
+          <h3>AI Team Training &amp; Workshops</h3>
+          <p>20 hours of hands-on AI practice is enough to transform your team into System Architects. Our Done-With-You workshops teach your staff to build and manage AI workflows — no coding required.</p>
+          <a href="ai-team-training.html" class="read-link">Explore Workshops &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Local SEO -->
+    <div class="resource-category reveal">
+      <div class="category-header">
+        <h2>Local SEO</h2>
+        <span class="category-tag seo">Local SEO</span>
+      </div>
+      <div class="articles-grid">
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>The Small Business Guide to Local SEO in South Florida</h3>
+          <p>Everything South Florida business owners need to know about ranking on Google Maps and local search — GBP, reviews, citations, content, and link building.</p>
+          <a href="resources-local-seo-guide-south-florida.html" class="read-link">Read Guide &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>What Is AEO? Answer Engine Optimization Explained</h3>
+          <p>AI tools like ChatGPT and Perplexity now answer questions directly. Here's how to optimize your content so your business gets cited in those answers.</p>
+          <a href="blog-what-is-aeo-answer-engine-optimization.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>Google Business Profile Optimization: A Step-by-Step Guide</h3>
+          <p>Your Google Business Profile is the single most important factor in local search rankings. Here's exactly how to optimize it for maximum visibility.</p>
+          <a href="blog-google-business-profile-optimization.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>How to Get More Google Reviews (Without Begging)</h3>
+          <p>A proven system for generating a steady stream of 5-star Google reviews from happy customers — using timing, automation, and the right ask.</p>
+          <a href="blog-how-to-get-more-google-reviews.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-2">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>Local SEO vs. National SEO: Which Strategy Does Your Business Need?</h3>
+          <p>Not all SEO is the same. Learn the key differences between local and national SEO and how to choose the right strategy for your South Florida business.</p>
+          <a href="blog-local-seo-vs-national-seo.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-3">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>How to Rank on Google Maps in West Palm Beach</h3>
+          <p>The three ranking factors Google uses for Maps results — Relevance, Distance, Prominence — and a tactical playbook for dominating local map results.</p>
+          <a href="blog-rank-google-maps-west-palm-beach.html" class="read-link">Read Article &rarr;</a>
+        </div>
+        <div class="article-card stagger-1">
+          <div class="card-category"><span class="category-tag seo">Local SEO</span></div>
+          <h3>What Is Schema Markup and Why Does It Matter for Local SEO?</h3>
+          <p>Schema markup is the hidden code that tells search engines exactly what your business is — and it's one of the most underused SEO tools available to local businesses.</p>
+          <a href="blog-what-is-schema-markup.html" class="read-link">Read Article &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BY INDUSTRY -->
+<section class="bg-alt" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="section-center reveal" style="margin-bottom:3rem;">
+      <div class="section-label">By Industry</div>
+      <h2 class="section-title">Resources for Your Industry</h2>
+      <p class="section-desc">Find guides and insights specific to your business type and the unique challenges you face in the South Florida market.</p>
+    </div>
+    <div class="industry-grid reveal">
+      <a href="web-design-law-firms.html" class="industry-card">
+        <span class="industry-icon">&#9878;</span>
+        <h3>Law Firms</h3>
+        <span>View Resources &rarr;</span>
+      </a>
+      <a href="web-design-restaurants.html" class="industry-card">
+        <span class="industry-icon">&#127869;</span>
+        <h3>Restaurants</h3>
+        <span>View Resources &rarr;</span>
+      </a>
+      <a href="web-design-medical.html" class="industry-card">
+        <span class="industry-icon">&#128138;</span>
+        <h3>Medical Practices</h3>
+        <span>View Resources &rarr;</span>
+      </a>
+      <a href="web-design-real-estate.html" class="industry-card">
+        <span class="industry-icon">&#127968;</span>
+        <h3>Real Estate</h3>
+        <span>View Resources &rarr;</span>
+      </a>
+      <a href="web-design-contractors.html" class="industry-card">
+        <span class="industry-icon">&#128296;</span>
+        <h3>Contractors</h3>
+        <span>View Resources &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-form-wrap">
+      <div class="section-center reveal">
+        <div class="section-label">Stay in the Loop</div>
+        <h2 class="section-title">Get New Resources First</h2>
+        <p class="section-desc">We publish new guides, checklists, and articles regularly. Join our list and we'll send the best ones directly to you — no spam, ever.</p>
+      </div>
+      <form class="newsletter-form reveal" action="send_email.php" method="POST">
+        <input type="hidden" name="form_type" value="newsletter">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Subscribe to Free Resources</button>
+        <p class="newsletter-note">No spam. Unsubscribe any time. We publish 2&ndash;3 resources per month.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,.5);justify-content:center;display:flex;">Ready to Grow?</div>
+    <h2 class="section-title" style="text-align:center;max-width:640px;margin:0 auto .75rem;">Let's Build Something That<br><em style="font-style:normal;color:var(--accent)">Actually Works</em></h2>
+    <p class="section-desc" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Reading is a great start. Talking with us is better. Book a free strategy call and let's map out exactly what your business needs.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="services.html" class="btn-secondary light">See Our Services</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link">Or call us: 561-291-9001</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

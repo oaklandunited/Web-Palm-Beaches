@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Chatbots for Small Business: Cost, Features & ROI</title>
+<meta name="description" content="Should your small business website have an AI chatbot? We break down costs, features, real-world results, and how to decide if it's worth it.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;align-items:start;padding-top:4rem}
+.article-body{min-width:0}
+.article-sidebar{position:sticky;top:100px}
+.article-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.article-category{font-family:var(--heading);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
+.article-header h1{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary);line-height:1.25;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.article-meta span{font-family:var(--heading);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.article-meta .sep{color:var(--border)}
+.article-hero{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;margin-bottom:2.5rem}
+.article-body h2{font-family:var(--heading);font-size:1.15rem;font-weight:800;color:var(--tertiary);margin:2.5rem 0 .75rem;text-transform:uppercase;letter-spacing:.03em}
+.article-body p{font-size:.975rem;color:var(--text-secondary);line-height:1.85;margin-bottom:1.25rem}
+.article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:1.25rem}
+.article-body li{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:.3rem}
+.callout{background:var(--bg-ice);border-left:4px solid var(--accent);padding:1.5rem 1.75rem;margin:1.75rem 0}
+.callout .callout-label{font-family:var(--heading);font-size:.63rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.callout p{font-size:.9rem;color:var(--tertiary);line-height:1.7;margin:0;font-weight:500}
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:1.75rem 0}
+.price-card{padding:1.5rem;border:1px solid var(--border);background:var(--bg)}
+.price-card.highlight{border-color:var(--accent);background:rgba(205,97,85,.04)}
+.price-card .pc-label{font-family:var(--heading);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.price-card .pc-range{font-family:var(--heading);font-size:1rem;font-weight:800;color:var(--tertiary);margin-bottom:.4rem}
+.price-card .pc-pros{font-size:.8rem;color:#27ae60;margin-bottom:.2rem;font-weight:600}
+.price-card .pc-cons{font-size:.8rem;color:var(--text-muted)}
+.results-box{background:var(--tertiary);padding:2rem;margin:1.75rem 0}
+.results-box .rb-label{font-family:var(--heading);font-size:.63rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.result-item .ri-num{font-family:var(--heading);font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1}
+.result-item .ri-label{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:.2rem;line-height:1.4}
+.checklist-visual{margin:1.75rem 0}
+.check-item{display:flex;align-items:start;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.check-item:first-child{border-top:1px solid var(--border)}
+.check-box{width:20px;height:20px;border:2px solid var(--accent);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--accent)}
+.check-item p{font-size:.9rem;color:var(--text-secondary);margin:0;line-height:1.5}
+.steps-list{counter-reset:step;margin:1.75rem 0}
+.step-item{display:flex;gap:1rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--border)}
+.step-item:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:.75rem;font-weight:800;flex-shrink:0}
+.step-item h4{font-family:var(--heading);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.3rem}
+.step-item p{font-size:.875rem;color:var(--text-secondary);line-height:1.65;margin:0}
+.article-cta{background:var(--tertiary);padding:2.5rem;margin:3rem 0;text-align:center}
+.article-cta h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:.5rem}
+.article-cta p{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:1.25rem}
+.article-cta a{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.author-box{border:1px solid var(--border);padding:1.75rem;display:flex;gap:1.25rem;align-items:start;margin-top:3rem}
+.author-avatar{width:56px;height:56px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.author-name{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.2rem}
+.author-title{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.author-bio{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+.sidebar-card{border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;background:var(--bg)}
+.sidebar-card h4{font-family:var(--heading);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:1rem}
+.sidebar-link{display:block;font-size:.85rem;color:var(--text-secondary);padding:.5rem 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .2s;line-height:1.4}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--accent)}
+.sidebar-cta{background:var(--tertiary);padding:1.75rem;text-align:center}
+.sidebar-cta h4{font-family:var(--heading);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin-bottom:.5rem}
+.sidebar-cta p{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.6}
+.sidebar-cta a{display:block;padding:.65rem 1rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+@media(max-width:900px){
+  .article-wrap{grid-template-columns:1fr}
+  .article-sidebar{position:static;margin-top:3rem}
+  .pricing-cards{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-ai-chatbots-for-small-business.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-ai-chatbots-for-small-business.html">
+  <meta property="og:title" content="AI Chatbots for Small Business: Cost, Features & ROI">
+  <meta property="og:description" content="Should your small business website have an AI chatbot? We break down costs, features, real-world results, and how to decide if it's worth it.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does an AI chatbot cost for a small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basic AI chatbots start around $50-$100/month for SaaS platforms. Custom-built chatbots with CRM integration typically cost $2,500-$8,000 for setup plus $50-$200/month for hosting and AI API costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will an AI chatbot replace my receptionist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — it handles the routine questions (hours, pricing, availability) so your receptionist can focus on complex calls and in-person service. Think of it as a force multiplier, not a replacement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a chatbot actually generate leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Businesses with AI chatbots typically see 30-50% more captured leads because the bot engages visitors 24/7, qualifies them with questions, and routes them to your CRM or calendar immediately."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div style="background:var(--bg-ice);padding:.6rem 0;border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="breadcrumb" style="margin:0"><a href="index.html">Home</a> / <a href="resources.html">Resources</a> / <span>AI Chatbots for Small Business</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+
+    <article class="article-body">
+      <div class="article-header">
+        <span class="article-category">AI for Business</span>
+        <h1>AI Chatbots for Small Business Websites: What They Cost, What They Do, and Whether You Need One</h1>
+        <div class="article-meta">
+          <span>Web Palm Beaches</span>
+          <span class="sep">|</span>
+          <span>March 2026</span>
+          <span class="sep">|</span>
+          <span>6 min read</span>
+        </div>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80" alt="AI chatbot for small business" class="article-hero">
+
+      <p>Every week, a business owner asks us the same question: <em>"Should I put one of those chat things on my website?"</em></p>
+      <p>The answer is almost always yes — but the right chatbot matters more than just having one. A bad chatbot is worse than no chatbot. A good one can transform how your business handles leads and customer service. Here's everything you need to know before you decide.</p>
+
+      <h2>What an AI Chatbot Actually Does</h2>
+      <p>First, let's be clear about what we're talking about. We're not talking about those annoying pop-ups that say "Hi! How can I help you?" and then route you to a FAQ page from 2019.</p>
+      <p>A modern AI chatbot is powered by the same technology behind tools like ChatGPT. It can:</p>
+      <ul>
+        <li><strong>Have real conversations</strong> — not scripted responses, but actual back-and-forth dialogue that understands context and nuance</li>
+        <li><strong>Answer questions about your business</strong> using information you provide (services, hours, pricing, policies)</li>
+        <li><strong>Qualify leads</strong> by asking the right questions and collecting contact details</li>
+        <li><strong>Book appointments</strong> directly on your calendar</li>
+        <li><strong>Hand off to a human</strong> when the conversation requires a personal touch</li>
+        <li><strong>Work 24/7</strong> — including weekends, holidays, and 2 AM on a Tuesday</li>
+      </ul>
+
+      <h2>What It Costs</h2>
+      <p>Let's talk numbers. There are three main approaches:</p>
+
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div class="pc-label">Option 1 — DIY</div>
+          <div class="pc-range">$30–$200/month</div>
+          <div class="pc-pros">✓ Low cost, quick to deploy</div>
+          <div class="pc-cons">✗ Limited customization, generic feel, requires your time to maintain</div>
+        </div>
+        <div class="price-card highlight">
+          <div class="pc-label">Option 2 — Custom Agency</div>
+          <div class="pc-range">$2,000–$10,000 setup + monthly</div>
+          <div class="pc-pros">✓ Fully customized, handles industry-specific conversations, integrates with your CRM</div>
+          <div class="pc-cons">✗ Higher upfront cost — but best ROI for most local businesses</div>
+        </div>
+        <div class="price-card">
+          <div class="pc-label">Option 3 — Enterprise</div>
+          <div class="pc-range">$500+/month</div>
+          <div class="pc-pros">✓ Powerful and scalable</div>
+          <div class="pc-cons">✗ Overkill and overpriced for most local businesses</div>
+        </div>
+      </div>
+
+      <p>For most South Florida small businesses, Option 2 delivers the best ROI. You get a chatbot that actually represents your brand and handles real business conversations — not a glorified FAQ button.</p>
+
+      <h2>Real Results: What a Chatbot Did for a Palm Beach County Business</h2>
+      <p>One of our clients — a professional services firm in West Palm Beach — was relying entirely on a contact form for lead capture. Here's what changed after we installed a custom AI chatbot:</p>
+
+      <div class="results-box">
+        <div class="rb-label">West Palm Beach Client — 90 Days After Launch</div>
+        <div class="results-grid">
+          <div class="result-item"><div class="ri-num">40%</div><div class="ri-label">Increase in lead capture vs. contact form alone</div></div>
+          <div class="result-item"><div class="ri-num">Seconds</div><div class="ri-label">Response time — down from hours</div></div>
+          <div class="result-item"><div class="ri-num">30%</div><div class="ri-label">Of booked consultations now via chatbot</div></div>
+          <div class="result-item"><div class="ri-num">5+ hrs</div><div class="ri-label">Per week saved on repetitive phone/email questions</div></div>
+        </div>
+      </div>
+
+      <h2>Do You Need One? A Quick Checklist</h2>
+      <p>An AI chatbot is probably worth it if these apply to your business:</p>
+      <div class="checklist-visual">
+        <div class="check-item"><div class="check-box">✓</div><p>You get website visitors but your contact form conversion rate is low</p></div>
+        <div class="check-item"><div class="check-box">✓</div><p>Customers frequently ask the same questions (hours, pricing, location, "do you offer X?")</p></div>
+        <div class="check-item"><div class="check-box">✓</div><p>You miss after-hours inquiries</p></div>
+        <div class="check-item"><div class="check-box">✓</div><p>Your team spends significant time answering repetitive questions</p></div>
+        <div class="check-item"><div class="check-box">✓</div><p>Your business depends on speed-to-lead (first responder wins)</p></div>
+        <div class="check-item"><div class="check-box">✓</div><p>You book appointments or consultations as part of your sales process</p></div>
+      </div>
+
+      <h2>Common Concerns (and Honest Answers)</h2>
+      <p><strong>"Won't it feel impersonal?"</strong><br>A well-built AI chatbot feels more personal than a contact form or a voicemail. It has a conversation, uses your brand voice, and hands off to a human when needed.</p>
+      <p><strong>"What if it says something wrong?"</strong><br>Custom chatbots are trained on your information and have guardrails. They're instructed to say "Let me connect you with our team" when unsure, rather than making things up.</p>
+      <p><strong>"My customers aren't tech-savvy."</strong><br>Modern chatbots are as simple as texting. If your customers can use iMessage, they can use a chatbot. And you can always keep your phone number prominent for people who prefer calling.</p>
+      <p><strong>"Can it really replace a person?"</strong><br>No — and it shouldn't. It handles the repetitive, scalable conversations so your people can focus on high-value ones. Think of it as a first-line filter, not a replacement.</p>
+
+      <h2>How to Get Started</h2>
+      <div class="steps-list">
+        <div class="step-item"><div class="step-num">1</div><div><h4>Identify Your Top 20 Customer Questions</h4><p>These become the chatbot's knowledge base. Write them down — you probably know them by heart.</p></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><h4>Define the Primary Goal</h4><p>Lead capture? Appointment booking? Customer support? The chatbot should be optimized for one primary outcome.</p></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><h4>Choose Your Approach</h4><p>DIY for testing and validation, custom-built for serious results and real ROI.</p></div></div>
+        <div class="step-item"><div class="step-num">4</div><div><h4>Integrate With Your Tools</h4><p>The chatbot should connect to your CRM, calendar, and notification systems — otherwise it's a dead end.</p></div></div>
+        <div class="step-item"><div class="step-num">5</div><div><h4>Monitor and Optimize Monthly</h4><p>Review conversations monthly. Add new answers. Improve flows. AI chatbots get better over time.</p></div></div>
+      </div>
+
+      <div class="article-cta">
+        <h3>We Build Chatbots for South Florida Businesses</h3>
+        <p>If you want a chatbot actually trained on your business — not a generic widget — we can help. Custom-built, integrated, and optimized for your specific goals.</p>
+        <a href="contact.html">Book a Free Strategy Call</a>
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">&#128100;</div>
+        <div>
+          <div class="author-name">Web Palm Beaches</div>
+          <div class="author-title">Palm Beach County AI & Web Consulting</div>
+          <p class="author-bio">Web Palm Beaches is a Palm Beach County web design and AI consulting firm. We build chatbots, automation systems, and AI-powered websites for South Florida businesses. <a href="services.html" style="color:var(--accent)">See our services</a>.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-cta">
+        <h4>Free AI Readiness Checklist</h4>
+        <p>Score your business across 6 areas and discover where AI can deliver the fastest ROI.</p>
+        <a href="ai-readiness-checklist.html">Get the Free Checklist</a>
+      </div>
+      <div class="sidebar-card" style="margin-top:1.5rem">
+        <h4>More Articles</h4>
+        <a href="blog-how-ai-can-help-south-florida-business.html" class="sidebar-link">How AI Can Help Your South Florida Business</a>
+        <a href="blog-five-signs-website-costing-customers.html" class="sidebar-link">5 Signs Your Website Is Costing You Customers</a>
+        <a href="resources-local-seo-guide-south-florida.html" class="sidebar-link">The Small Business Guide to Local SEO</a>
+      </div>
+      <div class="sidebar-card">
+        <h4>Chatbot Services</h4>
+        <a href="services.html" class="sidebar-link">AI Chat Agents</a>
+        <a href="services.html" class="sidebar-link">Lead Qualification Bots</a>
+        <a href="services.html" class="sidebar-link">Scheduling Agents</a>
+        <a href="pricing.html" class="sidebar-link">View Pricing</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer style="margin-top:4rem">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

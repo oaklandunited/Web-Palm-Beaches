@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Signs Your Website Is Costing You Customers</title>
+<meta name="description" content="Is your website driving customers away? Here are 5 warning signs your site is hurting your business — and practical fixes for each one.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;align-items:start;padding-top:4rem}
+.article-body{min-width:0}
+.article-sidebar{position:sticky;top:100px}
+.article-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.article-category{font-family:var(--heading);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
+.article-header h1{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary);line-height:1.25;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.article-meta span{font-family:var(--heading);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.article-meta .sep{color:var(--border)}
+.article-hero{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;margin-bottom:2.5rem}
+.article-body p{font-size:.975rem;color:var(--text-secondary);line-height:1.85;margin-bottom:1.25rem}
+.article-body ul{padding-left:1.5rem;margin-bottom:1.25rem}
+.article-body li{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:.3rem}
+.sign-block{border:1px solid var(--border);margin:2.5rem 0;overflow:hidden}
+.sign-header{display:flex;align-items:center;gap:1.25rem;padding:1.5rem 1.75rem;background:var(--bg-ice);border-bottom:1px solid var(--border)}
+.sign-num{width:44px;height:44px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1rem;font-weight:800;flex-shrink:0}
+.sign-header h2{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin:0}
+.sign-body{padding:1.75rem}
+.sign-body p{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem}
+.sign-body p:last-child{margin-bottom:0}
+.check-box{background:rgba(205,97,85,.06);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:1rem 0}
+.check-box .cb-label{font-family:var(--heading);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.check-box p{font-size:.875rem;color:var(--tertiary);font-weight:600;margin:0;line-height:1.6}
+.fix-box{background:var(--bg-ice);border:1px solid var(--border);padding:1.25rem 1.5rem;margin:1rem 0}
+.fix-box .fb-label{font-family:var(--heading);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.75rem}
+.fix-box ul{list-style:none;padding:0;margin:0}
+.fix-box ul li{font-size:.875rem;color:var(--text-secondary);padding:.3rem 0;padding-left:1.1rem;position:relative;line-height:1.5}
+.fix-box ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.75rem}
+.article-cta{background:var(--tertiary);padding:2.5rem;margin:3rem 0;text-align:center}
+.article-cta h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:.5rem}
+.article-cta p{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:1.25rem}
+.article-cta a{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.author-box{border:1px solid var(--border);padding:1.75rem;display:flex;gap:1.25rem;align-items:start;margin-top:3rem}
+.author-avatar{width:56px;height:56px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.author-name{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.2rem}
+.author-title{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.author-bio{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+.sidebar-card{border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;background:var(--bg)}
+.sidebar-card h4{font-family:var(--heading);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:1rem}
+.sidebar-link{display:block;font-size:.85rem;color:var(--text-secondary);padding:.5rem 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .2s;line-height:1.4}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--accent)}
+.sidebar-cta{background:var(--tertiary);padding:1.75rem;text-align:center}
+.sidebar-cta h4{font-family:var(--heading);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin-bottom:.5rem}
+.sidebar-cta p{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.6}
+.sidebar-cta a{display:block;padding:.65rem 1rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+@media(max-width:900px){
+  .article-wrap{grid-template-columns:1fr}
+  .article-sidebar{position:static;margin-top:3rem}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-five-signs-website-costing-customers.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-five-signs-website-costing-customers.html">
+  <meta property="og:title" content="5 Signs Your Website Is Costing You Customers">
+  <meta property="og:description" content="Is your website driving customers away? Here are 5 warning signs your site is hurting your business — and practical fixes for each one.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I know if my website is costing me customers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Key signs include: slow load times (over 3 seconds), no mobile responsiveness, missing or broken contact forms, no Google Business Profile connection, and outdated content or design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a website redesign cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional website redesigns in South Florida typically range from $3,000-$12,000 depending on scope, page count, and features like AI chatbots, SEO optimization, and booking integrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can a new website improve my leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most businesses see measurable lead improvements within 30-60 days of launching a properly optimized site. SEO-driven organic traffic growth compounds over 3-6 months."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div style="background:var(--bg-ice);padding:.6rem 0;border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="breadcrumb" style="margin:0"><a href="index.html">Home</a> / <a href="resources.html">Resources</a> / <span>5 Signs Your Website Is Costing You Customers</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+      <div class="article-header">
+        <span class="article-category">Web Design</span>
+        <h1>5 Signs Your Website Is Costing You Customers (and What to Do About It)</h1>
+        <div class="article-meta">
+          <span>Web Palm Beaches</span>
+          <span class="sep">|</span>
+          <span>March 2026</span>
+          <span class="sep">|</span>
+          <span>7 min read</span>
+        </div>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80" alt="Website costing customers" class="article-hero">
+
+      <p>Your website might be the reason you're losing business — and you might not even know it. Most business owners check their site once, think "looks fine," and move on. But your customers are telling a different story with their behavior: they land on your site, look around for a few seconds, and leave. No call. No form fill. No sale.</p>
+      <p>Here are five signs your website is actively costing you money, and what to do about each one.</p>
+
+      <div class="sign-block">
+        <div class="sign-header">
+          <div class="sign-num">1</div>
+          <h2>It Takes More Than 3 Seconds to Load</h2>
+        </div>
+        <div class="sign-body">
+          <p>This is the silent killer. Google's research shows that 53% of mobile visitors leave a site that takes longer than 3 seconds to load. And Google considers page speed a ranking factor — so a slow site hurts you twice: visitors leave, and you rank lower.</p>
+          <div class="check-box">
+            <div class="cb-label">How to Check</div>
+            <p>Go to pagespeed.web.dev and enter your URL. Look at the "Performance" score. Anything below 50 on mobile is a problem. Below 30 is an emergency.</p>
+          </div>
+          <div class="fix-box">
+            <div class="fb-label">What to Do</div>
+            <ul>
+              <li>Compress your images (ShortPixel or Imagify handle this automatically)</li>
+              <li>Upgrade to quality hosting — cheap shared hosting is usually the bottleneck</li>
+              <li>Audit your plugins and remove anything you don't actively need</li>
+              <li>Implement caching and a CDN (Content Delivery Network)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-block">
+        <div class="sign-header">
+          <div class="sign-num">2</div>
+          <h2>It Doesn't Look Right on a Phone</h2>
+        </div>
+        <div class="sign-body">
+          <p>Over 60% of web traffic comes from mobile devices. In South Florida — where people are constantly on the go — that number is likely even higher. If your site is hard to navigate, hard to read, or broken on a phone, you're losing the majority of your potential customers.</p>
+          <div class="check-box">
+            <div class="cb-label">How to Check</div>
+            <p>Pull out your phone and visit your own website right now. Try to read the text without zooming, tap a button without hitting something else, find your phone number and tap to call, and fill out your contact form. If any of that felt frustrating, your customers feel the same — they just don't tell you, they leave.</p>
+          </div>
+          <div class="fix-box">
+            <div class="fb-label">What to Do</div>
+            <ul>
+              <li>If your site is 3–4+ years old, it likely needs a redesign with a mobile-first approach</li>
+              <li>Ensure tap targets (buttons, links) are at least 48px</li>
+              <li>Use readable font sizes (16px minimum on mobile)</li>
+              <li>Make your phone number a tap-to-call link in the header</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-block">
+        <div class="sign-header">
+          <div class="sign-num">3</div>
+          <h2>There's No Clear Call to Action</h2>
+        </div>
+        <div class="sign-body">
+          <p>Visit your homepage. Within 5 seconds, can a first-time visitor answer: What does this business do? Is it for me? What should I do next? If the answer to any of those is unclear, you have a CTA problem. Too many small business websites talk about the company's history but never tell the visitor what to actually do.</p>
+          <div class="check-box">
+            <div class="cb-label">Common Mistakes</div>
+            <p>Burying the phone number in the footer. Having a "Contact Us" page but no prominent CTAs elsewhere. Using vague language like "Learn More." Competing CTAs that confuse the visitor ("Call us! Email us! Fill this form! Follow us on Instagram!").</p>
+          </div>
+          <div class="fix-box">
+            <div class="fb-label">What to Do</div>
+            <ul>
+              <li>Choose ONE primary action you want visitors to take (call, book, or submit a form)</li>
+              <li>Put that CTA above the fold on every page</li>
+              <li>Use specific language: "Book a Free Consultation" beats "Contact Us"</li>
+              <li>Repeat your CTA at natural break points throughout the page</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-block">
+        <div class="sign-header">
+          <div class="sign-num">4</div>
+          <h2>You Have No Social Proof</h2>
+        </div>
+        <div class="sign-body">
+          <p>When was the last time you bought something online without checking reviews? Your customers are no different. If your website doesn't show evidence that other people trust you, visitors have no reason to.</p>
+          <div class="check-box">
+            <div class="cb-label">Social Proof Includes</div>
+            <p>Google reviews with ratings, client testimonials with real names and context, case studies showing specific results, logos of businesses you've worked with, industry certifications, and media mentions.</p>
+          </div>
+          <div class="fix-box">
+            <div class="fb-label">What to Do</div>
+            <ul>
+              <li>Add a testimonials section to your homepage with 3–5 real, attributed reviews</li>
+              <li>Embed your Google reviews or link to them prominently</li>
+              <li>Create at least one case study showing a specific result with real numbers</li>
+              <li>Ask your best clients for video testimonials — these convert far better than text</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-block">
+        <div class="sign-header">
+          <div class="sign-num">5</div>
+          <h2>It's a Digital Brochure, Not a Lead Machine</h2>
+        </div>
+        <div class="sign-body">
+          <p>The most common (and most expensive) website mistake: building a site that talks about your business but doesn't actively capture leads. A brochure site says "Here are our services. Here's our address. Here's a contact form if you feel like it." A lead machine says "Here's exactly how we solve your problem. Here's proof. Here's what to do right now."</p>
+          <div class="check-box">
+            <div class="cb-label">Signs Your Site Is a Brochure</div>
+            <p>Your only conversion point is a generic contact form. You have no lead magnets. You don't capture emails for follow-up. Your site has no chat or instant engagement. You don't know your conversion rate because you've never measured it.</p>
+          </div>
+          <div class="fix-box">
+            <div class="fb-label">What to Do</div>
+            <ul>
+              <li>Add a lead magnet relevant to your audience (free guide, checklist, or assessment)</li>
+              <li>Install an AI chatbot that engages visitors and captures contact info 24/7</li>
+              <li>Set up email nurture sequences for leads who aren't ready to buy yet</li>
+              <li>Track your conversion rate in Google Analytics 4</li>
+              <li>A/B test your CTAs to continuously improve</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p>Here's the thing: these issues compound. A slow site that also looks bad on mobile, has no CTA, no social proof, and no lead capture mechanism isn't just 5x worse — it's exponentially worse. The good news: fixing even one or two of these can dramatically improve your results. Start with speed and mobile. Then add clear CTAs and social proof. Then build your lead capture system.</p>
+
+      <div class="article-cta">
+        <h3>Not Sure Where Your Site Stands?</h3>
+        <p>We offer a free website audit for South Florida businesses — speed, mobile, SEO, and conversion setup — with a clear action plan. No pitch, no obligation.</p>
+        <a href="contact.html">Get Your Free Website Audit</a>
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">&#128100;</div>
+        <div>
+          <div class="author-name">Web Palm Beaches</div>
+          <div class="author-title">Palm Beach County AI & Web Consulting</div>
+          <p class="author-bio">Web Palm Beaches builds websites that generate leads — not just look pretty. Palm Beach County's AI-first web design and consulting firm. <a href="services.html" style="color:var(--accent)">See our services</a> or <a href="case-studies.html" style="color:var(--accent)">see our work</a>.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-cta">
+        <h4>Free Website Audit</h4>
+        <p>We'll review your site's speed, mobile, SEO, and conversion setup. Free for South Florida businesses.</p>
+        <a href="contact.html">Request Your Audit</a>
+      </div>
+      <div class="sidebar-card" style="margin-top:1.5rem">
+        <h4>More Articles</h4>
+        <a href="blog-how-ai-can-help-south-florida-business.html" class="sidebar-link">How AI Can Help Your South Florida Business</a>
+        <a href="blog-ai-chatbots-for-small-business.html" class="sidebar-link">AI Chatbots for Small Business Websites</a>
+        <a href="resources-local-seo-guide-south-florida.html" class="sidebar-link">The Small Business Guide to Local SEO</a>
+      </div>
+      <div class="sidebar-card">
+        <h4>Web Design Services</h4>
+        <a href="services.html" class="sidebar-link">AI-Powered Web Design</a>
+        <a href="services.html" class="sidebar-link">Conversion Optimization</a>
+        <a href="services.html" class="sidebar-link">SEO, AEO &amp; GEO</a>
+        <a href="pricing.html" class="sidebar-link">View Pricing</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer style="margin-top:4rem">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

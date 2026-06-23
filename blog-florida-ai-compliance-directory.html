@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida AI Compliance Directory: Medical &amp; Real Estate | Blog | WPB</title>
+  <meta name="description" content="The authoritative guide on AI compliance for Florida businesses. Understand HIPAA, FIPA, FDUTPA virtual staging disclosures, and Fair Housing rules.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the Florida rules for AI in medical practices?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical practices in Florida must comply with federal HIPAA regulations and the Florida Information Protection Act (FIPA). AI systems handling Protected Health Information (PHI) must operate under a signed Business Associate Agreement (BAA), employ AES-256 encryption, and be structured to report any security breaches to the Florida Department of Legal Affairs within 30 days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does FDUTPA apply to AI-generated real estate listing content?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Florida Deceptive and Unfair Trade Practices Act (FDUTPA) prohibits misleading representations. If a brokerage uses virtually staged images or AI-edited listing photos, the listing must feature clear, conspicuous disclosures such as 'Virtually Staged' or 'This photo has been digitally modified' to prevent misleading consumers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the Fair Housing risks of AI real estate tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Real estate brokerages are legally liable under the Fair Housing Act if their automated lead routing or AI listing generators introduce bias. AI algorithms must not screen or rank leads based on demographics, and listing copy must avoid keywords that could violate fair housing guidelines."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .article-hero{background:var(--bg-alt);padding:4rem 0 3rem;border-bottom:1px solid var(--border)}
+    .breadcrumb{font-size:.8rem;color:var(--text-muted);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
+    .breadcrumb a{color:var(--text-muted);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 .5rem;opacity:.5}
+    .article-meta{display:flex;gap:1.5rem;align-items:center;margin-top:1rem;font-size:.8rem;color:var(--text-muted);font-family:var(--heading);letter-spacing:.05em;flex-wrap:wrap}
+    .article-meta .tag{background:var(--accent);color:#fff;padding:.2rem .6rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;padding:4rem 0}
+    .article-body h2{font-family:var(--heading);font-size:1.5rem;font-weight:700;color:var(--heading);margin:2.5rem 0 1rem}
+    .article-body h3{font-family:var(--heading);font-size:1.1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 .75rem}
+    .article-body p{font-size:1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem}
+    .article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:var(--text-secondary);line-height:1.9}
+    .article-body li{margin-bottom:.4rem}
+    .article-body a{color:var(--accent);font-weight:600}.article-body a:hover{text-decoration:underline}
+    .callout{background:var(--bg-alt);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+    .callout p{margin:0;font-size:.95rem}
+    .tactic-list{counter-reset:tactic;list-style:none;padding:0;margin:1.5rem 0}
+    .tactic-list li{counter-increment:tactic;display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+    .tactic-list li::before{content:counter(tactic);background:var(--accent);color:#fff;font-family:var(--heading);font-weight:700;font-size:.85rem;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+    .tactic-list li div strong{display:block;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--heading);margin-bottom:.25rem}
+    .tactic-list li div span{font-size:.875rem;color:var(--text-secondary);line-height:1.6}
+    .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-cta{background:var(--tertiary);padding:1.75rem}
+    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
+    .sticky-wrap{position:sticky;top:100px}
+    .author-box{display:flex;gap:1.25rem;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);padding:1.5rem;margin-top:2.5rem}
+    .author-avatar{width:60px;height:60px;border-radius:50%;background:var(--tertiary);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--heading);font-weight:700;font-size:1.1rem;flex-shrink:0}
+    .author-info h5{font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.25rem}
+    .author-info p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6}
+    .faq-section{padding:3rem 0;border-top:1px solid var(--border)}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;font-family:var(--heading);font-weight:700;font-size:1rem;color:var(--heading);gap:1rem}
+    .faq-question::after{content:'+';font-size:1.25rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-question::after{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:0 0 1.25rem;font-size:.95rem;color:var(--text-secondary);line-height:1.8}
+    .faq-item.open .faq-answer{display:block}
+    @media(max-width:900px){.article-wrap{grid-template-columns:1fr;gap:2rem}.article-sidebar{display:none}}
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-florida-ai-compliance-directory.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-florida-ai-compliance-directory.html">
+  <meta property="og:title" content="Florida AI Compliance Directory | Blog | WPB">
+  <meta property="og:description" content="Authoritative compliance directory for medical offices and real estate agencies using AI. Covers HIPAA, FIPA, FDUTPA virtual staging, and Fair Housing rules.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div class="article-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="blog.html">Blog</a><span>›</span>
+      Florida AI Compliance Directory
+    </div>
+    <div class="article-meta">
+      <span class="tag">AI Governance</span>
+      <span>2026</span>
+      <span>12 min read</span>
+    </div>
+    <h1 style="font-family:var(--heading);font-size:2.2rem;font-weight:700;color:var(--heading);margin-top:.75rem;max-width:700px;line-height:1.3">Florida AI Compliance Directory: Regulatory Rules for Medical &amp; Real Estate</h1>
+    <p style="font-size:1.05rem;color:var(--text-secondary);margin-top:.75rem;max-width:620px;line-height:1.7">Deploying AI chatbots, generators, and automated operations in Florida requires strict compliance. Here is the authoritative guide to FIPA, HIPAA, FDUTPA, and Fair Housing regulations.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+      <p>As South Florida businesses rapidly adopt generative artificial intelligence and workflow automation, compliance frameworks have struggled to catch up. In Florida, there is no single "AI Law" that covers every business. Instead, organizations must align their AI agents and automated workflows with state-specific consumer protection acts, national medical standards, and local court mandates.</p>
+      <p>Deploying AI to save hours or streamline client onboarding is highly effective, but failing to put the appropriate regulatory shields in place exposes your firm to severe penalties. Here are the specific, localized requirements for Florida's high-stakes verticals: Healthcare and Real Estate.</p>
+
+      <h2>1. Medical &amp; Clinical AI Compliance in Florida</h2>
+      <p>Any medical practice, clinic, or physical therapy office in Florida implementing AI chatbots, patient portals, or reminder workflows must protect Protected Health Information (PHI) under two main statutes: federal <a href="https://www.hhs.gov/hipaa/index.html" target="_blank" rel="noopener">HIPAA rules</a> managed by the U.S. Department of Health and Human Services (HHS) and the state-level <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.171.html" target="_blank" rel="noopener">Florida Information Protection Act (FIPA)</a>.</p>
+      
+      <h3>The HIPAA Guardrail &amp; Business Associate Agreements (BAAs)</h3>
+      <p>If your AI chatbot, patient intake form, or scheduling agent collects a visitor's name, email, or symptoms, that interaction contains PHI. Standard public LLMs are strictly forbidden under HIPAA because they do not safeguard this data and often use logs for public training. To be compliant, you must:</p>
+      <ul>
+        <li>Deploy AI agents using secure API endpoints with isolated hosting.</li>
+        <li>Execute a Business Associate Agreement (BAA) with your AI model provider and hosting nodes.</li>
+        <li>Ensure AES-256 encryption in transit and at rest as outlined under the <a href="https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html" target="_blank" rel="noopener">HIPAA Security Rule</a>.</li>
+      </ul>
+
+      <h3>Florida Information Protection Act (FIPA) Reporting Requirements</h3>
+      <p>Under <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.171.html" target="_blank" rel="noopener">FIPA (Florida Statutes Section 501.171)</a>, Florida has one of the strictest data breach reporting timelines in the country. If customer or patient data (including health details, credit info, or social security numbers) is compromised in an automated workflow:</p>
+      <ul>
+        <li>You must notify the Florida Department of Legal Affairs within 30 days of discovery if the breach affects 500 or more individuals.</li>
+        <li>Failure to notify within FIPA's 30-day window can result in administrative fines ranging from $1,000 to $500,000.</li>
+      </ul>
+
+      <h2>2. Real Estate Brokerage AI Compliance in Florida</h2>
+      <p>Florida real estate marketing and listing management are subject to the <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.204.html" target="_blank" rel="noopener">Florida Deceptive and Unfair Trade Practices Act (FDUTPA)</a> and federal Fair Housing guidelines. These frameworks apply directly to AI-generated images, listing copy, and automated routing.</p>
+
+      <h3>FDUTPA and Virtual Staging Disclosures</h3>
+      <p>Under FDUTPA (specifically <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.204.html" target="_blank" rel="noopener">Florida Statutes Section 501.204</a>), deceptive, unfair, and misleading representations in consumer commerce are strictly prohibited. The Florida Realtor Association and local MLS boards enforce explicit guidelines regarding virtual staging:</p>
+      <ul>
+        <li><strong>Conspicuous Labeling:</strong> Any image of a property that has been modified, virtually staged, or digitally altered by AI must carry a clear, conspicuous disclosure directly on the photo, such as <em>"Virtually Staged"</em> or <em>"Digitally Modified."</em></li>
+        <li><strong>Factual Integrity:</strong> AI listing tools must not alter permanent structures (like removing power lines, adding structural windows, or changing the size of boundaries) in a way that misrepresents the property's physical characteristics. Altering permanent features constitutes fraud under FDUTPA.</li>
+      </ul>
+
+      <h3>The Fair Housing Act &amp; Algorithmic Bias</h3>
+      <p>Brokerages utilizing automated CRM tools or AI lead qualifiers must audit their algorithms to guarantee compliance with the federal <a href="https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview" target="_blank" rel="noopener">Fair Housing Act (FHA)</a>:</p>
+      <ul>
+        <li>AI agents that qualify and distribute leads to real estate agents must not screen, filter, or route clients based on protected status (race, color, religion, sex, disability, familial status, or national origin).</li>
+        <li>AI copy generation tools must be structured with filters that prevent the generation of words that indicate demographic preferences (e.g., avoiding descriptions like "perfect for young active families").</li>
+      </ul>
+
+      <h2>3. Florida Digital Bill of Rights (FDBR)</h2>
+      <p>Effective July 1, 2024, the <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.701.html" target="_blank" rel="noopener">Florida Digital Bill of Rights (FDBR Section 501.701)</a> grants consumers greater control over how their data is collected. If your business operates a platform that gathers biometric details, location markers, or uses voice AI systems, you must disclose these choices to Florida consumers, offering them a clear, searchable way to opt-out of data processing and deletion.</p>
+
+      <div class="callout">
+        <p><strong>Compliance Audit Tip:</strong> Always run your AI tools through a structured checklist before launching them in production. A single misconfigured API tunnel that feeds patient names or buyer contracts into a public database will violate HIPAA, FIPA, and FDUTPA simultaneously.</p>
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">W</div>
+        <div class="author-info">
+          <h5>Written by the Web Palm Beaches AI Compliance Team</h5>
+          <p>We build, audit, and deploy secure, localized AI automation systems and custom schemas for South Florida firms.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sticky-wrap">
+        <div class="sidebar-widget">
+          <h4>Florida AI Auditing</h4>
+          <p>Want to check if your current AI workflows violate Florida Bar rules, HIPAA, or FDUTPA? Get a complete audit template.</p>
+          <a href="resources-ai-tool-audit-template.html">Download Audit Checklist →</a>
+        </div>
+        <div class="sidebar-widget sidebar-cta">
+          <h4 style="color:#fff">Need a Compliant Build?</h4>
+          <p>We build secure, enterprise-grade AI chatbots and backend databases with BAAs and Florida-compliant disclosures.</p>
+          <a href="contact.html" class="btn-primary">Scope Your Project</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section class="faq-section bg-ice">
+  <div class="container" style="max-width:800px">
+    <h2 style="font-family:var(--heading);font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:2rem;color:var(--tertiary)">Florida AI Compliance FAQs</h2>
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.parentNode.classList.toggle('open')">What are the Florida rules for AI in medical practices?</div>
+      <div class="faq-answer">
+        Medical practices in Florida must comply with federal HIPAA regulations and the Florida Information Protection Act (FIPA). AI systems handling Protected Health Information (PHI) must operate under a signed Business Associate Agreement (BAA), employ AES-256 encryption, and be structured to report any security breaches to the Florida Department of Legal Affairs within 30 days.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.parentNode.classList.toggle('open')">How does FDUTPA apply to AI-generated real estate listing content?</div>
+      <div class="faq-answer">
+        The Florida Deceptive and Unfair Trade Practices Act (FDUTPA) prohibits misleading representations. If a brokerage uses virtually staged images or AI-edited listing photos, the listing must feature clear, conspicuous disclosures such as "Virtually Staged" or "This photo has been digitally modified" to prevent misleading consumers.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="this.parentNode.classList.toggle('open')">What are the Fair Housing risks of AI real estate tools?</div>
+      <div class="faq-answer">
+        Real estate brokerages are legally liable under the Fair Housing Act if their automated lead routing or AI listing generators introduce bias. AI algorithms must not screen or rank leads based on demographics, and listing copy must avoid keywords that could violate fair housing guidelines.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

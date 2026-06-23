@@ -1,0 +1,39 @@
+# Log files
+error_log
+*.log
+
+# Sensitive configurations (secrets)
+wp-config.php
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# CloudMounter/FTP temporary files
+.ftpquota
+.tmb/
+.well-known/
+
+# Ignore WordPress core folders (improves Git speed on network mounts)
+wp-admin/
+wp-includes/
+wp-content/
+
+# Ignore WordPress core PHP files
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+license.txt
+readme.html
+index.php
+index.php.bak

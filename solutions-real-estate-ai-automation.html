@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate AI Automation &amp; Pipelines | Palm Beach County | Web Palm Beaches</title>
+<meta name="description" content="FDUTPA-compliant real estate AI agents, MLS syncing, virtual staging disclosures, and transaction management integrations for Palm Beach County brokerages.">
+<link rel="canonical" href="https://webpalmbeaches.com/solutions-real-estate-ai-automation.html">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Web Palm Beaches",
+      "description": "FDUTPA-compliant AI agents, MLS listing copy generation, and transaction management integrations for South Florida real estate brokerages.",
+      "url": "https://webpalmbeaches.com",
+      "telephone": "+15612919001",
+      "areaServed": "Palm Beach County, FL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://webpalmbeaches.com"},
+        {"@type":"ListItem","position":2,"name":"Solutions","item":"https://webpalmbeaches.com/solutions.html"},
+        {"@type":"ListItem","position":3,"name":"Real Estate AI Automation","item":"https://webpalmbeaches.com/solutions-real-estate-ai-automation.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do your systems ensure compliance with Florida's virtual staging rules?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Florida MLS and FDUTPA require explicit disclosure if photos are virtually staged. Our system automatically appends compliant watermarks and text disclosures (e.g., 'This image is virtually staged') to all AI-altered listings before publication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the AI integrate with MLS and dotloop/DocuSign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We build secure API integrations that connect our AI agents with local MLS databases (Matrix/Stellar MLS) and transaction management platforms like dotloop, DocuSign, or SkySlope, syncing contract documents and listing data seamlessly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does speed-to-lead automation work for inbound real estate leads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When a lead registers on Zillow, Realtor.com, or your website, our AI agent texts and emails them within 60 seconds to qualify their timeline, budget, and pre-approval status, booking a showing directly into your agent's calendar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is client contact information kept private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All client communication and lead details are processed through secure, encrypted connections. We sign data processing agreements and ensure no client contact data is shared or used to train public LLM models."
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Web Palm Beaches"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* Page-Specific Styles */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.problem-card {
+  padding: 2.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  transition: all .3s;
+}
+.problem-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+.problem-card .prob-num {
+  font-family: var(--heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: .18;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.problem-card h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  line-height: 1.75;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.feature-card {
+  padding: 2.25rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 45px rgba(0,0,0,.09);
+}
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card .fc-icon {
+  width: 52px; height: 52px;
+  background: var(--bg-ice);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  transition: all .3s;
+}
+.feature-card:hover .fc-icon {
+  background: var(--accent);
+  color: #fff;
+}
+.feature-card h3 {
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+.compliance-box {
+  background: var(--bg-dark);
+  color: #fff;
+  padding: 3rem;
+  position: relative;
+}
+.compliance-box h3 {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.compliance-box p {
+  color: rgba(255,255,255,.75);
+  font-size: .95rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.compliance-list {
+  list-style: none;
+  padding: 0;
+}
+.compliance-list li {
+  padding: .5rem 0;
+  font-size: .9rem;
+  color: rgba(255,255,255,.8);
+  display: flex;
+  gap: .5rem;
+}
+.compliance-list li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* FAQ using details/summary */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 2.5rem;
+}
+details.faq-item {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+details.faq-item[open] {
+  border-color: rgba(205,97,85,.3);
+}
+details.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  list-style: none;
+  background: var(--bg);
+  transition: background .2s;
+  user-select: none;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary:hover { background: var(--bg-ice); }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform .3s;
+  line-height: 1;
+}
+details.faq-item[open] summary::after {
+  content: '−';
+}
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: .93rem;
+  line-height: 1.8;
+  font-family: var(--body);
+  background: var(--bg);
+}
+
+@media(max-width: 900px) {
+  .problem-grid, .compliance-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 600px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="solutions.html">Solutions</a> / <span>Real Estate AI Automation</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">FDUTPA &amp; MLS Compliant AI — South Florida Agencies</div>
+    <h1 class="reveal stagger-1">Real Estate AI Pipelines &amp;<br><em>MLS/Transaction Automation</em></h1>
+    <p class="reveal stagger-2">Eliminate slow follow-ups, manual listing copy preparation, and administrative transcription bottlenecks. Web Palm Beaches develops fully secure, FDUTPA-compliant real estate lead routing bots, automated showing review parsers, and transaction coordinator API integrations that streamline your brokerage operations.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free AI Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="solutions.html" class="btn-secondary light">All AI Solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Operations</div>
+      <h2 class="section-title reveal stagger-1">Administrative Friction in Real Estate</h2>
+      <p class="section-desc reveal stagger-2">Real estate agents and transaction coordinators spend over 35% of their week qualifying cold leads, writing property highlight packages, and managing compliance audits for listing files.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal stagger-1">
+         <div class="prob-num">01</div>
+         <h3>Slow Lead Response</h3>
+         <p>Inbound buyer or seller inquiries go unanswered for hours, causing hot prospects to click away to competing agents who respond instantly.</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+         <div class="prob-num">02</div>
+         <h3>Manual MLS Listing Entry</h3>
+         <p>Writing compliant, captivating copy for MLS platforms requires manual drafting and checking, taking hours away from client client-facing negotiations.</p>
+      </div>
+      <div class="problem-card reveal stagger-3">
+         <div class="prob-num">03</div>
+         <h3>Showing Feedback Chasing</h3>
+         <p>Agents waste days manually calling and emailing other agents to collect feedback after house showings, resulting in stale buyer information.</p>
+      </div>
+      <div class="problem-card reveal stagger-4">
+         <div class="prob-num">04</div>
+         <h3>FDUTPA &amp; Fair Housing Risks</h3>
+         <p>Failing to properly label virtually staged listing photos or using biased routing logic exposes the brokerage to serious legal and regulatory penalties.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SOLUTIONS -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Automate</div>
+      <h2 class="section-title reveal stagger-1">Real Estate AI Automation Services</h2>
+      <p class="section-desc reveal stagger-2">We build custom AI integrations that connect your MLS data, CRM contacts, and transaction documents securely.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">💬</div>
+        <h3>Intelligent Lead Routing Bots</h3>
+        <p>Qualify inbound Zillow, MLS, and website leads in under 60 seconds. Sync scheduling calendars directly for qualified calls.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">📋</div>
+        <h3>MLS Listing Copy Generation</h3>
+        <p>AI copywriter systems that generate localized, compliant, and keyword-rich listing copy that honors Fair Housing guidelines.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">📝</div>
+        <h3>Showing Feedback Parsers</h3>
+        <p>AI bots that automatically poll showing agents, extract objections (price, condition, layout), and compile summaries for seller reports.</p>
+      </div>
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">📂</div>
+        <h3>Transaction Document Sync</h3>
+        <p>Connect sign-off platforms like dotloop or DocuSign to CRMs (like Follow Up Boss) via secure API pipelines, filing documents automatically.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">🖼️</div>
+        <h3>Virtual Staging Safeguards</h3>
+        <p>Automated listing audits that verify compliance, ensuring all modified assets carry required watermarks and disclosures under FDUTPA.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">🔍</div>
+        <h3>GEO for Property Searches</h3>
+        <p>Optimize listing pages with custom schemas so search systems (SearchGPT, Gemini) pull your listings when buyers query local parameters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE & SECURITY -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="compliance-grid">
+      <div class="reveal-left">
+        <div class="section-label">FDUTPA &amp; Fair Housing</div>
+        <h2 class="section-title">Compliant &amp; Legally Protected AI</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem">Florida real estate marketing is strictly regulated by the Florida Deceptive and Unfair Trade Practices Act (FDUTPA). AI-generated listing copy and virtually staged images must follow explicit disclosure guidelines to avoid misrepresentation fines.</p>
+        <p class="section-desc">Additionally, we verify that your automated lead scoring and routing algorithms comply fully with federal and state Fair Housing rules, preventing algorithmic discrimination.</p>
+      </div>
+      <div class="reveal-right">
+        <div class="compliance-box">
+          <h3>The Real Estate Shield</h3>
+          <p>We deploy standard guardrails for local brokerages:</p>
+          <ul class="compliance-list">
+             <li><strong>FDUTPA Disclosure Checks:</strong> Automatically flag and add text watermarks to virtually staged listing images.</li>
+             <li><strong>Fair Housing Audits:</strong> Filter copy options to ensure zero discriminatory language in AI-generated copy.</li>
+             <li><strong>Private LLM Tunnels:</strong> Ensure listing data, purchase agreements, and client details are never shared with public models.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-ice">
+  <div class="container" style="max-width:800px">
+    <div class="section-center">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal stagger-1">Real Estate AI Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal stagger-2">
+      <details class="faq-item">
+        <summary>How do your systems ensure compliance with Florida's virtual staging rules?</summary>
+        <div class="faq-answer">
+          Florida MLS and FDUTPA require explicit disclosure if photos are virtually staged. Our system automatically appends compliant watermarks and text disclosures (e.g., "This image is virtually staged") to all AI-altered listings before publication.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can the AI integrate with MLS and dotloop/DocuSign?</summary>
+        <div class="faq-answer">
+          Yes. We build secure API integrations that connect our AI agents with local MLS databases (Matrix/Stellar MLS) and transaction management platforms like dotloop, DocuSign, or SkySlope, syncing contract documents and listing data seamlessly.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How does speed-to-lead automation work for inbound real estate leads?</summary>
+        <div class="faq-answer">
+          When a lead registers on Zillow, Realtor.com, or your website, our AI agent texts and emails them within 60 seconds to qualify their timeline, budget, and pre-approval status, booking a showing directly into your agent's calendar.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is client contact information kept private?</summary>
+        <div class="faq-answer">
+          Yes. All client communication and lead details are processed through secure, encrypted connections. We sign data processing agreements and ensure no client contact data is shared or used to train public LLM models.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Get Scoped</div>
+    <h2 class="section-title reveal stagger-1">Ready to streamline your real estate transactions and leads?</h2>
+    <p class="section-desc reveal stagger-2">Book a free 30-minute AI strategy session. We'll examine your current real estate stack (MLS, CRM, dotloop) and propose a compliant automation roadmap.</p>
+    <a href="contact.html" class="btn-primary">Schedule Your Real Estate AI Strategy Call &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

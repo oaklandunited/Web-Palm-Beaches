@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare AI Automation & Workflows | Palm Beach County | Web Palm Beaches</title>
+<meta name="description" content="HIPAA-compliant AI chatbots, patient scheduling automations, and EHR/PMS integrations for Palm Beach County medical practices.">
+<link rel="canonical" href="https://webpalmbeaches.com/solutions-healthcare-ai-palm-beach.html">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Web Palm Beaches",
+      "description": "HIPAA-compliant AI chatbots, patient intake automation, and EHR integrations for South Florida medical clinics.",
+      "url": "https://webpalmbeaches.com",
+      "telephone": "+15612919001",
+      "areaServed": "Palm Beach County, FL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://webpalmbeaches.com"},
+        {"@type":"ListItem","position":2,"name":"Solutions","item":"https://webpalmbeaches.com/solutions.html"},
+        {"@type":"ListItem","position":3,"name":"Healthcare AI Automation","item":"https://webpalmbeaches.com/solutions-healthcare-ai-palm-beach.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are your AI systems HIPAA-compliant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We design and build our healthcare AI systems to comply with the Health Insurance Portability and Accountability Act (HIPAA). All patient data is encrypted in transit and at rest, and we utilize secure endpoints that isolate PHI (Protected Health Information)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you sign Business Associate Agreements (BAAs)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. When building AI systems that process or transmit PHI, we implement services that provide BAAs, and we establish BAAs with our clients where required by HIPAA guidelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can this integrate with our electronic health records (EHR) software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In most cases, yes. We build integrations that connect custom chatbots or intake forms to popular Electronic Health Records (EHR) and Practice Management Systems (PMS) such as eClinicalWorks, Athenahealth, Practice Fusion, and WebPT."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the automated patient reminder system reduce no-shows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our system triggers automated SMS and email sequences at key milestones (e.g. 7 days, 3 days, and 24 hours prior to appointment) and allows patients to easily confirm, reschedule, or cancel via text message, which fills empty slots faster."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* Page-Specific Styles */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.problem-card {
+  padding: 2.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  transition: all .3s;
+}
+.problem-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+.problem-card .prob-num {
+  font-family: var(--heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: .18;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.problem-card h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  line-height: 1.75;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.feature-card {
+  padding: 2.25rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 45px rgba(0,0,0,.09);
+}
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card .fc-icon {
+  width: 52px; height: 52px;
+  background: var(--bg-ice);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  transition: all .3s;
+}
+.feature-card:hover .fc-icon {
+  background: var(--accent);
+  color: #fff;
+}
+.feature-card h3 {
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+.compliance-box {
+  background: var(--bg-dark);
+  color: #fff;
+  padding: 3rem;
+  position: relative;
+}
+.compliance-box h3 {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.compliance-box p {
+  color: rgba(255,255,255,.75);
+  font-size: .95rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.compliance-list {
+  list-style: none;
+  padding: 0;
+}
+.compliance-list li {
+  padding: .5rem 0;
+  font-size: .9rem;
+  color: rgba(255,255,255,.8);
+  display: flex;
+  gap: .5rem;
+}
+.compliance-list li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* FAQ using details/summary */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 2.5rem;
+}
+details.faq-item {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+details.faq-item[open] {
+  border-color: rgba(205,97,85,.3);
+}
+details.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  list-style: none;
+  background: var(--bg);
+  transition: background .2s;
+  user-select: none;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary:hover { background: var(--bg-ice); }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform .3s;
+  line-height: 1;
+}
+details.faq-item[open] summary::after {
+  content: '−';
+}
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: .93rem;
+  line-height: 1.8;
+  font-family: var(--body);
+  background: var(--bg);
+}
+
+@media(max-width: 900px) {
+  .problem-grid, .compliance-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 600px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="solutions.html">Solutions</a> / <span>Healthcare AI Automation</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">HIPAA-Compliant AI — South Florida Clinics</div>
+    <h1 class="reveal stagger-1">HIPAA-Compliant AI Workflows &<br><em>EHR / Patient Portal Sync</em></h1>
+    <p class="reveal stagger-2">Say goodbye to front-desk bottlenecks, phone tag, and scheduling gaps. Web Palm Beaches develops fully secure, HIPAA-compliant patient intake chatbots, automated reminder sequences, and EHR system integrations that optimize your medical or physical therapy practice while enhancing patient experience.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free AI Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="solutions.html" class="btn-secondary light">All AI Solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Bottlenecks</div>
+      <h2 class="section-title reveal stagger-1">Administrative Overload in Medical Offices</h2>
+      <p class="section-desc reveal stagger-2">Medical office administrators spend up to 40% of their workday handling appointment confirmations, collecting basic intake details, and entering clipboard data into digital systems.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal stagger-1">
+         <div class="prob-num">01</div>
+         <h3>Front-Desk Bottlenecks</h3>
+         <p>Staff members are trapped on the phone rescheduling appointments, answering FAQs, and confirming times, creating long check-in wait times for patients physically in the clinic.</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+         <div class="prob-num">02</div>
+         <h3>Revenue Lost to No-Shows</h3>
+         <p>Forgotton appointments lead to idle practitioners and lost clinical capacity. Traditional phone reminders are time-consuming and often reach voicemail.</p>
+      </div>
+      <div class="problem-card reveal stagger-3">
+         <div class="prob-num">03</div>
+         <h3>Manual EHR Transcription</h3>
+         <p>Paper patient intake sheets must be manually transcribed into EHR/PMS software. This duplicate data entry increases administrative errors and slows patient flow.</p>
+      </div>
+      <div class="problem-card reveal stagger-4">
+         <div class="prob-num">04</div>
+         <h3>No Support After Hours</h3>
+         <p>Patients who need to schedule or ask questions after clinic hours must wait until morning, leading to empty appointment slots or patients booking elsewhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SOLUTIONS -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Automate</div>
+      <h2 class="section-title reveal stagger-1">Healthcare AI Automation Services</h2>
+      <p class="section-desc reveal stagger-2">We build custom AI patient management systems that keep your clinics running smoothly, synced, and secure.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#129302;</div>
+        <h3>HIPAA Patient Intake Bots</h3>
+        <p>Conversational agents that pre-screen patients, capture contact information, verify insurance options, and route the details securely to clinic staff.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#9881;</div>
+        <h3>EHR & PMS Integrations</h3>
+        <p>API connections that sync patient intake files, appointment schedules, and updates directly into platforms like eClinicalWorks, Athenahealth, or Practice Fusion.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128172;</div>
+        <h3>Automated Patient Reminders</h3>
+        <p>Intelligent, interactive SMS & email notifications that allow patients to confirm, reschedule, or cancel via text message, syncing straight with your calendar.</p>
+      </div>
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#128197;</div>
+        <h3>Waitlist Optimization Sprints</h3>
+        <p>AI workflows that automatically text waitlist patients when a slot opens up, filling cancellations in real time without front-desk phone calls.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#128231;</div>
+        <h3>Post-Visit Follow-Up Loops</h3>
+        <p>Send secure care instructions, request-for-feedback surveys, and Google Review requests automatically after a patient is checked out.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128269;</div>
+        <h3>AEO for Local Medical Search</h3>
+        <p>Structure your clinic pages and doctor profiles so AI search engines (like SearchGPT and Gemini) cite your clinic when local patients ask for medical specialties.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE & SECURITY -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="compliance-grid">
+      <div class="reveal-left">
+        <div class="section-label">HIPAA Security</div>
+        <h2 class="section-title">HIPAA Compliant & Fully Encrypted</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem">We prioritize patient privacy above all else. Every healthcare automation we construct adheres strictly to HIPAA administrative, physical, and technical safeguards.</p>
+        <p class="section-desc">We sign Business Associate Agreements (BAAs) and work exclusively with infrastructure providers that offer secure BAA contracts, keeping PHI protected at all times.</p>
+      </div>
+      <div class="reveal-right">
+        <div class="compliance-box">
+          <h3>The Medical Security Shield</h3>
+          <p>We implement safety layers specifically for the healthcare sector:</p>
+          <ul class="compliance-list">
+             <li>**Business Associate Agreements (BAAs):** Established for all AI, hosting, and cURL data endpoints that process patient data.</li>
+             <li>**AES-256 Encryption:** Patient information is fully encrypted at rest and in transit (SSL/TLS protocols) across all systems.</li>
+             <li>**Zero Data-Leaking Pipelines:** We isolate datasets so that no clinical notes or patient details are used to train external LLM models.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-ice">
+  <div class="container" style="max-width:800px">
+    <div class="section-center">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal stagger-1">Healthcare AI Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal stagger-2">
+      <details class="faq-item">
+        <summary>Are your AI systems HIPAA-compliant?</summary>
+        <div class="faq-answer">
+          Yes. We design and build our healthcare AI systems to comply with the Health Insurance Portability and Accountability Act (HIPAA). All patient data is encrypted in transit and at rest, and we utilize secure endpoints that isolate PHI (Protected Health Information).
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you sign Business Associate Agreements (BAAs)?</summary>
+        <div class="faq-answer">
+          Yes. When building AI systems that process or transmit PHI, we implement services that provide BAAs, and we establish BAAs with our clients where required by HIPAA guidelines.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can this integrate with our electronic health records (EHR) software?</summary>
+        <div class="faq-answer">
+          In most cases, yes. We build integrations that connect custom chatbots or intake forms to popular Electronic Health Records (EHR) and Practice Management Systems (PMS) such as eClinicalWorks, Athenahealth, Practice Fusion, and WebPT.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How does the automated patient reminder system reduce no-shows?</summary>
+        <div class="faq-answer">
+          Our system triggers automated SMS and email sequences at key milestones (e.g. 7 days, 3 days, and 24 hours prior to appointment) and allows patients to easily confirm, reschedule, or cancel via text message, which fills empty slots faster.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Get Scoped</div>
+    <h2 class="section-title reveal stagger-1">Ready to automate your patient administrative workload?</h2>
+    <p class="section-desc reveal stagger-2">Book a free 30-minute AI strategy session. We'll examine your current medical stack (EHR, calendars, check-in forms) and propose a secure automation roadmap.</p>
+    <a href="contact.html" class="btn-primary">Schedule Your Medical AI Strategy Call &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

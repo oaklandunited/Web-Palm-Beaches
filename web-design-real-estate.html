@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design for Real Estate | IDX & AI | WPB</title>
+<meta name="description" content="Custom real estate website design in South Florida. IDX property search, AI lead qualification, neighborhood guides, and Google ranking strategies.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === REAL ESTATE PAGE STYLES === */
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.problem-card{padding:2.5rem;background:var(--bg);border:1px solid var(--border);position:relative;overflow:hidden}
+.problem-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent)}
+.problem-card .problem-icon{font-size:2rem;margin-bottom:1.25rem;display:block}
+.problem-card h3{font-family:var(--heading);font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.75rem}
+.problem-card p{color:var(--text-secondary);font-size:.9rem;line-height:1.75}
+
+.feature-list{display:flex;flex-direction:column;gap:0;margin-top:3rem}
+.feature-row{display:grid;grid-template-columns:64px 1fr;gap:1.5rem;align-items:start;padding:2rem;border:1px solid var(--border);border-bottom:none;transition:all .3s;background:var(--bg)}
+.feature-row:last-child{border-bottom:1px solid var(--border)}
+.feature-row:hover{background:var(--bg-ice);border-color:rgba(0,0,0,.12)}
+.feature-row:hover .fr-icon{background:var(--accent);color:#fff}
+.fr-icon{width:52px;height:52px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:all .3s}
+.fr-content h3{font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.5rem}
+.fr-content p{color:var(--text-secondary);font-size:.875rem;line-height:1.75}
+.fr-content ul{list-style:none;margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.fr-content ul li{font-size:.78rem;color:var(--text-secondary);padding:.3rem .75rem;background:var(--bg-ice);border:1px solid var(--border);font-family:var(--heading);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+
+.type-tags{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem;justify-content:center}
+.type-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;background:var(--bg);border:1px solid var(--border);font-family:var(--heading);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);transition:all .3s;cursor:default}
+.type-tag:hover{background:var(--tertiary);color:#fff;border-color:var(--tertiary)}
+
+.re-pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.re-pricing-card{padding:2.5rem;border:1px solid var(--border);background:var(--bg);transition:all .4s;position:relative}
+.re-pricing-card.featured{border-color:var(--accent);background:var(--bg)}
+.re-pricing-card.featured::before{content:'Most Popular';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:.4rem 1.25rem;white-space:nowrap}
+.re-pricing-card .rp-tier{font-family:var(--heading);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:.6rem}
+.re-pricing-card .rp-price{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800;color:var(--tertiary);line-height:1;margin-bottom:.4rem}
+.re-pricing-card .rp-best{font-size:.82rem;color:var(--text-secondary);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);line-height:1.6}
+.re-pricing-card ul{list-style:none;margin-bottom:2rem}
+.re-pricing-card ul li{padding:.4rem 0 .4rem 1.25rem;font-size:.875rem;color:var(--text-secondary);position:relative;line-height:1.5}
+.re-pricing-card ul li::before{content:'';position:absolute;left:0;top:.8rem;width:6px;height:6px;background:var(--accent)}
+.re-pricing-card .rp-cta{display:block;text-align:center;padding:.9rem 1.5rem;font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;transition:all .3s}
+.rp-cta.primary{background:var(--accent);color:#fff}
+.rp-cta.primary:hover{background:var(--accent-hover);box-shadow:0 6px 20px rgba(205,97,85,.3)}
+.rp-cta.outline{border:2px solid var(--tertiary);color:var(--tertiary)}
+.rp-cta.outline:hover{background:var(--tertiary);color:#fff}
+
+.re-hero-sub{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.re-hero-sub::before{content:'';width:24px;height:2px;background:var(--accent)}
+
+@media(max-width:900px){
+  .problem-grid{grid-template-columns:1fr}
+  .re-pricing-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .feature-row{grid-template-columns:44px 1fr;gap:1rem;padding:1.5rem}
+  .fr-icon{width:44px;height:44px;font-size:1.1rem}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/web-design-real-estate.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/web-design-real-estate.html">
+  <meta property="og:title" content="Web Design for Real Estate | IDX & AI | WPB">
+  <meta property="og:description" content="Custom real estate website design in South Florida. IDX property search, AI lead qualification, neighborhood guides, and Google ranking strategies.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Hero -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <a href="services.html">Industries</a> / <span>Real Estate Web Design</span></div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">Real Estate Web Design — Palm Beach County</div>
+    <h1 class="reveal stagger-1">Your Own Real Estate Website —<br><em>Not Zillow's</em></h1>
+    <p class="reveal stagger-2">Zillow, Realtor.com, and Redfin collect buyer and seller contact info from your listings and sell it to your competitors. Your own website takes back control — your brand, your leads, your relationships.</p>
+    <div class="reveal stagger-3" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+      <a href="contact.html" class="btn-primary">Get a Free Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="case-studies.html" class="btn-secondary light">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center" style="margin-bottom:3.5rem">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal stagger-1">The Problem With Relying on Portals</h2>
+      <p class="section-desc reveal stagger-2">Every lead you generate on Zillow is a lead that doesn't belong to you. Here's what you're actually paying for.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <span class="problem-icon">&#128181;</span>
+        <h3>They Sell Your Leads to Other Agents</h3>
+        <p>When a buyer inquires about your listing on Zillow, that lead gets shared with up to three other agents. You paid to advertise your listing. They profit from your inquiry. Every single time.</p>
+      </div>
+      <div class="problem-card reveal stagger-1">
+        <span class="problem-icon">&#128683;</span>
+        <h3>You Can't Build a Brand on Someone Else's Platform</h3>
+        <p>Your Zillow profile looks exactly like every other agent's. Same layout, same features, same competing ads surrounding your listings. A custom website positions you as the authority in your specific market.</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+        <span class="problem-icon">&#128274;</span>
+        <h3>You Own Nothing</h3>
+        <p>Zillow can change their algorithm, raise their rates, or deprioritize your listings overnight. Your own website is a long-term asset you fully control — and its value compounds every year you invest in it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start">
+      <div class="reveal-left">
+        <div class="section-label">What We Build</div>
+        <h2 class="section-title">Features Built for How Buyers and Sellers Actually Search</h2>
+        <p style="color:var(--text-secondary);font-size:.95rem;line-height:1.8;margin-bottom:2rem">Every feature is chosen to capture leads, rank on Google, and position you as the local expert — not just another agent with an IDX feed.</p>
+        <a href="contact.html" class="btn-primary">Start the Conversation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="reveal-right">
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="fr-icon">&#127968;</div>
+            <div class="fr-content">
+              <h3>IDX Property Search</h3>
+              <p>Full MLS integration — visitors search active listings directly on your website. Every search happens on your domain, not Zillow's. MLS-synced listings, map-based search with draw capability, saved searches, and property alerts that capture email registrations.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#129302;</div>
+            <div class="fr-content">
+              <h3>AI Lead Qualification</h3>
+              <p>An intelligent chatbot that engages property searchers in conversation — qualifying timeline, budget, financing, and preferred neighborhoods before routing hot leads to you instantly via text, email, or CRM. Tire-kickers get helpful resources. Your time stays protected.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#128205;</div>
+            <div class="fr-content">
+              <h3>Neighborhood &amp; Community Guides</h3>
+              <p>Your SEO secret weapon. In-depth guides for every neighborhood you serve — schools, restaurants, market data, lifestyle, commute times. These pages rank for searches like "best neighborhoods in Palm Beach Gardens" and bring organic traffic from buyers already researching areas.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#128100;</div>
+            <div class="fr-content">
+              <h3>Agent &amp; Team Pages</h3>
+              <p>Professional profiles showcasing bio, certifications, transaction history, testimonials, active listings, and sold portfolio. Multi-agent teams get a full directory with individual profile pages that build trust before a single call.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#127968;</div>
+            <div class="fr-content">
+              <h3>Seller-Focused Content</h3>
+              <p>Pages and tools designed to capture seller leads: "What's my home worth?" CMA request forms, seller guides, market reports, recent area sales, and compelling "why list with us" content. Sellers research online before calling — be the answer they find.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#128202;</div>
+            <div class="fr-content">
+              <h3>Market Data &amp; Reports</h3>
+              <p>Automated market reports pulling local data — median prices, days on market, inventory levels, price trends. Positions you as the data-driven agent in your market and gives buyers and sellers a reason to keep coming back.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="fr-icon">&#127968;</div>
+            <div class="fr-content">
+              <h3>Open House &amp; Event Promotion</h3>
+              <p>Dedicated landing pages for open houses with registration, directions, and automated follow-up sequences. Social sharing built in for maximum exposure — every open house becomes a lead capture event.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Real Estate Types -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Who We Serve</div>
+      <h2 class="section-title reveal stagger-1">Built for Every Corner of Real Estate</h2>
+      <p class="section-desc reveal stagger-2">From solo agents to multi-office brokerages — we've built websites for every real estate business model in South Florida.</p>
+    </div>
+    <div class="type-tags reveal stagger-2">
+      <span class="type-tag">Residential Agents &amp; Teams</span>
+      <span class="type-tag">Luxury &amp; Waterfront Specialists</span>
+      <span class="type-tag">Commercial Real Estate</span>
+      <span class="type-tag">Property Management Companies</span>
+      <span class="type-tag">Real Estate Brokerages</span>
+      <span class="type-tag">New Construction &amp; Developer Marketing</span>
+      <span class="type-tag">Vacation Rental Management</span>
+      <span class="type-tag">Real Estate Investors</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Investment</div>
+      <h2 class="section-title reveal stagger-1">Pricing That Grows With Your Business</h2>
+      <p class="section-desc reveal stagger-2">IDX integration is included in every package. No separate license fees, no hidden platform costs.</p>
+    </div>
+    <div class="re-pricing-grid">
+      <div class="re-pricing-card reveal">
+        <div class="rp-tier">Agent Starter</div>
+        <div class="rp-price">$5,000 – $8,000</div>
+        <div class="rp-best">Solo agents who need a professional web presence with IDX and basic SEO — built fast, built right.</div>
+        <ul>
+          <li>5–8 custom pages</li>
+          <li>IDX property search integration</li>
+          <li>Agent profile page</li>
+          <li>Seller lead capture form</li>
+          <li>Google Business Profile setup</li>
+          <li>Basic on-page SEO</li>
+          <li>Mobile-optimized design</li>
+        </ul>
+        <a href="contact.html" class="rp-cta outline">Get Started</a>
+      </div>
+      <div class="re-pricing-card featured reveal stagger-1">
+        <div class="rp-tier">Team Professional</div>
+        <div class="rp-price">$8,000 – $15,000</div>
+        <div class="rp-best">Growing teams ready for AI lead qualification, neighborhood content that ranks, and CRM integration.</div>
+        <ul>
+          <li>Everything in Agent Starter</li>
+          <li>AI lead qualification chatbot</li>
+          <li>3–5 neighborhood guides</li>
+          <li>CRM integration (Follow Up Boss, KvCORE, etc.)</li>
+          <li>Team directory with agent profiles</li>
+          <li>"What's my home worth?" tool</li>
+          <li>Automated review request system</li>
+          <li>Comprehensive local SEO</li>
+        </ul>
+        <a href="contact.html" class="rp-cta primary">Book a Strategy Call</a>
+      </div>
+      <div class="re-pricing-card reveal stagger-2">
+        <div class="rp-tier">Brokerage Enterprise</div>
+        <div class="rp-price">$15,000 – $30,000+</div>
+        <div class="rp-best">Multi-agent brokerages needing custom CRM, advanced automations, and a content strategy that dominates local search.</div>
+        <ul>
+          <li>Everything in Team Professional</li>
+          <li>10+ neighborhood guides</li>
+          <li>Custom CRM build or deep integration</li>
+          <li>Market data &amp; automated reports</li>
+          <li>Open house event landing pages</li>
+          <li>Advanced lead scoring &amp; routing</li>
+          <li>Multi-office architecture</li>
+          <li>Ongoing SEO retainer included</li>
+        </ul>
+        <a href="contact.html" class="rp-cta outline">Let's Talk</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);font-family:var(--body)">IDX integration included in all packages. AI chatbot: $2,000 setup + $150–$300/month. Neighborhood guides: $500–$800 per guide.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-alt">
+  <div class="container">
+    <div style="max-width:780px;margin:0 auto">
+      <div class="section-center" style="margin-bottom:2.5rem">
+        <div class="section-label reveal">FAQ</div>
+        <h2 class="section-title reveal stagger-1">Common Questions from Real Estate Professionals</h2>
+      </div>
+      <div class="reveal stagger-2">
+        <div class="accordion-item">
+          <div class="accordion-header">Which MLS systems do you integrate with?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We work with all major Florida MLS systems including BeachesMLS, Miami MLS (MIAMI Association), and Stellar MLS. IDX integration is included in every real estate package — there's no additional setup cost or separate license fee on our end.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Can I customize how listings appear on my site?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Yes. We design custom listing templates that match your brand — not the generic IDX look. Featured listings, new listings, and price-reduced properties can be highlighted automatically. You get a unique visual experience that reinforces your brand at every touch point.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">How do neighborhood guides help me get more leads?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Buyers research neighborhoods before contacting agents. A guide ranking for "best neighborhoods in Boca Raton" or "living in Jupiter FL" brings hundreds of in-market buyers to your site each month — where they find your listings, your profile, and your contact form. It's the highest-ROI content investment most agents can make.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Can the AI chatbot connect to my CRM?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Yes. We integrate with Follow Up Boss, KvCORE, Lofty, BoomTown, and most real estate CRMs. Leads flow directly into your pipeline with qualification notes — timeline, budget, buyer vs. seller, neighborhoods of interest — so you know exactly who to call first.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Do you help with Google Ads for real estate?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Our focus is organic marketing — SEO, content, and AI-powered lead capture — which delivers the best cost-per-lead over time. That said, we can build landing pages optimized for Google Ads campaigns and connect you with trusted PPC partners in the South Florida market.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.6)">Real Estate Web Design</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:680px;margin:0 auto .75rem">Own Your Leads. Own Your Brand. Own Your Market.</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free strategy call and discover how an AI-powered real estate website can generate leads you don't have to share with anyone.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book Your Free Strategy Call</a>
+      <a href="services.html" class="btn-secondary light">View All Services</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">561-291-9001 &mdash; Mon–Fri 9am–6pm ET</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://webpalmbeaches.com/"},
+        {"@type":"ListItem","position":2,"name":"Industries","item":"https://webpalmbeaches.com/services.html"},
+        {"@type":"ListItem","position":3,"name":"Real Estate Web Design","item":"https://webpalmbeaches.com/web-design-real-estate.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"Which MLS systems do you integrate with?","acceptedAnswer":{"@type":"Answer","text":"We work with BeachesMLS, Miami MLS, and Stellar MLS. IDX integration is included in every real estate package."}},
+        {"@type":"Question","name":"Can I customize how listings appear on my site?","acceptedAnswer":{"@type":"Answer","text":"Yes. We design custom listing templates that match your brand — not the generic IDX look."}},
+        {"@type":"Question","name":"How do neighborhood guides help me get more leads?","acceptedAnswer":{"@type":"Answer","text":"Buyers research neighborhoods before contacting agents. Guides ranking for local searches bring in-market buyers to your site each month."}},
+        {"@type":"Question","name":"Can the AI chatbot connect to my CRM?","acceptedAnswer":{"@type":"Answer","text":"Yes. We integrate with Follow Up Boss, KvCORE, Lofty, BoomTown, and most real estate CRMs."}},
+        {"@type":"Question","name":"Do you help with Google Ads for real estate?","acceptedAnswer":{"@type":"Answer","text":"Our focus is organic marketing, but we can build landing pages optimized for Google Ads and recommend trusted PPC partners."}}
+      ]
+    }
+  ]
+}
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

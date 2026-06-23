@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Small Business &amp; Solopreneurs | Web Palm Beaches</title>
+  <meta name="description" content="AI automation lets your small team outperform larger competitors. Web Palm Beaches builds AI systems for solopreneurs and small teams in South Florida.">
+  <link rel="canonical" href="https://webpalmbeaches.com/ai-for-small-business.html">
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "name": "Web Palm Beaches",
+        "description": "AI automation systems for small businesses and solopreneurs in South Florida.",
+        "url": "https://webpalmbeaches.com/ai-for-small-business.html",
+        "telephone": "+15612919001",
+        "areaServed": "Palm Beach County, FL",
+        "priceRange": "$2,500–$30,000"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is AI really affordable for a small business?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our entry-level Quick Win package starts at $2,500 and targets a single high-impact automation. Most clients see ROI within 30 days — the automation pays for itself in time saved or leads captured. You don't need a $50,000 budget to start benefiting from AI."}
+          },
+          {
+            "@type": "Question",
+            "name": "I'm not technical — can I still use AI tools?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. We build and configure everything for you. Done-For-You means you don't touch any code or technical setup. We also offer training if you want to learn to manage these systems yourself, but it's entirely optional."}
+          },
+          {
+            "@type": "Question",
+            "name": "How long until I see ROI?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Most clients see measurable ROI within 30–60 days. A review request automation that generates 10 new five-star reviews, or a follow-up sequence that closes 2 additional deals per month, pays for itself quickly. We focus on high-impact, fast-payback automations first."}
+          },
+          {
+            "@type": "Question",
+            "name": "What if I only have one employee?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Solopreneurs are some of our best-fit clients. AI systems are especially powerful when you're a team of one — they give you leverage you simply can't hire your way to. A solo operator managing the right AI stack can out-produce a team of five."}
+          },
+          {
+            "@type": "Question",
+            "name": "Will AI replace my staff?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No — AI replaces tasks, not people. Your staff will spend less time on repetitive, low-value work and more time on the high-judgment work that actually moves the needle. In most cases, AI makes your existing team significantly more productive and more satisfied with their work."}
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between Done-For-You and Done-With-You?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Done-For-You means we build, configure, and maintain your AI systems. You approve the outputs. Done-With-You means we guide you and your team through building these systems yourselves, with hands-on training and support. Both paths lead to the same destination — a more automated, more productive business."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    /* Barbell visual */
+    .barbell-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      margin-top: 3rem;
+      align-items: stretch;
+    }
+    .barbell-side {
+      padding: 3rem 2.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .barbell-side.left {
+      border-right: none;
+    }
+    .barbell-side.right {
+      border-left: none;
+      background: var(--tertiary);
+    }
+    .barbell-connector {
+      width: 4px;
+      background: var(--accent);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .barbell-connector::before,
+    .barbell-connector::after {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .barbell-connector::before { top: 0; }
+    .barbell-connector::after { bottom: 0; }
+    .barbell-side h3 {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .barbell-side.right h3 { color: var(--accent); }
+    .barbell-side h4 {
+      font-family: var(--heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--tertiary);
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+    }
+    .barbell-side.right h4 { color: #fff; }
+    .barbell-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .barbell-list li {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .barbell-side.right .barbell-list li {
+      color: rgba(255,255,255,.75);
+    }
+    .barbell-list li::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Case examples */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .example-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all .3s;
+    }
+    .example-card:hover {
+      box-shadow: 0 10px 36px rgba(0,0,0,.08);
+      transform: translateY(-3px);
+    }
+    .example-header {
+      padding: 1.5rem 1.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+    }
+    .example-icon {
+      width: 44px; height: 44px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .example-header h3 {
+      font-family: var(--heading);
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--tertiary);
+      line-height: 1.3;
+    }
+    .example-body {
+      padding: 1.5rem 1.75rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .example-state {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .state-label {
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .state-label.was { color: #999; }
+    .state-label.is { color: var(--accent); }
+    .example-state p {
+      font-size: .875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Packages */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .package-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all .3s;
+    }
+    .package-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,.09);
+    }
+    .package-card.featured {
+      border-color: var(--accent);
+      border-width: 2px;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(205,97,85,.15);
+    }
+    .package-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      white-space: nowrap;
+    }
+    .package-tier {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .package-price {
+      font-family: var(--heading);
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--tertiary);
+      line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+    .package-desc {
+      font-size: .875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .package-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .package-features {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+    .package-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      padding: .45rem 0;
+      font-size: .875rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+    .package-features li:last-child { border-bottom: none; }
+    .package-features li::before {
+      content: '';
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23cd6155' fill-opacity='.15'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%23cd6155' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+      top: 2px;
+    }
+    .package-roi {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(205,97,85,.08);
+      padding: .5rem .85rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Callout bridge */
+    .architect-callout {
+      background: var(--bg-dark);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+    .architect-callout::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border: 2px solid rgba(205,97,85,.12);
+      border-radius: 50%;
+    }
+    .architect-callout::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 260px; height: 260px;
+      border: 2px solid rgba(64,107,149,.2);
+      border-radius: 50%;
+    }
+    .architect-callout-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+    .architect-callout h2 {
+      font-family: var(--heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .75rem;
+      line-height: 1.3;
+    }
+    .architect-callout p {
+      color: rgba(255,255,255,.7);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading);
+      gap: 1rem;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.25rem;
+      color: var(--accent);
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 0 1.25rem;
+      font-size: .95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Productivity gap */
+    .gap-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .gap-stat {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--bg-ice);
+      border: 1px solid var(--border);
+    }
+    .gap-stat .stat-num {
+      font-family: var(--heading);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .gap-stat p {
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .gap-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media(max-width:900px) {
+      .barbell-grid { grid-template-columns: 1fr; }
+      .barbell-connector { display: none; }
+      .barbell-side.left { border-right: 1px solid var(--border); border-bottom: none; }
+      .barbell-side.right { border-left: 1px solid var(--border); }
+      .examples-grid { grid-template-columns: 1fr; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .package-card.featured { transform: none; }
+      .architect-callout-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .gap-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media(max-width:680px) {
+      .example-body { grid-template-columns: 1fr; }
+      .architect-callout { padding: 2rem; }
+    }
+  </style>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/ai-for-small-business.html">
+  <meta property="og:title" content="AI for Small Business &amp; Solopreneurs | Web Palm Beaches">
+  <meta property="og:description" content="AI automation lets your small team outperform larger competitors. Web Palm Beaches builds AI systems for solopreneurs and small teams in South Florida.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="solutions.html">AI Solutions</a> / <span>AI for Small Business</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">AI for Small Business &amp; Solopreneurs — South Florida</div>
+    <h1 class="reveal stagger-1">Your 2-Person Team Can Outperform<br><em>a 20-Person Competitor.</em></h1>
+    <p class="reveal stagger-2">The Barbell Strategy: we automate 100% of your operational mechanics so you can dedicate 100% of your energy to the human relationships that actually win business.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Get a Free Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="case-studies.html" class="btn-secondary light">See Our Results</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTIVITY GAP ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The New Reality</div>
+      <h2 class="section-title reveal stagger-1">The Productivity Gap Is Now a Choice</h2>
+      <p class="section-desc reveal stagger-2">In 2026, AI workflows have permanently closed the headcount gap between small businesses and large corporations. A single operator managing the right AI systems handles what used to require a full team — customer follow-up, reputation management, appointment booking, social media, lead nurturing, and reporting. All of it.</p>
+    </div>
+    <div class="gap-wrap">
+      <div class="reveal stagger-1">
+        <p style="font-size:1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:1.25rem">The old constraint was headcount. You couldn't compete with a 20-person company because you didn't have 20 people. That constraint no longer exists.</p>
+        <p style="font-size:1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:1.25rem">What separates a thriving small business from a struggling one today isn't budget or staff size — it's whether the owner has made the strategic decision to <strong style="color:var(--tertiary)">stop being a worker and start being a System Architect.</strong></p>
+        <p style="font-size:1rem;line-height:1.85;color:var(--text-secondary)">Workers do tasks. System Architects design systems that do thousands of tasks simultaneously. The decision to remain a worker when AI systems exist is now a choice, not a constraint.</p>
+      </div>
+      <div class="gap-stats-grid reveal stagger-2">
+        <div class="gap-stat">
+          <div class="stat-num">10x</div>
+          <p>Output multiplier for a small team running the right AI stack</p>
+        </div>
+        <div class="gap-stat">
+          <div class="stat-num">20hrs</div>
+          <p>Typical weekly time saved by automating operational mechanics</p>
+        </div>
+        <div class="gap-stat">
+          <div class="stat-num">30days</div>
+          <p>Average time to ROI on our Quick Win automation package</p>
+        </div>
+        <div class="gap-stat">
+          <div class="stat-num">2026</div>
+          <p>The year your AI stack becomes your most important competitive asset</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BARBELL STRATEGY ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Our Framework</div>
+      <h2 class="section-title reveal stagger-1">The Barbell Strategy</h2>
+      <p class="section-desc reveal stagger-2">Maximum leverage comes from doing two things simultaneously: automating everything that doesn't require a human touch, and investing the freed time entirely into the human relationships that AI genuinely cannot replicate.</p>
+    </div>
+    <div class="barbell-grid reveal stagger-1">
+      <div class="barbell-side left">
+        <h3>Left Side of the Barbell</h3>
+        <h4>100% of Operational Mechanics — Automated</h4>
+        <ul class="barbell-list">
+          <li>Email triage and templated responses</li>
+          <li>Appointment booking and reminders</li>
+          <li>Review request sequences</li>
+          <li>Social media scheduling and posting</li>
+          <li>Lead follow-up sequences</li>
+          <li>Invoice tracking and payment nudges</li>
+          <li>Performance reporting and dashboards</li>
+          <li>FAQ and chatbot responses</li>
+        </ul>
+      </div>
+      <div class="barbell-connector"></div>
+      <div class="barbell-side right">
+        <h3>Right Side of the Barbell</h3>
+        <h4>100% of Freed Energy — Human Connection</h4>
+        <ul class="barbell-list">
+          <li>High-value client relationships</li>
+          <li>Creative strategy and positioning</li>
+          <li>Local community presence</li>
+          <li>Key vendor and partner relationships</li>
+          <li>New business development</li>
+          <li>Product and service innovation</li>
+          <li>Team culture and leadership</li>
+          <li>The work only you can do</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SMALL TEAMS WE'VE HELPED ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Results</div>
+      <h2 class="section-title reveal stagger-1">Small Teams We've Helped</h2>
+      <p class="section-desc reveal stagger-2">Real South Florida businesses. Real before-and-after transformations.</p>
+    </div>
+    <div class="examples-grid">
+      <div class="example-card reveal stagger-1">
+        <div class="example-header">
+          <div class="example-icon">🍽</div>
+          <h3>Restaurant Owner<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--text-muted)">2-person team</span></h3>
+        </div>
+        <div class="example-body">
+          <div class="example-state">
+            <span class="state-label was">Was</span>
+            <p>3+ hours per day managing reservation replies, responding to Google reviews, and manually scheduling Instagram posts. Owner couldn't step away from the phone.</p>
+          </div>
+          <div class="example-state">
+            <span class="state-label is">Is Now</span>
+            <p>15 minutes of daily oversight. AI handles reservations, auto-responds to reviews with custom templates, and posts social content on schedule. Owner focuses on the dining room experience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="example-card reveal stagger-2">
+        <div class="example-header">
+          <div class="example-icon">🔧</div>
+          <h3>Contractor<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--text-muted)">Solo operator</span></h3>
+        </div>
+        <div class="example-body">
+          <div class="example-state">
+            <span class="state-label was">Was</span>
+            <p>Evenings lost to writing follow-up emails, sending estimate reminders, and chasing review requests. Missing jobs because leads went cold while he was on the job site.</p>
+          </div>
+          <div class="example-state">
+            <span class="state-label is">Is Now</span>
+            <p>Leads captured and nurtured automatically. Follow-up sequences run without intervention. Phone rings with ready-to-book prospects. Evenings belong to his family again.</p>
+          </div>
+        </div>
+      </div>
+      <div class="example-card reveal stagger-3">
+        <div class="example-header">
+          <div class="example-icon">👗</div>
+          <h3>Boutique Retailer<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--text-muted)">3-person team</span></h3>
+        </div>
+        <div class="example-body">
+          <div class="example-state">
+            <span class="state-label was">Was</span>
+            <p>Manually posting to Instagram, responding to product DMs, and tracking inventory reorders by hand. Social strategy was inconsistent and reactive.</p>
+          </div>
+          <div class="example-state">
+            <span class="state-label is">Is Now</span>
+            <p>AI handles social scheduling, drafts DM responses for approval, and sends automatic reorder alerts. The team spends their time with in-store customers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="example-card reveal stagger-4">
+        <div class="example-header">
+          <div class="example-icon">🏠</div>
+          <h3>Real Estate Agent<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--text-muted)">Solo agent</span></h3>
+        </div>
+        <div class="example-body">
+          <div class="example-state">
+            <span class="state-label was">Was</span>
+            <p>Manually nurturing 200+ leads in a spreadsheet. Losing warm prospects because follow-up was inconsistent. Spending Sundays catching up on outreach.</p>
+          </div>
+          <div class="example-state">
+            <span class="state-label is">Is Now</span>
+            <p>AI scores leads by engagement, sends personalized follow-up sequences, and books showings automatically. Agent focuses on closings, not admin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACKAGES ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Pricing</div>
+      <h2 class="section-title reveal stagger-1">Services Built for Small Teams</h2>
+      <p class="section-desc reveal stagger-2">Three engagement levels. All designed to deliver ROI, not overhead. Start where you are — upgrade as you grow.</p>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card reveal stagger-1">
+        <div class="package-tier">Quick Win</div>
+        <div class="package-price">$2,500–$5,000</div>
+        <div class="package-desc">Single high-impact automation targeting your biggest time drain. ROI positive within 30 days.</div>
+        <div class="package-roi">30-day ROI target</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>Choose one: review requests, booking chatbot, or lead follow-up sequence</li>
+          <li>Full build and configuration — no technical work on your end</li>
+          <li>30-day post-launch support included</li>
+          <li>Written playbook for managing the automation</li>
+          <li>Performance baseline and 30-day check-in</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Start Here</a>
+      </div>
+      <div class="package-card featured reveal stagger-2">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-tier">Small Team System</div>
+        <div class="package-price">$5,000–$15,000</div>
+        <div class="package-desc">Full workflow audit plus 3–5 connected automations plus an AI website chatbot. Your team operates like a team twice your size.</div>
+        <div class="package-roi">Operates like 2x your headcount</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>Complete workflow audit — every manual process mapped</li>
+          <li>3–5 priority automations built and connected</li>
+          <li>AI chatbot for your website (lead capture + FAQ)</li>
+          <li>CRM integration and lead pipeline setup</li>
+          <li>90-day post-launch support and optimization</li>
+          <li>Monthly performance dashboard</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Get a Strategy Call</a>
+      </div>
+      <div class="package-card reveal stagger-3">
+        <div class="package-tier">System Architect</div>
+        <div class="package-price">$15,000–$30,000</div>
+        <div class="package-desc">Complete operational infrastructure. Every manual process mapped and automated. Includes AI training so your team becomes fluent in the tools.</div>
+        <div class="package-roi">Full operational transformation</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>Full operational audit across all business functions</li>
+          <li>Comprehensive automation suite — 8–12 connected workflows</li>
+          <li>Custom AI tools specific to your industry</li>
+          <li>Staff AI literacy training (up to 10 team members)</li>
+          <li>Documented AI operating system for your business</li>
+          <li>6-month post-launch support and quarterly reviews</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Build Your System</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.75rem;font-size:.875rem;color:var(--text-muted)">All packages include a free strategy call and written scope of work before any commitment. No surprises.</p>
+  </div>
+</section>
+
+<!-- ── ARCHITECT CALLOUT ── -->
+<section style="padding:0">
+  <div class="container">
+    <div class="architect-callout reveal">
+      <div class="architect-callout-inner">
+        <div>
+          <div class="section-label" style="color:var(--accent);margin-bottom:.75rem">Become a System Architect</div>
+          <h2>The Most Powerful Shift in 2026: Moving from Worker to System Architect.</h2>
+          <p>Instead of doing tasks, you design systems that do thousands of tasks simultaneously. Instead of being limited by the hours in your day, you multiply your output through AI pipelines that run around the clock. We'll train your team to think this way — and build the systems to back it up.</p>
+        </div>
+        <div style="flex-shrink:0">
+          <a href="ai-team-training.html" class="btn-primary" style="white-space:nowrap">Explore AI Training
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-left:.5rem"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="bg-alt">
+  <div class="container" style="max-width:800px">
+    <div class="section-label reveal" style="text-align:center">FAQ</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center">Common Questions</h2>
+    <div style="margin-top:2.5rem">
+      <div class="faq-item reveal stagger-1">
+        <div class="faq-question">Is AI really affordable for a small business?</div>
+        <div class="faq-answer">Yes. Our entry-level Quick Win package starts at $2,500 and targets a single high-impact automation. Most clients see ROI within 30 days — the automation pays for itself in time saved or leads captured. You don't need a $50,000 budget to start benefiting from AI.</div>
+      </div>
+      <div class="faq-item reveal stagger-2">
+        <div class="faq-question">I'm not technical — can I still use AI tools?</div>
+        <div class="faq-answer">Absolutely. We build and configure everything for you. Done-For-You means you don't touch any code or technical setup. We also offer training if you want to learn to manage these systems yourself, but it's entirely optional. Our most successful clients never open a single line of code.</div>
+      </div>
+      <div class="faq-item reveal stagger-3">
+        <div class="faq-question">How long until I see ROI?</div>
+        <div class="faq-answer">Most clients see measurable ROI within 30–60 days. A review request automation that generates 10 new five-star reviews, or a follow-up sequence that closes 2 additional deals per month, pays for itself quickly. We focus on high-impact, fast-payback automations first — not complex multi-year transformation projects.</div>
+      </div>
+      <div class="faq-item reveal stagger-4">
+        <div class="faq-question">What if I only have one employee?</div>
+        <div class="faq-answer">Solopreneurs are some of our best-fit clients. AI systems are especially powerful when you're a team of one — they give you leverage you simply can't hire your way to. A solo operator managing the right AI stack can out-produce a team of five in terms of follow-up speed, consistency, and customer touchpoints.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Will AI replace my staff?</div>
+        <div class="faq-answer">No — AI replaces tasks, not people. Your staff will spend less time on repetitive, low-value work and more time on the high-judgment work that actually moves the needle. In most cases, AI makes your existing team significantly more productive and more satisfied with their work. The businesses that lose staff to AI are the ones who didn't invest in their teams.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What's the difference between Done-For-You and Done-With-You?</div>
+        <div class="faq-answer">Done-For-You means we build, configure, and maintain your AI systems. You approve the outputs and review dashboards. Done-With-You means we guide you and your team through building these systems yourselves, with hands-on training and ongoing support. Our <a href="ai-team-training.html">AI Team Training program</a> is our Done-With-You offering. Both paths lead to the same destination — a more automated, more productive business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Ready to Run Like a Team Twice Your Size?</h2>
+    <p>Book a free strategy call. We'll identify your top 3 automation opportunities and show you exactly what the ROI looks like.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="pricing.html" class="btn-secondary light">View Full Pricing</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

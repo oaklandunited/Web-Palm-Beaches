@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local SEO vs. National SEO: Which Do You Need?</title>
+  <meta name="description" content="The key differences between local and national SEO, and how to choose the right strategy for your South Florida business.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is the difference between local SEO and national SEO?","acceptedAnswer":{"@type":"Answer","text":"Local SEO optimizes your visibility for searches within a specific geographic area — like 'plumber in West Palm Beach' or 'restaurant near me.' National SEO targets broad keywords without geographic modifiers, aiming for visibility across the entire country. Local SEO uses Google Business Profile, local citations, and location-specific content; national SEO focuses more on domain authority and content volume."}},
+    {"@type":"Question","name":"Does every business need local SEO?","acceptedAnswer":{"@type":"Answer","text":"Any business that serves customers in a specific geographic area — restaurants, contractors, law firms, medical practices, real estate agents, retail stores — should prioritize local SEO. If your customers come to you or you go to them within a defined service area, local SEO will almost always deliver better ROI than national SEO."}},
+    {"@type":"Question","name":"How long does local SEO take to work?","acceptedAnswer":{"@type":"Answer","text":"Local SEO improvements typically show results within 3–6 months for Google Maps rankings and 4–9 months for organic search rankings. Google Business Profile optimizations (new photos, posts, review responses) can show impact within weeks. Citation building and on-page optimization take longer to fully register."}},
+    {"@type":"Question","name":"Can I do local and national SEO at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, and many businesses benefit from both. A South Florida contractor might want to rank locally for 'kitchen remodel West Palm Beach' and nationally for 'kitchen remodel cost guide.' The strategies complement each other — strong local authority supports national rankings, and authoritative national content supports local credibility."}},
+    {"@type":"Question","name":"How much does local SEO cost for a small business?","acceptedAnswer":{"@type":"Answer","text":"Local SEO services for small businesses in South Florida typically range from $500–$2,000/month for ongoing management, or $1,500–$5,000 for a one-time optimization project (GBP setup, citation building, on-page optimization). DIY local SEO is possible but time-consuming — the highest-ROI tasks are GBP optimization, review building, and citation consistency."}}
+  ]}
+  </script>
+  <style>
+    .article-hero{background:var(--bg-alt);padding:4rem 0 3rem;border-bottom:1px solid var(--border)}
+    .breadcrumb{font-size:.8rem;color:var(--text-muted);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
+    .breadcrumb a{color:var(--text-muted);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 .5rem;opacity:.5}
+    .article-meta{display:flex;gap:1.5rem;align-items:center;margin-top:1rem;font-size:.8rem;color:var(--text-muted);font-family:var(--heading);letter-spacing:.05em;flex-wrap:wrap}
+    .article-meta .tag{background:var(--accent);color:#fff;padding:.2rem .6rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;padding:4rem 0}
+    .article-body h2{font-family:var(--heading);font-size:1.5rem;font-weight:700;color:var(--heading);margin:2.5rem 0 1rem}
+    .article-body h3{font-family:var(--heading);font-size:1.1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 .75rem}
+    .article-body p{font-size:1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem}
+    .article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:var(--text-secondary);line-height:1.9}
+    .article-body li{margin-bottom:.4rem}
+    .article-body a{color:var(--accent);font-weight:600}.article-body a:hover{text-decoration:underline}
+    .callout{background:var(--bg-alt);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+    .callout p{margin:0;font-size:.95rem}
+    .compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+    .compare-col{border:1px solid var(--border);padding:1.25rem}
+    .compare-col h4{font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent)}
+    .compare-col ul{margin:0;padding-left:1.25rem;color:var(--text-secondary);font-size:.9rem;line-height:1.8}
+    .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-cta{background:var(--tertiary);padding:1.75rem}
+    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
+    .sticky-wrap{position:sticky;top:100px}
+    .author-box{display:flex;gap:1.25rem;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);padding:1.5rem;margin-top:2.5rem}
+    .author-avatar{width:60px;height:60px;border-radius:50%;background:var(--tertiary);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--heading);font-weight:700;font-size:1.1rem;flex-shrink:0}
+    .author-info h5{font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.25rem}
+    .author-info p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6}
+    .faq-section{padding:3rem 0;border-top:1px solid var(--border)}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;font-family:var(--heading);font-weight:700;font-size:1rem;color:var(--heading);gap:1rem}
+    .faq-question::after{content:'+';font-size:1.25rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-question::after{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:0 0 1.25rem;font-size:.95rem;color:var(--text-secondary);line-height:1.8}
+    .faq-item.open .faq-answer{display:block}
+    @media(max-width:900px){.article-wrap{grid-template-columns:1fr;gap:2rem}.article-sidebar{display:none}.compare-cols{grid-template-columns:1fr}}
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-local-seo-vs-national-seo.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-local-seo-vs-national-seo.html">
+  <meta property="og:title" content="Local SEO vs. National SEO: Which Do You Need?">
+  <meta property="og:description" content="The key differences between local and national SEO, and how to choose the right strategy for your South Florida business.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div class="article-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="blog.html">Blog</a><span>›</span>
+      Local SEO vs. National SEO
+    </div>
+    <div class="article-meta">
+      <span class="tag">Local SEO</span>
+      <span>2026</span>
+      <span>6 min read</span>
+    </div>
+    <h1 style="font-family:var(--heading);font-size:2.2rem;font-weight:700;color:var(--heading);margin-top:.75rem;max-width:700px;line-height:1.3">Local SEO vs. National SEO: Which Strategy Does Your South Florida Business Need?</h1>
+    <p style="font-size:1.05rem;color:var(--text-secondary);margin-top:.75rem;max-width:620px;line-height:1.7">Most Palm Beach County businesses should be investing in local SEO — not competing nationally. Here's how to know which approach is right for you.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+
+      <p>SEO isn't one-size-fits-all. A national e-commerce brand and a West Palm Beach law firm need completely different strategies — even though both want to rank on Google. Choosing the wrong approach wastes budget and produces slow results.</p>
+
+      <h2>Local SEO: What It Is and Who It's For</h2>
+      <p>Local SEO optimizes your online presence to appear in searches tied to a specific geographic area. When someone searches "dentist in Boca Raton" or "roofer near me," the results they see are shaped by local SEO signals — primarily Google Business Profile, local citations, reviews, and location-specific content on your website.</p>
+      <p>Local SEO is the right strategy for:</p>
+      <ul>
+        <li>Restaurants, cafes, and food service businesses</li>
+        <li>Contractors and home services (plumbers, roofers, landscapers)</li>
+        <li>Medical and dental practices</li>
+        <li>Law firms and professional services</li>
+        <li>Real estate agents and brokerages</li>
+        <li>Retail stores with physical locations</li>
+        <li>Any business that serves a defined service area</li>
+      </ul>
+
+      <h2>National SEO: What It Is and Who It's For</h2>
+      <p>National SEO targets broad, location-independent keywords and competes for visibility across the entire country. It requires significantly more investment — in content, backlinks, and domain authority — and takes longer to show results.</p>
+      <p>National SEO makes sense for:</p>
+      <ul>
+        <li>E-commerce businesses shipping nationwide</li>
+        <li>SaaS companies and digital products</li>
+        <li>Publishers and media sites</li>
+        <li>Businesses actively expanding to new markets</li>
+        <li>Professional services targeting national clientele (large law firms, consultancies)</li>
+      </ul>
+
+      <h2>Side-by-Side Comparison</h2>
+      <div class="compare-cols">
+        <div class="compare-col">
+          <h4>Local SEO</h4>
+          <ul>
+            <li>Google Business Profile optimization</li>
+            <li>Local citation building (NAP consistency)</li>
+            <li>Location-specific landing pages</li>
+            <li>Review generation &amp; management</li>
+            <li>Local link building (chambers, local press)</li>
+            <li>Shorter timeline to results (3–6 months)</li>
+            <li>Lower ongoing cost</li>
+            <li>Higher ROI for service-area businesses</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <h4>National SEO</h4>
+          <ul>
+            <li>Domain authority building</li>
+            <li>High-volume content production</li>
+            <li>National link acquisition campaigns</li>
+            <li>Technical SEO at scale</li>
+            <li>Competitive keyword research</li>
+            <li>Longer timeline (6–18+ months)</li>
+            <li>Higher ongoing investment</li>
+            <li>Essential for non-geographic businesses</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>For most Palm Beach County businesses:</strong> Local SEO delivers the best ROI. Ranking #1 in Google Maps for "kitchen remodel West Palm Beach" is worth far more than ranking #15 nationally for "kitchen remodel." Focus local first, expand nationally once local is locked in.</p>
+      </div>
+
+      <h2>The Local SEO Foundations Every South Florida Business Needs</h2>
+      <p>If you're a local service business, these are your non-negotiables:</p>
+      <ol>
+        <li><strong>Fully optimized Google Business Profile</strong> — See our complete guide: <a href="blog-google-business-profile-optimization.html">Google Business Profile optimization</a></li>
+        <li><strong>Consistent NAP citations</strong> across all directories — Yelp, BBB, Angi, etc.</li>
+        <li><strong>Location-specific pages</strong> on your website for each city you serve</li>
+        <li><strong>Review building system</strong> — 50+ reviews with 4.5+ average rating is the target</li>
+        <li><strong>Schema markup</strong> — LocalBusiness schema helps Google understand who you are and where you operate. See: <a href="blog-what-is-schema-markup.html">what is schema markup?</a></li>
+      </ol>
+      <p>Our full framework is in the <a href="resources-local-seo-guide-south-florida.html">South Florida Local SEO Guide</a>.</p>
+
+      <h2>When to Add National SEO to Your Strategy</h2>
+      <p>Once your local SEO foundation is solid — you're ranking in the top 3 in Google Maps for your primary keywords, you have 50+ quality reviews, and your GBP is fully optimized — adding a national content strategy makes sense if you have budget and a long-term growth mindset.</p>
+      <p>The most practical approach for local businesses is a "local-first, national content" hybrid: strong local SEO signals on core service pages, plus a blog that publishes authoritative guides targeting national search intent (like this article). The blog builds domain authority that supports local rankings while potentially driving national traffic.</p>
+
+      <div class="author-box">
+        <div class="author-avatar">WP</div>
+        <div class="author-info">
+          <h5>Web Palm Beaches Team</h5>
+          <p>We build local SEO systems for South Florida service businesses — from GBP optimization to content strategy. Based in West Palm Beach, serving Palm Beach County.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sticky-wrap">
+        <div class="sidebar-widget sidebar-cta">
+          <h4>Get a Local SEO Audit</h4>
+          <p>We'll review your current local presence and show you exactly where you're leaving rankings on the table.</p>
+          <a href="contact.html" class="btn-primary">Request a Free Audit</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Related Articles</h4>
+          <a href="resources-local-seo-guide-south-florida.html">South Florida Local SEO Guide</a>
+          <a href="blog-google-business-profile-optimization.html">Google Business Profile Optimization</a>
+          <a href="blog-rank-google-maps-west-palm-beach.html">Rank Higher on Google Maps</a>
+          <a href="blog-how-to-get-more-google-reviews.html">Get More Google Reviews</a>
+          <a href="blog-what-is-schema-markup.html">What Is Schema Markup?</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Local Pages</h4>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="container" style="max-width:760px">
+    <h2 class="section-title" style="text-align:left;font-size:1.6rem;margin-bottom:2rem">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is the difference between local SEO and national SEO?</div>
+      <div class="faq-answer">Local SEO optimizes your visibility for searches within a specific geographic area — like "plumber in West Palm Beach" or "restaurant near me." National SEO targets broad keywords without geographic modifiers, competing for visibility across the country. Local SEO uses Google Business Profile, local citations, and location-specific content. National SEO focuses on domain authority, content volume, and large-scale link building.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Does every business need local SEO?</div>
+      <div class="faq-answer">Any business that serves customers in a specific geographic area — restaurants, contractors, law firms, medical practices, real estate agents, retail — should prioritize local SEO. If customers come to you or you go to them within a defined service area, local SEO almost always delivers better ROI than competing nationally for generic keywords.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How long does local SEO take to work?</div>
+      <div class="faq-answer">Local SEO improvements typically show results within 3–6 months for Google Maps rankings and 4–9 months for organic search. Google Business Profile optimizations (new photos, posts, review responses) can show impact within weeks. Citation building and on-page optimization take longer to fully register in Google's algorithm.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I do local and national SEO at the same time?</div>
+      <div class="faq-answer">Yes. Many businesses benefit from a hybrid approach: strong local SEO signals on core service pages, plus a blog publishing authoritative national-interest content. The blog builds domain authority that supports local rankings, while potentially driving national traffic and leads. Start with local — get it locked in — then expand to national content.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How much does local SEO cost for a small business?</div>
+      <div class="faq-answer">Local SEO services typically range from $500–$2,000/month for ongoing management, or $1,500–$5,000 for a one-time optimization project. The highest-ROI DIY tasks are Google Business Profile optimization, review building, and fixing citation inconsistencies across directories — all of which can be started without agency help using free tools.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <div class="container">
+    <h2>Own the First Page in Your Local Market</h2>
+    <p>We build local SEO systems that rank Palm Beach County businesses at the top of Google Maps and organic search.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="resources-local-seo-guide-south-florida.html" class="btn-secondary light">Read the SEO Guide</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+<script>document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal AI Automation & Workflows | Palm Beach County | Web Palm Beaches</title>
+<meta name="description" content="Florida Bar compliant AI agent development, workflow automation, and Clio/MyCase CRM integrations for Palm Beach County law firms.">
+<link rel="canonical" href="https://webpalmbeaches.com/solutions-legal-ai-compliance.html">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Web Palm Beaches",
+      "description": "Clio/MyCase CRM integrations, legal intake bots, and custom workflow automation for South Florida law firms.",
+      "url": "https://webpalmbeaches.com",
+      "telephone": "+15612919001",
+      "areaServed": "Palm Beach County, FL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://webpalmbeaches.com"},
+        {"@type":"ListItem","position":2,"name":"Solutions","item":"https://webpalmbeaches.com/solutions.html"},
+        {"@type":"ListItem","position":3,"name":"Legal AI Automation","item":"https://webpalmbeaches.com/solutions-legal-ai-compliance.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is AI chatbot client intake compliant with the Florida Bar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We design and configure legal AI assistants to strictly follow Florida Bar advertising guidelines (Rules 4-7). The bot is programmed to never offer legal advice, instead focusing exclusively on gathering intake information, screening for conflict of interest, and booking consultations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the AI integrate with Clio, MyCase, or Lawmatics?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We build secure API integrations that automatically sync the conversational logs, contact details, and case details captured by your AI agent directly into your CRM. A new lead card is generated, and a notification is sent to your intake staff immediately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is confidential client data secure with AI workflows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Data security is paramount. We design workflows using secure endpoints, end-to-end encryption, and isolate data processing to ensure that no client information is used to train public LLM models, complying with Florida Bar Rule 4-1.6 (Confidentiality of Information)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a legal AI automation implementation take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard client intake and CRM integration project takes between 4 to 8 weeks. We map your workflows, build the custom agent, conduct rigorous conflict-check scenario testing, and train your staff before going live."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the local 15th Circuit and Florida Supreme Court AI disclosure rules?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As of June 15, 2026, the Florida Supreme Court preempted individual circuit orders (like the 15th Circuit's Administrative Order No. 2.109) with a statewide rule. Under the amended Florida Rule of General Practice and Judicial Administration 2.515(d)(2), the signer of any court document represents that all legal authorities exist and are cited accurately. Our automated tools double-check all citations to prevent Rule 2.515 violations."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* Page-Specific Styles */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.problem-card {
+  padding: 2.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  transition: all .3s;
+}
+.problem-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+.problem-card .prob-num {
+  font-family: var(--heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: .18;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.problem-card h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  line-height: 1.75;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.feature-card {
+  padding: 2.25rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 45px rgba(0,0,0,.09);
+}
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card .fc-icon {
+  width: 52px; height: 52px;
+  background: var(--bg-ice);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  transition: all .3s;
+}
+.feature-card:hover .fc-icon {
+  background: var(--accent);
+  color: #fff;
+}
+.feature-card h3 {
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+.compliance-box {
+  background: var(--bg-dark);
+  color: #fff;
+  padding: 3rem;
+  position: relative;
+}
+.compliance-box h3 {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.compliance-box p {
+  color: rgba(255,255,255,.75);
+  font-size: .95rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.compliance-list {
+  list-style: none;
+  padding: 0;
+}
+.compliance-list li {
+  padding: .5rem 0;
+  font-size: .9rem;
+  color: rgba(255,255,255,.8);
+  display: flex;
+  gap: .5rem;
+}
+.compliance-list li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* FAQ using details/summary */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 2.5rem;
+}
+details.faq-item {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+details.faq-item[open] {
+  border-color: rgba(205,97,85,.3);
+}
+details.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  list-style: none;
+  background: var(--bg);
+  transition: background .2s;
+  user-select: none;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary:hover { background: var(--bg-ice); }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform .3s;
+  line-height: 1;
+}
+details.faq-item[open] summary::after {
+  content: '−';
+}
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: .93rem;
+  line-height: 1.8;
+  font-family: var(--body);
+  background: var(--bg);
+}
+
+@media(max-width: 900px) {
+  .problem-grid, .compliance-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 600px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="solutions.html">Solutions</a> / <span>Legal AI Automation</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">AI Workflows — South Florida Law Firms</div>
+    <h1 class="reveal stagger-1">Legal AI Workflows &<br><em>Clio / MyCase Integration</em></h1>
+    <p class="reveal stagger-2">Don't lose clients because you answered a phone call too late or got bogged down in manual data entry. Web Palm Beaches builds automated legal intake pipelines, secure AI screening tools, and bi-directional CRM syncs that optimize your practice while strictly maintaining Bar compliance and client confidentiality.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free AI Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="solutions.html" class="btn-secondary light">All AI Solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Gaps</div>
+      <h2 class="section-title reveal stagger-1">How Law Firms Lose Time & Clients</h2>
+      <p class="section-desc reveal stagger-2">Manual administration is the hidden cost of running a modern law firm. When your legal staff spends hours keying in lead sheets, you are paying for data entry instead of legal execution.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal stagger-1">
+         <div class="prob-num">01</div>
+         <h3>Delayed Intake Routing</h3>
+         <p>Prospective clients call or email outside business hours. By the time your intake staff reviews the message on Monday morning, the client has already signed with a firm that answered them instantly.</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+         <div class="prob-num">02</div>
+         <h3>Double Data Entry</h3>
+         <p>Intake details are scribbled on notes or typed into emails, then copy-pasted into Clio, MyCase, or spreadsheet trackers. This manual duplication introduces errors and wastes billable hours.</p>
+      </div>
+      <div class="problem-card reveal stagger-3">
+         <div class="prob-num">03</div>
+         <h3>Conflict Check Delays</h3>
+         <p>Staff spends hours performing conflict checks on new inquiries manually, delaying consultation booking and increasing the risk of missing vital client details.</p>
+      </div>
+      <div class="problem-card reveal stagger-4">
+         <div class="prob-num">04</div>
+         <h3>Inefficient Client Onboarding</h3>
+         <p>Retainers, fee agreements, and request-for-information documents require manual follow-ups, causing friction and delaying the official onboarding process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SOLUTIONS -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Automate</div>
+      <h2 class="section-title reveal stagger-1">Custom Legal Automation Services</h2>
+      <p class="section-desc reveal stagger-2">We build custom AI automation flows that connect your website directly to your legal CRM, keeping your data synced and your case processes moving.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#129302;</div>
+        <h3>AI Legal Intake Chatbots</h3>
+        <p>Intelligent, Bar-compliant conversational chatbots that qualify visitors by legal matter, screen for conflicts, collect contact info, and route hot cases to your team 24/7.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#9881;</div>
+        <h3>CRM Sync (Clio / MyCase)</h3>
+        <p>Bidirectional API integrations that automatically push lead information, conversation logs, and scheduling details directly into Clio, MyCase, or Lawmatics CRM.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128196;</div>
+        <h3>Intelligent Document Summarization</h3>
+        <p>AI tools that automatically extract key information, timelines, and claims from medical records, police reports, or contracts, creating instant intake summaries.</p>
+      </div>
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#128197;</div>
+        <h3>Automated Calendaring</h3>
+        <p>Sync chatbot qualification directly with attorney availability. Qualified prospects book consultations instantly, with automatic SMS confirmation and reminders.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#128231;</div>
+        <h3>Client Onboarding Workflows</h3>
+        <p>Trigger automated fee agreement drafting (DocuSign/HelloSign) and introductory welcome sequences the moment a lead is marked as "retained" in your CRM.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128269;</div>
+        <h3>AEO for Legal Searches</h3>
+        <p>Structure your practice area pages and local listings so AI engines (like SearchGPT and Perplexity) recommend your firm when local users ask AI for legal representation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE & SECURITY -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="compliance-grid">
+      <div class="reveal-left">
+        <div class="section-label">Bar Compliance</div>
+        <h2 class="section-title">Strict Compliance & Data Privacy</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem">We understand the strict ethical standards that govern attorney advertising, client confidentiality, and data safety. We design your legal AI workflows to align with Florida Bar regulations.</p>
+        <p class="section-desc">Our systems use API data boundaries to ensure your client intake information is **never** used to train public LLM models, maintaining complete client-attorney privilege.</p>
+      </div>
+      <div class="reveal-right">
+        <div class="compliance-box">
+          <h3>The Legal Security Shield</h3>
+          <p>We implement safety layers specifically for the legal sector:</p>
+          <ul class="compliance-list">
+             <li>**Zero LLM Public Training:** All prompt contexts are routed via API configurations that explicitly disable model training on your data.</li>
+             <li>**Florida Bar Rules (Rule 4-7):** AI copy and chatbots are restricted to informational intake and conflict-checks, avoiding unsolicited legal advice.</li>
+             <li>**Privileged Encryption:** Client intake details are encrypted in transit and at rest using secure SSL/TLS protocols and isolated databases.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15TH CIRCUIT COURT & STATEWIDE COMPLIANCE -->
+<section style="padding: 5rem 0;" id="templates">
+  <div class="container">
+    <div class="compliance-grid" style="align-items: start;">
+      <div>
+        <div class="section-label">Local & State Standards</div>
+        <h2 class="section-title">15th Judicial Circuit Court AI Compliance</h2>
+        <p class="section-desc" style="margin-bottom: 1.25rem;">
+          Historically, the <strong>15th Judicial Circuit (serving Palm Beach County)</strong> enforced <strong>Administrative Order No. 2.109</strong>, requiring a specific disclosure of generative AI in all court filings. 
+        </p>
+        <p class="section-desc" style="margin-bottom: 1.25rem;">
+          However, effective <strong>June 15, 2026</strong>, the Florida Supreme Court preempted individual circuit orders by adopting a statewide rule. Under the amended <strong>Florida Rule of General Practice and Judicial Administration 2.515(d)(2)</strong>, attorney sign-offs now serve as a representation that all legal authorities exist and are cited accurately.
+        </p>
+        <p class="section-desc">
+          Web Palm Beaches develops automated verification systems and search retrieval filters that double-check all cited cases and sources against actual law libraries. This safeguards your firm against the severe sanctions (costs, contempt, struck pleadings) associated with Rule 2.515 violations.
+        </p>
+      </div>
+      <div>
+        <div style="background: var(--bg-alt); border: 1px solid var(--border); padding: 2.5rem; position: relative;">
+          <h3 style="font-family: var(--heading); font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--tertiary); margin-bottom: 1.25rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: .25rem;">
+            Florida AI Policy Template Library
+          </h3>
+          <p style="font-size: .875rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+            We provide local firms with pre-drafted, compliant policy templates to structure AI usage in accordance with Florida Bar ethics and state rules. These include:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="padding: 1rem; background: var(--bg); border-left: 3px solid var(--accent);">
+              <h4 style="font-family: var(--heading); font-size: .8rem; font-weight: 700; text-transform: uppercase; color: var(--tertiary); margin-bottom: .25rem;">1. Law Firm Employee Acceptable AI Use Policy</h4>
+              <p style="font-size: .8rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">Defines which internal tasks can leverage generative AI, rules for inputting data, and audit/verification logs for draft filings.</p>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-left: 3px solid var(--accent);">
+              <h4 style="font-family: var(--heading); font-size: .8rem; font-weight: 700; text-transform: uppercase; color: var(--tertiary); margin-bottom: .25rem;">2. Client Intake Generative AI Disclosure Consent</h4>
+              <p style="font-size: .8rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">A standardized consent agreement informing clients how automated intake bots and workflows handle non-privileged context.</p>
+            </div>
+            <div style="padding: 1rem; background: var(--bg); border-left: 3px solid var(--accent);">
+              <h4 style="font-family: var(--heading); font-size: .8rem; font-weight: 700; text-transform: uppercase; color: var(--tertiary); margin-bottom: .25rem;">3. Court Authority Verification Log Template</h4>
+              <p style="font-size: .8rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">A structured checklist for attorneys to log confirmation that all AI-assisted authorities have been verified prior to signing filings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-ice">
+  <div class="container" style="max-width:800px">
+    <div class="section-center">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal stagger-1">Legal AI Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal stagger-2">
+      <details class="faq-item">
+        <summary>Is AI chatbot client intake compliant with the Florida Bar?</summary>
+        <div class="faq-answer">
+          Yes. We design and configure legal AI assistants to strictly follow Florida Bar advertising guidelines (Rules 4-7). The bot is programmed to never offer legal advice, instead focusing exclusively on gathering intake information, screening for conflict of interest, and booking consultations.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How does the AI integrate with Clio, MyCase, or Lawmatics?</summary>
+        <div class="faq-answer">
+          We build secure API integrations that automatically sync the conversational logs, contact details, and case details captured by your AI agent directly into your CRM. A new lead card is generated, and a notification is sent to your intake staff immediately.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is confidential client data secure with AI workflows?</summary>
+        <div class="faq-answer">
+          Absolutely. Data security is paramount. We design workflows using secure endpoints, end-to-end encryption, and isolate data processing to ensure that no client information is used to train public LLM models, complying with Florida Bar Rule 4-1.6 (Confidentiality of Information).
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How long does a legal AI automation implementation take?</summary>
+        <div class="faq-answer">
+          A standard client intake and CRM integration project takes between 4 to 8 weeks. We map your workflows, build the custom agent, conduct rigorous conflict-check scenario testing, and train your staff before going live.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What are the local 15th Circuit and Florida Supreme Court AI disclosure rules?</summary>
+        <div class="faq-answer">
+          As of June 15, 2026, the Florida Supreme Court preempted all individual circuit requirements (such as the 15th Circuit's Administrative Order No. 2.109) with a statewide rule. Under the amended Florida Rule of General Practice and Judicial Administration 2.515(d)(2), the signer of any court document represents that all legal authorities exist and are cited accurately. Our automated tools double-check all citations to prevent Rule 2.515 violations.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Get Scoped</div>
+    <h2 class="section-title reveal stagger-1">Ready to automate your administrative workload?</h2>
+    <p class="section-desc reveal stagger-2">Book a free 30-minute AI strategy session. We'll examine your current legal stack (CRM, calendars, forms) and propose a tailored automation roadmap.</p>
+    <a href="contact.html" class="btn-primary">Schedule Your Legal AI Strategy Call &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

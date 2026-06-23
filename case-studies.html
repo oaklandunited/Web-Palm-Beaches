@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Web Palm Beaches AI Consulting</title>
+<meta name="description" content="Real results from real South Florida businesses. See how Web Palm Beaches builds AI-powered websites and automation that drive growth.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === FILTER BAR === */
+.filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{padding:.5rem 1.25rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* === CASE STUDY CARD === */
+.cs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem}
+.cs-card{border:1px solid var(--border);background:var(--bg);overflow:hidden;transition:all .4s;display:flex;flex-direction:column}
+.cs-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.cs-card .cs-header{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:2.5rem;color:var(--text-light);position:relative;overflow:hidden}
+.cs-card .cs-header::after{content:'';position:absolute;right:-2rem;top:-2rem;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04)}
+.cs-card .cs-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(205,97,85,.15);padding:.35rem .75rem;margin-bottom:1rem}
+.cs-card .cs-header h2{font-family:var(--heading);font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;line-height:1.3;margin-bottom:.75rem}
+.cs-card .cs-meta{font-size:.82rem;color:rgba(255,255,255,.5);display:flex;gap:1.5rem;flex-wrap:wrap}
+.cs-card .cs-meta span{display:flex;align-items:center;gap:.35rem}
+.cs-card .cs-body{padding:2.5rem;flex:1;display:flex;flex-direction:column}
+.cs-card .cs-section-label{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.cs-card .cs-text{font-size:.9rem;color:var(--text-secondary);line-height:1.75;margin-bottom:1.75rem}
+.cs-card .cs-results{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:auto;padding-top:1.75rem;border-top:1px solid var(--border)}
+.cs-card .cs-result-item{text-align:center}
+.cs-card .cs-result-item .metric{font-family:var(--heading);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.cs-card .cs-result-item .metric-label{font-family:var(--heading);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-top:.3rem}
+
+/* === FULL CASE STUDY MODAL === */
+.cs-modal-overlay{position:fixed;inset:0;background:rgba(5,22,57,.8);z-index:999;display:none;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(4px)}
+.cs-modal-overlay.open{display:flex}
+.cs-modal{background:var(--bg);max-width:860px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn .35s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.cs-modal .modal-close{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;padding:1rem 1.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.cs-modal .modal-close button{background:none;border:1px solid var(--border);width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s}
+.cs-modal .modal-close button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.cs-modal .modal-hero{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:3rem;color:var(--text-light)}
+.cs-modal .modal-hero .modal-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(205,97,85,.15);padding:.35rem .75rem;margin-bottom:1rem}
+.cs-modal .modal-hero h2{font-family:var(--heading);font-size:1.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.2;margin-bottom:.75rem}
+.cs-modal .modal-hero .modal-meta{font-size:.85rem;color:rgba(255,255,255,.5);display:flex;gap:2rem;flex-wrap:wrap}
+.cs-modal .modal-body{padding:3rem}
+.cs-modal .modal-section{margin-bottom:2.5rem}
+.cs-modal .modal-section h3{font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.cs-modal .modal-section h3::after{content:'';flex:1;height:1px;background:var(--border)}
+.cs-modal .modal-section p{font-size:.95rem;color:var(--text-secondary);line-height:1.8}
+.cs-modal .modal-section ul{list-style:none;margin-top:.75rem}
+.cs-modal .modal-section ul li{padding:.45rem 0;font-size:.9rem;color:var(--text-secondary);padding-left:1.5rem;position:relative;line-height:1.6}
+.cs-modal .modal-section ul li::before{content:'';position:absolute;left:0;top:.85rem;width:6px;height:6px;background:var(--accent)}
+.cs-modal .modal-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0}
+.cs-modal .modal-metric{background:var(--bg);padding:1.5rem;text-align:center}
+.cs-modal .modal-metric .big{font-family:var(--heading);font-size:1.8rem;font-weight:800;color:var(--accent);line-height:1}
+.cs-modal .modal-metric .lbl{font-family:var(--heading);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.35rem}
+.cs-modal .modal-quote{background:var(--bg-ice);border-left:4px solid var(--accent);padding:2rem;margin:2rem 0}
+.cs-modal .modal-quote blockquote{font-size:1.05rem;line-height:1.8;color:var(--text-primary);font-style:italic;margin-bottom:.75rem}
+.cs-modal .modal-quote .q-author{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary)}
+.cs-modal .modal-cta{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:2.5rem;text-align:center;color:var(--text-light);margin-top:2rem}
+.cs-modal .modal-cta h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.75rem}
+.cs-modal .modal-cta p{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:1.5rem}
+
+/* === TAGS === */
+.cs-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.cs-tag{font-family:var(--heading);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .65rem;border:1px solid var(--border);color:var(--text-muted)}
+
+/* READ MORE BUTTON */
+.btn-read-more{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;padding:.75rem 1.75rem;background:transparent;color:var(--tertiary);font-family:var(--heading);font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--tertiary);cursor:pointer;transition:all .3s}
+.btn-read-more:hover{background:var(--tertiary);color:#fff}
+
+@media(max-width:768px){
+  .cs-grid{grid-template-columns:1fr}
+  .cs-card .cs-results{grid-template-columns:repeat(3,1fr)}
+  .cs-modal .modal-metrics{grid-template-columns:1fr 1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/case-studies.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/case-studies.html">
+  <meta property="og:title" content="Case Studies — Web Palm Beaches AI Consulting">
+  <meta property="og:description" content="Real results from real South Florida businesses. See how Web Palm Beaches builds AI-powered websites and automation that drive growth.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Case Studies — Web Palm Beaches",
+  "description": "Real results from real South Florida businesses. See how Web Palm Beaches has helped law firms, medical practices, restaurants, and more grow with AI and custom web design.",
+  "url": "https://webpalmbeaches.com/case-studies.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Web Palm Beaches"
+  }
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html" class="active">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>Case Studies</span></div>
+    <h1 class="reveal stagger-1">Real Businesses. <em>Real Results.</em></h1>
+    <p class="reveal stagger-2">Every case study below represents a South Florida business that made a decision to invest in intelligent technology. Here's exactly what we built — and exactly what happened next.</p>
+  </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="bg-alt" style="padding:3rem 0">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border)" class="reveal">
+      <div style="padding:2rem;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-family:var(--heading);font-size:2.2rem;font-weight:800;color:var(--accent)">100+</div>
+        <div style="font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.3rem">Projects Delivered</div>
+      </div>
+      <div style="padding:2rem;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-family:var(--heading);font-size:2.2rem;font-weight:800;color:var(--accent)">45%</div>
+        <div style="font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.3rem">Avg. Cost Reduction</div>
+      </div>
+      <div style="padding:2rem;text-align:center;border-right:1px solid var(--border)">
+        <div style="font-family:var(--heading);font-size:2.2rem;font-weight:800;color:var(--accent)">98%</div>
+        <div style="font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.3rem">Client Satisfaction</div>
+      </div>
+      <div style="padding:2rem;text-align:center">
+        <div style="font-family:var(--heading);font-size:2.2rem;font-weight:800;color:var(--accent)">14 Days</div>
+        <div style="font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.3rem">Avg. First Milestone</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies Grid -->
+<section>
+  <div class="container">
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All Industries</button>
+      <button class="filter-btn" data-filter="real-estate">Real Estate</button>
+      <button class="filter-btn" data-filter="hospitality">Hospitality</button>
+      <button class="filter-btn" data-filter="professional">Professional Services</button>
+      <button class="filter-btn" data-filter="tech">Technology</button>
+      <button class="filter-btn" data-filter="retail">Retail</button>
+      <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+    </div>
+
+    <div class="cs-grid">
+
+      <!-- Case Study 1: Real Estate Brokerage -->
+      <div class="cs-card reveal" data-industry="real-estate">
+        <div class="cs-header">
+          <div class="cs-badge">&#127968; Real Estate</div>
+          <h2>AI Lead Nurturing Drives 38% Conversion Lift for West Palm Beach Brokerage</h2>
+          <div class="cs-meta">
+            <span>&#128205; West Palm Beach, FL</span>
+            <span>&#129302; AI Agents + Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A growing real estate brokerage was generating solid lead volume from paid search and referrals but converting far too few of them. Agents were spending 60% of their day on manual follow-up — calling, emailing, and texting leads at inconsistent intervals. Hot leads went cold while agents chased dead ends.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We built an AI lead qualification and nurturing system that scores incoming leads by behavior and engagement, automatically routes high-intent prospects to agents within 90 seconds, and runs a personalized follow-up sequence for all others — text, email, and voicemail drop — until they're ready to act.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">AI Lead Scoring</span>
+            <span class="cs-tag">Automated Follow-up</span>
+            <span class="cs-tag">CRM Integration</span>
+            <span class="cs-tag">SMS Automation</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">38%</div><div class="metric-label">Conversion Lift</div></div>
+            <div class="cs-result-item"><div class="metric">90 sec</div><div class="metric-label">Lead Response Time</div></div>
+            <div class="cs-result-item"><div class="metric">60%</div><div class="metric-label">Less Manual Follow-up</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-1')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 2: Restaurant -->
+      <div class="cs-card reveal stagger-1" data-industry="hospitality">
+        <div class="cs-header">
+          <div class="cs-badge">&#127860; Hospitality</div>
+          <h2>Delray Beach Restaurant Reclaims 15 Hours Per Week with Reservation & Review Automation</h2>
+          <div class="cs-meta">
+            <span>&#128205; Delray Beach, FL</span>
+            <span>&#9881;&#65039; Workflow Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A popular Atlantic Avenue restaurant was drowning in reservation requests, customer inquiries, and Google review responses. The owner and manager were spending 2–3 hours daily on tasks that could be automated — time pulled directly away from kitchen operations and guest experience.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We implemented an AI-powered booking chatbot on their website and Google profile, automated review response sequences across Google and Yelp using customized AI-generated replies, and connected their reservation system to their POS for automatic table management and no-show follow-up.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Booking Automation</span>
+            <span class="cs-tag">Review Management</span>
+            <span class="cs-tag">AI Chatbot</span>
+            <span class="cs-tag">POS Integration</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">15 hrs</div><div class="metric-label">Saved Per Week</div></div>
+            <div class="cs-result-item"><div class="metric">30%</div><div class="metric-label">Fewer No-Shows</div></div>
+            <div class="cs-result-item"><div class="metric">4.9★</div><div class="metric-label">Avg Review Score</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-2')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 3: Tech Startup -->
+      <div class="cs-card reveal" data-industry="tech">
+        <div class="cs-header">
+          <div class="cs-badge">&#128187; Technology</div>
+          <h2>SaaS Startup Launches AI-Powered Platform with 80% Core Workflow Automated</h2>
+          <div class="cs-meta">
+            <span>&#128205; Palm Beach County, FL</span>
+            <span>&#129302; AI Development + Web</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A first-time founder had a complex web application concept — a B2B platform requiring user onboarding, data processing, client dashboards, and workflow management. With no technical co-founder and a tight timeline tied to a funding milestone, they needed a partner who could move fast without sacrificing quality.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We built the full-stack application from wireframes to deployment — architecting an AI-powered document processing system, automated client onboarding flow, and dynamic reporting dashboard. The platform launched on schedule and under budget, with AI handling 80% of the platform's core data operations automatically.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Custom Web App</span>
+            <span class="cs-tag">AI Document Processing</span>
+            <span class="cs-tag">Automated Onboarding</span>
+            <span class="cs-tag">Dashboard Development</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">On Time</div><div class="metric-label">Delivery</div></div>
+            <div class="cs-result-item"><div class="metric">80%</div><div class="metric-label">Workflow Automated</div></div>
+            <div class="cs-result-item"><div class="metric">Funded</div><div class="metric-label">Milestone Hit</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-3')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 4: Professional Services / Office -->
+      <div class="cs-card reveal stagger-1" data-industry="professional">
+        <div class="cs-header">
+          <div class="cs-badge">&#128188; Professional Services</div>
+          <h2>Boca Raton Firm Eliminates 20 Hours of Weekly Manual Work Through Intelligent Automation</h2>
+          <div class="cs-meta">
+            <span>&#128205; Boca Raton, FL</span>
+            <span>&#9881;&#65039; Workflow Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A professional services firm in Boca Raton was running critical business operations — client reporting, data entry, invoice processing, and internal communications — almost entirely manually. Staff were spending 20+ hours per week on work that produced no direct value for clients but couldn't simply be skipped.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We mapped every manual process, identified automation opportunities, and built a multi-layered workflow system using intelligent data extraction, AI-generated report drafts, automated invoice routing, and a Slack-integrated notification system. Staff went from data entry to oversight — reviewing outputs rather than creating them.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Data Extraction</span>
+            <span class="cs-tag">Report Automation</span>
+            <span class="cs-tag">Invoice Processing</span>
+            <span class="cs-tag">Slack Integration</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">20 hrs</div><div class="metric-label">Saved Per Week</div></div>
+            <div class="cs-result-item"><div class="metric">99%</div><div class="metric-label">Error Reduction</div></div>
+            <div class="cs-result-item"><div class="metric">ROI in</div><div class="metric-label">First Month</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-4')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 5: Marketing / Web -->
+      <div class="cs-card reveal" data-industry="professional">
+        <div class="cs-header">
+          <div class="cs-badge">&#128200; Marketing & SEO</div>
+          <h2>Jupiter Business Doubles Engagement and Climbs to Page 1 After AI-Powered Website Rebuild</h2>
+          <div class="cs-meta">
+            <span>&#128205; Jupiter, FL</span>
+            <span>&#128187; Web + SEO</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A Jupiter-based business had an outdated website that wasn't converting visitors, wasn't ranking for local keywords, and didn't reflect the quality of the services they provided. Despite significant paid traffic investment, bounce rates were high and organic visibility was nearly nonexistent.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We rebuilt the entire site with AI-powered content personalization, embedded a lead qualification chatbot, and executed a comprehensive local SEO strategy targeting Jupiter and northern Palm Beach County. A monthly AI-assisted content publishing cadence kept the site fresh and ranking signals growing month over month.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Website Rebuild</span>
+            <span class="cs-tag">AI Chatbot</span>
+            <span class="cs-tag">Local SEO</span>
+            <span class="cs-tag">Content Strategy</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">2×</div><div class="metric-label">Engagement</div></div>
+            <div class="cs-result-item"><div class="metric">Page 1</div><div class="metric-label">Local Rankings</div></div>
+            <div class="cs-result-item"><div class="metric">65%</div><div class="metric-label">Bounce Rate Drop</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-5')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 7: Retail -->
+      <div class="cs-card reveal" data-industry="retail">
+        <div class="cs-header">
+          <div class="cs-badge">&#128141; Retail</div>
+          <h2>Palm Beach Boutique Grows Online Revenue 3× with AI-Powered E-Commerce Rebuild</h2>
+          <div class="cs-meta">
+            <span>&#128205; Palm Beach, FL</span>
+            <span>&#128187; Web + AI + Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A high-end Palm Beach boutique had a beautiful brick-and-mortar presence but an outdated website that wasn't reflecting their brand or converting visitors. Online sales represented less than 8% of total revenue despite strong foot traffic and a loyal customer base. Instagram was driving clicks — but the site was losing them.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We rebuilt their e-commerce site with AI-powered product recommendations, an automated abandoned cart recovery sequence, and a loyalty program tied to a post-purchase SMS flow. A chatbot handles size and availability questions instantly. Social-to-site conversion was fixed with landing pages matching each Instagram campaign.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">E-Commerce Rebuild</span>
+            <span class="cs-tag">AI Recommendations</span>
+            <span class="cs-tag">Cart Recovery</span>
+            <span class="cs-tag">SMS Loyalty Flow</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">3×</div><div class="metric-label">Online Revenue</div></div>
+            <div class="cs-result-item"><div class="metric">41%</div><div class="metric-label">Cart Recovery Rate</div></div>
+            <div class="cs-result-item"><div class="metric">22%</div><div class="metric-label">Repeat Purchase Lift</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-7')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 8: Retail (2) -->
+      <div class="cs-card reveal stagger-1" data-industry="retail">
+        <div class="cs-header">
+          <div class="cs-badge">&#128141; Retail</div>
+          <h2>Boca Raton Home Goods Store Saves 12 Hours Weekly with Inventory & Reorder Automation</h2>
+          <div class="cs-meta">
+            <span>&#128205; Boca Raton, FL</span>
+            <span>&#9881;&#65039; Workflow Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A Boca Raton home goods retailer was managing inventory across a physical store and online shop manually — tracking stock levels in spreadsheets, placing reorders reactively, and regularly running out of top-selling items. The owner was spending 12+ hours per week on inventory management alone, and stockouts were costing an estimated $8,000/month in lost sales.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We integrated their POS, website, and supplier ordering systems through an automated inventory management pipeline. AI monitors stock levels in real time, triggers reorders at configurable thresholds, and sends the owner a daily 2-minute summary instead of a 2-hour manual count. Supplier lead times are factored in automatically.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Inventory Automation</span>
+            <span class="cs-tag">POS Integration</span>
+            <span class="cs-tag">Supplier Ordering</span>
+            <span class="cs-tag">Real-Time Alerts</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">12 hrs</div><div class="metric-label">Saved Weekly</div></div>
+            <div class="cs-result-item"><div class="metric">Zero</div><div class="metric-label">Stockouts in 6 Mo</div></div>
+            <div class="cs-result-item"><div class="metric">$8K</div><div class="metric-label">Monthly Revenue Recovered</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-8')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 9: Healthcare -->
+      <div class="cs-card reveal" data-industry="healthcare">
+        <div class="cs-header">
+          <div class="cs-badge">&#127973; Healthcare</div>
+          <h2>West Palm Beach Medical Practice Cuts No-Shows 40% and Automates Patient Intake</h2>
+          <div class="cs-meta">
+            <span>&#128205; West Palm Beach, FL</span>
+            <span>&#9881;&#65039; Automation + Web</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A multi-provider medical practice was losing roughly $12,000/month to no-shows and last-minute cancellations, while front desk staff spent 3–4 hours daily on manual appointment reminders and paper-based intake forms. Patient experience was suffering, and the practice had no way to fill canceled slots quickly.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We built a HIPAA-compliant automated appointment reminder system via SMS and email with a one-click confirmation link, a digital intake form system that pre-populates charts before arrival, and a cancellation waitlist automation that fills empty slots automatically from a prioritized patient queue.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">HIPAA-Compliant Automation</span>
+            <span class="cs-tag">Appointment Reminders</span>
+            <span class="cs-tag">Digital Intake</span>
+            <span class="cs-tag">Waitlist Management</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">40%</div><div class="metric-label">No-Show Reduction</div></div>
+            <div class="cs-result-item"><div class="metric">4 hrs</div><div class="metric-label">Front Desk Time Saved</div></div>
+            <div class="cs-result-item"><div class="metric">$12K</div><div class="metric-label">Monthly Revenue Recovered</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-9')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 10: Healthcare (2) -->
+      <div class="cs-card reveal stagger-1" data-industry="healthcare">
+        <div class="cs-header">
+          <div class="cs-badge">&#127973; Healthcare</div>
+          <h2>Boca Raton Med Spa Adds $6,500/Month in Revenue Through AI Follow-Up & Rebooking Flows</h2>
+          <div class="cs-meta">
+            <span>&#128205; Boca Raton, FL</span>
+            <span>&#129302; AI Agents + Automation</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A Boca Raton med spa was excellent at delivering first-time client experiences but weak at retention. Over 60% of first-time clients never rebooked — not because they were dissatisfied, but because no systematic follow-up existed. Staff were too busy during peak hours to follow up, and the window to rebook a happy client was closing quietly every day.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We designed an AI-driven post-visit follow-up sequence: a personalized thank-you with a rebooking link sent 3 hours post-appointment, a 30-day check-in with treatment recommendations based on their service history, and a reactivation campaign for clients who hadn't visited in 90+ days. All flows run automatically with no staff involvement.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">Post-Visit Sequences</span>
+            <span class="cs-tag">Rebooking Automation</span>
+            <span class="cs-tag">Client Reactivation</span>
+            <span class="cs-tag">AI Personalization</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">+$6.5K</div><div class="metric-label">Monthly Revenue Added</div></div>
+            <div class="cs-result-item"><div class="metric">35%</div><div class="metric-label">Rebooking Rate Lift</div></div>
+            <div class="cs-result-item"><div class="metric">28%</div><div class="metric-label">Reactivation Rate</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-10')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Case Study 6: Sales / CRM -->
+      <div class="cs-card reveal stagger-1" data-industry="professional">
+        <div class="cs-header">
+          <div class="cs-badge">&#128281; Sales Operations</div>
+          <h2>Wellington Sales Team Stops Losing Leads After CRM and Marketing Stack Unification</h2>
+          <div class="cs-meta">
+            <span>&#128205; Wellington, FL</span>
+            <span>&#128279; System Integration</span>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text">A Wellington-based sales operation was running three disconnected systems — a CRM, an email marketing platform, and a quoting tool — none of which talked to each other. Leads generated from the website weren't making it into the CRM. Follow-up sequences weren't triggering. Revenue was slipping through the cracks daily.</p>
+          <div class="cs-section-label">The Solution</div>
+          <p class="cs-text">We integrated all three platforms through a custom middleware layer, built automated lead capture routing from every channel, created intelligent follow-up triggers based on CRM stage, and deployed a real-time activity dashboard for the sales director. Nothing falls through the cracks — every lead is tracked and every follow-up fires on time.</p>
+          <div class="cs-tags">
+            <span class="cs-tag">CRM Integration</span>
+            <span class="cs-tag">Email Automation</span>
+            <span class="cs-tag">Lead Routing</span>
+            <span class="cs-tag">Sales Dashboard</span>
+          </div>
+          <div class="cs-results">
+            <div class="cs-result-item"><div class="metric">0</div><div class="metric-label">Leads Lost</div></div>
+            <div class="cs-result-item"><div class="metric">3 Tools</div><div class="metric-label">Unified</div></div>
+            <div class="cs-result-item"><div class="metric">22%</div><div class="metric-label">Revenue Lift</div></div>
+          </div>
+          <button class="btn-read-more" onclick="openModal('cs-modal-6')">Read Full Case Study
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner" style="margin-top:2rem">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.6)">Your Business Next</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:600px;margin:0 auto .75rem">Ready to become the next success story?</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free 30-minute strategy call. We'll identify your biggest AI opportunities and show you exactly what we'd build.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="services.html" class="btn-secondary light">View All Services</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">561-291-9001 — Mon–Fri 9am–6pm ET</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- === MODALS === -->
+
+<!-- Modal 1: Real Estate -->
+<div class="cs-modal-overlay" id="cs-modal-1">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-1')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#127968; Real Estate</div>
+      <h2>AI Lead Nurturing Drives 38% Conversion Lift for West Palm Beach Brokerage</h2>
+      <div class="modal-meta"><span>&#128205; West Palm Beach, FL</span><span>&#128197; 6-Week Engagement</span><span>&#128176; $12,500 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">38%</div><div class="lbl">Conversion Lift</div></div>
+        <div class="modal-metric"><div class="big">90s</div><div class="lbl">Lead Response Time</div></div>
+        <div class="modal-metric"><div class="big">60%</div><div class="lbl">Less Manual Work</div></div>
+        <div class="modal-metric"><div class="big">4.2×</div><div class="lbl">ROI Year 1</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The brokerage had 8 agents and a healthy lead pipeline from Google Ads and Zillow, but conversion rates were stuck around 4%. Manual follow-up was inconsistent — some agents followed up the same day, others days later. Lead scoring was based on gut feel. By the time agents identified serious buyers, competitors had already made contact.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>AI lead scoring model trained on their historical conversion data — scoring every new lead 0–100 within seconds of capture</li>
+          <li>Automated SMS + email follow-up sequences — 12-touch nurture over 30 days, personalized by lead source and property interest</li>
+          <li>CRM integration (HubSpot) — automatic lead routing to the right agent based on score threshold and territory</li>
+          <li>Real-time Slack alerts to agents when a lead hits 70+ score or opens 3+ emails</li>
+          <li>Monthly performance dashboard showing conversion rates, response times, and revenue attribution per lead source</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Within 90 days of launch, conversion rates climbed from 4% to 5.5% — a 38% lift. Average lead response time dropped from 4 hours to under 90 seconds for high-intent prospects. Agents reported spending 60% less time on manual follow-up and more time on qualified showings. The system paid for itself within the first quarter from a single additional closing.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"Our agents now spend 100% of their time on clients who are actually ready to move. The AI handles everyone else until they are. Our conversion rate jumped 38% in the first quarter — I wish we'd done this two years ago."</blockquote>
+        <div class="q-author">Director of Operations — West Palm Beach Real Estate Brokerage</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>HubSpot CRM — integrated with custom lead scoring layer</li>
+          <li>Twilio — SMS automation and lead notification</li>
+          <li>Make (Integromat) — workflow orchestration</li>
+          <li>Custom AI scoring model — trained on 18 months of conversion history</li>
+          <li>Slack API — real-time agent alerts</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Want These Results for Your Business?</h3>
+        <p>Book a free strategy call and we'll show you exactly what we'd build for your operation.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Restaurant -->
+<div class="cs-modal-overlay" id="cs-modal-2">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-2')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#127860; Hospitality</div>
+      <h2>Delray Beach Restaurant Reclaims 15 Hours Per Week with Reservation & Review Automation</h2>
+      <div class="modal-meta"><span>&#128205; Delray Beach, FL</span><span>&#128197; 3-Week Engagement</span><span>&#128176; $4,800 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">15 hrs</div><div class="lbl">Saved Weekly</div></div>
+        <div class="modal-metric"><div class="big">30%</div><div class="lbl">Fewer No-Shows</div></div>
+        <div class="modal-metric"><div class="big">4.9★</div><div class="lbl">Avg Review Score</div></div>
+        <div class="modal-metric"><div class="big">3 sec</div><div class="lbl">Chatbot Response</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The owner was personally managing reservation calls, responding to Google and Yelp reviews, and answering the same customer questions repeatedly via phone and DM. These tasks were consuming 2–3 hours every day — pulling focus from the kitchen, the floor, and the guest experience that kept people coming back.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>AI chatbot embedded on the website and Google Business Profile — answers hours, menus, parking, dietary questions, and books reservations 24/7</li>
+          <li>Reservation confirmation and reminder sequences via SMS — sent 24 hours and 2 hours before booking</li>
+          <li>Automated no-show follow-up — SMS and email sequence offering rebooking with a small incentive</li>
+          <li>AI-assisted review response system — generates personalized replies to Google and Yelp reviews for owner approval in one click</li>
+          <li>Weekly digest email — reservation summary, review scores, and chatbot conversation highlights</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Staff recovered over 15 hours per week in combined owner and manager time. No-shows dropped 30% thanks to the reminder and rebooking sequence. The chatbot handles 85% of inbound customer inquiries automatically, and consistent review responses helped push the restaurant's average Google score from 4.4 to 4.9 over four months.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"The chatbot books reservations at 2am when I'm asleep. I spend maybe 10 minutes a day on what used to be 2 hours. We're filling more tables, getting better reviews, and I'm actually present in my restaurant again."</blockquote>
+        <div class="q-author">Owner & Executive Chef — Atlantic Avenue Restaurant, Delray Beach</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Custom AI chatbot — trained on restaurant-specific FAQs and menu data</li>
+          <li>OpenTable API — reservation sync and availability management</li>
+          <li>Twilio — SMS confirmation and reminder sequences</li>
+          <li>Google Business Profile API — automated review monitoring</li>
+          <li>AI review response generation — GPT-based with brand voice training</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Running a Restaurant or Hospitality Business?</h3>
+        <p>We'll show you exactly which automations will have the fastest impact on your operation.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Tech Startup -->
+<div class="cs-modal-overlay" id="cs-modal-3">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-3')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128187; Technology</div>
+      <h2>SaaS Startup Launches AI-Powered Platform with 80% Core Workflow Automated</h2>
+      <div class="modal-meta"><span>&#128205; Palm Beach County, FL</span><span>&#128197; 14-Week Engagement</span><span>&#128176; $38,000 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">On Time</div><div class="lbl">& On Budget</div></div>
+        <div class="modal-metric"><div class="big">80%</div><div class="lbl">Workflow Automated</div></div>
+        <div class="modal-metric"><div class="big">14 wks</div><div class="lbl">MVP to Launch</div></div>
+        <div class="modal-metric"><div class="big">Funded</div><div class="lbl">Milestone Achieved</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>A first-time founder had secured pre-seed interest contingent on delivering a working MVP within 14 weeks. The platform was a B2B SaaS tool for professional services firms requiring secure document management, AI-assisted client communication, and automated workflow routing. With no in-house technical team, they needed a full-stack development partner who could move at startup speed without cutting corners.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>Full-stack web application — React frontend, Node.js backend, PostgreSQL database with multi-tenant architecture</li>
+          <li>AI document processing engine — extracts key data from uploaded client documents and auto-populates workflow fields</li>
+          <li>Automated client onboarding flow — intake form, document collection, status notifications, and welcome sequence</li>
+          <li>Role-based dashboard system — separate views for clients, staff, and administrators</li>
+          <li>Stripe integration — subscription billing with tiered plans and usage-based add-ons</li>
+          <li>Complete API documentation and handoff package for future in-house developers</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>The platform launched on week 14 — on time and within the agreed budget. The AI document processing system automated 80% of the platform's core data workflows, eliminating the need for manual data entry by client teams. The founder secured their funding milestone within 30 days of launch. The platform is now serving its first paying clients.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"Web Palm Beaches took my idea — which existed only in documents and my head — and turned it into a real, working product that impressed investors. They communicated everything, never went dark, and delivered exactly what they promised."</blockquote>
+        <div class="q-author">Founder & CEO — B2B SaaS Platform, Palm Beach County</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>React + TypeScript — frontend application</li>
+          <li>Node.js + Express — backend API</li>
+          <li>PostgreSQL — multi-tenant database architecture</li>
+          <li>OpenAI API — document intelligence and data extraction</li>
+          <li>Stripe — subscription billing and payment processing</li>
+          <li>AWS (EC2 + S3 + RDS) — cloud infrastructure and document storage</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Have a Platform Idea You Need Built?</h3>
+        <p>Let's talk through your concept. We'll tell you what's feasible, what it'll cost, and how fast we can move.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4: Professional Services -->
+<div class="cs-modal-overlay" id="cs-modal-4">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-4')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128188; Professional Services</div>
+      <h2>Boca Raton Firm Eliminates 20 Hours of Weekly Manual Work Through Intelligent Automation</h2>
+      <div class="modal-meta"><span>&#128205; Boca Raton, FL</span><span>&#128197; 5-Week Engagement</span><span>&#128176; $8,500 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">20 hrs</div><div class="lbl">Saved Weekly</div></div>
+        <div class="modal-metric"><div class="big">99%</div><div class="lbl">Error Reduction</div></div>
+        <div class="modal-metric"><div class="big">Month 1</div><div class="lbl">ROI Achieved</div></div>
+        <div class="modal-metric"><div class="big">5 staff</div><div class="lbl">Hours Freed Up</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The firm had 12 employees, several of whom were spending the majority of their time re-entering data between systems, pulling information from emails into spreadsheets, generating weekly status reports manually, and routing invoices through a multi-step approval process via email chain. Errors were common, approvals were slow, and billing disputes were a recurring problem.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>AI email parser — reads incoming client emails and extracts actionable data (project updates, approval requests, change orders) into the project management system automatically</li>
+          <li>Automated weekly report generator — pulls data from five sources, assembles formatted PDF reports, and emails them to clients on schedule</li>
+          <li>Invoice routing workflow — OCR-based extraction from vendor invoices, automated approval routing based on amount and category, with escalation for exceptions</li>
+          <li>Error detection layer — flags data discrepancies before they reach the client or the accounting system</li>
+          <li>Staff dashboard — single-screen view of all pending approvals, report statuses, and outstanding items</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Staff freed up an average of 4 hours each per week — a combined 20 hours across the team that was redirected to billable client work. Data entry errors dropped to near zero. Invoice approval cycle time went from an average of 3.5 days to under 6 hours. The automation system paid for itself within the first month from recovered billable hours alone.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"The ROI was evident within the first month. My team recovered hours they were spending on work that added no value for our clients. Now those hours are billable. The system paid for itself faster than anything we've invested in."</blockquote>
+        <div class="q-author">Office Manager — Professional Services Firm, Boca Raton</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Make (Integromat) — workflow orchestration layer</li>
+          <li>AI email parsing — trained on firm-specific terminology and formats</li>
+          <li>OCR document processing — invoice extraction and data validation</li>
+          <li>Google Workspace integration — Sheets, Drive, Gmail automation</li>
+          <li>Slack — approval notifications and team alerts</li>
+          <li>Custom PDF report generator — branded templates with dynamic data</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Is Your Team Drowning in Manual Work?</h3>
+        <p>We'll identify your biggest time-wasters in a free 30-minute strategy call and show you exactly how to eliminate them.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5: Marketing / Web -->
+<div class="cs-modal-overlay" id="cs-modal-5">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-5')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128200; Marketing & Web</div>
+      <h2>Jupiter Business Doubles Engagement and Climbs to Page 1 After AI-Powered Website Rebuild</h2>
+      <div class="modal-meta"><span>&#128205; Jupiter, FL</span><span>&#128197; 8-Week Build + Ongoing SEO</span><span>&#128176; $9,500 + $1,200/mo</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">2×</div><div class="lbl">Engagement</div></div>
+        <div class="modal-metric"><div class="big">Page 1</div><div class="lbl">Local Rankings</div></div>
+        <div class="modal-metric"><div class="big">65%</div><div class="lbl">Bounce Rate Drop</div></div>
+        <div class="modal-metric"><div class="big">3.1×</div><div class="lbl">Lead Volume Increase</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The client had been spending $2,000/month on Google Ads driving traffic to a site that wasn't converting. Average session time was under 45 seconds, the bounce rate was 78%, and organic rankings were nonexistent for any of their target keywords. The site itself was 6 years old, not mobile-optimized, and gave no clear indication of the quality of service the business actually provided.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>Full website redesign — mobile-first, brand-aligned, structured for conversion with clear CTAs at every scroll depth</li>
+          <li>AI lead qualification chatbot — engages visitors within 10 seconds, qualifies by service need and timeline, and routes to book or call</li>
+          <li>Local SEO foundation — Google Business Profile optimization, schema markup, location-specific landing pages for Jupiter and surrounding communities</li>
+          <li>Content strategy and publishing — 2 AI-assisted blog posts per month targeting local informational keywords</li>
+          <li>Core Web Vitals optimization — load time reduced from 6.4s to 1.2s, Lighthouse score from 42 to 94</li>
+          <li>Monthly SEO reporting — rankings, traffic, lead attribution, and content performance</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Within 60 days of launch, organic traffic increased 140%. The site now ranks on page 1 for 14 target keywords in the Jupiter and northern Palm Beach County area. Bounce rate dropped from 78% to 27%. Average session time increased from 45 seconds to 3.2 minutes. Lead volume increased 3.1× — and with better conversion, the client cut their Google Ads spend by 40% while maintaining the same lead volume.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"Web Palm Beaches rebuilt our entire web presence and our SEO rankings have jumped significantly. Engagement metrics have doubled. They genuinely understand both the tech and the business side — they didn't just build a pretty site, they built one that works."</blockquote>
+        <div class="q-author">Marketing Director — Jupiter, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>WordPress — CMS with custom theme development</li>
+          <li>Custom AI chatbot — lead qualification and routing</li>
+          <li>Schema.org structured data — local business, service, and FAQ markup</li>
+          <li>Google Search Console + Analytics 4 — performance tracking</li>
+          <li>AI content assistant — brand-voice trained for monthly publishing</li>
+          <li>Cloudflare — CDN and performance optimization</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Is Your Website Underperforming?</h3>
+        <p>Book a free strategy call and we'll audit your current site, identify the biggest conversion gaps, and show you what a rebuilt version would look like.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Website Audit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6: CRM / Sales -->
+<div class="cs-modal-overlay" id="cs-modal-6">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-6')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128281; Sales Operations</div>
+      <h2>Wellington Sales Team Stops Losing Leads After CRM and Marketing Stack Unification</h2>
+      <div class="modal-meta"><span>&#128205; Wellington, FL</span><span>&#128197; 4-Week Engagement</span><span>&#128176; $6,200 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">Zero</div><div class="lbl">Leads Lost</div></div>
+        <div class="modal-metric"><div class="big">3 tools</div><div class="lbl">Unified</div></div>
+        <div class="modal-metric"><div class="big">22%</div><div class="lbl">Revenue Lift</div></div>
+        <div class="modal-metric"><div class="big">4 wks</div><div class="lbl">To Full Deployment</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The sales director had three systems that contained different versions of the same data: a CRM (Pipedrive) where deals lived, an email platform (ActiveCampaign) where sequences ran, and a quoting tool (PandaDoc) where proposals were built. None of them communicated with each other. Leads captured on the website didn't automatically enter the CRM. Quote views didn't trigger follow-up sequences. The sales director had no single view of where any deal actually stood.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>Middleware integration layer connecting Pipedrive, ActiveCampaign, and PandaDoc — bidirectional sync across all three</li>
+          <li>Automated lead capture — every web form submission, chatbot interaction, and ad lead instantly creates a CRM record and triggers the appropriate sequence</li>
+          <li>Deal-stage triggered automations — sequence changes, task creation, and notifications fire automatically as deals move through the pipeline</li>
+          <li>Quote activity tracking — PandaDoc opens and views sync to CRM, triggering a "hot prospect" alert and follow-up task</li>
+          <li>Real-time sales dashboard — unified view of pipeline value, open deals, sequence performance, and follow-up queue</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Lead leakage went to zero — every inquiry is captured and routed correctly from day one. The sales team reported spending significantly less time on CRM hygiene and more time on selling. Quote follow-up, which had been manual and inconsistent, now fires automatically based on document activity. Within 90 days of going live, the director attributed a 22% revenue increase directly to pipeline visibility and follow-up consistency improvements.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"We hired Web Palm Beaches to integrate our CRM with our website and email marketing. The automation saves us hours every day and nothing falls through the cracks anymore. Worth every penny and then some."</blockquote>
+        <div class="q-author">Sales Director — Wellington, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Pipedrive CRM — pipeline management and deal tracking</li>
+          <li>ActiveCampaign — email automation and sequence management</li>
+          <li>PandaDoc — proposal and quote activity tracking</li>
+          <li>Make (Integromat) — integration orchestration layer</li>
+          <li>Custom webhook handlers — real-time event processing</li>
+          <li>Google Data Studio — unified sales performance dashboard</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Are Your Tools Working Against Each Other?</h3>
+        <p>We'll map your tech stack in a free call and show you exactly where revenue is slipping through the cracks.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7: Retail - Boutique -->
+<div class="cs-modal-overlay" id="cs-modal-7">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-7')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128141; Retail</div>
+      <h2>Palm Beach Boutique Grows Online Revenue 3× with AI-Powered E-Commerce Rebuild</h2>
+      <div class="modal-meta"><span>&#128205; Palm Beach, FL</span><span>&#128197; 8-Week Engagement</span><span>&#128176; $14,000 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">3×</div><div class="lbl">Online Revenue</div></div>
+        <div class="modal-metric"><div class="big">41%</div><div class="lbl">Cart Recovery</div></div>
+        <div class="modal-metric"><div class="big">22%</div><div class="lbl">Repeat Purchase Lift</div></div>
+        <div class="modal-metric"><div class="big">5 wks</div><div class="lbl">To Positive ROI</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The boutique had cultivated a loyal in-store following over eight years and a strong Instagram presence driving real traffic — but the website wasn't converting. Their previous site was slow, mobile-unfriendly, and built on a template that didn't reflect the premium brand they'd built. Online sales were just 8% of total revenue. Abandoned carts had no recovery mechanism. Repeat customers had no automated reason to return.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>Full custom e-commerce rebuild — fast, mobile-first, visually matching the boutique's premium in-store experience</li>
+          <li>AI product recommendation engine — surfaces "You may also like" suggestions based on browsing behavior and purchase history</li>
+          <li>3-step abandoned cart recovery sequence — email at 1 hour, SMS at 24 hours, final email at 72 hours with a soft discount</li>
+          <li>Post-purchase SMS loyalty flow — thank-you at day 1, curated new arrivals at day 14, birthday reward at 30 days pre-birthday</li>
+          <li>Instagram-to-product landing pages — campaign-specific pages that match each promoted item, eliminating the "where do I find that?" drop-off</li>
+          <li>AI chatbot for size, availability, and styling questions — reduces email back-and-forth that was killing conversion</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Online revenue tripled within 90 days. The abandoned cart sequence alone recovers 41% of carts that would previously have been lost — generating roughly $4,200/month in recovered revenue. The loyalty SMS flow drove a 22% increase in repeat purchases within the first quarter. The site reached positive ROI in 5 weeks from launch.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"Our website finally looks like us. But more importantly, it sells like us. Tripling online revenue in three months while also improving the in-store experience — I didn't think both were possible at the same time."</blockquote>
+        <div class="q-author">Owner — Luxury Boutique, Palm Beach, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Custom Shopify build — performance-optimized with brand-matched theme</li>
+          <li>Klaviyo — cart recovery and loyalty email/SMS flows</li>
+          <li>Custom AI recommendation layer — product affinity scoring</li>
+          <li>Attentive — SMS marketing and loyalty program</li>
+          <li>Meta Ads + custom landing pages — Instagram campaign integration</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Own a Retail Business?</h3>
+        <p>Let's talk about how to turn your website into your best-performing sales channel.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 8: Retail - Home Goods -->
+<div class="cs-modal-overlay" id="cs-modal-8">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-8')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#128141; Retail</div>
+      <h2>Boca Raton Home Goods Store Saves 12 Hours Weekly with Inventory & Reorder Automation</h2>
+      <div class="modal-meta"><span>&#128205; Boca Raton, FL</span><span>&#128197; 4-Week Engagement</span><span>&#128176; $6,500 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">12 hrs</div><div class="lbl">Saved Weekly</div></div>
+        <div class="modal-metric"><div class="big">Zero</div><div class="lbl">Stockouts in 6 Mo</div></div>
+        <div class="modal-metric"><div class="big">$8K</div><div class="lbl">Revenue Recovered/Mo</div></div>
+        <div class="modal-metric"><div class="big">1 mo</div><div class="lbl">To Full ROI</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>Managing inventory across a physical store and WooCommerce website on disconnected spreadsheets had become untenable. The owner knew what sold well but had no visibility into what was about to run out until it already had. Stockouts on top-selling items were happening 3–4 times per month, each costing 2–5 days of lost sales. Reordering was entirely reactive — driven by a customer asking for something that wasn't there.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>POS-to-website inventory sync — real-time stock levels across both channels, updated automatically on every transaction</li>
+          <li>AI reorder threshold engine — calculates optimal reorder points per SKU based on sales velocity and supplier lead time</li>
+          <li>Automated supplier purchase order generation — drafts and sends POs when thresholds are hit, with owner approval in one tap</li>
+          <li>Daily inventory digest — a 2-minute email summary replacing the previous 2-hour manual count</li>
+          <li>Low-stock alerts via SMS — owner notified immediately when any item drops below critical threshold</li>
+          <li>Seasonal demand adjustment — system scales thresholds up automatically ahead of peak periods</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>The owner reclaimed 12 hours per week immediately. In the six months following launch, there were zero stockouts on tracked SKUs — compared to 18 in the prior six months. The $8,000/month in estimated lost sales from stockouts was fully recovered. The system paid for itself entirely within the first month of operation.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"I used to spend half my Sundays counting inventory. Now I get a two-minute email every morning. We haven't run out of a single top item since we launched this. It's one of the best business decisions I've ever made."</blockquote>
+        <div class="q-author">Owner — Home Goods Retailer, Boca Raton, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Square POS — integrated as inventory source of truth</li>
+          <li>WooCommerce — real-time stock sync via custom API connector</li>
+          <li>Make (Integromat) — workflow orchestration for reorder triggers</li>
+          <li>Twilio — SMS low-stock alerts</li>
+          <li>Custom AI demand forecasting model — SKU-level velocity tracking</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Running a Retail Operation?</h3>
+        <p>Book a free strategy call and we'll map out exactly which inventory headaches can be automated.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 9: Healthcare - Medical Practice -->
+<div class="cs-modal-overlay" id="cs-modal-9">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-9')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#127973; Healthcare</div>
+      <h2>West Palm Beach Medical Practice Cuts No-Shows 40% and Automates Patient Intake</h2>
+      <div class="modal-meta"><span>&#128205; West Palm Beach, FL</span><span>&#128197; 5-Week Engagement</span><span>&#128176; $8,200 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">40%</div><div class="lbl">No-Show Reduction</div></div>
+        <div class="modal-metric"><div class="big">4 hrs</div><div class="lbl">Front Desk Time Saved</div></div>
+        <div class="modal-metric"><div class="big">$12K</div><div class="lbl">Monthly Revenue Recovered</div></div>
+        <div class="modal-metric"><div class="big">3 wks</div><div class="lbl">To First Results</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>With three providers and 60+ appointments daily, the practice's front desk team was stretched thin. Manual reminder calls were inconsistent — some patients got a call the day before, others nothing. No-show rates had climbed to 18%, and each missed appointment represented $150–$300 in lost revenue. Paper intake forms created a backlog every morning as staff re-entered information into the EHR. There was no waitlist system to fill last-minute cancellations.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>HIPAA-compliant automated reminder system — SMS at 72 hours with one-click confirm, SMS at 24 hours, phone call at 2 hours for non-confirmed appointments</li>
+          <li>Digital intake form system — patients complete forms via secure link before arrival; data pre-populates into EHR automatically</li>
+          <li>Cancellation waitlist engine — when a patient cancels, the system automatically texts the next 3 patients on the waitlist for that time slot</li>
+          <li>No-show follow-up sequence — cancelled patients receive a rebooking link within 15 minutes with available slots surfaced automatically</li>
+          <li>Front desk dashboard — real-time view of confirmation status for the day's appointments, no phone calls required</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>No-show rate dropped from 18% to 11% within the first month — a 40% reduction. The front desk team reclaimed 4 hours daily previously spent on manual reminder calls and intake data entry. The waitlist system fills roughly 60% of same-day cancellations automatically. At an average of $200/appointment, the practice recovered over $12,000/month in previously lost revenue.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"Our front desk used to spend all morning calling patients to confirm appointments. Now they actually greet patients. The no-show problem went from our biggest headache to something we barely think about anymore."</blockquote>
+        <div class="q-author">Practice Manager — Multi-Provider Medical Practice, West Palm Beach, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Twilio — HIPAA-compliant SMS reminders and notifications</li>
+          <li>JotForm Health — HIPAA-compliant digital intake forms</li>
+          <li>EHR API integration — automated data transfer from intake to patient record</li>
+          <li>Custom waitlist engine — priority-based slot filling logic</li>
+          <li>Make (Integromat) — workflow orchestration across all systems</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Run a Medical or Healthcare Practice?</h3>
+        <p>We build HIPAA-compliant automation that recovers lost revenue and frees your staff for patient care.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 10: Healthcare - Med Spa -->
+<div class="cs-modal-overlay" id="cs-modal-10">
+  <div class="cs-modal">
+    <div class="modal-close"><button onclick="closeModal('cs-modal-10')" aria-label="Close">&#10005;</button></div>
+    <div class="modal-hero">
+      <div class="modal-badge">&#127973; Healthcare</div>
+      <h2>Boca Raton Med Spa Adds $6,500/Month in Revenue Through AI Follow-Up & Rebooking Flows</h2>
+      <div class="modal-meta"><span>&#128205; Boca Raton, FL</span><span>&#128197; 3-Week Engagement</span><span>&#128176; $5,500 Investment</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="big">+$6.5K</div><div class="lbl">Monthly Revenue Added</div></div>
+        <div class="modal-metric"><div class="big">35%</div><div class="lbl">Rebooking Rate Lift</div></div>
+        <div class="modal-metric"><div class="big">28%</div><div class="lbl">Reactivation Rate</div></div>
+        <div class="modal-metric"><div class="big">3 wks</div><div class="lbl">ROI Achieved</div></div>
+      </div>
+      <div class="modal-section">
+        <h3>The Challenge</h3>
+        <p>The med spa's client satisfaction scores were excellent — NPS of 72 — but retention was a recurring problem. Over 60% of first-time clients didn't rebook within 60 days. The team knew the issue wasn't dissatisfaction; clients were simply busy and forgot. There was no systematic way to stay in touch post-visit. Staff were too occupied during peak hours to manually follow up, and a 90-day lapse typically meant a client was lost entirely.</p>
+      </div>
+      <div class="modal-section">
+        <h3>What We Built</h3>
+        <ul>
+          <li>Post-visit thank-you sequence — personalized SMS 3 hours after appointment, includes a direct rebooking link with suggested next visit date based on treatment type</li>
+          <li>30-day check-in flow — AI-generated message with a personalized treatment recommendation based on service history</li>
+          <li>Birthday reward automation — triggered 30 days before a client's birthday with a special offer, driving visits during an otherwise slow period</li>
+          <li>90-day reactivation campaign — three-touch sequence for clients who haven't visited in 3+ months, with escalating incentives</li>
+          <li>Service-specific rebooking cadences — different follow-up timing for Botox (12 weeks), facials (4 weeks), laser treatments (6 weeks)</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h3>The Results</h3>
+        <p>Within the first 90 days, rebooking rates improved from 38% to 51% — a 35% lift. The 90-day reactivation campaign brought back 28% of dormant clients in its first run, generating over $3,200 in a single campaign. Monthly revenue increased by $6,500 on average — entirely from clients who already knew and trusted the business. The system reached full ROI in under three weeks.</p>
+      </div>
+      <div class="modal-quote">
+        <blockquote>"We were sitting on a goldmine of happy clients who just needed a reason to come back. The AI sequences do that for us automatically. We added over $6,000 a month without spending a dollar on new client acquisition."</blockquote>
+        <div class="q-author">Owner — Medical Spa, Boca Raton, FL</div>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies Used</h3>
+        <ul>
+          <li>Mindbody — booking system integration and service history API</li>
+          <li>Klaviyo — email automation flows and segmentation</li>
+          <li>Attentive — SMS rebooking and reactivation sequences</li>
+          <li>AI personalization layer — service-type-specific message generation</li>
+          <li>Make (Integromat) — workflow orchestration and trigger management</li>
+        </ul>
+      </div>
+      <div class="modal-cta">
+        <h3>Own a Med Spa or Wellness Business?</h3>
+        <p>We'll build an automated client retention system that adds revenue without adding to your team's workload.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+// Modal open/close
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+// Close on overlay click
+document.querySelectorAll('.cs-modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.cs-modal-overlay.open').forEach(o => closeModal(o.id));
+  }
+});
+
+// Filter buttons
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.cs-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.industry === filter) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Schema Markup? Local SEO Guide</title>
+  <meta name="description" content="Schema markup tells search engines what your business is. Learn how to implement it for better local SEO results in South Florida.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is schema markup?","acceptedAnswer":{"@type":"Answer","text":"Schema markup (also called structured data) is code added to a website's HTML that explicitly tells search engines what the content means — not just what it says. It uses a standardized vocabulary from Schema.org to label things like business name, address, reviews, FAQs, events, and prices so Google and AI systems can understand and display the information accurately."}},
+    {"@type":"Question","name":"How does schema markup help SEO?","acceptedAnswer":{"@type":"Answer","text":"Schema markup helps SEO by enabling rich results in Google Search — star ratings, FAQ dropdowns, event dates, price ranges — that increase click-through rates by 20–30%. It also improves how AI systems understand your content for Answer Engine Optimization (AEO), making it more likely your content gets cited as an answer in AI-generated responses."}},
+    {"@type":"Question","name":"What types of schema markup are most important for local businesses?","acceptedAnswer":{"@type":"Answer","text":"For local businesses in South Florida, the most important schema types are: LocalBusiness (name, address, phone, hours, service area), FAQPage (makes FAQ sections eligible for rich results), Review/AggregateRating (displays star ratings in search), Service (describes specific services offered), and BreadcrumbList (shows page hierarchy in search results)."}},
+    {"@type":"Question","name":"How do I add schema markup to my website?","acceptedAnswer":{"@type":"Answer","text":"Schema markup is added as JSON-LD code in the <head> of your HTML pages. For WordPress sites, plugins like Yoast SEO or RankMath handle basic schema automatically. For custom sites, schema is written manually or generated with tools like Google's Structured Data Markup Helper and then validated with the Rich Results Test."}},
+    {"@type":"Question","name":"Does schema markup directly affect search rankings?","acceptedAnswer":{"@type":"Answer","text":"Schema markup is not a direct Google ranking factor, but it has strong indirect effects: rich results improve click-through rates (more traffic from the same ranking), FAQ schema can display your content as a featured snippet, and structured data helps AI systems cite your business in answer results. Proper schema is standard practice for any serious SEO strategy."}}
+  ]}
+  </script>
+  <style>
+    .article-hero{background:var(--bg-alt);padding:4rem 0 3rem;border-bottom:1px solid var(--border)}
+    .breadcrumb{font-size:.8rem;color:var(--text-muted);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
+    .breadcrumb a{color:var(--text-muted);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 .5rem;opacity:.5}
+    .article-meta{display:flex;gap:1.5rem;align-items:center;margin-top:1rem;font-size:.8rem;color:var(--text-muted);font-family:var(--heading);letter-spacing:.05em;flex-wrap:wrap}
+    .article-meta .tag{background:var(--accent);color:#fff;padding:.2rem .6rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;padding:4rem 0}
+    .article-body h2{font-family:var(--heading);font-size:1.5rem;font-weight:700;color:var(--heading);margin:2.5rem 0 1rem}
+    .article-body h3{font-family:var(--heading);font-size:1.1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 .75rem}
+    .article-body p{font-size:1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem}
+    .article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:var(--text-secondary);line-height:1.9}
+    .article-body li{margin-bottom:.4rem}
+    .article-body a{color:var(--accent);font-weight:600}.article-body a:hover{text-decoration:underline}
+    .callout{background:var(--bg-alt);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+    .callout p{margin:0;font-size:.95rem}
+    .code-block{background:var(--tertiary);color:#e2e8f0;font-family:'Courier New',monospace;font-size:.8rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto;line-height:1.7;border-radius:4px}
+    .code-block .key{color:var(--accent)}
+    .code-block .val{color:#86efac}
+    .schema-types{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+    .schema-type{background:var(--bg-alt);border:1px solid var(--border);padding:1rem}
+    .schema-type h4{font-family:var(--heading);font-size:.8rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em}
+    .schema-type p{font-size:.85rem;color:var(--text-secondary);margin:0;line-height:1.6}
+    .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-cta{background:var(--tertiary);padding:1.75rem}
+    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
+    .sticky-wrap{position:sticky;top:100px}
+    .author-box{display:flex;gap:1.25rem;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);padding:1.5rem;margin-top:2.5rem}
+    .author-avatar{width:60px;height:60px;border-radius:50%;background:var(--tertiary);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--heading);font-weight:700;font-size:1.1rem;flex-shrink:0}
+    .author-info h5{font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.25rem}
+    .author-info p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6}
+    .faq-section{padding:3rem 0;border-top:1px solid var(--border)}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;font-family:var(--heading);font-weight:700;font-size:1rem;color:var(--heading);gap:1rem}
+    .faq-question::after{content:'+';font-size:1.25rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-question::after{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:0 0 1.25rem;font-size:.95rem;color:var(--text-secondary);line-height:1.8}
+    .faq-item.open .faq-answer{display:block}
+    @media(max-width:900px){.article-wrap{grid-template-columns:1fr;gap:2rem}.article-sidebar{display:none}.schema-types{grid-template-columns:1fr}}
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-what-is-schema-markup.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-what-is-schema-markup.html">
+  <meta property="og:title" content="What Is Schema Markup? Local SEO Guide">
+  <meta property="og:description" content="Schema markup tells search engines what your business is. Learn how to implement it for better local SEO results in South Florida.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div class="article-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="blog.html">Blog</a><span>›</span>
+      What Is Schema Markup?
+    </div>
+    <div class="article-meta">
+      <span class="tag">SEO &amp; AEO</span>
+      <span>2026</span>
+      <span>6 min read</span>
+    </div>
+    <h1 style="font-family:var(--heading);font-size:2.2rem;font-weight:700;color:var(--heading);margin-top:.75rem;max-width:700px;line-height:1.3">What Is Schema Markup and Why Should Your South Florida Website Have It?</h1>
+    <p style="font-size:1.05rem;color:var(--text-secondary);margin-top:.75rem;max-width:620px;line-height:1.7">Schema markup is invisible code that makes your website speak Google's language — and increasingly, AI's language too. Here's a plain-English explanation of what it is and why it matters.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+
+      <p>Your website has two audiences: humans and machines. The words and design are for humans. Schema markup is for machines — specifically, for Google, Bing, and AI assistants that need to understand your content, not just read it.</p>
+      <p>Without schema, Google has to guess what your page means. With schema, you tell it directly.</p>
+
+      <h2>What Schema Markup Actually Is</h2>
+      <p>Schema markup (also called structured data) is code you add to your website's HTML using a standardized vocabulary from Schema.org — a project created collaboratively by Google, Microsoft, Yahoo, and Yandex. It uses specific property names to label your content so machines understand it unambiguously.</p>
+      <p>A practical example: your "About" page says "We've been in business since 2004." That's text a human can interpret. Schema markup communicates <code>"foundingYear": "2004"</code> — a machine-readable fact that Google can use confidently.</p>
+
+      <h2>What Schema Markup Enables</h2>
+      <p>Schema markup unlocks <strong>rich results</strong> — enhanced search listings that display additional information directly in Google's search results:</p>
+      <ul>
+        <li><strong>Star ratings</strong> on service pages (AggregateRating schema)</li>
+        <li><strong>FAQ dropdowns</strong> directly in search results (FAQPage schema)</li>
+        <li><strong>Business hours and address</strong> in local search (LocalBusiness schema)</li>
+        <li><strong>Breadcrumb navigation</strong> displayed in search results</li>
+        <li><strong>Price ranges</strong> on product or service pages</li>
+        <li><strong>Event dates</strong> for businesses that host events</li>
+      </ul>
+      <p>Rich results consistently achieve 20–30% higher click-through rates than standard listings at the same position. That means more traffic without ranking higher.</p>
+
+      <h2>Schema and AEO: Why AI Assistants Care</h2>
+      <p>This is the increasingly important dimension of schema markup. AI assistants — ChatGPT, Google Gemini, Perplexity, Apple Intelligence — are trained to extract and cite structured, unambiguous information. A page with properly implemented FAQPage schema is far more likely to be cited as an answer than an equivalent page without it.</p>
+      <p>Think of schema as labeling your content for AI comprehension. Every FAQ you mark up is a potential answer engine citation. Every LocalBusiness property is a data point AI systems can reference with confidence when recommending businesses in West Palm Beach or Boca Raton.</p>
+      <p>See our full guide on this topic: <a href="blog-what-is-aeo-answer-engine-optimization.html">what is AEO (Answer Engine Optimization)?</a></p>
+
+      <h2>The Most Important Schema Types for South Florida Local Businesses</h2>
+      <div class="schema-types">
+        <div class="schema-type">
+          <h4>LocalBusiness</h4>
+          <p>Name, address, phone, hours, service area, price range, payment methods. The foundation for every local business.</p>
+        </div>
+        <div class="schema-type">
+          <h4>FAQPage</h4>
+          <p>Question and answer pairs. Enables FAQ dropdowns in search and is the most cited schema type by AI assistants.</p>
+        </div>
+        <div class="schema-type">
+          <h4>Service</h4>
+          <p>Describes specific services your business offers, with descriptions, prices, and service area.</p>
+        </div>
+        <div class="schema-type">
+          <h4>AggregateRating</h4>
+          <p>Average review score and count. Displays stars directly in search results — one of the highest CTR boosters available.</p>
+        </div>
+        <div class="schema-type">
+          <h4>BreadcrumbList</h4>
+          <p>Shows page hierarchy in search results (Home &gt; Services &gt; Web Design). Improves navigation signals.</p>
+        </div>
+        <div class="schema-type">
+          <h4>Article / BlogPosting</h4>
+          <p>Marks blog content with author, date, and topic — helps Google understand and index editorial content.</p>
+        </div>
+      </div>
+
+      <h2>What Schema Markup Looks Like (Simplified)</h2>
+      <p>Schema is typically written as JSON-LD — a JavaScript object placed in the <code>&lt;head&gt;</code> of your HTML. Here's a simplified LocalBusiness example:</p>
+      <div class="code-block">
+{<br>
+&nbsp;&nbsp;<span class="key">"@context"</span>: <span class="val">"https://schema.org"</span>,<br>
+&nbsp;&nbsp;<span class="key">"@type"</span>: <span class="val">"LocalBusiness"</span>,<br>
+&nbsp;&nbsp;<span class="key">"name"</span>: <span class="val">"Web Palm Beaches"</span>,<br>
+&nbsp;&nbsp;<span class="key">"address"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"@type"</span>: <span class="val">"PostalAddress"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"addressLocality"</span>: <span class="val">"West Palm Beach"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"addressRegion"</span>: <span class="val">"FL"</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="key">"telephone"</span>: <span class="val">"561-291-9001"</span>,<br>
+&nbsp;&nbsp;<span class="key">"priceRange"</span>: <span class="val">"$$"</span><br>
+}
+      </div>
+
+      <div class="callout">
+        <p><strong>Every page we build includes schema markup.</strong> LocalBusiness schema on location pages, FAQPage schema on FAQ sections, BreadcrumbList on all interior pages, and Article schema on blog posts. It's part of our standard build — not an add-on. See our <a href="pricing.html">pricing page</a> for what's included in each tier.</p>
+      </div>
+
+      <h2>How to Check If Your Site Has Schema</h2>
+      <p>Use Google's free Rich Results Test at search.google.com/test/rich-results — enter your URL and it shows what structured data is present and whether it's valid. The Schema Markup Validator at validator.schema.org provides even more detail.</p>
+      <p>Most small business websites in Palm Beach County have zero schema markup. That's a meaningful competitive gap you can close relatively quickly.</p>
+
+      <div class="author-box">
+        <div class="author-avatar">WP</div>
+        <div class="author-info">
+          <h5>Web Palm Beaches Team</h5>
+          <p>We implement comprehensive schema markup on every website we build — LocalBusiness, FAQPage, BreadcrumbList, and more. Based in West Palm Beach, FL.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sticky-wrap">
+        <div class="sidebar-widget sidebar-cta">
+          <h4>Schema Included in Every Build</h4>
+          <p>Every site we launch includes proper structured data markup — no add-on required.</p>
+          <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Related Articles</h4>
+          <a href="blog-what-is-aeo-answer-engine-optimization.html">What Is AEO?</a>
+          <a href="blog-local-seo-vs-national-seo.html">Local SEO vs. National SEO</a>
+          <a href="blog-google-business-profile-optimization.html">Google Business Profile</a>
+          <a href="resources-local-seo-guide-south-florida.html">South Florida Local SEO Guide</a>
+          <a href="blog-rank-google-maps-west-palm-beach.html">Rank Higher on Google Maps</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Free Resource</h4>
+          <p>See how AI-ready your website is in 5 minutes.</p>
+          <a href="ai-readiness-checklist.html" class="btn-primary" style="display:block;text-align:center;font-size:.8rem;margin-top:.5rem">Take the AI Checklist</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="container" style="max-width:760px">
+    <h2 class="section-title" style="text-align:left;font-size:1.6rem;margin-bottom:2rem">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is schema markup?</div>
+      <div class="faq-answer">Schema markup (structured data) is code added to a website's HTML that explicitly tells search engines what the content means — not just what it says. It uses a standardized vocabulary from Schema.org to label business information, FAQs, reviews, prices, and more so Google and AI systems can understand and display the information accurately in search results.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How does schema markup help SEO?</div>
+      <div class="faq-answer">Schema enables rich results — star ratings, FAQ dropdowns, price ranges — that increase click-through rates by 20–30% from the same search position. It also improves AEO (Answer Engine Optimization), making your content more likely to be cited in AI-generated answers. For local businesses, LocalBusiness schema specifically reinforces your geographic relevance for local search rankings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What types of schema markup are most important for local businesses?</div>
+      <div class="faq-answer">For South Florida local businesses, the most important schema types are: LocalBusiness (address, phone, hours, service area), FAQPage (enables FAQ rich results and AI citations), AggregateRating (displays star ratings in search), Service (describes specific offerings), and BreadcrumbList (shows page hierarchy). These five types cover the majority of local SEO and AEO value.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I add schema markup to my website?</div>
+      <div class="faq-answer">Schema markup is added as JSON-LD code in the head section of your HTML pages. For WordPress, plugins like Yoast SEO or RankMath handle basic schema automatically. For custom sites, it's written manually or generated with Google's Structured Data Markup Helper. Always validate with Google's Rich Results Test before considering it complete.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Does schema markup directly affect search rankings?</div>
+      <div class="faq-answer">Schema is not a direct ranking factor, but its indirect effects are significant: rich results improve click-through rates, FAQ schema can trigger featured snippet placements, and structured data helps AI systems cite your content in answer results. For any business serious about SEO and AEO, implementing proper schema markup is a non-negotiable foundation.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <div class="container">
+    <h2>Make Your Website Speak Google's Language</h2>
+    <p>Every site we build includes comprehensive schema markup — properly implemented, validated, and built for AI citability.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="services.html" class="btn-secondary light">See Our SEO Services</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+<script>document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

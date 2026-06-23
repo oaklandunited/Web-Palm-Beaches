@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local SEO Guide for South Florida | WPB</title>
+<meta name="description" content="Everything South Florida businesses need to know about ranking on Google Maps and local search — GBP, reviews, citations, and more.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.article-wrap{display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;padding-top:4rem}
+.article-body{min-width:0}
+.article-sidebar{position:sticky;top:100px}
+.article-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.article-category{font-family:var(--heading);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
+.article-header h1{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary);line-height:1.25;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.article-meta span{font-family:var(--heading);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.article-meta .sep{color:var(--border)}
+.article-hero{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;margin-bottom:2.5rem}
+.article-body p{font-size:.975rem;color:var(--text-secondary);line-height:1.85;margin-bottom:1.25rem}
+.article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:1.25rem}
+.article-body li{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:.4rem}
+.pillar-block{margin:2.5rem 0;border:1px solid var(--border);overflow:hidden}
+.pillar-header{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.75rem;background:var(--tertiary)}
+.pillar-num{width:44px;height:44px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1rem;font-weight:800;flex-shrink:0}
+.pillar-header h2{font-family:var(--heading);font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin:0}
+.pillar-body{padding:1.75rem}
+.pillar-body p{font-size:.925rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem}
+.pillar-body h3{font-family:var(--heading);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin:1.25rem 0 .5rem}
+.checklist{list-style:none;padding:0;margin:.75rem 0}
+.checklist li{font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;padding-left:1.5rem;position:relative;line-height:1.5}
+.checklist li::before{content:'☐';position:absolute;left:0;color:var(--accent);font-size:.9rem}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin:1.5rem 0}
+.stat-cell{padding:1.25rem;text-align:center;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-cell .sc-num{font-family:var(--heading);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-cell .sc-label{font-size:.75rem;color:var(--text-muted);margin-top:.25rem;line-height:1.4}
+.timeline-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.timeline-table th{font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.85rem 1.1rem;text-align:left;background:var(--tertiary);color:#fff;border-right:1px solid rgba(255,255,255,.1)}
+.timeline-table th:last-child{border-right:none}
+.timeline-table td{padding:.85rem 1.1rem;border:1px solid var(--border);font-size:.875rem;color:var(--text-secondary);vertical-align:top;line-height:1.5}
+.timeline-table tr:nth-child(even) td{background:var(--bg-ice)}
+.timeline-table td:first-child{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);white-space:nowrap}
+.action-plan{background:var(--bg-ice);border:1px solid var(--border);padding:2rem;margin:2.5rem 0}
+.action-plan h3{font-family:var(--heading);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:1.25rem}
+.action-plan ol{padding-left:1.5rem;margin:0}
+.action-plan li{font-size:.925rem;color:var(--text-secondary);line-height:1.7;margin-bottom:.6rem;font-weight:500}
+.article-cta{background:var(--tertiary);padding:2.5rem;margin:3rem 0;text-align:center}
+.article-cta h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:.5rem}
+.article-cta p{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:1.25rem}
+.article-cta a{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.author-box{border:1px solid var(--border);padding:1.75rem;display:flex;gap:1.25rem;align-items:start;margin-top:3rem}
+.author-avatar{width:56px;height:56px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.author-name{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.2rem}
+.author-title{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.author-bio{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+.sidebar-card{border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;background:var(--bg)}
+.sidebar-card h4{font-family:var(--heading);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:1rem}
+.sidebar-link{display:block;font-size:.85rem;color:var(--text-secondary);padding:.5rem 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .2s;line-height:1.4}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--accent)}
+.sidebar-toc{border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;background:var(--bg)}
+.sidebar-toc h4{font-family:var(--heading);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem}
+.toc-link{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text-secondary);padding:.4rem 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .2s}
+.toc-link:last-child{border-bottom:none}
+.toc-link:hover{color:var(--accent)}
+.toc-num{font-family:var(--heading);font-size:.65rem;font-weight:800;color:var(--accent);width:18px;flex-shrink:0}
+.sidebar-cta{background:var(--tertiary);padding:1.75rem;text-align:center}
+.sidebar-cta h4{font-family:var(--heading);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin-bottom:.5rem}
+.sidebar-cta p{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.6}
+.sidebar-cta a{display:block;padding:.65rem 1rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+@media(max-width:960px){
+  .article-wrap{grid-template-columns:1fr}
+  .article-sidebar{position:static;margin-top:3rem}
+  .stat-strip{grid-template-columns:1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/resources-local-seo-guide-south-florida.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/resources-local-seo-guide-south-florida.html">
+  <meta property="og:title" content="Local SEO Guide for South Florida | WPB">
+  <meta property="og:description" content="Everything South Florida businesses need to know about ranking on Google Maps and local search — GBP, reviews, citations, and more.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div style="background:var(--bg-ice);padding:.6rem 0;border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="breadcrumb" style="margin:0"><a href="index.html">Home</a> / <a href="resources.html">Resources</a> / <span>Local SEO Guide — South Florida</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+      <div class="article-header">
+        <span class="article-category">Local SEO</span>
+        <h1>The Small Business Guide to Local SEO in South Florida</h1>
+        <div class="article-meta">
+          <span>Web Palm Beaches</span>
+          <span class="sep">|</span>
+          <span>March 2026</span>
+          <span class="sep">|</span>
+          <span>12 min read</span>
+        </div>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=1200&q=80" alt="Local SEO South Florida" class="article-hero">
+
+      <p>When a customer in Palm Beach County searches "plumber near me" or "best Italian restaurant Boca Raton," Google decides who shows up. If you're not in those results, that customer is going to your competitor. Local SEO is how you get there — and in South Florida, one of the most competitive small business markets in the country, getting it right matters more than almost anywhere else.</p>
+
+      <p>This guide covers everything you need to know, whether you're starting from zero or trying to improve existing rankings.</p>
+
+      <div class="stat-strip">
+        <div class="stat-cell"><div class="sc-num">46%</div><div class="sc-label">of all Google searches have local intent</div></div>
+        <div class="stat-cell"><div class="sc-num">76%</div><div class="sc-label">of "near me" searches visit a business within 24 hours</div></div>
+        <div class="stat-cell"><div class="sc-num">28%</div><div class="sc-label">of those visits result in a purchase</div></div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">1</div><h2>Google Business Profile (GBP)</h2></div>
+        <div class="pillar-body">
+          <p>Your Google Business Profile is the single most important factor in local search. It's free, and most businesses barely scratch the surface of what it can do.</p>
+          <h3>Setup Checklist</h3>
+          <ul class="checklist">
+            <li>Claim and verify your listing at business.google.com</li>
+            <li>Use your exact legal business name (no keyword stuffing)</li>
+            <li>Choose the most specific primary category (e.g., "Web Designer" not "Marketing Agency")</li>
+            <li>Add all relevant secondary categories</li>
+            <li>Complete every field: hours, phone, website, address, services, attributes</li>
+            <li>Write a compelling business description (750 characters, include your city/area)</li>
+            <li>Add 20+ high-quality photos (exterior, interior, team, work samples)</li>
+            <li>Add your products/services with descriptions and prices</li>
+            <li>Enable messaging if you can respond promptly</li>
+          </ul>
+          <h3>Ongoing Optimization</h3>
+          <ul>
+            <li>Post weekly updates (offers, events, news, tips)</li>
+            <li>Add new photos monthly</li>
+            <li>Respond to every review — positive and negative</li>
+            <li>Answer questions in the Q&amp;A section</li>
+            <li>Update hours for holidays and special events</li>
+            <li>Monitor your listing for unauthorized edits</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">2</div><h2>Reviews</h2></div>
+        <div class="pillar-body">
+          <p>Reviews are the second most important local ranking factor — and the #1 factor in whether a searcher clicks your listing vs. a competitor's.</p>
+          <div class="stat-strip">
+            <div class="stat-cell"><div class="sc-num">4×</div><div class="sc-label">more clicks for businesses with 40+ reviews vs. under 10</div></div>
+            <div class="stat-cell"><div class="sc-num">4.2–4.5</div><div class="sc-label">★ is the sweet spot (perfect 5.0 looks suspicious)</div></div>
+            <div class="stat-cell"><div class="sc-num">Recency</div><div class="sc-label">10 reviews last month outranks 100 from 2 years ago</div></div>
+          </div>
+          <h3>How to Get More Reviews</h3>
+          <ul>
+            <li><strong>Ask every customer.</strong> Most won't leave a review unless prompted. Make it part of your process.</li>
+            <li><strong>Automate the ask.</strong> Send a text or email after every job with a direct link to your Google review page.</li>
+            <li><strong>Make it easy.</strong> Create a short URL (g.page/yourbusiness) and include it everywhere.</li>
+            <li><strong>Respond to every review.</strong> Thank positive reviewers. Address negative reviews professionally. Google rewards engagement.</li>
+            <li><strong>Never buy or fake reviews.</strong> Google detects these and penalizes severely. It's also illegal under FTC guidelines.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">3</div><h2>NAP Consistency</h2></div>
+        <div class="pillar-body">
+          <p>Your business Name, Address, and Phone number must be identical everywhere it appears online. Not similar — identical. "123 Main St" and "123 Main Street" are different to search engines.</p>
+          <h3>Where to Check and Fix</h3>
+          <ul>
+            <li>Google Business Profile</li>
+            <li>Your website (header, footer, contact page)</li>
+            <li>Yelp, Facebook, Instagram, LinkedIn</li>
+            <li>Industry directories (Avvo for lawyers, Healthgrades for doctors)</li>
+            <li>Data aggregators (Foursquare, Localeze, Acxiom)</li>
+            <li>Chamber of Commerce and BBB listings</li>
+          </ul>
+          <p><strong>Pro tip:</strong> Create a master document with your exact business name, address, phone, website URL, and hours. Use this as your single source of truth for every listing.</p>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">4</div><h2>Local Citations</h2></div>
+        <div class="pillar-body">
+          <p>Citations are mentions of your business on other websites. The more consistent, high-quality citations you have, the more Google trusts your business information.</p>
+          <h3>South Florida-Specific Citations</h3>
+          <ul>
+            <li>Palm Beach County Convention &amp; Visitors Bureau</li>
+            <li>South Florida Business Journal directory</li>
+            <li>Local newspaper business directories (Palm Beach Post, Sun Sentinel)</li>
+            <li>Palm Beach North Chamber of Commerce</li>
+            <li>Business Development Board of Palm Beach County</li>
+            <li>Greater Fort Lauderdale Alliance</li>
+          </ul>
+          <p>Plus the essentials: Google Business Profile, Yelp, Facebook Business, Apple Maps, Bing Places, BBB, Yellow Pages.</p>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">5</div><h2>On-Page Local SEO</h2></div>
+        <div class="pillar-body">
+          <p>Your website itself needs to signal to Google where you're located and what you do.</p>
+          <h3>Essential On-Page Elements</h3>
+          <ul>
+            <li><strong>Title tags:</strong> Include city name and service ("Web Design West Palm Beach | Web Palm Beaches")</li>
+            <li><strong>Meta descriptions:</strong> Include location and a compelling reason to click</li>
+            <li><strong>H1 headers:</strong> Include your primary service and location</li>
+            <li><strong>Body content:</strong> Naturally mention your city, county, and service area</li>
+            <li><strong>Schema markup:</strong> Add LocalBusiness, Organization, and Service schema</li>
+            <li><strong>Contact page:</strong> Full address, embedded Google Map, phone, hours</li>
+            <li><strong>Footer:</strong> Business name, address, phone on every page</li>
+          </ul>
+          <p>If you serve multiple cities, create dedicated pages for each — not thin duplicate content, but genuinely unique pages with city-specific information, local references, and city-specific testimonials.</p>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">6</div><h2>Local Content Strategy</h2></div>
+        <div class="pillar-body">
+          <p>Content that references your local area sends strong signals to Google about your geographic relevance.</p>
+          <h3>South Florida Content Ideas</h3>
+          <ul>
+            <li>Hurricane season preparation content (every business can relate this to their industry)</li>
+            <li>Seasonal population shifts — snowbird marketing strategies</li>
+            <li>"Best [your industry] in [city]" guides</li>
+            <li>Local event sponsorships and community involvement stories</li>
+            <li>Neighborhood or area guides relevant to your business</li>
+            <li>South Florida market data and trends</li>
+            <li>"How to choose a [your service] in [city]" articles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">7</div><h2>Local Link Building</h2></div>
+        <div class="pillar-body">
+          <p>Links from other local websites are powerful ranking signals. Focus on quality over quantity.</p>
+          <ul>
+            <li>Join your local Chamber of Commerce (link from their directory)</li>
+            <li>Sponsor local events, charities, or sports teams (link from event page)</li>
+            <li>Get listed in local "best of" lists and business awards</li>
+            <li>Contribute articles to local news sites or blogs</li>
+            <li>Partner with complementary local businesses for cross-promotion</li>
+            <li>Create a resource that local businesses link to (guides, tools, market data)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">8</div><h2>AEO &amp; GEO: Optimizing for AI Search</h2></div>
+        <div class="pillar-body">
+          <p>AI assistants like ChatGPT, Perplexity, and Gemini are changing how consumers find local businesses. Traditional SEO helps search bots crawl your site, but AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) ensure your business gets cited as the recommended answer in generative AI responses.</p>
+          <h3>How to Optimize for AI Engines</h3>
+          <ul>
+            <li><strong>Inject Rich Schema Markup:</strong> AI search bots rely on structured JSON-LD data to build their knowledge graphs. Use detailed LocalBusiness, FAQ, and Service schemas.</li>
+            <li><strong>Structure Content with Q&amp;A:</strong> Frame headers as questions and immediately follow them with direct, factual answers. AI search tools crawl these to construct summary cards.</li>
+            <li><strong>Write Citable Statistics &amp; Context:</strong> LLMs value fact-dense, local authority resources. Publish original local reports or compliance guides (like HIPAA or local bar rules) that AI engines can quote.</li>
+            <li><strong>Open Crawlers Access:</strong> Ensure your robots.txt allows user-agents like GPTBot, ClaudeBot, and OAI-SearchBot to crawl your structured content.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 style="font-family:var(--heading);font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tertiary);margin:2.5rem 0 1rem">Local SEO Timeline: What to Expect</h2>
+
+      <div style="overflow-x:auto">
+        <table class="timeline-table">
+          <thead><tr><th>Timeframe</th><th>What Happens</th></tr></thead>
+          <tbody>
+            <tr><td>Week 1–2</td><td>GBP optimization, NAP cleanup, website on-page fixes</td></tr>
+            <tr><td>Month 1</td><td>Citation building, review strategy launch, initial content</td></tr>
+            <tr><td>Month 2–3</td><td>Content publishing, link building begins, review volume growing</td></tr>
+            <tr><td>Month 3–6</td><td>Rankings improve, Map Pack appearances begin, lead flow starts</td></tr>
+            <tr><td>Month 6–12</td><td>Sustained rankings, consistent lead flow, authority compounds</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size:.875rem;color:var(--text-muted);margin-top:.5rem"><strong>Important:</strong> Local SEO isn't instant. It's a compounding investment. Businesses that commit for 6+ months see the best results. Those that quit after 2 months see nothing.</p>
+
+      <div class="action-plan">
+        <h3>Your Local SEO Action Plan — Start This Week</h3>
+        <ol>
+          <li><strong>Claim and fully optimize your Google Business Profile.</strong> This alone can significantly improve your visibility.</li>
+          <li><strong>Audit your NAP consistency.</strong> Search your business name and fix any inconsistencies you find.</li>
+          <li><strong>Ask your last 10 customers for a Google review.</strong> Send them a direct link via text.</li>
+          <li><strong>Check your website's mobile speed</strong> at pagespeed.web.dev. Fix anything scoring below 50.</li>
+          <li><strong>Add your city name to your homepage title tag and H1.</strong> Simple but effective.</li>
+        </ol>
+      </div>
+
+      <div class="article-cta">
+        <h3>Need Help With Local SEO?</h3>
+        <p>We help South Florida businesses rank higher in local search — Google Maps, organic results, and AI-powered search. Our SEO services start at $800/month.</p>
+        <a href="contact.html">Book a Free SEO Audit</a>
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">&#128100;</div>
+        <div>
+          <div class="author-name">Web Palm Beaches</div>
+          <div class="author-title">Palm Beach County SEO & AI Consulting</div>
+          <p class="author-bio">Web Palm Beaches specializes in local SEO for Palm Beach County businesses. We combine technical SEO, content strategy, and AI tools for faster, more sustainable results. <a href="services.html" style="color:var(--accent)">See our SEO services</a>.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-toc">
+        <h4>In This Guide</h4>
+        <a href="#" class="toc-link"><span class="toc-num">1</span>Google Business Profile</a>
+        <a href="#" class="toc-link"><span class="toc-num">2</span>Reviews Strategy</a>
+        <a href="#" class="toc-link"><span class="toc-num">3</span>NAP Consistency</a>
+        <a href="#" class="toc-link"><span class="toc-num">4</span>Local Citations</a>
+        <a href="#" class="toc-link"><span class="toc-num">5</span>On-Page SEO</a>
+        <a href="#" class="toc-link"><span class="toc-num">6</span>Content Strategy</a>
+        <a href="#" class="toc-link"><span class="toc-num">7</span>Link Building</a>
+        <a href="#" class="toc-link"><span class="toc-num">8</span>AEO &amp; GEO (AI Search)</a>
+      </div>
+      <div class="sidebar-cta">
+        <h4>Free SEO Audit</h4>
+        <p>We'll review your Google rankings, GBP, and on-page SEO — and give you a clear action plan.</p>
+        <a href="contact.html">Get Your Free Audit</a>
+      </div>
+      <div class="sidebar-card" style="margin-top:1.5rem">
+        <h4>More Articles</h4>
+        <a href="blog-how-ai-can-help-south-florida-business.html" class="sidebar-link">How AI Can Help Your South Florida Business</a>
+        <a href="blog-ai-chatbots-for-small-business.html" class="sidebar-link">AI Chatbots for Small Business</a>
+        <a href="blog-five-signs-website-costing-customers.html" class="sidebar-link">5 Signs Your Website Is Costing You Customers</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer style="margin-top:4rem">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

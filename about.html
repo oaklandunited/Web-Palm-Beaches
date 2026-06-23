@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Web Palm Beaches — AI Consulting in Palm Beach County</title>
+<meta name="description" content="Meet Web Palm Beaches — 20+ years of web expertise, now AI-first. AI consulting, web design, and automation for South Florida businesses.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === ABOUT INTRO === */
+.about-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-intro-visual{position:relative;padding-bottom:3rem}
+.about-intro-visual img{width:100%;display:block}
+.exp-badge{position:absolute;bottom:0;right:-1rem;width:130px;height:130px;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.exp-badge strong{font-family:var(--heading);font-size:2.2rem;font-weight:800;line-height:1}
+.exp-badge span{font-family:var(--heading);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;padding:0 .5rem}
+
+/* === STATS STRIP === */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border)}
+.stat-box{padding:2.5rem 1.5rem;text-align:center;border-right:1px solid var(--border)}
+.stat-box:last-child{border-right:none}
+.stat-box .stat-num{font-family:var(--heading);font-size:2.6rem;font-weight:800;color:var(--accent);line-height:1;display:block}
+.stat-box .stat-sup{font-size:1.4rem}
+.stat-box .stat-label{font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-top:.4rem;display:block}
+
+/* === TIMELINE === */
+.timeline{margin-top:3rem;position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:2px;background:var(--border)}
+.tl-item{position:relative;padding:0 0 2.5rem 2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-2.4rem;top:.35rem;width:14px;height:14px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+.tl-year{font-family:var(--heading);font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.tl-item h4{font-family:var(--heading);font-size:.9rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.4rem}
+.tl-item p{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
+
+/* === VALUES === */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.value-card{padding:2rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:all .3s}
+.value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.value-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
+.value-card:hover::before{transform:scaleX(1)}
+.value-card .v-icon{font-size:1.6rem;margin-bottom:1rem}
+.value-card h3{font-family:var(--heading);font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.5rem}
+.value-card p{font-size:.88rem;color:var(--text-secondary);line-height:1.7}
+
+/* === WHY GRID === */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+.why-item{display:flex;gap:1.25rem;align-items:start;padding:1.75rem;border:1px solid var(--border);background:var(--bg);transition:all .3s}
+.why-item:hover{border-color:var(--accent);background:rgba(205,97,85,.02)}
+.why-item .why-icon{width:48px;height:48px;flex-shrink:0;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s}
+.why-item:hover .why-icon{background:var(--accent);color:#fff}
+.why-item h4{font-family:var(--heading);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.4rem}
+.why-item p{font-size:.875rem;color:var(--text-secondary);line-height:1.65}
+
+/* === TEAM === */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.team-card{background:var(--bg);border:1px solid var(--border);overflow:hidden;transition:all .3s}
+.team-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
+.team-photo{width:100%;aspect-ratio:4/3;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.team-photo img{width:100%;height:100%;object-fit:cover}
+.team-photo-placeholder{font-size:4rem;color:var(--text-muted)}
+.team-accent{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--accent)}
+.team-info{padding:1.75rem}
+.team-info h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.2rem}
+.team-role{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
+.team-bio{font-size:.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
+.team-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.team-tag{font-family:var(--heading);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .65rem;background:var(--bg-ice);color:var(--text-muted);border:1px solid var(--border)}
+
+/* === CREDENTIALS === */
+.creds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem}
+.cred-item{padding:1.75rem;border:1px solid var(--border);text-align:center;transition:all .3s}
+.cred-item:hover{border-color:var(--accent);transform:translateY(-3px)}
+.cred-icon{font-size:1.8rem;margin-bottom:.75rem}
+.cred-name{font-family:var(--heading);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:.3rem}
+.cred-issuer{font-size:.78rem;color:var(--text-muted)}
+
+/* === TOOLS STRIP === */
+.tools-strip{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;align-items:center}
+.tool-pill{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;border:1px solid var(--border);color:var(--text-secondary);transition:all .3s}
+.tool-pill:hover{border-color:var(--accent);color:var(--accent)}
+
+/* === RESULTS STRIP === */
+.results-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.result-card{padding:2rem;border-left:4px solid var(--accent);background:var(--bg)}
+.result-card .result-metric{font-family:var(--heading);font-size:2rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.4rem}
+.result-card .result-label{font-family:var(--heading);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:.6rem}
+.result-card .result-context{font-size:.82rem;color:var(--text-muted);line-height:1.6}
+
+/* === SERVICE AREAS === */
+.city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+.city-tile{padding:1.5rem;border:1px solid var(--border);background:var(--bg);display:block;transition:all .3s;color:var(--tertiary);text-decoration:none}
+.city-tile:hover{border-color:var(--accent);transform:translateY(-3px)}
+.city-icon{font-size:1.5rem;margin-bottom:.5rem}
+.city-name{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+
+.team-bio-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.55rem 1.1rem;background:transparent;border:1.5px solid var(--accent);color:var(--accent);font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s}
+.team-bio-btn:hover{background:var(--accent);color:#fff}
+.cred-item{cursor:pointer}
+.abt-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.abt-modal-overlay.open{opacity:1;pointer-events:all}
+.abt-modal{background:#fff;max-width:680px;width:100%;max-height:88vh;overflow-y:auto}
+.abt-modal .modal-close-bar{display:flex;justify-content:flex-end;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.abt-modal .modal-close-bar button{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-secondary);padding:.25rem .5rem}
+.abt-modal .modal-header{padding:2.5rem;background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));color:#fff}
+.abt-modal .mh-icon{font-size:2.5rem;margin-bottom:.75rem}
+.abt-modal .mh-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:.4rem}
+.abt-modal h2{font-family:var(--heading);font-size:1.5rem;font-weight:800;margin-bottom:.25rem}
+.abt-modal .abt-role{font-size:.8rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.abt-modal .modal-content{padding:2rem 2.5rem}
+.abt-modal .abt-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.abt-modal .abt-tag{font-family:var(--heading);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .65rem;background:var(--bg-ice);color:var(--text-muted);border:1px solid var(--border)}
+.abt-modal .mc-section{margin-bottom:1.5rem}
+.abt-modal .mc-section h3{font-family:var(--heading);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.2rem;margin-bottom:.9rem}
+.abt-modal .mc-section p{font-size:.9rem;color:var(--text-secondary);line-height:1.75;margin-bottom:.75rem}
+.abt-modal .mc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.abt-modal .mc-list li{padding-left:1.25rem;position:relative;font-size:.88rem;color:var(--text-secondary);line-height:1.6}
+.abt-modal .mc-list li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+.abt-modal .mc-cta{background:var(--bg-dark);padding:1.5rem;text-align:center;margin-top:1rem}
+.abt-modal .mc-cta h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.abt-modal .mc-cta p{font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem}
+/* === RESPONSIVE === */
+@media(max-width:960px){
+  .creds-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .about-intro{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .stats-strip{grid-template-columns:1fr 1fr}
+  .stat-box{border-bottom:1px solid var(--border)}
+  .why-grid{grid-template-columns:1fr}
+  .results-strip{grid-template-columns:1fr}
+  .creds-grid{grid-template-columns:1fr 1fr}
+  .city-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/about.html">
+  <meta property="og:title" content="About Web Palm Beaches — AI Consulting in Palm Beach County">
+  <meta property="og:description" content="Meet Web Palm Beaches — 20+ years of web expertise, now AI-first. AI consulting, web design, and automation for South Florida businesses.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html" class="active">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>About</span></div>
+    <h1 class="reveal stagger-1">Built in South Florida.<br><em>Built for South Florida.</em></h1>
+    <p class="reveal stagger-2">Web Palm Beaches was founded on a straightforward belief: local businesses deserve the same transformative AI technology that Fortune 500 companies use to pull ahead — without the enterprise price tag or the big-agency runaround.</p>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section>
+  <div class="container">
+    <div class="about-intro">
+      <div class="reveal-left">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">20 Years of Web.<br>Now AI-First.</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem">Web Palm Beaches grew out of two decades of hands-on work building websites, running digital marketing campaigns, and solving real technology problems for businesses across Palm Beach County. We watched the digital landscape shift from static HTML pages to complex CMS platforms — and now to a world where artificial intelligence can fundamentally change how a business operates.</p>
+        <p style="color:var(--text-secondary);font-size:.95rem;line-height:1.8;margin-bottom:1.5rem">In 2022, something changed. The AI tools we had been quietly experimenting with started producing results that were impossible to ignore — chatbots that handled genuine customer conversations, automation pipelines that eliminated dozens of hours of manual work per week, analytics that revealed patterns no human analyst had caught. We had a decision to make: offer AI as one more line item on a proposal, or rebuild the practice around it entirely.</p>
+        <p style="color:var(--text-secondary);font-size:.95rem;line-height:1.8">We chose the latter. Today, every engagement we take on is designed from the ground up around AI-powered workflows, intelligent agents, and measurable automation — layered on top of the web and SEO expertise we've spent 20 years refining. That combination is what our competitors can't replicate.</p>
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--bg-ice);border-left:4px solid var(--accent)">
+          <p style="font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--tertiary);font-style:italic;line-height:1.6">"Our clients don't need a technology vendor. They need a partner who understands their business deeply enough to know which problems AI actually solves — and which ones it doesn't."</p>
+          <p style="font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:.75rem">— Founder, Web Palm Beaches</p>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="about-intro-visual">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80" alt="Web Palm Beaches team collaborating" style="display:block;width:100%">
+          <div class="exp-badge">
+            <strong>20+</strong>
+            <span>Years of Expertise</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="bg-alt" style="padding:3rem 0">
+  <div class="container">
+    <div class="stats-strip reveal">
+      <div class="stat-box">
+        <span class="stat-num"><span data-target="20">20</span><span class="stat-sup">+</span></span>
+        <span class="stat-label">Years in Business</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num"><span data-target="120">120</span><span class="stat-sup">+</span></span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num"><span data-target="98">98</span><span class="stat-sup">%</span></span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num"><span data-target="14">14</span></span>
+        <span class="stat-label">Day Avg. First Milestone</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Company Timeline -->
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start">
+      <div class="reveal-left">
+        <div class="section-label">How We Got Here</div>
+        <h2 class="section-title">A Company That Evolves With Technology</h2>
+        <p class="section-desc">We've never stood still. Every major shift in digital technology, we've been early — studying it, testing it, and figuring out how it creates real value for real businesses before it hits mainstream.</p>
+      </div>
+      <div class="timeline reveal-right">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2004</div>
+          <h4>Founded in Palm Beach County</h4>
+          <p>Started as a boutique web design firm serving local businesses who needed a professional online presence. Hand-coded HTML, early CSS, and a commitment to actually picking up the phone.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2010</div>
+          <h4>Full-Service Digital Agency</h4>
+          <p>Expanded into SEO, paid search, and digital strategy as Palm Beach County businesses needed more than a website — they needed traffic, leads, and a return on their investment.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2018</div>
+          <h4>Marketing Automation & CRM Integration</h4>
+          <p>Began building automated marketing funnels and CRM integrations for clients — our first real taste of what removing human bottlenecks from a business process could unlock.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2022</div>
+          <h4>Pivoted to AI-First Practice</h4>
+          <p>After quietly piloting AI tools with select clients and seeing measurable results, we made the strategic decision to rebuild our entire service offering around AI and intelligent automation.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Today</div>
+          <h4>Palm Beach County's Premier AI Consultancy</h4>
+          <p>Delivering custom AI agents, workflow automation, AI-powered web builds, and full digital strategy to businesses across South Florida — from solo operators to multi-location enterprises.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Values -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Stand For</div>
+      <h2 class="section-title reveal stagger-1">Our Mission & Values</h2>
+      <p class="section-desc reveal stagger-2">We're not here to sell technology for technology's sake. We're here to make your business more efficient, more competitive, and more profitable — using the best tools available right now.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal stagger-1">
+        <div class="v-icon">&#127919;</div>
+        <h3>Results Over Hype</h3>
+        <p>We don't implement AI because it's trendy. Every recommendation is tied to a specific business outcome and a measurable return. If we can't show you a clear path to ROI, we'll tell you.</p>
+      </div>
+      <div class="value-card reveal stagger-2">
+        <div class="v-icon">&#129309;</div>
+        <h3>Partnership, Not Vendor</h3>
+        <p>We become an extension of your team — transparent communication, honest advice even when that advice is "you don't need this," and strategies built for the long term.</p>
+      </div>
+      <div class="value-card reveal stagger-3">
+        <div class="v-icon">&#127970;</div>
+        <h3>Local Roots</h3>
+        <p>We live and work in Palm Beach County. We understand this market, these industries, and what South Florida businesses actually need — not what a national playbook says they need.</p>
+      </div>
+      <div class="value-card reveal stagger-1">
+        <div class="v-icon">&#128161;</div>
+        <h3>Clarity Over Jargon</h3>
+        <p>AI can be intimidating. We make it accessible. We explain what we're building, why, and exactly what it will do for your business — in plain English, every time.</p>
+      </div>
+      <div class="value-card reveal stagger-2">
+        <div class="v-icon">&#9889;</div>
+        <h3>Speed to Value</h3>
+        <p>Our average first deliverable is 14 days from kickoff. We'd rather ship something working and iterate than spend months in a planning vacuum while your competitors move forward.</p>
+      </div>
+      <div class="value-card reveal stagger-3">
+        <div class="v-icon">&#128200;</div>
+        <h3>Continuous Improvement</h3>
+        <p>Launch is the beginning. We monitor, measure, and refine everything we build. AI systems improve with data — and your investment should compound over time, not depreciate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The People</div>
+      <h2 class="section-title reveal stagger-1">Experts You'll Actually Work With</h2>
+      <p class="section-desc reveal stagger-2">No account managers between you and the work. You talk directly to the people designing and building your solution — faster decisions, zero phone tag.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card reveal stagger-1">
+        <div class="team-photo">
+          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-accent"></div>
+        </div>
+        <div class="team-info">
+          <h3>Gregg Maynard</h3>
+          <div class="team-role">Founder & AI Strategy Lead</div>
+          <p class="team-bio">The person who made the call to go AI-first — and who has spent 20+ years earning the right to make that call. Brings deep knowledge of how South Florida businesses actually operate, what slows them down, and where intelligent automation creates the highest return. Gregg runs every strategy engagement personally and won't hand you off to a junior consultant.</p>
+          <p class="team-bio" style="margin-top:.5rem">Started building websites in the early 2000s, built a full-service agency over two decades, and made the deliberate pivot to AI when the results became too compelling to ignore. Has worked across real estate, healthcare, professional services, hospitality, and retail — industries that make up the backbone of Palm Beach County's economy.</p>
+          <div class="team-tags">
+            <span class="team-tag">AI Strategy</span>
+            <span class="team-tag">Business Automation</span>
+            <span class="team-tag">Local SEO</span>
+            <span class="team-tag">CRM Integration</span>
+            <span class="team-tag">20+ Yrs Web</span>
+          </div>
+          <button class="team-bio-btn" onclick="openAbtModal('abt-gregg')">View Full Bio →</button>
+        </div>
+      </div>
+
+      <div class="team-card reveal stagger-2">
+        <div class="team-photo">
+          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-accent"></div>
+        </div>
+        <div class="team-info">
+          <h3>Ryan Westerman</h3>
+          <div class="team-role">Lead AI Engineer</div>
+          <p class="team-bio">The architect behind every custom AI agent and automation workflow we deliver. Fluent in LLM APIs, prompt engineering, n8n, Make, Zapier, and custom Python pipelines — whatever the job calls for. Has a specific talent for taking a vague client problem and turning it into a clean, maintainable system that actually holds up in production.</p>
+          <p class="team-bio" style="margin-top:.5rem">Background in full-stack web development before the AI era, which means every automation is built with web integration in mind from day one — no bolt-on solutions, no duct tape. Specializes in AI agents that handle real customer interactions without losing the human feel.</p>
+          <div class="team-tags">
+            <span class="team-tag">AI Agents</span>
+            <span class="team-tag">n8n / Make</span>
+            <span class="team-tag">Python</span>
+            <span class="team-tag">OpenAI / Claude APIs</span>
+            <span class="team-tag">Workflow Design</span>
+          </div>
+          <button class="team-bio-btn" onclick="openAbtModal('abt-ryan')">View Full Bio →</button>
+        </div>
+      </div>
+
+      <div class="team-card reveal stagger-3">
+        <div class="team-photo">
+          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-accent"></div>
+        </div>
+        <div class="team-info">
+          <h3>Tim McCoy</h3>
+          <div class="team-role">Web Design & SEO Director</div>
+          <p class="team-bio">Responsible for every pixel and every keyword. Builds websites that are fast, conversion-optimized, and structured to rank — then layers in AI-powered content strategies that compound over time. Has a strong bias against bloated page builders; prefers clean, hand-crafted code that loads in under 2 seconds and earns Google's trust.</p>
+          <p class="team-bio" style="margin-top:.5rem">Deep specialization in local SEO for Palm Beach County markets — knows exactly what it takes to rank for high-intent searches in West Palm Beach, Boca Raton, Delray, and Jupiter. Manages ongoing SEO retainers and content programs that have helped clients dominate local search results in competitive industries.</p>
+          <div class="team-tags">
+            <span class="team-tag">Local SEO</span>
+            <span class="team-tag">Web Design</span>
+            <span class="team-tag">AI Content</span>
+            <span class="team-tag">Core Web Vitals</span>
+            <span class="team-tag">Conversion Rate</span>
+          </div>
+          <button class="team-bio-btn" onclick="openAbtModal('abt-tim')">View Full Bio →</button>
+        </div>
+      </div>
+
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:2.5rem;font-size:.9rem;color:var(--text-muted)">Want to meet us before you commit to anything? <a href="contact.html" style="color:var(--accent);font-weight:700">Book a free 30-minute call</a> — no pitch, just a conversation about your business.</p>
+  </div>
+</section>
+
+<!-- Credentials & Tools -->
+<section class="bg-alt">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start">
+      <div class="reveal-left">
+        <div class="section-label">Credentials & Capabilities</div>
+        <h2 class="section-title">Certified. Current. Built for What's Next.</h2>
+        <p class="section-desc" style="margin-bottom:2rem">We stay current because AI moves fast. Our team holds active certifications in the platforms we deploy, and we're constantly evaluating new tools to ensure our clients are using the best option for their specific situation — not whatever we learned last year.</p>
+
+        <div class="section-label" style="margin-bottom:1rem">Platforms & Tools We Deploy</div>
+        <div class="tools-strip">
+          <span class="tool-pill">OpenAI GPT-4o</span>
+          <span class="tool-pill">Anthropic Claude</span>
+          <span class="tool-pill">n8n</span>
+          <span class="tool-pill">Make (Integromat)</span>
+          <span class="tool-pill">Zapier</span>
+          <span class="tool-pill">HubSpot CRM</span>
+          <span class="tool-pill">GoHighLevel</span>
+          <span class="tool-pill">Airtable</span>
+          <span class="tool-pill">Google Analytics 4</span>
+          <span class="tool-pill">Semrush</span>
+          <span class="tool-pill">Webflow</span>
+          <span class="tool-pill">Twilio</span>
+          <span class="tool-pill">Stripe</span>
+          <span class="tool-pill">Slack API</span>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="creds-grid">
+          <div class="cred-item" onclick="openAbtModal('cred-ga')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Google Analytics</div>
+            <div class="cred-issuer">Google Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-gads')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Google Ads</div>
+            <div class="cred-issuer">Google Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-hubspot')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">HubSpot CRM</div>
+            <div class="cred-issuer">HubSpot Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-n8n')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">AI Automation</div>
+            <div class="cred-issuer">n8n Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-meta')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Meta Blueprint</div>
+            <div class="cred-issuer">Meta Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-semrush')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Semrush SEO</div>
+            <div class="cred-issuer">Semrush Certified</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-prompt')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Prompt Engineering</div>
+            <div class="cred-issuer">DeepLearning.AI</div>
+          </div>
+          <div class="cred-item" onclick="openAbtModal('cred-aws')">
+            <div class="cred-icon">&#127881;</div>
+            <div class="cred-name">Cloud Architecture</div>
+            <div class="cred-issuer">AWS Fundamentals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start">
+      <div class="reveal-left">
+        <div class="section-label">Why We're Different</div>
+        <h2 class="section-title">Business sense first. AI expertise second.</h2>
+        <p class="section-desc">Most AI firms are engineers who learned to talk business. We're business people who learned to build with AI. That difference shows in the quality of what we recommend, the speed at which it delivers value, and how often it actually gets used.</p>
+      </div>
+      <div class="why-grid reveal-right">
+        <div class="why-item">
+          <div class="why-icon">&#128205;</div>
+          <div>
+            <h4>Deep Local Knowledge</h4>
+            <p>We're not a national agency with a Palm Beach County office. This is home. We know the industries, the competitive landscape, and the buyers in this market.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128736;</div>
+          <div>
+            <h4>One Team, Full Stack</h4>
+            <p>Strategy, AI development, web design, and SEO — under one roof, one project manager, one monthly invoice. No hand-offs, no gaps between specialists.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128203;</div>
+          <div>
+            <h4>No Lock-In Contracts</h4>
+            <p>We earn your business every single month. Our clients stay because the work keeps delivering — not because a contract has them cornered.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128241;</div>
+          <div>
+            <h4>Direct Expert Access</h4>
+            <p>You have the cell number of the person building your solution. Questions get answered in hours, not tickets. Decisions happen in real time.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128202;</div>
+          <div>
+            <h4>Transparent Reporting</h4>
+            <p>Every engagement comes with clear dashboards and plain-English reporting. You always know exactly what was done, what it cost, and what it produced.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#9878;&#65039;</div>
+          <div>
+            <h4>Right-Sized for SMBs</h4>
+            <p>We build enterprise-grade AI systems but price and scope them for small and mid-size businesses. No six-figure minimums. No year-long timelines.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Client Results -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Proof It Works</div>
+      <h2 class="section-title reveal stagger-1">Recent Results for South Florida Clients</h2>
+      <p class="section-desc reveal stagger-2">Numbers from real engagements. Details are anonymized by client request — full case studies available on request or in our <a href="case-studies.html" style="color:var(--accent);font-weight:700">Case Studies section</a>.</p>
+    </div>
+    <div class="results-strip reveal stagger-1">
+      <div class="result-card">
+        <div class="result-metric">38%</div>
+        <div class="result-label">Conversion Rate Lift</div>
+        <div class="result-context">West Palm Beach real estate brokerage. AI lead-qualification agent added to existing website in 21 days. Same traffic, dramatically higher close rate.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-metric">15 hrs</div>
+        <div class="result-label">Per Week Saved</div>
+        <div class="result-context">Delray Beach restaurant group. Automated reservation confirmations, supplier ordering reminders, and review response workflows eliminated manual admin entirely.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-metric">2×</div>
+        <div class="result-label">Organic Traffic Growth</div>
+        <div class="result-context">Jupiter health &amp; wellness practice. AI-assisted content strategy and technical SEO overhaul delivered a full traffic double in under 6 months.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-metric">22%</div>
+        <div class="result-label">Revenue Increase</div>
+        <div class="result-context">Wellington professional services firm. CRM automation + AI-powered follow-up sequences recovered lost leads and shortened the sales cycle by 40%.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-metric">$0</div>
+        <div class="result-label">Missed After-Hours Leads</div>
+        <div class="result-context">Boca Raton law firm. 24/7 AI intake agent handles initial consultations, collects case details, and books callbacks — zero leads fall through overnight.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-metric">14 days</div>
+        <div class="result-label">Average First Delivery</div>
+        <div class="result-context">Our median time from signed agreement to first working deliverable. We don't charge you to plan for six weeks before showing you anything.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Areas -->
+<section>
+  <div class="container">
+    <div class="section-center" style="margin-bottom:2.5rem">
+      <div class="section-label reveal">Where We Work</div>
+      <h2 class="section-title reveal stagger-1">Proudly Serving Palm Beach County & Beyond</h2>
+      <p class="section-desc reveal stagger-2">Headquartered in Palm Beach County. All services available fully remote. Local clients always welcome to meet in person.</p>
+    </div>
+    <div class="city-grid reveal stagger-3">
+      <a href="ai-consulting-west-palm-beach.html" class="city-tile">
+        <div class="city-icon">&#127796;</div>
+        <div class="city-name">West Palm Beach</div>
+      </a>
+      <a href="ai-consulting-boca-raton.html" class="city-tile">
+        <div class="city-icon">&#127965;</div>
+        <div class="city-name">Boca Raton</div>
+      </a>
+      <a href="ai-consulting-delray-beach.html" class="city-tile">
+        <div class="city-icon">&#9728;&#65039;</div>
+        <div class="city-name">Delray Beach</div>
+      </a>
+      <a href="ai-consulting-jupiter.html" class="city-tile">
+        <div class="city-icon">&#127754;</div>
+        <div class="city-name">Jupiter</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-alt" style="padding:5rem 0">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto">
+      <div class="section-center" style="margin-bottom:3rem">
+        <div class="section-label reveal">FAQ</div>
+        <h2 class="section-title reveal stagger-1">Common Questions About Working With Us</h2>
+        <p class="section-desc reveal stagger-2">Answers to what most clients want to know before they book their first call.</p>
+      </div>
+      <div class="reveal stagger-2">
+        <div class="accordion-item">
+          <div class="accordion-header">Where is Web Palm Beaches based?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We're based in Palm Beach County, Florida, and serve businesses throughout South Florida — West Palm Beach, Boca Raton, Delray Beach, Jupiter, and the surrounding communities. We also work with clients remotely across Florida and nationally for the right projects.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">How long has the company been in business?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We have over 20 years of combined experience in web development and digital marketing. Web Palm Beaches in its current AI-focused form has been operating in Palm Beach County for several years, and we have been building AI and automation systems for local businesses since the technology became mature enough to deliver real ROI.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">What industries do you specialize in?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We work across many industries but have deep specialization in law firms, medical and dental practices, real estate, restaurants, and home service contractors in South Florida. Each of these industries has specific compliance considerations, workflow patterns, and customer communication needs that we've built dedicated experience and templates around.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Do you work with startups or only established businesses?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Both. For startups, we help build the digital infrastructure from the ground up — website, AI chatbot, lead capture, and CRM — so you launch with a competitive presence. For established businesses, we layer AI and automation on top of what's already working to eliminate bottlenecks and accelerate growth. The approach differs, but the commitment to ROI is the same.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">What does a typical engagement look like?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>We start with a free 30-minute strategy call to understand your business, goals, and challenges. From there, we conduct an operational audit (typically 1 week), deliver a prioritized roadmap, and begin building once you approve the scope. Most projects launch a working first milestone within 2–4 weeks of kickoff. We stay involved after launch for support, optimization, and growth.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Can I see examples of your previous work?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Yes — our <a href="case-studies.html" style="color:var(--accent)">case studies page</a> has detailed breakdowns of client projects including the challenge, our approach, the technology we used, and the measurable results. We're proud of the outcomes our clients achieve and happy to share specific examples relevant to your industry on a strategy call.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.6)">Work With Us</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:600px;margin:0 auto .75rem">Ready to meet the team and explore what's possible?</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free 30-minute strategy call. We'll learn your business, pinpoint your biggest AI opportunities, and show you exactly what we'd build — no charge, no obligation.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="case-studies.html" class="btn-secondary light">See Our Case Studies</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">Or call us directly: 561-291-9001</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ABOUT MODALS -->
+<div class="abt-modal-overlay" id="abt-gregg">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('abt-gregg')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128100;</div>
+      <div class="mh-label">Founder &amp; AI Strategy Lead</div>
+      <h2>Gregg Maynard</h2>
+      <div class="abt-role">Founder &amp; AI Strategy Lead</div>
+    </div>
+    <div class="modal-content">
+      <div class="abt-tags">
+        <span class="abt-tag">AI Strategy</span>
+        <span class="abt-tag">Business Automation</span>
+        <span class="abt-tag">Local SEO</span>
+        <span class="abt-tag">CRM Integration</span>
+        <span class="abt-tag">20+ Yrs Web</span>
+      </div>
+      <div class="mc-section">
+        <h3>Background</h3>
+        <p>The person who made the call to go AI-first — and who has spent 20+ years earning the right to make that call. Gregg brings deep knowledge of how South Florida businesses actually operate, what slows them down, and where intelligent automation creates the highest return.</p>
+        <p>Started building websites in the early 2000s, built a full-service agency over two decades, and made the deliberate pivot to AI when the results became too compelling to ignore. Has worked across real estate, healthcare, professional services, hospitality, and retail — industries that make up the backbone of Palm Beach County's economy.</p>
+      </div>
+      <div class="mc-section">
+        <h3>What Gregg Brings to Every Engagement</h3>
+        <ul class="mc-list">
+          <li>Runs every strategy engagement personally — you're never handed off to a junior consultant</li>
+          <li>Translates complex AI capabilities into plain-English business decisions owners can act on</li>
+          <li>Deep familiarity with Palm Beach County industries, competitive dynamics, and buyer behavior</li>
+          <li>20+ years of pattern recognition across hundreds of local business challenges</li>
+          <li>Built the AI-first practice from the ground up — knows every tool, limitation, and opportunity firsthand</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Talk to Gregg Directly</h3>
+        <p>Book a free 30-minute strategy call — no pitch, just a conversation about your business and what AI could do for it.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="abt-ryan">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('abt-ryan')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128736;</div>
+      <div class="mh-label">Lead AI Engineer</div>
+      <h2>Ryan Westerman</h2>
+      <div class="abt-role">Lead AI Engineer</div>
+    </div>
+    <div class="modal-content">
+      <div class="abt-tags">
+        <span class="abt-tag">AI Agents</span>
+        <span class="abt-tag">n8n / Make</span>
+        <span class="abt-tag">Python</span>
+        <span class="abt-tag">OpenAI / Claude APIs</span>
+        <span class="abt-tag">Workflow Design</span>
+      </div>
+      <div class="mc-section">
+        <h3>Background</h3>
+        <p>The architect behind every custom AI agent and automation workflow Web Palm Beaches delivers. Fluent in LLM APIs, prompt engineering, n8n, Make, Zapier, and custom Python pipelines — whatever the job calls for.</p>
+        <p>Background in full-stack web development before the AI era, which means every automation is built with web integration in mind from day one — no bolt-on solutions, no duct tape. Specializes in AI agents that handle real customer interactions without losing the human feel.</p>
+      </div>
+      <div class="mc-section">
+        <h3>Technical Capabilities</h3>
+        <ul class="mc-list">
+          <li>Custom AI agent development using OpenAI, Anthropic Claude, and open-source LLMs</li>
+          <li>Automation workflow design and implementation on n8n, Make, and Zapier</li>
+          <li>Python pipelines for data processing, scheduled tasks, and API integrations</li>
+          <li>Full-stack web integration — every system connects cleanly to your existing site and tools</li>
+          <li>Prompt engineering and model fine-tuning for brand-specific behavior</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Have a Complex Technical Problem?</h3>
+        <p>Book a strategy call and we'll put Ryan on the problem — he'll tell you exactly what's buildable and how long it takes.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="abt-tim">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('abt-tim')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127760;</div>
+      <div class="mh-label">Web Design &amp; SEO Director</div>
+      <h2>Tim McCoy</h2>
+      <div class="abt-role">Web Design &amp; SEO Director</div>
+    </div>
+    <div class="modal-content">
+      <div class="abt-tags">
+        <span class="abt-tag">Local SEO</span>
+        <span class="abt-tag">Web Design</span>
+        <span class="abt-tag">AI Content</span>
+        <span class="abt-tag">Core Web Vitals</span>
+        <span class="abt-tag">Conversion Rate</span>
+      </div>
+      <div class="mc-section">
+        <h3>Background</h3>
+        <p>Responsible for every pixel and every keyword. Builds websites that are fast, conversion-optimized, and structured to rank — then layers in AI-powered content strategies that compound over time.</p>
+        <p>Deep specialization in local SEO for Palm Beach County markets — knows exactly what it takes to rank for high-intent searches in West Palm Beach, Boca Raton, Delray Beach, and Jupiter. Manages ongoing SEO retainers and content programs that have helped clients dominate local search results in competitive industries.</p>
+      </div>
+      <div class="mc-section">
+        <h3>What Tim Delivers</h3>
+        <ul class="mc-list">
+          <li>Hand-crafted websites that load under 2 seconds and pass Core Web Vitals — no bloated page builders</li>
+          <li>On-page and technical SEO built in from day one, not added as an afterthought</li>
+          <li>AI-assisted content pipelines that keep the blog, GMB, and social feeds active consistently</li>
+          <li>Conversion rate optimization — layouts and CTAs engineered to turn visitors into leads</li>
+          <li>Local SEO dominance in Palm Beach County's most competitive keyword categories</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Want a Site That Ranks and Converts?</h3>
+        <p>Tim personally reviews every new project. Book a call and he'll audit your current site live.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-ga">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-ga')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">Google Certified</div>
+      <h2>Google Analytics 4</h2>
+      <div class="abt-role">Measurement &amp; Conversion Tracking</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>GA4 certification means we configure your analytics correctly from the start — tracking the events, conversions, and user journeys that actually matter for your business, not just pageviews.</p>
+        <ul class="mc-list">
+          <li>Custom event tracking for form submissions, phone clicks, bookings, and purchases</li>
+          <li>Conversion funnels that show exactly where visitors drop off before contacting you</li>
+          <li>Audience segments used to power smarter ad targeting and remarketing</li>
+          <li>Integration with Google Ads for closed-loop attribution — you know which campaigns drive real revenue</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Know Exactly What Your Website Is Doing</h3>
+        <p>We'll audit your current analytics setup and show you what you're missing in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-gads">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-gads')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">Google Certified</div>
+      <h2>Google Ads</h2>
+      <div class="abt-role">Search, Display &amp; Performance Max</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>Google Ads certification means your campaigns are built and managed by someone who understands match types, Quality Scores, bidding strategies, and conversion optimization — not just how to spend your budget.</p>
+        <ul class="mc-list">
+          <li>Search campaigns targeting high-intent local keywords in Palm Beach County</li>
+          <li>Smart bidding strategies optimized for actual leads, not just clicks</li>
+          <li>Negative keyword management that eliminates wasted spend from day one</li>
+          <li>Landing page alignment — your ads and pages say the same thing, which Google rewards with lower CPCs</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Get More Leads From Your Ad Budget</h3>
+        <p>We'll audit your current campaigns for free and show you exactly what's wasting money.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-hubspot">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-hubspot')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">HubSpot Certified</div>
+      <h2>HubSpot CRM</h2>
+      <div class="abt-role">CRM Setup, Automation &amp; Reporting</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>HubSpot certification means we can configure, integrate, and automate your CRM so it actually captures every lead, follows up automatically, and gives your team the visibility they need to close more business.</p>
+        <ul class="mc-list">
+          <li>Pipeline setup aligned to your actual sales process — not HubSpot's default template</li>
+          <li>Website and form integration so every lead flows in automatically, no manual entry</li>
+          <li>Automated follow-up sequences triggered by lead behavior and deal stage</li>
+          <li>Reporting dashboards that show pipeline value, conversion rates, and team activity</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Make Your CRM Work for You</h3>
+        <p>We'll show you how to turn HubSpot into a revenue engine — in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-n8n">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-n8n')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">n8n Certified</div>
+      <h2>AI Automation</h2>
+      <div class="abt-role">Workflow Automation &amp; AI Agent Orchestration</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>n8n certification represents advanced expertise in building complex, multi-step automation workflows that connect your tools, trigger on real business events, and incorporate AI decision-making at each step.</p>
+        <ul class="mc-list">
+          <li>Multi-system workflows connecting your CRM, website, email, calendar, and AI tools</li>
+          <li>AI-powered decision nodes that route, classify, and respond based on content — not just triggers</li>
+          <li>Self-hosted deployments for businesses with data privacy or compliance requirements</li>
+          <li>Error handling and monitoring so automations run reliably without constant oversight</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Automate Your Most Repetitive Workflows</h3>
+        <p>We'll map your top 5 time-consuming processes and show you exactly what can be automated.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-meta">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-meta')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">Meta Certified</div>
+      <h2>Meta Blueprint</h2>
+      <div class="abt-role">Facebook &amp; Instagram Advertising</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>Meta Blueprint certification covers advanced campaign strategy, audience targeting, pixel implementation, and creative optimization across Facebook and Instagram — the platforms where most South Florida consumers discover local businesses.</p>
+        <ul class="mc-list">
+          <li>Precise local audience targeting by ZIP code, interest, and behavior for Palm Beach County markets</li>
+          <li>Pixel and Conversions API setup for accurate attribution even with iOS privacy changes</li>
+          <li>Retargeting campaigns that bring website visitors back when they're ready to buy</li>
+          <li>Creative testing frameworks that identify your best-performing ad formats systematically</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Reach More Local Customers on Social</h3>
+        <p>We'll audit your current Meta campaigns and show you exactly what's working and what isn't.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-semrush">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-semrush')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">Semrush Certified</div>
+      <h2>Semrush SEO</h2>
+      <div class="abt-role">Keyword Research, Technical SEO &amp; Competitive Analysis</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>Semrush certification means we use the industry's most powerful SEO platform to identify your highest-value keyword opportunities, audit your technical SEO, and monitor your competitive position — giving your business a data-driven edge in local search.</p>
+        <ul class="mc-list">
+          <li>Keyword gap analysis showing exactly which searches your competitors rank for that you don't</li>
+          <li>Technical SEO audits identifying crawl errors, speed issues, and ranking blockers</li>
+          <li>Backlink analysis and outreach strategy to build domain authority over time</li>
+          <li>Local SEO position tracking for Palm Beach County city and service-area keywords</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>See Where You Stand in Local Search</h3>
+        <p>We'll run a free SEO audit and show you your biggest ranking opportunities in Palm Beach County.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-prompt">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-prompt')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">DeepLearning.AI</div>
+      <h2>Prompt Engineering</h2>
+      <div class="abt-role">LLM Optimization &amp; AI Agent Design</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>Prompt engineering certification from DeepLearning.AI — the leading AI education platform co-founded by Andrew Ng — means our team understands how to get reliable, accurate, and on-brand outputs from large language models at a technical level.</p>
+        <ul class="mc-list">
+          <li>AI agents that stay on-brand and on-topic — no hallucinations, no off-script responses</li>
+          <li>Structured prompts that handle edge cases and ambiguous customer inputs gracefully</li>
+          <li>Chain-of-thought and retrieval-augmented generation techniques for complex knowledge tasks</li>
+          <li>Systematic testing frameworks that validate AI behavior before it goes live with your customers</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Build AI That Actually Works Reliably</h3>
+        <p>The difference between a frustrating chatbot and a useful one is in the engineering. Let us show you how we do it.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="abt-modal-overlay" id="cred-aws">
+  <div class="abt-modal">
+    <div class="modal-close-bar"><button onclick="closeAbtModal('cred-aws')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127881;</div>
+      <div class="mh-label">AWS Fundamentals</div>
+      <h2>Cloud Architecture</h2>
+      <div class="abt-role">Scalable Infrastructure &amp; Deployment</div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-section">
+        <h3>What This Means for Your Business</h3>
+        <p>AWS cloud architecture training means the systems we build are deployed on infrastructure that scales, stays online, and keeps your data secure — not on fragile shared hosting that breaks under load.</p>
+        <ul class="mc-list">
+          <li>AI agents and automation workflows hosted on reliable, redundant cloud infrastructure</li>
+          <li>Auto-scaling so your systems handle traffic spikes without performance degradation</li>
+          <li>Proper security configuration — IAM roles, VPCs, and encrypted data at rest and in transit</li>
+          <li>Cost-optimized architecture — you pay for what you use, not a flat server fee regardless of load</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Build on Infrastructure That Won't Let You Down</h3>
+        <p>Every system we deploy is production-ready from day one. Book a call to discuss your infrastructure requirements.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openAbtModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeAbtModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.abt-modal-overlay').forEach(function(overlay){
+  overlay.addEventListener('click',function(e){
+    if(e.target===overlay) closeAbtModal(overlay.id);
+  });
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.abt-modal-overlay.open').forEach(function(o){
+      closeAbtModal(o.id);
+    });
+  }
+});
+</script>
+
+<script src="shared.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where is Web Palm Beaches based?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We're based in Palm Beach County, Florida, and serve businesses throughout South Florida — West Palm Beach, Boca Raton, Delray Beach, Jupiter, and surrounding communities. We also work with clients remotely across Florida and nationally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long has Web Palm Beaches been in business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We have over 20 years of combined experience in web development and digital marketing. Web Palm Beaches has been building AI and automation systems for local South Florida businesses since the technology became mature enough to deliver real ROI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries does Web Palm Beaches specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We have deep specialization in law firms, medical and dental practices, real estate, restaurants, and home service contractors in South Florida. Each industry has specific compliance considerations and workflow patterns we've built dedicated experience around."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a typical engagement with Web Palm Beaches look like?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We start with a free 30-minute strategy call, then conduct a 1-week operational audit and deliver a prioritized roadmap. Most projects launch a working first milestone within 2–4 weeks of kickoff. We stay involved after launch for support, optimization, and growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Web Palm Beaches work with startups or only established businesses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both. For startups, we build digital infrastructure from the ground up. For established businesses, we layer AI and automation on top of what's already working to eliminate bottlenecks and accelerate growth."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

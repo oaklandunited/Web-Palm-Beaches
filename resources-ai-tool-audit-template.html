@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Audit Template &amp; Compliance Checklist | WPB</title>
+<meta name="description" content="Evaluate security, privacy, and compliance of business AI tools. A highly structured auditing checklist for HIPAA, FDUTPA, and FIPA compliance.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.article-wrap{display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;padding-top:4rem}
+.article-body{min-width:0}
+.article-sidebar{position:sticky;top:100px}
+.article-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.article-category{font-family:var(--heading);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
+.article-header h1{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary);line-height:1.25;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.article-meta span{font-family:var(--heading);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.article-meta .sep{color:var(--border)}
+.article-hero{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;margin-bottom:2.5rem}
+.article-body p{font-size:.975rem;color:var(--text-secondary);line-height:1.85;margin-bottom:1.25rem}
+.article-body ul,.article-body ol{padding-left:1.5rem;margin-bottom:1.25rem}
+.article-body li{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:.4rem}
+.pillar-block{margin:2.5rem 0;border:1px solid var(--border);overflow:hidden}
+.pillar-header{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.75rem;background:var(--tertiary)}
+.pillar-num{width:44px;height:44px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1rem;font-weight:800;flex-shrink:0}
+.pillar-header h2{font-family:var(--heading);font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin:0}
+.pillar-body{padding:1.75rem}
+.pillar-body p{font-size:.925rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem}
+.pillar-body h3{font-family:var(--heading);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin:1.25rem 0 .5rem}
+.checklist{list-style:none;padding:0;margin:.75rem 0}
+.checklist li{font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;padding-left:1.5rem;position:relative;line-height:1.5}
+.checklist li::before{content: '☐';position:absolute;left:0;color:var(--accent);font-size:.9rem}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin:1.5rem 0}
+.stat-cell{padding:1.25rem;text-align:center;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-cell .sc-num{font-family:var(--heading);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-cell .sc-label{font-size:.75rem;color:var(--text-muted);margin-top:.25rem;line-height:1.4}
+.timeline-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+.timeline-table th{font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.85rem 1.1rem;text-align:left;background:var(--tertiary);color:#fff;border-right:1px solid rgba(255,255,255,.1)}
+.timeline-table th:last-child{border-right:none}
+.timeline-table td{padding:.85rem 1.1rem;border:1px solid var(--border);font-size:.875rem;color:var(--text-secondary);vertical-align:top;line-height:1.5}
+.timeline-table tr:nth-child(even) td{background:var(--bg-ice)}
+.timeline-table td:first-child{font-family:var(--heading);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);white-space:nowrap}
+.action-plan{background:var(--bg-ice);border:1px solid var(--border);padding:2rem;margin:2.5rem 0}
+.action-plan h3{font-family:var(--heading);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:1.25rem}
+.action-plan ol{padding-left:1.5rem;margin:0}
+.action-plan li{font-size:.925rem;color:var(--text-secondary);line-height:1.7;margin-bottom:.6rem;font-weight:500}
+.article-cta{background:var(--tertiary);padding:2.5rem;margin:3rem 0;text-align:center}
+.article-cta h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:.5rem}
+.article-cta p{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:1.25rem}
+.article-cta a{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.author-box{border:1px solid var(--border);padding:1.75rem;display:flex;gap:1.25rem;align-items:start;margin-top:3rem}
+.author-avatar{width:56px;height:56px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.author-name{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.2rem}
+.author-title{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.author-bio{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+.sidebar-card{border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;background:var(--bg)}
+.sidebar-card h4{font-family:var(--heading);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:1rem}
+.sidebar-link{display:block;font-size:.85rem;color:var(--text-secondary);padding:.5rem 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color .2s;line-height:1.4}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--accent)}
+.sidebar-cta{background:var(--tertiary);padding:1.75rem;text-align:center}
+.sidebar-cta h4{font-family:var(--heading);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin-bottom:.5rem}
+.sidebar-cta p{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.6}
+.sidebar-cta a{display:block;padding:.65rem 1rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+@media(max-width:960px){
+  .article-wrap{grid-template-columns:1fr}
+  .article-sidebar{position:static;margin-top:3rem}
+}
+</style>
+<link rel="canonical" href="https://webpalmbeaches.com/resources-ai-tool-audit-template.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webpalmbeaches.com/resources-ai-tool-audit-template.html">
+<meta property="og:title" content="AI Tool Audit Template &amp; Compliance Checklist | WPB">
+<meta property="og:description" content="A highly structured assessment checklist to audit AI tools for data privacy, HIPAA, and FDUTPA compliance in business workflows.">
+<meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div style="background:var(--bg-ice);padding:.6rem 0;border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="breadcrumb" style="margin:0"><a href="index.html">Home</a> / <a href="resources.html">Resources</a> / <span>AI Tool Audit Template</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+      <div class="article-header">
+        <span class="article-category">AI Strategy &amp; Governance</span>
+        <h1>AI Tool Audit Template &amp; Operations Checklist</h1>
+        <div class="article-meta">
+          <span>Web Palm Beaches</span>
+          <span class="sep">|</span>
+          <span>June 2026</span>
+          <span class="sep">|</span>
+          <span>8 min read</span>
+        </div>
+      </div>
+
+      <p>Before deploying any generative artificial intelligence system or chatbot into a commercial environment, you must audit the tool's data privacy settings, training policies, and compliance parameters. This checklist helps business owners and compliance teams assess the risk level of AI tools to prevent accidental breaches and regulatory penalties.</p>
+
+      <h2>AI Tool Risk Parameters Table</h2>
+      <p>Use this reference table to classify the risk level of your team's AI software and third-party API nodes:</p>
+
+      <table class="timeline-table">
+        <thead>
+          <tr>
+            <th>Audit Category</th>
+            <th>Low Risk Setting</th>
+            <th>Medium Risk Setting</th>
+            <th>High Risk Setting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data Training Policy</td>
+            <td>Zero model training (Data is isolated and deleted post-inference)</td>
+            <td>Data used to train internal private enterprise instances only</td>
+            <td>Data fed back to public models for training (Default consumer tiers)</td>
+          </tr>
+          <tr>
+            <td>Compliance (HIPAA)</td>
+            <td>Signed BAA available under developer enterprise APIs</td>
+            <td>HIPAA-compliant hosting nodes but no direct software BAA</td>
+            <td>No BAA available; PHI transmitted openly</td>
+          </tr>
+          <tr>
+            <td>FDUTPA Safeguards</td>
+            <td>Automatic watermarks and virtual staging disclosures</td>
+            <td>Manual review processes for all generated listing copy</td>
+            <td>AI outputs published directly with no review or disclosure rules</td>
+          </tr>
+          <tr>
+            <td>Access Control</td>
+            <td>Single Sign-On (SSO) with API request tokens and MFA</td>
+            <td>Shared logins with strong password requirements</td>
+            <td>Single shared login with no multi-factor authorization</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">1</div><h2>Data Security &amp; Model Privacy Checklist</h2></div>
+        <div class="pillar-body">
+          <p>Verify that your AI systems do not leak confidential customer conversations or proprietary database data back to public LLMs:</p>
+          <ul class="checklist">
+            <li>Review the software's privacy terms to ensure 'Opt-Out of Model Training' is active.</li>
+            <li>Verify that client names, phone numbers, and emails are hashed or stripped before API processing if possible.</li>
+            <li>If using OpenAI, Anthropic, or Google APIs, verify you are accessing developer API endpoints (which enforce zero training) rather than standard web chat interfaces.</li>
+            <li>Confirm all integrations are encrypted in transit via SSL/TLS and at rest using AES-256 protocols.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">2</div><h2>HIPAA compliance check (For Medical Clinics)</h2></div>
+        <div class="pillar-body">
+          <p>Required safeguards when transmitting Protected Health Information (PHI) through automated systems:</p>
+          <ul class="checklist">
+            <li>Ensure you have a fully executed Business Associate Agreement (BAA) with all AI and database providers.</li>
+            <li>Verify that chatbot conversation logs containing patient records are stored on HIPAA-compliant cloud servers.</li>
+            <li>Confirm access permissions are restricted only to authorized clinic operators via role-based credentials.</li>
+            <li>Implement automatic session logouts on any internal patient interface displaying AI intake summaries.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">3</div><h2>FDUTPA &amp; MLS disclosures check (For Real Estate)</h2></div>
+        <div class="pillar-body">
+          <p>Prevent false advertising claims when listing properties with AI-modified features:</p>
+          <ul class="checklist">
+            <li>Confirm all virtually staged or AI-generated property photos have a conspicuous watermark stating 'Virtually Staged' directly on the image file.</li>
+            <li>Ensure the property summary states clearly in the text description: 'Some photos in this listing have been virtually staged to show potential layouts.'</li>
+            <li>Verify that the AI system does not alter structural property features (e.g., removing fire hydrants, enlarging yards, removing adjacent telephone poles) in listing images.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-header"><div class="pillar-num">4</div><h2>Fair Housing &amp; Bias Audits</h2></div>
+        <div class="pillar-body">
+          <p>Ensure algorithmic routing and listing copy generators adhere to state and federal non-discrimination rules:</p>
+          <ul class="checklist">
+            <li>Confirm lead routing logic matches strictly by geographic region, agent capacity, or client budget, with no demographic filter tags.</li>
+            <li>Audit AI-generated property descriptions to ensure words like 'exclusive neighbourhood', 'ideal for families', or 'safe pocket' are replaced with objective, factual copy.</li>
+            <li>Schedule monthly routing reviews to verify equal lead distribution metrics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="action-plan">
+        <h3>AI Tool Audit Action Plan</h3>
+        <ol>
+          <li>Identify every AI system currently utilized by your employees (including ChatGPT, Claude, custom Zapier/Make automations).</li>
+          <li>Apply this checklist to each system to identify compliance gaps (missing BAAs, default public training configurations).</li>
+          <li>Reconfigure all high-risk systems to API-only nodes or compliant enterprise tiers.</li>
+          <li>Establish an AI governance policy document for your staff to restrict unsanctioned tool downloads.</li>
+        </ol>
+      </div>
+
+      <div class="article-cta">
+        <h3>Need Help Conducting an Enterprise AI Audit?</h3>
+        <p>Book a free 30-minute strategy call. We will help map your tools, detect compliance liabilities, and configure secure API tunnels.</p>
+        <a href="contact.html">Request an AI Audit Strategy Call</a>
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">&#9881;</div>
+        <div>
+          <div class="author-name">Web Palm Beaches AI Security Team</div>
+          <div class="author-title">AI Governance &amp; Compliance Engineers</div>
+          <p class="author-bio">We build, secure, and deploy custom HIPAA-compliant AI pipelines, private model endpoints, and FDUTPA compliance systems for South Florida brokerages and clinical practices.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-card">
+        <h4>Compliance Resources</h4>
+        <a href="blog-florida-ai-compliance-directory.html" class="sidebar-link">Florida AI Compliance Directory</a>
+        <a href="ai-readiness-checklist.html" class="sidebar-link">AI Readiness Checklist</a>
+        <a href="resources-local-seo-guide-south-florida.html" class="sidebar-link">South Florida Local SEO Guide</a>
+      </div>
+      <div class="sidebar-cta">
+        <h4>Book a Scoping Call</h4>
+        <p>Talk to our Palm Beach consultants to scope your custom database or AI automation workflows securely.</p>
+        <a href="contact.html">Book Call</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

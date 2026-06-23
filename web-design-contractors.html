@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design for Contractors | Lead Gen | WPB</title>
+<meta name="description" content="Custom website design for contractors in South Florida. Service area pages, Google Maps &amp; AI Search Optimization (SEO/GEO), AI lead capture, and before/after project galleries.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.reasons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.reason-card{padding:2.25rem;border:1px solid var(--border);background:var(--bg);position:relative;overflow:hidden;transition:all .3s}
+.reason-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.reason-card:hover::before{transform:scaleX(1)}
+.reason-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
+.reason-num{font-family:var(--heading);font-size:3rem;font-weight:800;color:var(--bg-ice);line-height:1;margin-bottom:.5rem}
+.reason-card h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.6rem}
+.reason-card p{font-size:.9rem;color:var(--text-secondary);line-height:1.75}
+
+.features-stack{display:flex;flex-direction:column;gap:0;margin-top:3rem}
+.feature-row{display:grid;grid-template-columns:64px 1fr;gap:2rem;align-items:start;padding:2rem 2.25rem;border:1px solid var(--border);border-bottom:none;background:var(--bg);transition:all .3s}
+.feature-row:last-child{border-bottom:1px solid var(--border)}
+.feature-row:hover{background:var(--bg-ice);border-color:var(--accent)}
+.feature-row:hover .feature-num{background:var(--accent);color:#fff}
+.feature-num{width:48px;height:48px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1.1rem;font-weight:800;color:var(--accent);transition:all .3s;flex-shrink:0}
+.feature-row h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.4rem}
+.feature-row p{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
+
+.roi-table{width:100%;border-collapse:collapse;margin-top:2.5rem}
+.roi-table th{font-family:var(--heading);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:1rem 1.25rem;text-align:left;background:var(--tertiary);color:#fff;border-right:1px solid rgba(255,255,255,.1)}
+.roi-table th:last-child{border-right:none}
+.roi-table td{padding:.9rem 1.25rem;border:1px solid var(--border);font-size:.88rem;color:var(--text-secondary);vertical-align:middle}
+.roi-table tr:nth-child(even) td{background:var(--bg-ice)}
+.roi-table tr.highlight td{background:rgba(205,97,85,.06);font-weight:700;color:var(--tertiary)}
+.roi-table tr.highlight td:first-child{color:var(--accent)}
+.roi-table td:first-child{font-weight:600;color:var(--tertiary)}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
+.tag{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .85rem;border:1px solid var(--border);color:var(--text-secondary);background:var(--bg);transition:all .25s}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-top:2.5rem}
+.pricing-tier{padding:2.5rem 2rem;border-right:1px solid var(--border);position:relative}
+.pricing-tier:last-child{border-right:none}
+.pricing-tier.featured{background:var(--tertiary);color:#fff}
+.pricing-tier.featured .tier-name{color:var(--accent)}
+.pricing-tier.featured .tier-price{color:#fff}
+.pricing-tier.featured .tier-best{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.15)}
+.pricing-tier.featured li{color:rgba(255,255,255,.75)}
+.tier-name{font-family:var(--heading);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.5rem}
+.tier-price{font-family:var(--heading);font-size:1.8rem;font-weight:800;color:var(--tertiary);line-height:1;margin-bottom:.3rem}
+.tier-best{font-size:.8rem;color:var(--text-muted);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.pricing-tier ul{list-style:none;padding:0;margin:0 0 1.5rem}
+.pricing-tier ul li{font-size:.85rem;color:var(--text-secondary);padding:.4rem 0;padding-left:1.25rem;position:relative}
+.pricing-tier ul li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.8rem}
+.tier-cta{display:block;text-align:center;padding:.75rem 1.5rem;font-family:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--accent);color:var(--accent);transition:all .3s;text-decoration:none}
+.tier-cta:hover,.pricing-tier.featured .tier-cta{background:var(--accent);color:#fff}
+
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--tertiary)}
+.faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--accent);transition:all .3s}
+.faq-item.open .faq-icon{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+.faq-answer{display:none;padding:0 0 1.25rem;font-size:.9rem;color:var(--text-secondary);line-height:1.75}
+.faq-item.open .faq-answer{display:block}
+
+@media(max-width:768px){
+  .reasons-grid{grid-template-columns:1fr}
+  .feature-row{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .pricing-tier{border-right:none;border-bottom:1px solid var(--border)}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/web-design-contractors.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/web-design-contractors.html">
+  <meta property="og:title" content="Web Design for Contractors | Lead Gen | WPB">
+  <meta property="og:description" content="Custom website design for contractors in South Florida. Service area pages, Google Maps &amp; AI Search Optimization (SEO/GEO), AI lead capture, and before/after project galleries.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "I already get leads from HomeAdvisor. Why do I need a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HomeAdvisor leads are shared with multiple contractors and cost $15-$80 each. Your own website generates exclusive leads that only come to you — and the cost per lead drops over time as your SEO &amp; GEO presence compounds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I start getting leads from my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most contractors see organic leads within 60-90 days of launch with proper SEO, AEO &amp; GEO. Paid campaigns can generate leads within the first week."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add new project photos myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We build every site with an easy-to-use gallery system that lets you upload project photos directly — no developer needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you help with Google Business Profile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. GBP optimization is included in every contractor web design package. We optimize your profile, set up review automation, and ensure your NAP data is consistent across the web."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I serve multiple cities. How many service area pages do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend one page per primary service area. For most Palm Beach County contractors, that means 4-8 city pages — each uniquely optimized for that location."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <a href="resources.html">Industries</a> / <span>Contractor Web Design</span></div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">Contractor Web Design — South Florida</div>
+    <h1 class="reveal stagger-1">Stop Relying on Angi and HomeAdvisor.<br><em>Generate Your Own Leads.</em></h1>
+    <p class="reveal stagger-2">Lead aggregators charge $50–$150 per shared lead. Your own website generates exclusive leads that come directly to you, at a fraction of the cost — and they keep compounding over time.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Get a Free Strategy Call</a>
+      <a href="case-studies.html" class="btn-secondary light">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why section -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Case For Your Own Website</div>
+      <h2 class="section-title reveal stagger-1">Why Every Contractor Needs a Lead-Generating Website</h2>
+    </div>
+    <div class="reasons-grid">
+      <div class="reason-card reveal stagger-1">
+        <div class="reason-num">01</div>
+        <h3>Lead Aggregators Kill Your Margins</h3>
+        <p>Angi, HomeAdvisor, and Thumbtack charge per lead — whether you close the job or not. And you're competing against 3–4 other contractors on every single lead. Your own website generates exclusive leads at a fraction of the cost.</p>
+      </div>
+      <div class="reason-card reveal stagger-2">
+        <div class="reason-num">02</div>
+        <h3>"Near Me" Searches Are Exploding</h3>
+        <p>"Roofer near me," "electrician West Palm Beach," "kitchen remodel Fort Lauderdale" — these searches happen thousands of times per month in South Florida. Without a website optimized for them, those leads go to your competitors who do.</p>
+      </div>
+      <div class="reason-card reveal stagger-3">
+        <div class="reason-num">03</div>
+        <h3>Your Work Speaks for Itself</h3>
+        <p>You do great work — but if it's only visible on your truck and your business card, most potential customers will never know. A website with a professional project gallery is the single best sales tool you can have.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI table -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Math</div>
+      <h2 class="section-title reveal stagger-1">The True Cost Per Lead — By Channel</h2>
+      <p class="section-desc reveal stagger-2">A website that generates 20 leads/month at 25% close rate and $5,000 average job = $25,000/month in revenue from a one-time investment.</p>
+    </div>
+    <div class="reveal stagger-3" style="overflow-x:auto">
+      <table class="roi-table">
+        <thead>
+          <tr><th>Lead Source</th><th>Cost Per Lead</th><th>Close Rate</th><th>Cost Per Job</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>HomeAdvisor / Angi</td><td>$50–$150</td><td>10–15%</td><td>$333–$1,500</td></tr>
+          <tr><td>Google Ads (PPC)</td><td>$25–$75</td><td>15–20%</td><td>$125–$500</td></tr>
+          <tr class="highlight"><td>Your Own Website (SEO/GEO)</td><td>$5–$15</td><td>20–30%</td><td>$17–$75</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Deliver</div>
+      <h2 class="section-title reveal stagger-1">Everything Your Contractor Website Needs to Generate Leads</h2>
+    </div>
+    <div class="features-stack reveal stagger-2">
+      <div class="feature-row">
+        <div class="feature-num">01</div>
+        <div>
+          <h3>Service Area Pages</h3>
+          <p>Dedicated pages targeting every city and neighborhood you serve. "Roof repair Jupiter FL." "Kitchen remodeling Boca Raton." "AC repair Palm Beach Gardens." Each page targets a specific local keyword and drives qualified traffic — this is the playbook that consistently gets contractors into the Google Map Pack.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">02</div>
+        <div>
+          <h3>Before/After Project Gallery</h3>
+          <p>Nothing sells contractor services like visual proof. We build filterable galleries showcasing your best work — organized by service type, with before/after sliders that make the transformation undeniable. Customers who see your work before calling are already sold.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">03</div>
+        <div>
+          <h3>AI-Powered Lead Capture</h3>
+          <p>An intelligent chatbot that engages visitors immediately — asking what type of project, their timeline, property address, and whether they'd like a free estimate. Leads are captured and sent to your phone via text and email instantly. No more missed opportunities while you're on a job site.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">04</div>
+        <div>
+          <h3>Google Maps &amp; AI-powered Local Search (SEO/GEO)</h3>
+          <p>Full Google Business Profile optimization, local citation building across 50+ directories, review generation automation, HomeAndConstructionBusiness schema markup, and NAP consistency across the web. The local map pack is where contractor leads come from — we get you there.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">05</div>
+        <div>
+          <h3>Automated Review Collection</h3>
+          <p>After every completed job, your system automatically sends a text asking for a Google review. More reviews = higher Maps ranking = more leads. We've seen contractors go from 15 reviews to 100+ in six months with this system — and their phone starts ringing on its own.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">06</div>
+        <div>
+          <h3>Estimate Request System</h3>
+          <p>Structured quote request forms that capture service needed, property type and location, project description, photos (yes — customers can upload photos of their problem), and preferred contact method. Delivered to you in a clean format by email, text, or into your CRM.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">07</div>
+        <div>
+          <h3>Mobile-Optimized Design</h3>
+          <p>Your potential customers are on their phone — standing in their kitchen looking at a broken faucet, or outside after a storm. Your site needs to load fast and make it dead simple to call or request a quote from any device.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contractor types -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Who We Serve</div>
+      <h2 class="section-title reveal stagger-1">Every Type of Contractor & Home Services Business</h2>
+    </div>
+    <div class="tag-cloud reveal stagger-2" style="justify-content:center">
+      <span class="tag">General Contractors</span>
+      <span class="tag">Roofing</span>
+      <span class="tag">Plumbing</span>
+      <span class="tag">Electrical</span>
+      <span class="tag">HVAC & Air Conditioning</span>
+      <span class="tag">Painting</span>
+      <span class="tag">Landscaping & Hardscaping</span>
+      <span class="tag">Pool Construction & Service</span>
+      <span class="tag">Flooring & Tile</span>
+      <span class="tag">Fencing</span>
+      <span class="tag">Pressure Washing</span>
+      <span class="tag">Solar Installation</span>
+      <span class="tag">Hurricane Impact Windows & Doors</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Investment</div>
+      <h2 class="section-title reveal stagger-1">Contractor Website Packages</h2>
+      <p class="section-desc reveal stagger-2">Fixed pricing — know your cost before we start. Strategy call will nail down exact scope.</p>
+    </div>
+    <div class="pricing-grid reveal stagger-3">
+      <div class="pricing-tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">$3,000 – $5,000</div>
+        <div class="tier-best">New contractors, basic site, service area, project gallery</div>
+        <ul>
+          <li>Custom design up to 5 pages</li>
+          <li>Mobile-responsive development</li>
+          <li>Service area pages (3–5 cities)</li>
+          <li>Project photo gallery</li>
+          <li>Lead capture form</li>
+          <li>Basic SEO, AEO &amp; GEO + Google Analytics</li>
+          <li>30 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+      <div class="pricing-tier featured">
+        <div class="tier-name">Growth — Most Popular</div>
+        <div class="tier-price">$5,000 – $10,000</div>
+        <div class="tier-best">Established contractors, 10+ service area pages, AI chatbot, SEO/GEO</div>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>10+ service area pages</li>
+          <li>AI lead capture chatbot</li>
+          <li>Google Maps / GBP optimization</li>
+          <li>Review automation system</li>
+          <li>Before/after gallery with filters</li>
+          <li>60 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+      <div class="pricing-tier">
+        <div class="tier-name">Dominate</div>
+        <div class="tier-price">$10,000 – $18,000</div>
+        <div class="tier-best">Multi-trade or multi-location, advanced automation, content strategy</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Unlimited service area pages</li>
+          <li>Custom CRM integration</li>
+          <li>Advanced workflow automation</li>
+          <li>Content strategy & blog setup</li>
+          <li>Competitor keyword targeting</li>
+          <li>90 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted)">AI chatbot: $2,000 setup + $100–$200/month. Ongoing SEO &amp; GEO: $600–$1,500/month.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-alt">
+  <div class="container" style="max-width:800px">
+    <div class="section-center">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal stagger-1">Common Questions</h2>
+    </div>
+    <div class="reveal stagger-2">
+      <div class="faq-item">
+        <button class="faq-question">I already get leads from HomeAdvisor. Why do I need a website? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">HomeAdvisor leads are shared, expensive, and unpredictable. Your own website generates exclusive leads that come directly to you. Most contractors use both initially, then reduce aggregator spending as organic leads grow — typically within 3–6 months.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long until I start getting leads from my website? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">SEO &amp; GEO takes time to compound. Most contractors see meaningful lead flow within 3–6 months. We build your site for immediate impact (Google Business Profile, service area pages) while longer-term SEO, AEO &amp; GEO builds in parallel.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I add new project photos myself? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes. We build a simple admin panel where you can upload before/after photos, categorize by service type, and add project descriptions — no developer needed. Most clients add new photos after every completed job.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you help with Google Business Profile? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes — GBP optimization is included in every package. We set up your profile, optimize categories and services, add photos, and configure the review automation system that starts building your star rating automatically.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">I serve multiple cities. How many service area pages do I need? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">We recommend a dedicated page for every city where you actively want to generate leads. Growth packages include 10+ service area pages. We prioritize based on population, competition, and job size in each area.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.6)">Your Next Job Is Searching for You</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:600px;margin:0 auto .75rem">Let's Build a Website That Fills Your Schedule</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free strategy call. We'll audit your current web presence and show you exactly how many leads you're leaving on the table every month.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="pricing.html" class="btn-secondary light">See Pricing</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">Or call us directly: 561-291-9001</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Stories — Web Palm Beaches</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.featured-testimonial{display:grid;grid-template-columns:1fr 1.2fr;gap:0;border:1px solid var(--border);overflow:hidden;margin-bottom:3rem}
+.featured-testimonial .ft-visual{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:3rem;color:var(--text-light);display:flex;flex-direction:column;justify-content:center}
+.featured-testimonial .ft-visual .big-quote{font-family:var(--heading);font-size:6rem;line-height:1;color:var(--accent);margin-bottom:.5rem}
+.featured-testimonial .ft-visual .ft-name{font-family:var(--heading);font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.featured-testimonial .ft-visual .ft-role{font-size:.85rem;color:rgba(255,255,255,.5);margin-top:.25rem}
+.featured-testimonial .ft-visual .ft-stars{color:var(--accent);letter-spacing:3px;margin-top:1rem}
+.featured-testimonial .ft-content{padding:3rem;background:var(--bg);display:flex;flex-direction:column;justify-content:center}
+.featured-testimonial .ft-content blockquote{font-family:var(--body);font-size:1.15rem;line-height:1.9;color:var(--text-secondary);font-style:italic;margin-bottom:1.5rem}
+.featured-testimonial .ft-content .ft-result{padding:1rem;background:var(--bg-ice);border-left:3px solid var(--accent)}
+.featured-testimonial .ft-content .ft-result strong{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);display:block;margin-bottom:.35rem}
+.featured-testimonial .ft-content .ft-result span{font-size:.9rem;color:var(--text-secondary);line-height:1.6}
+
+.testimonials-masonry{columns:2;column-gap:1.5rem;margin-top:3rem}
+.testimonials-masonry .testimonial-card{break-inside:avoid;margin-bottom:1.5rem}
+
+.results-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin:3rem 0;text-align:center}
+.results-strip .result{padding:1.5rem}
+.results-strip .result .counter{font-size:2.4rem}
+
+@media(max-width:768px){
+  .featured-testimonial{grid-template-columns:1fr}
+  .testimonials-masonry{columns:1}
+  .results-strip{grid-template-columns:1fr 1fr}
+}
+.ft-read-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;padding:.6rem 1.25rem;background:transparent;border:1.5px solid var(--accent);color:var(--accent);font-family:var(--heading);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s}
+.ft-read-btn:hover{background:var(--accent);color:#fff}
+.testimonial-card{cursor:pointer;transition:all .3s}
+.testimonial-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.cli-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.cli-modal-overlay.open{opacity:1;pointer-events:all}
+.cli-modal{background:#fff;max-width:720px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+.cli-modal .modal-close-bar{display:flex;justify-content:flex-end;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.cli-modal .modal-close-bar button{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-secondary);padding:.25rem .5rem}
+.cli-modal .modal-header{padding:2.5rem;background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));color:#fff}
+.cli-modal .modal-header .big-quote{font-family:var(--heading);font-size:4rem;line-height:1;color:var(--accent);margin-bottom:.5rem}
+.cli-modal .modal-header .cli-name{font-family:var(--heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
+.cli-modal .modal-header .cli-role{font-size:.85rem;color:rgba(255,255,255,.5)}
+.cli-modal .modal-header .cli-stars{color:var(--accent);letter-spacing:3px;margin-top:.75rem;font-size:1rem}
+.cli-modal .modal-content{padding:2rem 2.5rem}
+.cli-modal blockquote{font-size:1.1rem;line-height:1.9;color:var(--text-secondary);font-style:italic;border-left:3px solid var(--accent);padding-left:1.25rem;margin:0 0 1.75rem}
+.cli-modal .result-box{padding:1.25rem;background:var(--bg-ice);border-left:3px solid var(--accent);margin-bottom:1.75rem}
+.cli-modal .result-box strong{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);display:block;margin-bottom:.5rem}
+.cli-modal .result-box span{font-size:.9rem;color:var(--text-secondary);line-height:1.6}
+.cli-modal .mc-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.75rem;padding:1.25rem;background:var(--bg-ice)}
+.cli-modal .mm-val{font-family:var(--heading);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1;text-align:center}
+.cli-modal .mm-key{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);margin-top:.25rem;text-align:center}
+.cli-modal .mc-section{margin-bottom:1.5rem}
+.cli-modal .mc-section h3{font-family:var(--heading);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.2rem;margin-bottom:.9rem}
+.cli-modal .mc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+.cli-modal .mc-list li{padding-left:1.25rem;position:relative;font-size:.9rem;color:var(--text-secondary);line-height:1.6}
+.cli-modal .mc-list li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+.cli-modal .mc-cta{background:var(--bg-dark);padding:1.5rem;text-align:center;margin-top:1rem}
+.cli-modal .mc-cta h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.cli-modal .mc-cta p{font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem}
+@media(max-width:600px){.cli-modal .mc-meta{grid-template-columns:1fr 1fr}}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/clients.html">
+  <meta name="description" content="See the South Florida businesses we work with — law firms, medical practices, restaurants, contractors, and real estate professionals across Palm Beach County.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/clients.html">
+  <meta property="og:title" content="Client Stories — Web Palm Beaches">
+  <meta property="og:description" content="See the South Florida businesses we work with — law firms, medical practices, restaurants, contractors, and real estate professionals across Palm Beach County.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>Client Stories</span></div>
+    <h1 class="reveal stagger-1">Trusted by Businesses Across <em>Palm Beach County</em></h1>
+    <p class="reveal stagger-2">Don't take our word for it. Hear from the South Florida businesses that Web Palm Beaches has helped transform with AI-powered solutions and expert web development.</p>
+  </div>
+</section>
+
+<!-- Results Strip -->
+<section class="bg-alt" style="padding:3.5rem 0">
+  <div class="container counters-row">
+    <div class="results-strip">
+      <div class="result reveal">
+        <div class="counter" data-count="100" data-suffix="+">0+</div>
+        <div class="counter-label">Projects Completed</div>
+      </div>
+      <div class="result reveal stagger-1">
+        <div class="counter" data-count="98" data-suffix="%">0%</div>
+        <div class="counter-label">Client Satisfaction</div>
+      </div>
+      <div class="result reveal stagger-2">
+        <div class="counter" data-count="45" data-suffix="%">0%</div>
+        <div class="counter-label">Avg. Cost Savings</div>
+      </div>
+      <div class="result reveal stagger-3">
+        <div class="counter" data-count="85" data-suffix="%">0%</div>
+        <div class="counter-label">Repeat Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Testimonials -->
+<section>
+  <div class="container">
+    <div class="section-center" style="margin-bottom:3rem">
+      <div class="section-label reveal">Featured Reviews</div>
+      <h2 class="section-title reveal stagger-1">What our clients say about Web Palm Beaches</h2>
+    </div>
+
+    <div class="featured-testimonial reveal">
+      <div class="ft-visual">
+        <div class="big-quote">"</div>
+        <div class="ft-name">Satisfied Client</div>
+        <div class="ft-role">Small Business Owner, Palm Beach County</div>
+        <div class="ft-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="ft-content">
+        <blockquote>"They exceeded my expectations in every way. They took the time to understand my unique business needs and crafted a solution that perfectly reflects my brand. The AI chatbot they built handles over 70% of our customer inquiries automatically — our team can finally focus on what matters most."</blockquote>
+        <div class="ft-result">
+          <strong>Result</strong>
+          <span>70% reduction in support tickets, 40% faster response times, and a significant increase in customer satisfaction scores.</span>
+        </div>
+        <button class="ft-read-btn" onclick="openCliModal('cli-ft1')">Read Full Story →</button>
+      </div>
+    </div>
+
+    <div class="featured-testimonial reveal">
+      <div class="ft-visual">
+        <div class="big-quote">"</div>
+        <div class="ft-name">Tech Startup Founder</div>
+        <div class="ft-role">Startup CEO, Palm Beach County</div>
+        <div class="ft-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="ft-content">
+        <blockquote>"As a startup with a complex web app idea, I wasn't sure where to start. Web Palm Beaches guided me through the entire process — from AI strategy to full deployment. They delivered on time, on budget, and brought my vision to life in ways I didn't think were possible."</blockquote>
+        <div class="ft-result">
+          <strong>Result</strong>
+          <span>Web application launched on schedule with integrated AI features that automated 80% of the platform's core workflow.</span>
+        </div>
+        <button class="ft-read-btn" onclick="openCliModal('cli-ft2')">Read Full Story →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More Testimonials (Masonry) -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center" style="margin-bottom:1rem">
+      <div class="section-label reveal">More Reviews</div>
+      <h2 class="section-title reveal stagger-1">Hear from more of our clients</h2>
+    </div>
+
+    <div class="testimonials-masonry">
+      <div class="testimonial-card reveal" onclick="openCliModal('cli-m1')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Their expertise is impressive — they transformed my outdated website into a sleek, modern platform. Professional, responsive, and incredibly talented. I recommend Web Palm Beaches to everyone I know."</blockquote>
+        <div class="author">
+          <div class="avatar">R</div>
+          <div>
+            <div class="name">Business Professional</div>
+            <div class="role">West Palm Beach</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal stagger-1" onclick="openCliModal('cli-m2')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The AI workflow automation Web Palm Beaches built for our office has saved us over 20 hours per week in manual data entry and reporting. The ROI was evident within the first month."</blockquote>
+        <div class="author">
+          <div class="avatar">J</div>
+          <div>
+            <div class="name">Office Manager</div>
+            <div class="role">Boca Raton</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" onclick="openCliModal('cli-m3')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I was skeptical about AI for my small restaurant, but Web Palm Beaches showed me how automated reservations and a smart ordering system could transform my operations. Game-changer."</blockquote>
+        <div class="author">
+          <div class="avatar">A</div>
+          <div>
+            <div class="name">Restaurant Owner</div>
+            <div class="role">Delray Beach</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal stagger-1" onclick="openCliModal('cli-m4')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Web Palm Beaches rebuilt our entire web presence with AI-powered search and personalized content. Our engagement metrics have doubled, and our search &amp; AI visibility rankings have jumped significantly. They genuinely understand both the tech and the business side."</blockquote>
+        <div class="author">
+          <div class="avatar">L</div>
+          <div>
+            <div class="name">Marketing Director</div>
+            <div class="role">Jupiter</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" onclick="openCliModal('cli-m5')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Fast, professional, and they actually pick up the phone. In a world of faceless agencies, Web Palm Beaches feels like a true partner. They care about results."</blockquote>
+        <div class="author">
+          <div class="avatar">D</div>
+          <div>
+            <div class="name">Real Estate Agent</div>
+            <div class="role">Palm Beach Gardens</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal stagger-1" onclick="openCliModal('cli-m6')">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We hired Web Palm Beaches to integrate our CRM with our website and email marketing. The automation saves us hours every day and nothing falls through the cracks anymore. Worth every penny."</blockquote>
+        <div class="author">
+          <div class="avatar">K</div>
+          <div>
+            <div class="name">Sales Director</div>
+            <div class="role">Wellington</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Join Our Clients</div>
+    <h2 class="section-title reveal stagger-1">Ready to become our next<br>success story?</h2>
+    <p class="section-desc reveal stagger-2" style="margin:0 auto">Book a free strategy session and discover how Web Palm Beaches can transform your business with AI.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book Free Strategy Call</a>
+      <a href="tel:5612919001" class="btn-secondary light">Call 561-291-9001</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CLIENT STORY MODALS -->
+<div class="cli-modal-overlay" id="cli-ft1">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-ft1')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Satisfied Client</div>
+      <div class="cli-role">Small Business Owner, Palm Beach County</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"They exceeded my expectations in every way. They took the time to understand my unique business needs and crafted a solution that perfectly reflects my brand. The AI chatbot they built handles over 70% of our customer inquiries automatically — our team can finally focus on what matters most."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">70%</div><div class="mm-key">Inquiries Automated</div></div>
+        <div><div class="mm-val">40%</div><div class="mm-key">Faster Response Times</div></div>
+        <div><div class="mm-val">Month 1</div><div class="mm-key">ROI Achieved</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>The Challenge</h3>
+        <ul class="mc-list">
+          <li>Customer support team overwhelmed with repetitive inquiries — same questions answered dozens of times daily</li>
+          <li>After-hours inquiries going unanswered, costing leads to competitors who responded faster</li>
+          <li>Staff time consumed by low-value tasks instead of complex, high-impact customer interactions</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>AI chat agent trained on their top 60 customer questions — deployed on website and SMS</li>
+          <li>Seamless human escalation with full conversation context passed to the support team</li>
+          <li>Lead capture integration — every inquiry turned into a CRM contact automatically</li>
+          <li>Weekly performance reports showing inquiry volume, resolution rate, and escalation trends</li>
+        </ul>
+      </div>
+      <div class="result-box">
+        <strong>Result</strong>
+        <span>70% reduction in support tickets, 40% faster response times, and a significant increase in customer satisfaction scores — all within the first 60 days.</span>
+      </div>
+      <div class="mc-cta">
+        <h3>Want Results Like This?</h3>
+        <p>Book a free strategy call — we'll show you exactly what an AI support agent could do for your business.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-ft2">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-ft2')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Tech Startup Founder</div>
+      <div class="cli-role">Startup CEO, Palm Beach County</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"As a startup with a complex web app idea, I wasn't sure where to start. Web Palm Beaches guided me through the entire process — from AI strategy to full deployment. They delivered on time, on budget, and brought my vision to life in ways I didn't think were possible."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">On Time</div><div class="mm-key">Delivered on Schedule</div></div>
+        <div><div class="mm-val">80%</div><div class="mm-key">Workflow Automated</div></div>
+        <div><div class="mm-val">On Budget</div><div class="mm-key">No Surprises</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>The Challenge</h3>
+        <ul class="mc-list">
+          <li>Complex web application concept with no existing codebase, team, or technical roadmap</li>
+          <li>AI features central to the product — needed a partner who understood both build and strategy</li>
+          <li>Tight runway — needed to launch fast, learn fast, and iterate without burning through budget</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>Full discovery and technical architecture phase to define scope before writing a line of code</li>
+          <li>Custom web application with AI-powered core features baked in from day one</li>
+          <li>Automation layer handling 80% of the platform's recurring workflow without manual intervention</li>
+          <li>Post-launch optimization support to tune performance based on real user data</li>
+        </ul>
+      </div>
+      <div class="result-box">
+        <strong>Result</strong>
+        <span>Web application launched on schedule with integrated AI features that automated 80% of the platform's core workflow — enabling the team to scale without proportional headcount growth.</span>
+      </div>
+      <div class="mc-cta">
+        <h3>Have a Complex Project in Mind?</h3>
+        <p>We'll help you define scope, plan the build, and deliver on time. Start with a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m1">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m1')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Business Professional</div>
+      <div class="cli-role">West Palm Beach</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"Their expertise is impressive — they transformed my outdated website into a sleek, modern platform. Professional, responsive, and incredibly talented. I recommend Web Palm Beaches to everyone I know."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">Modern</div><div class="mm-key">Full Redesign</div></div>
+        <div><div class="mm-val">Fast</div><div class="mm-key">Turnaround</div></div>
+        <div><div class="mm-val">5★</div><div class="mm-key">Client Rating</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Did</h3>
+        <ul class="mc-list">
+          <li>Complete website redesign — modern layout, mobile-first, fast-loading</li>
+          <li>Brand-aligned visuals, updated copy, and clear calls-to-action throughout</li>
+          <li>On-page SEO, AEO &amp; GEO optimization so the new site immediately starts earning organic traffic and citations</li>
+          <li>CMS setup so the client can update content independently without developer help</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready for a Website You're Proud Of?</h3>
+        <p>We'll show you what a modern, conversion-focused redesign could look like for your business.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m2">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m2')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Office Manager</div>
+      <div class="cli-role">Boca Raton</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"The AI workflow automation Web Palm Beaches built for our office has saved us over 20 hours per week in manual data entry and reporting. The ROI was evident within the first month."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">20 hrs</div><div class="mm-key">Saved Per Week</div></div>
+        <div><div class="mm-val">Month 1</div><div class="mm-key">ROI Achieved</div></div>
+        <div><div class="mm-val">Zero</div><div class="mm-key">Manual Data Entry</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>Automated data ingestion from multiple sources into a single reporting dashboard</li>
+          <li>Eliminated repetitive copy-paste workflows between disconnected systems</li>
+          <li>Scheduled weekly reports generated and delivered automatically to leadership</li>
+          <li>Error-checking layer that flags data anomalies before they reach decision-makers</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>How Many Hours Is Your Team Losing to Manual Work?</h3>
+        <p>We'll audit your top 5 most repetitive processes and show you exactly what we can automate.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m3">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m3')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Restaurant Owner</div>
+      <div class="cli-role">Delray Beach</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"I was skeptical about AI for my small restaurant, but Web Palm Beaches showed me how automated reservations and a smart ordering system could transform my operations. Game-changer."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">24/7</div><div class="mm-key">Reservation Handling</div></div>
+        <div><div class="mm-val">30%</div><div class="mm-key">More Repeat Visits</div></div>
+        <div><div class="mm-val">Auto</div><div class="mm-key">Review Requests</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>Online reservation system handling bookings, modifications, and confirmations automatically</li>
+          <li>Post-visit SMS campaigns driving repeat visits with personalized offers</li>
+          <li>Automated review request sequence sent at the optimal moment after each visit</li>
+          <li>AI chat agent on the website answering menu, hours, and reservation questions 24/7</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Want to Fill More Tables Without More Phone Calls?</h3>
+        <p>We'll show you the exact system that keeps diners coming back — in a free strategy call.</p>
+        <a href="web-design-restaurants.html" class="btn-primary">Restaurant Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m4">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m4')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Marketing Director</div>
+      <div class="cli-role">Jupiter</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"Web Palm Beaches rebuilt our entire web presence with AI-powered search and personalized content. Our engagement metrics have doubled, and our search &amp; AI visibility rankings have jumped significantly. They genuinely understand both the tech and the business side."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">2×</div><div class="mm-key">Engagement Metrics</div></div>
+        <div><div class="mm-val">Top 3</div><div class="mm-key">Local SEO, AEO &amp; GEO Rankings</div></div>
+        <div><div class="mm-val">AI</div><div class="mm-key">Personalized Content</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>Full website rebuild with AI-powered search and dynamic content personalization</li>
+          <li>Comprehensive on-page and technical SEO, AEO &amp; GEO overhaul targeting their highest-value search and AI query intents</li>
+          <li>AI content pipeline producing SEO/GEO-optimized blog posts and landing pages on a set schedule</li>
+          <li>Analytics dashboard tracking rankings, traffic, and engagement in real time</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready to Double Your Online Engagement?</h3>
+        <p>We'll audit your current site and show you the highest-impact changes we'd make first.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m5">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m5')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Real Estate Agent</div>
+      <div class="cli-role">Palm Beach Gardens</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"Fast, professional, and they actually pick up the phone. In a world of faceless agencies, Web Palm Beaches feels like a true partner. They care about results."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">5 min</div><div class="mm-key">Lead Response Time</div></div>
+        <div><div class="mm-val">Local</div><div class="mm-key">Partner, Not a Ticket</div></div>
+        <div><div class="mm-val">More</div><div class="mm-key">Closed Deals</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>AI lead capture system qualifying buyers and sellers before the first callback</li>
+          <li>Automated showing request and follow-up sequences via text and email</li>
+          <li>CRM integration ensuring every lead is logged and followed up without manual entry</li>
+          <li>Property matching agent sending relevant listings based on buyer preferences automatically</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Never Lose a Lead to a Faster Agent</h3>
+        <p>We'll build the system that responds to every inquiry in under 5 minutes — even while you're showing a property.</p>
+        <a href="web-design-real-estate.html" class="btn-primary">Real Estate Solutions →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cli-modal-overlay" id="cli-m6">
+  <div class="cli-modal">
+    <div class="modal-close-bar"><button onclick="closeCliModal('cli-m6')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="big-quote">"</div>
+      <div class="cli-name">Sales Director</div>
+      <div class="cli-role">Wellington</div>
+      <div class="cli-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="modal-content">
+      <blockquote>"We hired Web Palm Beaches to integrate our CRM with our website and email marketing. The automation saves us hours every day and nothing falls through the cracks anymore. Worth every penny."</blockquote>
+      <div class="mc-meta">
+        <div><div class="mm-val">Hours</div><div class="mm-key">Saved Every Day</div></div>
+        <div><div class="mm-val">Zero</div><div class="mm-key">Leads Fall Through</div></div>
+        <div><div class="mm-val">Full</div><div class="mm-key">CRM Integration</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Built</h3>
+        <ul class="mc-list">
+          <li>Bi-directional CRM and website integration — every form submission, chat, and click captured automatically</li>
+          <li>Email marketing automation triggered by CRM data — the right message to the right lead at the right time</li>
+          <li>Lead scoring layer that ranks contacts by engagement and routes hot prospects to the sales team instantly</li>
+          <li>Reporting dashboard showing pipeline value, conversion rates, and campaign performance in one view</li>
+        </ul>
+      </div>
+      <div class="mc-cta">
+        <h3>Stop Letting Leads Fall Through the Cracks</h3>
+        <p>We'll connect your tools and build the automation layer that keeps your pipeline moving without manual work.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openCliModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCliModal(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.cli-modal-overlay').forEach(function(overlay){
+  overlay.addEventListener('click',function(e){
+    if(e.target===overlay) closeCliModal(overlay.id);
+  });
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.cli-modal-overlay.open').forEach(function(o){
+      closeCliModal(o.id);
+    });
+  }
+});
+</script>
+
+<script src="shared.js"></script>
+</body>
+</html>

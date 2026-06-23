@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design Pricing | Packages &amp; Plans | Web Palm Beaches</title>
+<meta name="description" content="Transparent web design and AI consulting pricing for South Florida businesses. Custom websites from $3K. AI integrations, SEO/AEO/GEO optimization, and automation packages.">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* === PRICING TIERS GRID === */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-top: 3.5rem;
+}
+
+.pricing-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform .35s ease, box-shadow .35s ease;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border);
+  transition: background .3s;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+}
+
+/* Most Popular card — accent top bar always visible */
+.pricing-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 8px 40px rgba(205,97,85,0.15);
+}
+
+.pricing-card.featured::before {
+  background: var(--accent);
+}
+
+.pricing-card:not(.featured):hover::before {
+  background: var(--tertiary);
+}
+
+/* Most Popular badge */
+.popular-badge {
+  position: absolute;
+  top: 0;
+  right: 1.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--heading);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .35rem .85rem;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  padding-bottom: .65rem;
+  z-index: 2;
+}
+
+.pricing-card-header {
+  padding: 2.5rem 2.5rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-tier-label {
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .6rem;
+}
+
+.pricing-card-header h3 {
+  font-family: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  margin-bottom: .6rem;
+  line-height: 1.15;
+}
+
+.pricing-range {
+  font-family: var(--heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+
+.pricing-range span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.pricing-best-for {
+  font-family: var(--body);
+  font-size: .82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-top: .5rem;
+}
+
+.pricing-card-body {
+  padding: 2rem 2.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-features-label {
+  font-family: var(--heading);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .85rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin: 0 0 auto;
+  padding: 0;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  padding: .5rem 0;
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-features li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: .38rem;
+}
+
+.pricing-timeline {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  padding: .75rem 1rem;
+  background: var(--bg-ice);
+  border: 1px solid var(--border);
+  font-family: var(--heading);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+}
+
+.pricing-timeline svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.pricing-card-footer {
+  padding: 1.75rem 2.5rem 2.5rem;
+}
+
+.pricing-card-footer .btn-primary,
+.pricing-card-footer .btn-secondary {
+  width: 100%;
+  justify-content: center;
+}
+
+/* === ADD-ONS & ONGOING GRIDS === */
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.addon-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s, box-shadow .35s, border-color .3s;
+}
+
+.addon-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s;
+}
+
+.addon-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+  border-color: rgba(205,97,85,0.25);
+}
+
+.addon-card:hover::after {
+  transform: scaleX(1);
+}
+
+.addon-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--bg-ice);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  transition: background .3s, transform .3s;
+  flex-shrink: 0;
+}
+
+.addon-card:hover .addon-icon {
+  background: var(--accent);
+  transform: scale(1.06);
+}
+
+.addon-card h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--tertiary);
+  margin-bottom: .5rem;
+}
+
+.addon-card p {
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.addon-pricing-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: auto;
+}
+
+.addon-price-chip {
+  display: inline-flex;
+  flex-direction: column;
+  background: var(--bg-ice);
+  border: 1px solid var(--border);
+  padding: .55rem .9rem;
+}
+
+.addon-price-chip .chip-val {
+  font-family: var(--heading);
+  font-size: .85rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.addon-price-chip .chip-label {
+  font-family: var(--heading);
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: .2rem;
+}
+
+/* === HOW WE PRICE === */
+.how-we-price-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.how-we-price-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.how-we-price-points li {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.how-we-price-points li:last-child {
+  border-bottom: none;
+}
+
+.hwp-num {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--heading);
+  font-size: .7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+
+.hwp-text h4 {
+  font-family: var(--heading);
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .3rem;
+}
+
+.hwp-text p {
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.how-we-price-aside {
+  background: linear-gradient(135deg, var(--bg-dark), var(--tertiary));
+  padding: 3rem;
+  color: var(--text-light);
+  position: sticky;
+  top: 100px;
+}
+
+.how-we-price-aside .aside-label {
+  font-family: var(--heading);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+
+.how-we-price-aside h3 {
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.how-we-price-aside p {
+  font-size: .9rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 1.5rem;
+}
+
+.aside-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 2rem;
+}
+
+.aside-stat {
+  background: rgba(255,255,255,.04);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.aside-stat .stat-val {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.aside-stat .stat-key {
+  font-family: var(--heading);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-top: .35rem;
+}
+
+/* === FAQ ACCORDION OVERRIDE FOR THIS PAGE === */
+.faq-section .accordion-item {
+  border-radius: 0;
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-section .accordion-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.faq-section .accordion-header {
+  padding: 1.5rem 0;
+  font-size: .95rem;
+  letter-spacing: .02em;
+  text-transform: none;
+  font-weight: 700;
+  background: transparent;
+}
+
+.faq-section .accordion-header:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.faq-section .accordion-item.open .accordion-header {
+  color: var(--accent);
+}
+
+.faq-section .accordion-body {
+  padding: 0;
+}
+
+.faq-section .accordion-item.open .accordion-body {
+  padding: 0 0 1.5rem;
+}
+
+.faq-section .accordion-body p {
+  font-size: .95rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 5rem;
+  margin-top: 3rem;
+}
+
+/* === INTRO PHILOSOPHY SECTION === */
+.philosophy-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+.philosophy-item {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  position: relative;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.philosophy-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+}
+
+.philosophy-num {
+  font-family: var(--heading);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--bg-alt);
+  line-height: 1;
+  margin-bottom: .5rem;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+}
+
+.philosophy-item h4 {
+  font-family: var(--heading);
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--tertiary);
+  margin-bottom: .6rem;
+}
+
+.philosophy-item p {
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.philosophy-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.philosophy-item:hover::before {
+  opacity: 1;
+}
+
+/* === SECTION SPACER OVERRIDES === */
+.section-pricing-packages {
+  padding: 6rem 0 4rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .how-we-price-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .how-we-price-aside {
+    position: static;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .addon-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .philosophy-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .addon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card-header,
+  .pricing-card-body,
+  .pricing-card-footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .how-we-price-aside {
+    padding: 2rem;
+  }
+
+  .aside-stat-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/pricing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/pricing.html">
+  <meta property="og:title" content="Web Design Pricing | Packages &amp; Plans | Web Palm Beaches">
+  <meta property="og:description" content="Transparent web design and AI consulting pricing for South Florida businesses. Custom websites from $3K. AI integrations, SEO/AEO/GEO optimization, and automation packages.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a website cost with Web Palm Beaches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Starter sites begin at $3,000. Business sites with SEO, AEO &amp; GEO range from $5,000-$12,000. AI-powered platforms start at $12,000. Every project includes a detailed scope and fixed-price quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ongoing website maintenance cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maintenance plans start at $300/month and include security updates, backups, uptime monitoring, content changes, and technical support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer payment plans?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We offer milestone-based billing for larger projects and monthly payment options for qualified clients. No hidden fees — the price we quote is the price you pay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in the free strategy call?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 30-minute consultation where we learn your business, identify high-impact opportunities, and outline a recommended approach with realistic timelines and budget ranges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a typical project take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simple sites launch in 2-4 weeks. Business sites with SEO, AEO &amp; GEO take 4-8 weeks. AI-powered platforms typically take 8-12 weeks. We provide a detailed timeline before you commit."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Pricing</span>
+    </div>
+    <h1>Transparent Pricing for<br><em>Serious Businesses</em></h1>
+    <p>No hidden fees. No bait-and-switch. No surprises at invoice time. We price every project as a partnership — you know exactly what you're getting and what it costs before we write a single line of code.</p>
+  </div>
+</section>
+
+<!-- INTRO: FIXED-PRICE PHILOSOPHY -->
+<section>
+  <div class="container">
+    <div class="section-center reveal">
+      <p class="section-label">Our Approach</p>
+      <h2 class="section-title">Fixed-Price, Scope-First</h2>
+      <p class="section-desc">Every engagement starts with a discovery call where we define your goals, deliverables, and timeline — then lock in a fixed price. No hourly billing creep. No scope ambiguity. Just clear outcomes tied to real business value.</p>
+    </div>
+    <div class="philosophy-row">
+      <div class="philosophy-item reveal stagger-1">
+        <span class="philosophy-num">01</span>
+        <h4>Fixed Quotes</h4>
+        <p>We scope every project in detail before quoting. What we quote is what you pay — the only way the price changes is if you change the scope, and we'll tell you upfront if you do.</p>
+      </div>
+      <div class="philosophy-item reveal stagger-2">
+        <span class="philosophy-num">02</span>
+        <h4>Milestone Billing</h4>
+        <p>Projects are split into clear milestones tied to deliverables — typically 50% to start and 50% at launch. Larger projects may use three-phase billing. You only pay when work is done.</p>
+      </div>
+      <div class="philosophy-item reveal stagger-3">
+        <span class="philosophy-num">03</span>
+        <h4>Value-Based Pricing</h4>
+        <p>Our ranges reflect real-world complexity. A 5-page brochure site is not a 50-page custom platform. We price based on what the work actually requires — not a template markup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEBSITE DESIGN PACKAGES -->
+<section class="bg-alt section-pricing-packages">
+  <div class="container">
+    <div class="section-center reveal">
+      <p class="section-label">Website Packages</p>
+      <h2 class="section-title">Website Design Packages</h2>
+      <p class="section-desc">Every website we build is custom-designed, performance-optimized, and built to convert. Choose the tier that fits your scope — we can scope-adjust for your exact needs.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card reveal stagger-1">
+        <div class="pricing-card-header">
+          <p class="pricing-tier-label">Tier 01</p>
+          <h3>Starter</h3>
+          <div class="pricing-range">$3K–$5K <span>fixed</span></div>
+          <p class="pricing-best-for">Best for startups, solo operators, and small businesses that need a professional web presence fast.</p>
+        </div>
+        <div class="pricing-card-body">
+          <p class="pricing-features-label">What's Included</p>
+          <ul class="pricing-features">
+            <li>Up to 5 custom-designed pages</li>
+            <li>Mobile-responsive, performance-optimized build</li>
+            <li>Contact form with email routing</li>
+            <li>Google Analytics + Search Console setup</li>
+            <li>On-page SEO, AEO &amp; GEO foundations (meta, schema, sitemap)</li>
+            <li>1 round of revisions per page</li>
+            <li>30-day post-launch support</li>
+          </ul>
+          <div class="pricing-timeline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            3–4 Week Timeline
+          </div>
+        </div>
+        <div class="pricing-card-footer">
+          <a href="contact.html" class="btn-secondary">Get a Quote &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Professional (Most Popular) -->
+      <div class="pricing-card featured reveal stagger-2">
+        <span class="popular-badge">Most Popular</span>
+        <div class="pricing-card-header">
+          <p class="pricing-tier-label">Tier 02</p>
+          <h3>Professional</h3>
+          <div class="pricing-range">$5K–$12K <span>fixed</span></div>
+          <p class="pricing-best-for">Best for growing businesses that need a fully featured website with custom functionality and a stronger SEO, AEO &amp; GEO foundation.</p>
+        </div>
+        <div class="pricing-card-body">
+          <p class="pricing-features-label">What's Included</p>
+          <ul class="pricing-features">
+            <li>Up to 15 custom-designed pages</li>
+            <li>Advanced mobile &amp; performance optimization</li>
+            <li>Custom animations &amp; interaction design</li>
+            <li>Blog, news, or resource section (CMS)</li>
+            <li>Lead capture forms with CRM integration</li>
+            <li>Deep on-page SEO, AEO &amp; GEO &amp; Core Web Vitals tuning</li>
+            <li>Google Analytics 4 custom events</li>
+            <li>2 rounds of revisions per section</li>
+            <li>60-day post-launch support</li>
+          </ul>
+          <div class="pricing-timeline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5–8 Week Timeline
+          </div>
+        </div>
+        <div class="pricing-card-footer">
+          <a href="contact.html" class="btn-primary">Get a Quote &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card reveal stagger-3">
+        <div class="pricing-card-header">
+          <p class="pricing-tier-label">Tier 03</p>
+          <h3>Enterprise</h3>
+          <div class="pricing-range">$12K–$25K+ <span>fixed</span></div>
+          <p class="pricing-best-for">Best for established businesses, multi-location brands, and organizations that need custom platforms or complex integrations.</p>
+        </div>
+        <div class="pricing-card-body">
+          <p class="pricing-features-label">What's Included</p>
+          <ul class="pricing-features">
+            <li>Unlimited custom pages &amp; templates</li>
+            <li>Custom web application or platform features</li>
+            <li>Third-party API &amp; system integrations</li>
+            <li>Multi-location or multi-brand architecture</li>
+            <li>Advanced SEO, AEO &amp; GEO strategy &amp; technical audit</li>
+            <li>E-commerce or member portal capability</li>
+            <li>Custom analytics dashboards</li>
+            <li>Dedicated project manager &amp; QA process</li>
+            <li>90-day post-launch support</li>
+          </ul>
+          <div class="pricing-timeline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            10–16 Week Timeline
+          </div>
+        </div>
+        <div class="pricing-card-footer">
+          <a href="contact.html" class="btn-secondary">Get a Quote &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI & AUTOMATION ADD-ONS -->
+<section>
+  <div class="container">
+    <div class="section-center reveal">
+      <p class="section-label">AI &amp; Automation</p>
+      <h2 class="section-title">AI &amp; Automation Add-Ons</h2>
+      <p class="section-desc">Layer intelligence on top of any website package — or stand alone as a project. These are fixed-scope engagements, not open-ended retainers.</p>
+    </div>
+
+    <div class="addon-grid">
+
+      <!-- Chatbot -->
+      <div class="addon-card reveal stagger-1">
+        <div class="addon-icon">&#129302;</div>
+        <h3>AI Chatbot Integration</h3>
+        <p>A custom-trained AI assistant deployed on your site — answers questions, qualifies leads, books appointments, and handles FAQs 24/7. Trained on your actual business content.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$2K–$5K</span>
+            <span class="chip-label">Setup</span>
+          </div>
+          <div class="addon-price-chip">
+            <span class="chip-val">$100–$300</span>
+            <span class="chip-label">/ Month</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow Automation -->
+      <div class="addon-card reveal stagger-2">
+        <div class="addon-icon">&#9881;</div>
+        <h3>Workflow Automation</h3>
+        <p>Connect your tools, automate repetitive tasks, and eliminate manual hand-offs. Built on Make, n8n, or Zapier — scoped to your actual operational pain points and integrated with your existing stack.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$1.5K–$5K</span>
+            <span class="chip-label">Per Workflow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Strategy Consulting -->
+      <div class="addon-card reveal stagger-3">
+        <div class="addon-icon">&#127775;</div>
+        <h3>AI Strategy Consulting</h3>
+        <p>A structured engagement to identify where AI can deliver real ROI in your business — not hype, not demos, but a concrete roadmap with prioritized use cases, tooling recommendations, and a build plan.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$1.5K–$3K</span>
+            <span class="chip-label">Per Engagement</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ONGOING SERVICES -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center reveal">
+      <p class="section-label">Ongoing Services</p>
+      <h2 class="section-title">Monthly Retainer Plans</h2>
+      <p class="section-desc">Keep your site fast, your content fresh, and your AI running sharp with a monthly plan. Cancel anytime — no long-term lock-in.</p>
+    </div>
+
+    <div class="addon-grid">
+
+      <!-- SEO, AEO &amp; GEO -->
+      <div class="addon-card reveal stagger-1">
+        <div class="addon-icon">&#128269;</div>
+        <h3>SEO, AEO &amp; GEO</h3>
+        <p>Monthly SEO, AEO &amp; GEO strategy, search/AI citation tracking, technical audits, and content production optimized for search &amp; AI engines. Includes local optimization for Palm Beach County markets and a dedicated content calendar.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$800–$2.5K</span>
+            <span class="chip-label">/ Month</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Website Maintenance -->
+      <div class="addon-card reveal stagger-2">
+        <div class="addon-icon">&#128736;</div>
+        <h3>Website Maintenance</h3>
+        <p>Plugin updates, security patches, uptime monitoring, speed checks, content changes, and monthly performance reports. Everything to keep your site running at peak condition without you thinking about it.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$200–$500</span>
+            <span class="chip-label">/ Month</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chatbot Management -->
+      <div class="addon-card reveal stagger-3">
+        <div class="addon-icon">&#128172;</div>
+        <h3>Chatbot Management</h3>
+        <p>Keep your AI assistant accurate and improving month over month. Includes conversation log reviews, training data updates, response tuning, and escalation path optimization based on real usage patterns.</p>
+        <div class="addon-pricing-row">
+          <div class="addon-price-chip">
+            <span class="chip-val">$100–$300</span>
+            <span class="chip-label">/ Month</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE PRICE PROJECTS -->
+<section>
+  <div class="container">
+    <div class="how-we-price-grid">
+      <div>
+        <p class="section-label reveal">Our Method</p>
+        <h2 class="section-title reveal">How We Price Projects</h2>
+        <p class="section-desc reveal" style="margin-bottom:2rem;">Every quote we send is the result of a real scoping conversation — not a price generator or a guessed estimate. Here's exactly how we arrive at a number.</p>
+
+        <ul class="how-we-price-points">
+          <li class="reveal stagger-1">
+            <div class="hwp-num">1</div>
+            <div class="hwp-text">
+              <h4>Discovery Call First</h4>
+              <p>We don't quote blind. Every project starts with a 30-minute call where we understand your goals, existing tech, timeline, and what success actually looks like for you.</p>
+            </div>
+          </li>
+          <li class="reveal stagger-2">
+            <div class="hwp-num">2</div>
+            <div class="hwp-text">
+              <h4>Scope Document</h4>
+              <p>Before a dollar amount, you receive a clear written scope: pages, features, integrations, deliverables, and milestones. No surprises, no "that wasn't included."</p>
+            </div>
+          </li>
+          <li class="reveal stagger-3">
+            <div class="hwp-num">3</div>
+            <div class="hwp-text">
+              <h4>Fixed Price Quote</h4>
+              <p>Based on scope, complexity, and timeline, we send a fixed-price proposal. That number doesn't change unless the scope changes — and we'll tell you before we touch anything new.</p>
+            </div>
+          </li>
+          <li class="reveal stagger-4">
+            <div class="hwp-num">4</div>
+            <div class="hwp-text">
+              <h4>Milestone-Based Payments</h4>
+              <p>We split payments into milestones tied to real deliverables. Most projects are 50% to kickoff, 50% at launch. You pay for work done — never in advance of results.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="hwp-num">5</div>
+            <div class="hwp-text">
+              <h4>No Retainer Lock-In</h4>
+              <p>Ongoing plans are month-to-month. If we're not delivering value you can measure, you shouldn't be paying us. We earn the relationship every month.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal-right">
+        <div class="how-we-price-aside">
+          <p class="aside-label">Why It Matters</p>
+          <h3>Pricing Built Around Your ROI</h3>
+          <p>Most agencies charge by the hour — which means their incentive is to take longer. We charge fixed prices because our incentive is to deliver efficiently and well. Your success is how we grow.</p>
+          <p>Our pricing reflects real South Florida market conditions, not San Francisco agency rates. We're based here, we know what local businesses need, and we price accordingly.</p>
+
+          <div class="aside-stat-row">
+            <div class="aside-stat">
+              <div class="stat-val">100%</div>
+              <div class="stat-key">Fixed Pricing</div>
+            </div>
+            <div class="aside-stat">
+              <div class="stat-val">0</div>
+              <div class="stat-key">Surprise Invoices</div>
+            </div>
+            <div class="aside-stat">
+              <div class="stat-val">48hr</div>
+              <div class="stat-key">Quote Turnaround</div>
+            </div>
+            <div class="aside-stat">
+              <div class="stat-val">M-to-M</div>
+              <div class="stat-key">Retainer Terms</div>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center;">Get Your Custom Quote &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-ice faq-section">
+  <div class="container">
+    <div class="section-center reveal">
+      <p class="section-label">Common Questions</p>
+      <h2 class="section-title">Pricing FAQ</h2>
+      <p class="section-desc">Questions we hear on almost every strategy call — answered plainly.</p>
+    </div>
+
+    <div class="faq-grid" style="margin-top:3rem;">
+
+      <div>
+        <!-- FAQ 1 -->
+        <div class="accordion-item reveal">
+          <div class="accordion-header">
+            Can I start with a smaller package and upgrade later?
+            <span class="accordion-icon"></span>
+          </div>
+          <div class="accordion-body">
+            <p>Yes. Many clients start with a Starter site to get to market quickly, then reinvest in a Professional redesign once they've validated their messaging. We build with clean, documented code that makes future upgrades efficient — not a rebuild from scratch. We'll also be upfront if your initial requirements suggest you'll need the higher tier to avoid a costly migration later.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="accordion-item reveal stagger-1">
+          <div class="accordion-header">
+            Do you work with clients outside of South Florida?
+            <span class="accordion-icon"></span>
+          </div>
+          <div class="accordion-body">
+            <p>We do. While our roots and specialization are in Palm Beach County and the greater South Florida market, we work with clients across the U.S. and internationally for web design and AI projects. Strategy calls, design reviews, and project management are fully remote-capable. That said, if you're local to the area, we're happy to meet in person.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="accordion-item reveal stagger-2">
+          <div class="accordion-header">
+            What if my project scope changes mid-build?
+            <span class="accordion-icon"></span>
+          </div>
+          <div class="accordion-body">
+            <p>Scope changes happen — that's normal. When they do, we pause, discuss the change, and issue a formal change order with a revised price and timeline before doing any additional work. You'll never get a surprise invoice. Minor changes within the spirit of the original scope are often absorbed without additional charge; substantive additions are quoted transparently.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- FAQ 4 -->
+        <div class="accordion-item reveal stagger-1">
+          <div class="accordion-header">
+            Are your AI integrations compatible with my existing tools?
+            <span class="accordion-icon"></span>
+          </div>
+          <div class="accordion-body">
+            <p>Almost certainly. Our AI and automation work is built on flexible, API-first tools that connect with virtually any modern CRM, scheduling platform, EHR, e-commerce system, or communication tool. During discovery we audit your existing stack and design integrations that work with what you already have — we don't force migrations or new software purchases unless there's a compelling reason.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="accordion-item reveal stagger-2">
+          <div class="accordion-header">
+            What's included in the post-launch support period?
+            <span class="accordion-icon"></span>
+          </div>
+          <div class="accordion-body">
+            <p>Post-launch support covers bug fixes, minor content adjustments, browser and device compatibility issues, and any functionality that isn't performing as scoped. It does not include new features, redesigns, or content production — those are handled through a maintenance plan or a new project scope. Most clients transition to our Website Maintenance retainer after the included support period to stay covered long-term.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <p class="section-label" style="justify-content:center;">Ready to Move Forward?</p>
+    <h2 class="section-title" style="text-align:center;max-width:700px;margin:0 auto .75rem;">Get a Fixed-Price Quote for Your Project</h2>
+    <p class="section-desc" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.7);">Book a free 30-minute strategy call. We'll scope your project, answer your questions, and send you a written quote within 48 hours — no pressure, no obligation.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Book a Strategy Call &rarr;</a>
+      <a href="services.html" class="btn-secondary light">Explore Services</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link">Or call us directly: 561-291-9001</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+
+</body>
+</html>

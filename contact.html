@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Web Palm Beaches</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://www.google.com/recaptcha/api.js?render=6LfDwJ8sAAAAAIQjuj2glcLYBM8DlKZboLlLEU9_"></script>
+<style>
+.contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start}
+.contact-info{position:sticky;top:6rem}
+.contact-method{display:flex;gap:1rem;align-items:start;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.contact-method:last-child{border-bottom:none}
+.contact-method .cm-icon{width:44px;height:44px;flex-shrink:0;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s}
+.contact-method:hover .cm-icon{background:var(--accent);color:var(--text-light)}
+.contact-method h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:.25rem}
+.contact-method p{font-size:.9rem;color:var(--text-secondary);line-height:1.5}
+.contact-method a{color:var(--accent);font-weight:700;transition:color .3s}
+.contact-method a:hover{color:var(--accent-hover)}
+
+.form-card{padding:3rem;background:var(--bg);border:1px solid var(--border);position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.form-card h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.5rem}
+.form-card .form-subtitle{font-size:.95rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.6}
+
+.form-progress{display:flex;gap:0;margin-bottom:2.5rem;border:1px solid var(--border)}
+.form-progress .fp-step{flex:1;padding:.75rem;text-align:center;font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);background:var(--bg-alt);transition:all .3s;cursor:pointer;position:relative}
+.form-progress .fp-step.active{background:var(--accent);color:var(--text-light)}
+.form-progress .fp-step.completed{background:var(--tertiary);color:var(--text-light)}
+.form-progress .fp-step .fp-num{display:block;font-size:.7rem;margin-bottom:.15rem}
+
+.form-step{display:none;animation:tabFadeIn .4s ease}
+.form-step.active{display:block}
+.form-nav{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem}
+.form-nav .btn-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:var(--text-secondary);font-family:var(--heading);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--border);cursor:pointer;transition:all .3s}
+.form-nav .btn-back:hover{border-color:var(--text-primary);color:var(--text-primary)}
+
+.checkbox-group{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.25rem}
+.checkbox-label{display:flex;align-items:center;gap:.6rem;padding:.6rem .75rem;border:1px solid var(--border);cursor:pointer;transition:all .3s;font-size:.875rem;color:var(--text-secondary)}
+.checkbox-label:hover{border-color:var(--accent);background:rgba(205,97,85,.02)}
+.checkbox-label input{display:none}
+.checkbox-label .check-box{width:18px;height:18px;flex-shrink:0;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.7rem;color:transparent}
+.checkbox-label input:checked ~ .check-box{background:var(--accent);border-color:var(--accent);color:var(--text-light)}
+.checkbox-label input:checked ~ span{color:var(--text-primary);font-weight:600}
+
+.budget-options{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:.25rem}
+.budget-option{text-align:center;padding:.75rem;border:2px solid var(--border);cursor:pointer;transition:all .3s;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.05em;color:var(--text-muted)}
+.budget-option:hover{border-color:var(--accent);color:var(--accent)}
+.budget-option input{display:none}
+.budget-option input:checked + span{color:var(--accent)}
+.budget-option:has(input:checked){border-color:var(--accent);background:rgba(205,97,85,.05);color:var(--accent)}
+
+.success-message{display:none;text-align:center;padding:3rem 2rem}
+.success-message.show{display:block}
+.success-message .success-icon{font-size:3rem;margin-bottom:1rem}
+.success-message h3{font-family:var(--heading);font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.75rem}
+.success-message p{color:var(--text-secondary);font-size:1rem;line-height:1.7;max-width:400px;margin:0 auto}
+
+@media(max-width:768px){
+  .contact-layout{grid-template-columns:1fr}
+  .contact-info{position:static}
+  .checkbox-group{grid-template-columns:1fr}
+  .budget-options{grid-template-columns:1fr 1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/contact.html">
+  <meta name="description" content="Book a free 30-minute strategy call with Web Palm Beaches. AI consulting, web design, and automation for businesses in Palm Beach County and South Florida.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/contact.html">
+  <meta property="og:title" content="Contact — Web Palm Beaches">
+  <meta property="og:description" content="Book a free 30-minute strategy call with Web Palm Beaches. AI consulting, web design, and automation for businesses in Palm Beach County and South Florida.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Web Palm Beaches",
+  "description": "Book a free 30-minute strategy call with Web Palm Beaches.",
+  "url": "https://webpalmbeaches.com/contact.html",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "Web Palm Beaches",
+    "telephone": "+1-561-291-9001",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "West Palm Beach",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "url": "https://webpalmbeaches.com",
+    "image": "https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg"
+  }
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta active">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>Contact</span></div>
+    <h1 class="reveal stagger-1">Let's Build Something <em>Extraordinary</em></h1>
+    <p class="reveal stagger-2">Ready to explore what AI can do for your business? Fill out the form below or give Web Palm Beaches a call. We respond to every inquiry within 24 hours.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="contact-layout">
+
+      <div class="contact-info reveal-left">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title" style="font-size:1.4rem">We'd love to hear from you</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem;font-size:.95rem">Whether you have a specific project in mind or just want to explore possibilities, Web Palm Beaches is here to help.</p>
+
+        <div class="contact-method">
+          <div class="cm-icon">&#128222;</div>
+          <div>
+            <h4>Phone</h4>
+            <p><a href="tel:5612919001">561-291-9001</a></p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:.15rem">Mon-Fri 9am-6pm ET</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="cm-icon">&#128231;</div>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:hello@webpalmbeaches.com">hello@webpalmbeaches.com</a></p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:.15rem">We respond within 24 hours</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="cm-icon">&#128205;</div>
+          <div>
+            <h4>Location</h4>
+            <p>Palm Beach County, Florida</p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:.15rem">Serving clients locally and nationwide</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="cm-icon">&#128337;</div>
+          <div>
+            <h4>Free Strategy Call</h4>
+            <p>30 minutes, no obligation</p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:.15rem">We'll identify your biggest AI opportunities</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal-right" id="contactFormCard">
+        <h2>Book Your Free Strategy Session</h2>
+        <p class="form-subtitle">Tell us about your business and goals. The more detail you provide, the more prepared we'll be for your strategy call.</p>
+
+        <div class="form-progress">
+          <div class="fp-step active" data-step="1"><span class="fp-num">01</span>About You</div>
+          <div class="fp-step" data-step="2"><span class="fp-num">02</span>Your Project</div>
+          <div class="fp-step" data-step="3"><span class="fp-num">03</span>Details</div>
+        </div>
+
+        <form id="contactForm" action="contact_handler.php" method="POST" novalidate>
+          <input type="text" name="website_hp" style="display:none !important" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="g-recaptcha-response" id="contactRecaptchaToken">
+
+          <div class="form-step active" data-step="1">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="john@company.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(561) 000-0000">
+              </div>
+              <div class="form-group full-width">
+                <label for="company">Company / Business Name *</label>
+                <input type="text" id="company" name="company" placeholder="Your Business Name" required>
+              </div>
+              <div class="form-group full-width">
+                <label for="website">Current Website (if any)</label>
+                <input type="url" id="website" name="website" placeholder="https://yourbusiness.com">
+              </div>
+            </div>
+            <div class="form-nav">
+              <div></div>
+              <button type="button" class="btn-primary" onclick="nextStep(1)">Next: Your Project
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="2">
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label>Services You're Interested In</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="ai-agents"><span class="check-box">&#10003;</span><span>AI Agent Development</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="automation"><span class="check-box">&#10003;</span><span>Workflow Automation</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="strategy"><span class="check-box">&#10003;</span><span>AI Strategy Consulting</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="website"><span class="check-box">&#10003;</span><span>AI-Powered Website</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="seo"><span class="check-box">&#10003;</span><span>SEO, AEO &amp; GEO Strategy</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="integration"><span class="check-box">&#10003;</span><span>System Integration</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="not-sure"><span class="check-box">&#10003;</span><span>Not Sure Yet</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="services[]" value="other"><span class="check-box">&#10003;</span><span>Something Else</span></label>
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label for="industry">Your Industry</label>
+                <select id="industry" name="industry">
+                  <option value="" disabled selected>Select your industry</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="real-estate">Real Estate</option>
+                  <option value="legal">Legal</option>
+                  <option value="hospitality">Hospitality & Restaurant</option>
+                  <option value="retail">Retail & E-Commerce</option>
+                  <option value="professional">Professional Services</option>
+                  <option value="home-services">Home Services</option>
+                  <option value="education">Education</option>
+                  <option value="finance">Finance & Insurance</option>
+                  <option value="tech">Technology & SaaS</option>
+                  <option value="nonprofit">Nonprofit</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label>Estimated Budget Range</label>
+                <div class="budget-options">
+                  <label class="budget-option"><input type="radio" name="budget" value="under-5k"><span>Under $5K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="5k-15k"><span>$5K - $15K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="15k-50k"><span>$15K - $50K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="50k-plus"><span>$50K+</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn-back" onclick="prevStep(2)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Back
+              </button>
+              <button type="button" class="btn-primary" onclick="nextStep(2)">Next: Details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="3">
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="challenge">What's your biggest challenge right now? *</label>
+                <textarea id="challenge" name="challenge" placeholder="Tell us about the problem you're trying to solve, the goal you want to achieve, or the process you'd like to automate..." required></textarea>
+                <div class="input-hint">Be as specific as you can — it helps us prepare for your strategy call.</div>
+              </div>
+              <div class="form-group full-width">
+                <label for="timeline">Ideal Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option value="" disabled selected>When do you need this?</option>
+                  <option value="asap">As soon as possible</option>
+                  <option value="1-month">Within 1 month</option>
+                  <option value="1-3-months">1-3 months</option>
+                  <option value="3-6-months">3-6 months</option>
+                  <option value="exploring">Just exploring options</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="referral">How did you hear about Web Palm Beaches?</label>
+                <select id="referral" name="referral">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="google">Google Search</option>
+                  <option value="referral">Referral / Word of Mouth</option>
+                  <option value="social">Social Media</option>
+                  <option value="yelp">Yelp</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="additional">Anything else we should know?</label>
+                <textarea id="additional" name="additional" placeholder="Links to inspiration, competitor websites, specific tools you use, etc." style="min-height:80px"></textarea>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn-back" onclick="prevStep(3)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Back
+              </button>
+              <button type="submit" class="btn-primary" id="submitBtn">Submit & Book Strategy Call
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <div class="success-icon">&#9989;</div>
+          <h3>Thank You!</h3>
+          <p>Your inquiry has been received. Web Palm Beaches will get back to you within 24 hours to schedule your free strategy session.</p>
+          <p style="margin-top:1rem;font-size:.9rem">Can't wait? Call us now at <a href="tel:5612919001" style="color:var(--accent);font-weight:700">561-291-9001</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center" style="margin-bottom:2rem">
+      <div class="section-label reveal">Based In South Florida</div>
+      <h2 class="section-title reveal stagger-1">Proudly serving Palm Beach County and beyond</h2>
+      <p class="section-desc reveal stagger-2">Web Palm Beaches is based in Palm Beach County, Florida — but we work with clients across the state and nationwide. All services can be delivered remotely with the same quality and attention to detail.</p>
+    </div>
+    <div class="reveal stagger-3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem;text-align:center">
+      <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">&#127796;</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">West Palm Beach</div>
+      </div>
+      <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">&#127965;</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Boca Raton</div>
+      </div>
+      <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">&#9728;&#65039;</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Delray Beach</div>
+      </div>
+      <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">&#127754;</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Jupiter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// Multi-step form logic
+const form = document.getElementById('contactForm');
+const steps = document.querySelectorAll('.form-step');
+const progressSteps = document.querySelectorAll('.fp-step');
+let currentStep = 1;
+
+function showStep(step) {
+  steps.forEach(s => s.classList.remove('active'));
+  progressSteps.forEach(p => {
+    const pStep = parseInt(p.dataset.step);
+    p.classList.remove('active', 'completed');
+    if (pStep === step) p.classList.add('active');
+    else if (pStep < step) p.classList.add('completed');
+  });
+  document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+  currentStep = step;
+
+  // Smooth scroll to form top
+  document.getElementById('contactFormCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function validateStep(step) {
+  const currentStepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+  const requiredFields = currentStepEl.querySelectorAll('[required]');
+  let valid = true;
+
+  requiredFields.forEach(field => {
+    const group = field.closest('.form-group');
+    group.classList.remove('error', 'success');
+
+    if (!field.value.trim()) {
+      group.classList.add('error');
+      valid = false;
+
+      // Shake animation
+      field.style.animation = 'none';
+      field.offsetHeight; // trigger reflow
+      field.style.animation = 'shake 0.4s ease';
+    } else if (field.type === 'email' && !field.value.includes('@')) {
+      group.classList.add('error');
+      valid = false;
+    } else {
+      group.classList.add('success');
+    }
+  });
+
+  return valid;
+}
+
+function nextStep(current) {
+  if (validateStep(current)) {
+    showStep(current + 1);
+  }
+}
+
+function prevStep(current) {
+  showStep(current - 1);
+}
+
+// Progress step click navigation
+progressSteps.forEach(p => {
+  p.addEventListener('click', () => {
+    const target = parseInt(p.dataset.step);
+    if (target < currentStep) {
+      showStep(target);
+    } else if (target === currentStep + 1) {
+      nextStep(currentStep);
+    }
+  });
+});
+
+// REAL SUBMISSION HANDLER
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if (!validateStep(3)) return;
+
+  const btn = document.getElementById('submitBtn');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:.5rem">Sending... <span class="spinner"></span></span>';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LfDwJ8sAAAAAIQjuj2glcLYBM8DlKZboLlLEU9_', {action: 'contact_submit'}).then(function(token) {
+      document.getElementById('contactRecaptchaToken').value = token;
+      fetch('contact_handler.php', {
+        method: 'POST',
+        body: new FormData(form)
+      })
+  .then(response => {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.querySelector('.form-progress').style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+      document.getElementById('contactFormCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      throw new Error('Server returned an error');
+    }
+  })
+  .catch(error => {
+    console.error('Submission Error:', error);
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    alert('Something went wrong. Please try again or call 561-291-9001.');
+  });
+    }); // closes grecaptcha.execute.then
+  }); // closes grecaptcha.ready
+});
+
+// Input animation on focus
+document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(field => {
+  field.addEventListener('focus', () => {
+    field.closest('.form-group').classList.remove('error');
+  });
+
+  field.addEventListener('blur', () => {
+    if (field.hasAttribute('required') && field.value.trim()) {
+      field.closest('.form-group').classList.add('success');
+    }
+  });
+});
+
+// Phone number formatting
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 0) {
+      if (value.length <= 3) {
+        value = `(${value}`;
+      } else if (value.length <= 6) {
+        value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+      } else {
+        value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+      }
+    }
+    e.target.value = value;
+  });
+}
+</script>
+<style>
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</body>
+</html>

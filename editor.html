@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Editor | Web Palm Beaches</title>
+<style>
+  :root{
+    --shell-bg:#f3efe7;
+    --shell-panel:#fffdf8;
+    --shell-panel-strong:#f7f1e5;
+    --shell-ink:#1d2731;
+    --shell-muted:#617080;
+    --shell-line:rgba(29,39,49,.12);
+    --shell-accent:#b65d44;
+    --shell-accent-strong:#8f4632;
+    --shell-shadow:0 20px 50px rgba(29,39,49,.12);
+    --shell-radius:20px;
+    --controls-size:360px;
+    --editor-size:520px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:
+      radial-gradient(circle at top left, rgba(182,93,68,.16), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(41,80,130,.14), transparent 26%),
+      var(--shell-bg);
+    color:var(--shell-ink);
+  }
+
+  button,input,select,textarea{font:inherit}
+  button{cursor:pointer}
+
+  .app{
+    min-height:100vh;
+    display:grid;
+    grid-template-rows:auto 1fr;
+  }
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
+    padding:1rem 1.25rem;
+    border-bottom:1px solid var(--shell-line);
+    background:rgba(255,253,248,.82);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+
+  .brand h1{
+    margin:0;
+    font-size:1.15rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+
+  .brand p{
+    margin:.2rem 0 0;
+    color:var(--shell-muted);
+    font-size:.88rem;
+  }
+
+  .topbar-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.75rem;
+    align-items:center;
+    justify-content:flex-end;
+  }
+
+  .select-wrap,
+  .viewport-toggle,
+  .button-row{
+    display:flex;
+    gap:.55rem;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  select,
+  .button,
+  .viewport-toggle button{
+    border:1px solid var(--shell-line);
+    background:var(--shell-panel);
+    color:var(--shell-ink);
+    border-radius:999px;
+    padding:.72rem 1rem;
+    font-size:.9rem;
+    transition:all .18s ease;
+  }
+
+  select:hover,
+  .button:hover,
+  .viewport-toggle button:hover{
+    border-color:rgba(182,93,68,.45);
+    transform:translateY(-1px);
+  }
+
+  .button.primary{
+    background:var(--shell-accent);
+    color:#fff;
+    border-color:transparent;
+  }
+
+  .button.primary:hover{
+    background:var(--shell-accent-strong);
+  }
+
+  .viewport-toggle button.active{
+    background:#1d2731;
+    color:#fff;
+    border-color:#1d2731;
+  }
+
+  .workspace{
+    display:grid;
+    grid-template-columns:var(--controls-size) 12px var(--editor-size) 12px minmax(420px,1fr);
+    gap:.85rem;
+    padding:1rem;
+    min-height:0;
+  }
+
+  .panel{
+    min-height:0;
+    background:rgba(255,253,248,.88);
+    border:1px solid var(--shell-line);
+    border-radius:var(--shell-radius);
+    box-shadow:var(--shell-shadow);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .panel-header{
+    padding:1rem 1.1rem;
+    border-bottom:1px solid var(--shell-line);
+    background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(247,241,229,.72));
+    display:flex;
+    justify-content:space-between;
+    gap:.9rem;
+    align-items:flex-start;
+  }
+
+  .panel-heading{
+    min-width:0;
+    flex:1;
+  }
+
+  .panel-actions{
+    display:flex;
+    gap:.45rem;
+    flex-shrink:0;
+  }
+
+  .panel-action{
+    border:1px solid var(--shell-line);
+    background:rgba(255,255,255,.85);
+    color:var(--shell-ink);
+    border-radius:999px;
+    padding:.48rem .75rem;
+    font-size:.74rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+
+  .panel-action:hover{
+    border-color:rgba(182,93,68,.45);
+  }
+
+  .panel-header h2,
+  .panel-header h3{
+    margin:0;
+    font-size:.95rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  .panel-header p{
+    margin:.35rem 0 0;
+    color:var(--shell-muted);
+    font-size:.84rem;
+    line-height:1.5;
+  }
+
+  .panel-body{
+    padding:1rem 1.1rem 1.1rem;
+    overflow:auto;
+  }
+
+  .panel-collapsed-bar{
+    display:none;
+    height:100%;
+    min-height:220px;
+    align-items:center;
+    justify-content:center;
+    padding:.9rem .45rem;
+    gap:.75rem;
+    background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(247,241,229,.72));
+    text-align:center;
+  }
+
+  .panel-collapsed-bar span{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-size:.76rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--shell-muted);
+  }
+
+  .panel.collapsed .panel-header,
+  .panel.collapsed .panel-body,
+  .panel.collapsed .editor-tools,
+  .panel.collapsed .editor-shell,
+  .panel.collapsed .statusbar,
+  .panel.collapsed .preview-shell{
+    display:none;
+  }
+
+  .panel.collapsed .panel-collapsed-bar{
+    display:flex;
+  }
+
+  .panel-handle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:col-resize;
+    border-radius:999px;
+    background:rgba(255,253,248,.88);
+    border:1px solid var(--shell-line);
+    box-shadow:var(--shell-shadow);
+    user-select:none;
+  }
+
+  .panel-handle::before{
+    content:'';
+    width:4px;
+    height:48px;
+    border-radius:999px;
+    background:
+      radial-gradient(circle, rgba(29,39,49,.28) 1.2px, transparent 1.2px) center/4px 9px repeat-y;
+  }
+
+  .panel-handle:hover{
+    border-color:rgba(182,93,68,.45);
+  }
+
+  .panel-handle.is-disabled{
+    cursor:default;
+    opacity:.4;
+  }
+
+  .stack{
+    display:grid;
+    gap:.9rem;
+  }
+
+  .card{
+    background:var(--shell-panel);
+    border:1px solid var(--shell-line);
+    border-radius:18px;
+    padding:1rem;
+  }
+
+  .card h4{
+    margin:0 0 .8rem;
+    font-size:.8rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .control-grid{
+    display:grid;
+    gap:.85rem;
+  }
+
+  .field{
+    display:grid;
+    gap:.4rem;
+  }
+
+  .field label{
+    font-size:.78rem;
+    color:var(--shell-muted);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+
+  .field input[type="color"]{
+    width:100%;
+    height:52px;
+    padding:.3rem;
+    border-radius:14px;
+    border:1px solid var(--shell-line);
+    background:#fff;
+  }
+
+  .field input[type="text"]{
+    width:100%;
+    border:1px solid var(--shell-line);
+    border-radius:14px;
+    padding:.8rem .9rem;
+    background:#fff;
+  }
+
+  .field input[type="url"]{
+    width:100%;
+    border:1px solid var(--shell-line);
+    border-radius:14px;
+    padding:.8rem .9rem;
+    background:#fff;
+  }
+
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem;
+  }
+
+  .hero-meta{
+    margin-top:.75rem;
+    padding:.75rem .9rem;
+    border:1px dashed var(--shell-line);
+    border-radius:14px;
+    background:rgba(247,241,229,.55);
+    color:var(--shell-muted);
+    font-size:.8rem;
+    line-height:1.55;
+  }
+
+  .hero-preview{
+    display:grid;
+    gap:.8rem;
+  }
+
+  .hero-preview img{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    border-radius:16px;
+    border:1px solid var(--shell-line);
+    background:linear-gradient(135deg,#ede4d8,#f8f4ed);
+  }
+
+  .hero-preview-meta{
+    display:grid;
+    gap:.3rem;
+    font-size:.8rem;
+    color:var(--shell-muted);
+  }
+
+  .hero-preview-meta a{
+    color:var(--shell-accent-strong);
+    text-decoration:underline;
+    word-break:break-all;
+  }
+
+  .search-toolbar{
+    display:grid;
+    gap:.75rem;
+  }
+
+  .search-toolbar-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 170px auto;
+    gap:.65rem;
+  }
+
+  .search-toolbar-row.compact{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .image-results{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:.8rem;
+    margin-top:.9rem;
+  }
+
+  .image-result{
+    border:1px solid var(--shell-line);
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .image-result img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    background:#f3eee6;
+  }
+
+  .image-result-body{
+    padding:.8rem;
+    display:grid;
+    gap:.45rem;
+  }
+
+  .image-result-body strong{
+    font-size:.82rem;
+    line-height:1.35;
+  }
+
+  .image-result-body span,
+  .image-result-body a{
+    font-size:.76rem;
+    color:var(--shell-muted);
+  }
+
+  .image-result-body a{
+    color:var(--shell-accent-strong);
+  }
+
+  .image-result-actions{
+    display:flex;
+    gap:.45rem;
+    flex-wrap:wrap;
+    margin-top:.2rem;
+  }
+
+  .image-result-actions button,
+  .image-result-actions a{
+    border:1px solid var(--shell-line);
+    border-radius:999px;
+    padding:.42rem .7rem;
+    background:var(--shell-panel);
+    color:var(--shell-ink);
+    font-size:.74rem;
+    text-decoration:none;
+  }
+
+  .search-status{
+    margin-top:.7rem;
+    color:var(--shell-muted);
+    font-size:.8rem;
+    line-height:1.5;
+  }
+
+  .chip{
+    border:1px solid var(--shell-line);
+    background:#fff;
+    border-radius:999px;
+    padding:.45rem .8rem;
+    font-size:.8rem;
+  }
+
+  .chip:hover{
+    border-color:rgba(182,93,68,.45);
+    color:var(--shell-accent-strong);
+  }
+
+  .editor-tools{
+    display:flex;
+    gap:.6rem;
+    flex-wrap:wrap;
+    padding:1rem 1.1rem 0;
+  }
+
+  .editor-shell{
+    padding:1rem 1.1rem 1.1rem;
+    min-height:0;
+    display:flex;
+    flex:1;
+  }
+
+  textarea{
+    width:100%;
+    min-height:100%;
+    resize:none;
+    border:1px solid var(--shell-line);
+    border-radius:18px;
+    padding:1rem;
+    background:#1e2430;
+    color:#f4efe7;
+    font-family:"SFMono-Regular","Consolas","Menlo",monospace;
+    font-size:.83rem;
+    line-height:1.6;
+    tab-size:2;
+  }
+
+  .statusbar{
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+    padding:.9rem 1.1rem 1rem;
+    border-top:1px solid var(--shell-line);
+    color:var(--shell-muted);
+    font-size:.82rem;
+  }
+
+  .preview-shell{
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(180deg, #f7f1e5, #ece3d6);
+  }
+
+  .preview-bar{
+    padding:.8rem 1rem;
+    border-bottom:1px solid var(--shell-line);
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    align-items:center;
+    background:rgba(255,255,255,.66);
+  }
+
+  .preview-meta{
+    display:grid;
+    gap:.2rem;
+  }
+
+  .preview-meta strong{
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+  }
+
+  .preview-meta span{
+    font-size:.8rem;
+    color:var(--shell-muted);
+  }
+
+  .preview-actions{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .preview-mode-toggle{
+    display:flex;
+    gap:.4rem;
+    flex-wrap:wrap;
+  }
+
+  .preview-mode-toggle button{
+    border:1px solid var(--shell-line);
+    background:rgba(255,255,255,.78);
+    color:var(--shell-ink);
+    border-radius:999px;
+    padding:.5rem .8rem;
+    font-size:.76rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  .preview-mode-toggle button.active{
+    background:#1d2731;
+    border-color:#1d2731;
+    color:#fff;
+  }
+
+  .device-frame{
+    padding:1rem;
+    flex:1;
+    min-height:0;
+    overflow:auto;
+  }
+
+  .device-stage{
+    width:100%;
+    min-height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  .device{
+    width:100%;
+    max-width:100%;
+    background:#fff;
+    border-radius:22px;
+    border:1px solid rgba(29,39,49,.15);
+    box-shadow:0 24px 60px rgba(29,39,49,.18);
+    overflow:hidden;
+    transition:width .2s ease;
+  }
+
+  .device[data-viewport="tablet"]{width:820px}
+  .device[data-viewport="mobile"]{width:430px}
+
+  iframe{
+    width:100%;
+    min-height:calc(100vh - 210px);
+    border:0;
+    background:#fff;
+  }
+
+  .html-viewer{
+    display:none;
+    padding:1rem;
+    flex:1;
+    min-height:0;
+  }
+
+  .html-viewer pre{
+    margin:0;
+    width:100%;
+    min-height:calc(100vh - 210px);
+    overflow:auto;
+    border:1px solid var(--shell-line);
+    border-radius:18px;
+    padding:1rem;
+    background:#1e2430;
+    color:#f4efe7;
+    font-family:"SFMono-Regular","Consolas","Menlo",monospace;
+    font-size:.8rem;
+    line-height:1.55;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+
+  .preview-shell.html-mode .device-frame{
+    display:none;
+  }
+
+  .preview-shell.html-mode .html-viewer{
+    display:block;
+  }
+
+  .hint-list{
+    margin:0;
+    padding-left:1rem;
+    color:var(--shell-muted);
+    display:grid;
+    gap:.45rem;
+    font-size:.85rem;
+    line-height:1.5;
+  }
+
+  @media (max-width:960px){
+    .workspace{
+      grid-template-columns:1fr;
+    }
+    .panel-handle{display:none}
+    .panel-collapsed-bar{
+      min-height:88px;
+    }
+    .panel-collapsed-bar span{
+      writing-mode:horizontal-tb;
+      transform:none;
+    }
+    .panel.collapsed .panel-collapsed-bar{
+      justify-content:space-between;
+      padding:1rem 1.1rem;
+    }
+    .device[data-viewport="tablet"],
+    .device[data-viewport="mobile"]{
+      width:100%;
+    }
+    iframe{
+      min-height:70vh;
+    }
+    .search-toolbar-row,
+    .search-toolbar-row.compact,
+    .image-results{
+      grid-template-columns:1fr;
+    }
+    .preview-bar,
+    .preview-actions{
+      align-items:flex-start;
+    }
+  }
+</style>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://webpalmbeaches.com/editor.html">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Web Palm Beaches Style Editor</h1>
+      <p>Live-tweak the shared stylesheet, preview across pages, and export the result back to <code>styles.css</code>.</p>
+    </div>
+    <div class="topbar-actions">
+      <div class="select-wrap">
+        <select id="pageSelect" aria-label="Preview page"></select>
+      </div>
+      <div class="viewport-toggle" aria-label="Viewport toggle">
+        <button type="button" data-viewport="desktop" class="active">Desktop</button>
+        <button type="button" data-viewport="tablet">Tablet</button>
+        <button type="button" data-viewport="mobile">Mobile</button>
+      </div>
+      <div class="button-row">
+        <button type="button" class="button" id="copyButton">Copy CSS</button>
+        <button type="button" class="button" id="downloadButton">Download</button>
+        <button type="button" class="button primary" id="saveButton">Save to File</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="panel controls" data-panel="controls">
+      <div class="panel-header">
+        <div class="panel-heading">
+          <h2>Quick Tweaks</h2>
+          <p>These controls update the matching CSS custom properties directly in the editor so you can make broad theme moves quickly.</p>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="controls">Collapse</button>
+        </div>
+      </div>
+      <div class="panel-collapsed-bar">
+        <span>Quick Tweaks</span>
+        <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="controls">Expand</button>
+      </div>
+      <div class="panel-body">
+        <div class="stack">
+          <div class="card">
+            <h4>Theme Tokens</h4>
+            <div class="control-grid" id="tokenControls"></div>
+          </div>
+
+          <div class="card">
+            <h4>Hero Image</h4>
+            <div class="control-grid">
+              <div class="hero-preview">
+                <img id="heroPreviewImage" alt="Current hero preview">
+                <div class="hero-preview-meta">
+                  <strong id="heroPreviewLabel">Current hero image</strong>
+                  <a id="heroPreviewLink" href="#" target="_blank" rel="noreferrer">Open source image</a>
+                </div>
+              </div>
+              <div class="field">
+                <label for="heroImageInput">Current Page Hero URL</label>
+                <input id="heroImageInput" type="url" placeholder="Paste an image URL for the current page hero">
+              </div>
+              <div class="chip-row" id="heroPresetChips">
+                <button class="chip" type="button" data-hero-url="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80">Space Tech</button>
+                <button class="chip" type="button" data-hero-url="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80">Team Workshop</button>
+                <button class="chip" type="button" data-hero-url="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80">Pricing Desk</button>
+                <button class="chip" type="button" data-hero-url="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80">Office Team</button>
+              </div>
+              <div class="chip-row">
+                <button class="chip" type="button" id="applyHeroButton">Apply Hero</button>
+                <button class="chip" type="button" id="resetHeroButton">Reset Hero</button>
+                <button class="chip" type="button" id="copyHeroButton">Copy URL</button>
+              </div>
+            </div>
+            <div class="hero-meta" id="heroMeta">
+              Choose a page, then paste a hero image URL or use a preset. The editor detects either the home `.hero` section or a subpage `.page-hero` automatically.
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Find Replacement Images</h4>
+            <div class="search-toolbar">
+              <div class="search-toolbar-row">
+                <input id="imageSearchQuery" type="text" placeholder="Search terms like AI office, luxury team, or Palm Beach consulting">
+                <select id="imageSourceSelect" aria-label="Image source">
+                  <option value="all">All Sources</option>
+                  <option value="unsplash">Unsplash</option>
+                  <option value="openverse">Openverse</option>
+                  <option value="wikimedia">Wikimedia Commons</option>
+                </select>
+                <button class="button" type="button" id="searchImagesButton">Search</button>
+              </div>
+              <div class="search-toolbar-row compact">
+                <button class="button" type="button" id="openUnsplashSearch">Search Unsplash</button>
+                <button class="button" type="button" id="openPexelsSearch">Search Pexels</button>
+                <button class="button" type="button" id="openOpenverseSearch">Open Openverse</button>
+              </div>
+            </div>
+            <div class="search-status" id="imageSearchStatus">
+              Search Unsplash, Openverse, and Wikimedia here, or open larger source libraries in a new tab with your current query.
+            </div>
+            <div class="image-results" id="imageResults"></div>
+          </div>
+
+          <div class="card">
+            <h4>Jump To Section</h4>
+            <div class="chip-row" id="jumpChips">
+              <button class="chip" type="button" data-target=":root{">Root Vars</button>
+              <button class="chip" type="button" data-target="nav{">Navigation</button>
+              <button class="chip" type="button" data-target=".btn-primary{">Primary Button</button>
+              <button class="chip" type="button" data-target=".section-title{">Section Titles</button>
+              <button class="chip" type="button" data-target="footer{">Footer</button>
+              <button class="chip" type="button" data-target="@media(max-width:768px){">Mobile Rules</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Workflow Notes</h4>
+            <ol class="hint-list">
+              <li>Pick a page to preview different layouts that depend on the shared stylesheet.</li>
+              <li>Edit any CSS in the code panel. Changes apply to the iframe automatically.</li>
+              <li>Use Download for a quick export, or Save to File to write back to the project if your browser supports it.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="panel-handle" data-handle="controls-editor" aria-hidden="true"></div>
+
+    <section class="panel editor" data-panel="editor">
+      <div class="panel-header">
+        <div class="panel-heading">
+          <h3>Shared Stylesheet</h3>
+          <p>The editor starts with the current contents of <code>styles.css</code>. Reset returns to this baseline snapshot.</p>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="editor">Collapse</button>
+        </div>
+      </div>
+      <div class="panel-collapsed-bar">
+        <span>Shared Stylesheet</span>
+        <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="editor">Expand</button>
+      </div>
+      <div class="editor-tools">
+        <button type="button" class="button" id="resetButton">Reset</button>
+        <button type="button" class="button" id="reloadButton">Reload Preview</button>
+      </div>
+      <div class="editor-shell">
+        <textarea id="cssEditor" spellcheck="false"></textarea>
+      </div>
+      <div class="statusbar">
+        <span id="statusText">Ready.</span>
+        <span id="statsText">0 lines</span>
+      </div>
+    </section>
+    <div class="panel-handle" data-handle="editor-preview" aria-hidden="true"></div>
+
+    <section class="panel preview" data-panel="preview">
+      <div class="panel-header">
+        <div class="panel-heading">
+          <h3>Live Preview</h3>
+          <p>Preview the selected page while you tweak CSS, hero images, and viewport width.</p>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="preview">Collapse</button>
+        </div>
+      </div>
+      <div class="panel-collapsed-bar">
+        <span>Live Preview</span>
+        <button type="button" class="panel-action" data-action="toggle-panel" data-panel-key="preview">Expand</button>
+      </div>
+      <div class="preview-shell">
+        <div class="preview-bar">
+          <div class="preview-meta">
+            <strong id="previewTitle">Preview</strong>
+            <span id="previewPath">index.html</span>
+          </div>
+          <div class="preview-actions">
+            <div class="preview-mode-toggle">
+              <button type="button" class="active" data-preview-mode="live">Live</button>
+              <button type="button" data-preview-mode="html">HTML</button>
+            </div>
+            <span id="saveSupportText">File save: checking browser support…</span>
+          </div>
+        </div>
+        <div class="device-frame">
+          <div class="device-stage">
+            <div class="device" id="deviceFrame" data-viewport="desktop">
+              <iframe id="previewFrame" title="Page preview" src="index.html"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="html-viewer">
+          <pre id="htmlSourceView">Loading page source…</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const pages = [
+  { file: 'index.html', label: 'Home' },
+  { file: 'services.html', label: 'Services' },
+  { file: 'solutions.html', label: 'AI Solutions' },
+  { file: 'case-studies.html', label: 'Case Studies' },
+  { file: 'about.html', label: 'About' },
+  { file: 'contact.html', label: 'Contact' },
+  { file: 'process.html', label: 'Process' },
+  { file: 'pricing.html', label: 'Pricing' },
+  { file: 'clients.html', label: 'Clients' },
+  { file: 'resources.html', label: 'Resources' },
+  { file: 'ai-consulting-boca-raton.html', label: 'AI Boca Raton' },
+  { file: 'ai-consulting-delray-beach.html', label: 'AI Delray Beach' },
+  { file: 'ai-consulting-jupiter.html', label: 'AI Jupiter' },
+  { file: 'ai-consulting-west-palm-beach.html', label: 'AI West Palm Beach' }
+];
+
+const tokenConfig = [
+  { label: 'Background', varName: '--bg', type: 'color' },
+  { label: 'Alt Background', varName: '--bg-alt', type: 'color' },
+  { label: 'Dark Background', varName: '--bg-dark', type: 'color' },
+  { label: 'Text', varName: '--text-primary', type: 'color' },
+  { label: 'Muted Text', varName: '--text-secondary', type: 'text' },
+  { label: 'Accent', varName: '--accent', type: 'color' },
+  { label: 'Accent Hover', varName: '--accent-hover', type: 'color' },
+  { label: 'Secondary', varName: '--secondary', type: 'color' },
+  { label: 'Tertiary', varName: '--tertiary', type: 'color' }
+];
+
+const originalCss = `/* === WEB PALM BEACHES — SHARED STYLES === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f6f6f6;
+  --bg-ice:#f2f5f7;
+  --bg-dark:#051639;
+  --text-primary:#2c2c2c;
+  --text-secondary:rgba(0,0,0,0.5);
+  --text-muted:#888;
+  --text-light:#ffffff;
+  --accent:#cd6155;
+  --accent-hover:#b8534a;
+  --secondary:#406b95;
+  --tertiary:#295082;
+  --border:rgba(0,0,0,0.08);
+  --border-light:rgba(255,255,255,0.1);
+  --heading:'Montserrat',system-ui,sans-serif;
+  --body:'Lato',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--body);background:var(--bg);color:var(--text-primary);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* === UTILITY === */
+.container{max-width:1140px;margin:0 auto;padding:0 2rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.9);transition:opacity .8s ease,transform .8s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.stagger-1{transition-delay:.1s}.stagger-2{transition-delay:.2s}.stagger-3{transition-delay:.3s}.stagger-4{transition-delay:.4s}.stagger-5{transition-delay:.5s}.stagger-6{transition-delay:.6s}
+
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);transition:all .4s}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+.nav-logo{display:flex;align-items:center;gap:.6rem}
+.nav-logo img{height:40px;width:auto}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-family:var(--heading);font-size:.8rem;font-weight:600;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent)}
+.nav-phone{font-family:var(--heading);font-size:.8rem;font-weight:700;color:var(--tertiary);letter-spacing:.05em;transition:color .3s}
+.nav-phone:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--text-light) !important;padding:.7rem 1.5rem;font-family:var(--heading);font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;border:none}
+.nav-cta:hover{background:var(--accent-hover);box-shadow:0 4px 15px rgba(205,97,85,.3);color:var(--text-light) !important}
+.mobile-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer}
+
+/* === PAGE HERO (subpages) === */
+.page-hero{padding:10rem 0 5rem;background-color:var(--bg-dark);background-size:cover;background-position:center;position:relative;overflow:hidden;color:var(--text-light)}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,22,57,0.82) 0%,rgba(41,80,130,0.78) 50%,rgba(64,107,149,0.75) 100%)}
+.page-hero .container{position:relative;z-index:2}
+.page-hero .breadcrumb{font-family:var(--heading);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.5rem}
+.page-hero .breadcrumb a{color:rgba(255,255,255,.5);transition:color .3s}
+.page-hero .breadcrumb a:hover{color:var(--text-light)}
+.page-hero .breadcrumb span{color:var(--accent)}
+.page-hero h1{font-family:var(--heading);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-bottom:1.25rem}
+.page-hero h1 em{font-style:normal;color:var(--accent)}
+.page-hero p{font-family:var(--body);font-size:1.15rem;line-height:1.8;color:rgba(255,255,255,.7);max-width:600px;font-weight:300}
+
+/* === BUTTONS === */
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:var(--accent);color:var(--text-light);font-family:var(--heading);font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
+.btn-primary:hover{background:var(--accent-hover);box-shadow:0 6px 25px rgba(205,97,85,.3);transform:translateY(-2px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:transparent;color:var(--tertiary);font-family:var(--heading);font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;border:2px solid var(--tertiary);cursor:pointer;transition:all .3s}
+.btn-secondary:hover{background:var(--tertiary);color:var(--text-light)}
+.btn-secondary.light{color:var(--text-light);border-color:rgba(255,255,255,.3)}
+.btn-secondary.light:hover{border-color:var(--text-light);background:rgba(255,255,255,.1)}
+
+/* === SECTION COMMON === */
+section{padding:6rem 0}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.section-label::before{content:'';width:24px;height:2px;background:var(--accent)}
+.section-title{font-family:var(--heading);font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;font-weight:800;margin-bottom:1rem;color:var(--tertiary)}
+.section-desc{color:var(--text-secondary);font-family:var(--body);font-size:1.05rem;line-height:1.8;max-width:600px}
+.section-center{text-align:center;max-width:650px;margin:0 auto}
+.section-center .section-label{justify-content:center}
+.section-center .section-desc{margin:0 auto}
+.bg-alt{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.bg-dark{background:linear-gradient(135deg,var(--bg-dark) 0%,var(--tertiary) 100%);color:var(--text-light)}
+.bg-dark .section-title{color:var(--text-light)}
+.bg-dark .section-desc{color:rgba(255,255,255,.65)}
+
+/* === CTA BANNER === */
+.cta-banner{padding:5rem 0;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-dark) 0%,var(--tertiary) 100%);color:var(--text-light)}
+.cta-banner .section-title{color:var(--text-light);margin:0 auto .75rem}
+.cta-banner .section-desc{margin:0 auto 2rem;text-align:center;color:rgba(255,255,255,.7)}
+.cta-banner .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.cta-banner .phone-link{display:block;margin-top:1rem;font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.05em;transition:color .3s}
+.cta-banner .phone-link:hover{color:var(--text-light)}
+
+/* === FOOTER === */
+footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgba(255,255,255,.6)}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.footer-brand{max-width:300px}
+.footer-brand .nav-logo{margin-bottom:.75rem}
+.footer-brand .nav-logo img{height:36px;filter:brightness(0) invert(1)}
+.footer-brand p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;font-family:var(--body)}
+.footer-phone{display:inline-block;margin-top:.75rem;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--accent);letter-spacing:.05em;transition:color .3s}
+.footer-phone:hover{color:var(--text-light)}
+.footer-links{display:flex;gap:4rem}
+.footer-col h5{font-family:var(--heading);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.75rem}
+.footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);padding:.3rem 0;transition:color .3s;font-family:var(--body)}
+.footer-col a:hover{color:var(--text-light)}
+.footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.35);font-family:var(--body)}
+
+/* === GRIDS === */
+.card-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+
+/* === TABS === */
+.tabs{display:flex;gap:0;border:1px solid var(--border);margin-top:2rem;flex-wrap:nowrap}
+.tab-btn{flex:1;padding:1rem 1.5rem;background:var(--bg-alt);border:none;border-right:1px solid var(--border);font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;transition:all .3s}
+.tab-btn:last-child{border-right:none}
+.tab-btn:hover{background:rgba(205,97,85,.04);color:var(--accent)}
+.tab-btn.active{background:var(--accent);color:var(--text-light)}
+.tab-panel{display:none;padding-top:2rem}
+.tab-panel.active{display:block}
+
+/* === ACCORDION === */
+.accordion{margin-top:2rem;border:1px solid var(--border)}
+.accordion-item{border-bottom:1px solid var(--border)}
+.accordion-item:last-child{border-bottom:none}
+.accordion-header{width:100%;background:var(--bg);border:none;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left}
+.accordion-header h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)}
+.accordion-header:hover{background:var(--bg-ice)}
+.accordion-icon{width:24px;height:24px;position:relative;flex-shrink:0}
+.accordion-icon::before,.accordion-icon::after{content:'';position:absolute;background:var(--accent);transition:transform .3s}
+.accordion-icon::before{width:14px;height:2px;top:11px;left:5px}
+.accordion-icon::after{width:2px;height:14px;top:5px;left:11px}
+.accordion-item.open .accordion-icon::after{transform:rotate(90deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 1.5rem}
+.accordion-item.open .accordion-body{max-height:600px;padding:0 1.5rem 1.5rem}
+.accordion-body p{color:var(--text-secondary);font-size:.95rem;line-height:1.8}
+
+/* === CARDS — DETAILED === */
+.detail-card{padding:2.5rem;background:var(--bg);border:1px solid var(--border);transition:all .4s;position:relative;overflow:hidden}
+.detail-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.detail-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+.detail-card:hover::before{transform:scaleX(1)}
+.detail-card .card-icon{width:56px;height:56px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.5rem;transition:all .3s}
+.detail-card:hover .card-icon{background:var(--accent);color:var(--text-light);transform:scale(1.05)}
+.detail-card h3{font-family:var(--heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;color:var(--tertiary)}
+.detail-card p{color:var(--text-secondary);font-size:.9rem;line-height:1.7}
+.detail-card ul{list-style:none;margin-top:1rem}
+.detail-card ul li{padding:.4rem 0;font-size:.875rem;color:var(--text-secondary);padding-left:1.25rem;position:relative}
+.detail-card ul li::before{content:'';position:absolute;left:0;top:.75rem;width:6px;height:6px;background:var(--accent)}
+
+/* === TIMELINE === */
+.timeline{position:relative;padding:2rem 0}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--border);transform:translateX(-50%)}
+.timeline-item{display:flex;align-items:flex-start;margin-bottom:3rem;position:relative}
+.timeline-item:nth-child(odd){flex-direction:row;padding-right:calc(50% + 2rem)}
+.timeline-item:nth-child(even){flex-direction:row-reverse;padding-left:calc(50% + 2rem)}
+.timeline-dot{position:absolute;left:50%;top:.5rem;width:16px;height:16px;background:var(--accent);transform:translateX(-50%);z-index:2;transition:all .3s}
+.timeline-item:hover .timeline-dot{transform:translateX(-50%) scale(1.4);box-shadow:0 0 20px rgba(205,97,85,.4)}
+.timeline-content{padding:1.75rem;background:var(--bg);border:1px solid var(--border);transition:all .3s;width:100%}
+.timeline-content:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.timeline-step{font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.timeline-content h3{font-family:var(--heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.5rem}
+.timeline-content p{color:var(--text-secondary);font-size:.9rem;line-height:1.7}
+
+/* === CONTACT FORM === */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.form-group{position:relative}
+.form-group.full-width{grid-column:1/-1}
+.form-group label{display:block;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tertiary);margin-bottom:.5rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:1rem 1.25rem;border:2px solid var(--border);background:var(--bg);color:var(--text-primary);font-family:var(--body);font-size:.95rem;outline:none;transition:all .3s;appearance:none}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23888' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.25rem center;padding-right:3rem}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(205,97,85,.1)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-muted)}
+.form-group textarea{resize:vertical;min-height:140px}
+.form-group .input-hint{font-size:.75rem;color:var(--text-muted);margin-top:.35rem}
+.form-group.error input,.form-group.error textarea,.form-group.error select{border-color:var(--accent)}
+.form-group.error label{color:var(--accent)}
+.form-group.success input,.form-group.success textarea{border-color:#4caf50}
+.form-submit{margin-top:1rem}
+.form-message{margin-top:1.5rem;padding:1.25rem;font-family:var(--body);font-size:.95rem;line-height:1.6;display:none}
+.form-message.success{display:block;background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.2);color:#2e7d32}
+.form-message.error{display:block;background:rgba(205,97,85,.08);border:1px solid rgba(205,97,85,.2);color:var(--accent)}
+
+/* === TESTIMONIAL CARDS (enhanced) === */
+.testimonial-card{padding:2.5rem;border:1px solid var(--border);background:var(--bg);transition:all .4s;position:relative}
+.testimonial-card::before{content:'\\201C';position:absolute;top:1.25rem;right:1.5rem;font-family:var(--heading);font-size:4rem;color:var(--bg-alt);line-height:1;pointer-events:none}
+.testimonial-card:hover{border-color:var(--accent);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.testimonial-card .stars{color:var(--accent);font-size:.9rem;margin-bottom:1rem;letter-spacing:3px}
+.testimonial-card blockquote{font-family:var(--body);font-size:1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.5rem;font-style:italic}
+.testimonial-card .author{display:flex;align-items:center;gap:.75rem}
+.testimonial-card .avatar{width:44px;height:44px;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-weight:700;font-size:.85rem;color:var(--text-light)}
+.testimonial-card .name{font-family:var(--heading);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)}
+.testimonial-card .role{font-size:.75rem;color:var(--text-muted)}
+
+/* === COUNTER ANIMATION === */
+.counter{font-family:var(--heading);font-size:2.8rem;font-weight:800;color:var(--accent)}
+.counter-label{font-family:var(--heading);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-top:.25rem}
+
+/* === FLOATING ELEMENTS (decoration) === */
+.float-shape{position:absolute;opacity:.04;pointer-events:none}
+.float-shape.square{width:120px;height:120px;border:3px solid var(--accent)}
+.float-shape.circle{width:180px;height:180px;border:3px solid var(--secondary);border-radius:50%}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .timeline::before{left:2rem}
+  .timeline-item:nth-child(odd),.timeline-item:nth-child(even){flex-direction:row;padding-right:0;padding-left:4rem}
+  .timeline-dot{left:2rem}
+}
+@media(max-width:768px){
+  .container{padding:0 1.25rem}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);flex-direction:column;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+  .nav-links.show{display:flex}
+  .mobile-toggle{display:block}
+  .page-hero{padding:8rem 0 3.5rem}
+  .page-hero h1{font-size:2rem}
+  .form-grid{grid-template-columns:1fr}
+  .tabs{flex-wrap:wrap}
+  .tab-btn{padding:.75rem 1.25rem;font-size:.7rem}
+  .timeline::before{left:1rem}
+  .timeline-item:nth-child(odd),.timeline-item:nth-child(even){padding-left:2.5rem}
+  .timeline-dot{left:1rem}
+  .footer-inner{flex-direction:column}
+  .footer-links{gap:2rem}
+  section{padding:4rem 0}
+}`;
+
+const pageSelect = document.getElementById('pageSelect');
+const cssEditor = document.getElementById('cssEditor');
+const previewFrame = document.getElementById('previewFrame');
+const previewTitle = document.getElementById('previewTitle');
+const previewPath = document.getElementById('previewPath');
+const statusText = document.getElementById('statusText');
+const statsText = document.getElementById('statsText');
+const saveSupportText = document.getElementById('saveSupportText');
+const tokenControls = document.getElementById('tokenControls');
+const deviceFrame = document.getElementById('deviceFrame');
+const heroImageInput = document.getElementById('heroImageInput');
+const heroMeta = document.getElementById('heroMeta');
+const heroPreviewImage = document.getElementById('heroPreviewImage');
+const heroPreviewLink = document.getElementById('heroPreviewLink');
+const heroPreviewLabel = document.getElementById('heroPreviewLabel');
+const imageSearchQuery = document.getElementById('imageSearchQuery');
+const imageSourceSelect = document.getElementById('imageSourceSelect');
+const imageSearchStatus = document.getElementById('imageSearchStatus');
+const imageResults = document.getElementById('imageResults');
+const workspace = document.querySelector('.workspace');
+const previewShell = document.querySelector('.preview-shell');
+const htmlSourceView = document.getElementById('htmlSourceView');
+
+const panelState = {
+  controls: { key: 'controls', element: document.querySelector('[data-panel="controls"]'), size: 360, min: 300, collapsed: false },
+  editor: { key: 'editor', element: document.querySelector('[data-panel="editor"]'), size: 520, min: 360, collapsed: false },
+  preview: { key: 'preview', element: document.querySelector('[data-panel="preview"]'), min: 360, collapsed: false }
+};
+
+const panelHandles = {
+  'controls-editor': document.querySelector('[data-handle="controls-editor"]'),
+  'editor-preview': document.querySelector('[data-handle="editor-preview"]')
+};
+
+let debounceTimer = null;
+let fileHandle = null;
+const heroImageOverrides = {};
+const pageHtmlCache = {};
+let currentPreviewMode = 'live';
+let pageSwitchToken = 0;
+
+pages.forEach((page) => {
+  const option = document.createElement('option');
+  option.value = page.file;
+  option.textContent = page.label + ' (' + page.file + ')';
+  pageSelect.appendChild(option);
+});
+
+cssEditor.value = originalCss;
+renderTokenControls();
+updateStats();
+updateSaveSupport();
+applyWorkspaceLayout();
+initPanelControls();
+initResizeHandles();
+initPreviewModeToggle();
+updatePreviewMode();
+setActivePage(pageSelect.value || pages[0].file);
+
+pageSelect.addEventListener('change', () => {
+  setActivePage(pageSelect.value);
+});
+
+previewFrame.addEventListener('load', () => {
+  applyCssToPreview();
+  captureCurrentPageHtml(pageSelect.value, pageSwitchToken);
+  queuePagePanelRefresh(pageSwitchToken);
+});
+
+cssEditor.addEventListener('input', () => {
+  updateStats();
+  syncTokenInputs();
+  statusText.textContent = 'Updating preview…';
+  window.clearTimeout(debounceTimer);
+  debounceTimer = window.setTimeout(() => {
+    applyCssToPreview();
+    statusText.textContent = 'Preview updated.';
+  }, 180);
+});
+
+document.getElementById('reloadButton').addEventListener('click', () => {
+  htmlSourceView.textContent = 'Reloading page source…';
+  previewFrame.contentWindow.location.reload();
+  statusText.textContent = 'Preview reloading…';
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+  cssEditor.value = originalCss;
+  syncTokenInputs();
+  updateStats();
+  applyCssToPreview();
+  statusText.textContent = 'CSS reset to the original project snapshot.';
+});
+
+document.getElementById('copyButton').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(cssEditor.value);
+    statusText.textContent = 'CSS copied to the clipboard.';
+  } catch (error) {
+    statusText.textContent = 'Clipboard copy failed in this browser.';
+  }
+});
+
+document.getElementById('downloadButton').addEventListener('click', () => {
+  const blob = new Blob([cssEditor.value], { type: 'text/css;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'styles.css';
+  link.click();
+  URL.revokeObjectURL(url);
+  statusText.textContent = 'Downloaded a fresh styles.css file.';
+});
+
+document.getElementById('saveButton').addEventListener('click', saveToFile);
+
+document.getElementById('applyHeroButton').addEventListener('click', () => {
+  const nextUrl = heroImageInput.value.trim();
+  if (!nextUrl) {
+    statusText.textContent = 'Add a hero image URL first.';
+    return;
+  }
+  heroImageOverrides[pageSelect.value] = nextUrl;
+  applyHeroOverride(nextUrl);
+  syncHeroControls();
+  statusText.textContent = 'Hero image updated for ' + pageSelect.value + '.';
+});
+
+document.getElementById('resetHeroButton').addEventListener('click', () => {
+  delete heroImageOverrides[pageSelect.value];
+  previewFrame.contentWindow.location.reload();
+  statusText.textContent = 'Hero image reset for ' + pageSelect.value + '.';
+});
+
+document.getElementById('copyHeroButton').addEventListener('click', async () => {
+  const url = heroImageInput.value.trim();
+  if (!url) {
+    statusText.textContent = 'No hero image URL is available to copy.';
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    statusText.textContent = 'Hero image URL copied.';
+  } catch (error) {
+    statusText.textContent = 'Could not copy the hero image URL.';
+  }
+});
+
+document.getElementById('searchImagesButton').addEventListener('click', () => {
+  searchPublicImages(imageSearchQuery.value.trim(), imageSourceSelect.value);
+});
+
+imageSearchQuery.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.getElementById('searchImagesButton').click();
+  }
+});
+
+document.getElementById('openUnsplashSearch').addEventListener('click', () => {
+  openExternalSearch('https://unsplash.com/s/photos/' + encodeURIComponent(imageSearchQuery.value.trim() || 'business technology'));
+});
+
+document.getElementById('openPexelsSearch').addEventListener('click', () => {
+  openExternalSearch('https://www.pexels.com/search/' + encodeURIComponent(imageSearchQuery.value.trim() || 'business technology') + '/');
+});
+
+document.getElementById('openOpenverseSearch').addEventListener('click', () => {
+  openExternalSearch('https://openverse.org/search/image?q=' + encodeURIComponent(imageSearchQuery.value.trim() || 'business technology'));
+});
+
+heroImageInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.getElementById('applyHeroButton').click();
+  }
+});
+
+document.querySelectorAll('.viewport-toggle button').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.viewport-toggle button').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    deviceFrame.setAttribute('data-viewport', button.dataset.viewport);
+    statusText.textContent = 'Preview switched to ' + button.dataset.viewport + '.';
+  });
+});
+
+document.querySelectorAll('#jumpChips [data-target]').forEach((chip) => {
+  chip.addEventListener('click', () => jumpToText(chip.dataset.target));
+});
+
+document.querySelectorAll('#heroPresetChips [data-hero-url]').forEach((chip) => {
+  chip.addEventListener('click', () => {
+    heroImageInput.value = chip.dataset.heroUrl;
+    document.getElementById('applyHeroButton').click();
+  });
+});
+
+window.addEventListener('resize', applyWorkspaceLayout);
+
+function updateStats() {
+  const lines = cssEditor.value.split('\n').length;
+  const chars = cssEditor.value.length.toLocaleString();
+  statsText.textContent = lines + ' lines • ' + chars + ' characters';
+}
+
+function initPreviewModeToggle() {
+  document.querySelectorAll('[data-preview-mode]').forEach((button) => {
+    button.addEventListener('click', () => {
+      currentPreviewMode = button.dataset.previewMode;
+      updatePreviewMode();
+      updatePreviewLabels();
+    });
+  });
+}
+
+function updatePreviewMode() {
+  previewShell.classList.toggle('html-mode', currentPreviewMode === 'html');
+  document.querySelectorAll('[data-preview-mode]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.previewMode === currentPreviewMode);
+    button.setAttribute('aria-pressed', String(button.dataset.previewMode === currentPreviewMode));
+  });
+  if (currentPreviewMode === 'html') {
+    updateHtmlSource(pageSelect.value, pageSwitchToken);
+  }
+}
+
+function setActivePage(file) {
+  const nextFile = file || pages[0].file;
+  if (pageSelect.value !== nextFile) pageSelect.value = nextFile;
+  pageSwitchToken += 1;
+  const switchToken = pageSwitchToken;
+
+  updatePreviewLabels();
+  heroMeta.textContent = 'Detecting hero image on ' + nextFile + '…';
+  heroImageInput.value = '';
+  updateHeroPreview('', null);
+  htmlSourceView.textContent = 'Loading page source…';
+  statusText.textContent = 'Loading ' + nextFile + '…';
+  previewFrame.src = nextFile;
+  updateHtmlSource(nextFile, switchToken);
+}
+
+function queuePagePanelRefresh(switchToken) {
+  updatePreviewLabels();
+  syncHeroControlsWithRetry(switchToken);
+  updateHtmlSource(pageSelect.value, switchToken);
+}
+
+function initPanelControls() {
+  document.querySelectorAll('[data-action="toggle-panel"]').forEach((button) => {
+    button.addEventListener('click', () => togglePanel(button.dataset.panelKey));
+  });
+}
+
+function togglePanel(panelKey) {
+  const panel = panelState[panelKey];
+  if (!panel) return;
+  panel.collapsed = !panel.collapsed;
+  applyWorkspaceLayout();
+}
+
+function applyWorkspaceLayout() {
+  const isMobile = window.innerWidth <= 960;
+  const collapsedWidth = 72;
+
+  Object.values(panelState).forEach((panel) => {
+    panel.element.classList.toggle('collapsed', panel.collapsed);
+    document.querySelectorAll('[data-panel-key="' + panel.key + '"]').forEach((button) => {
+      button.textContent = panel.collapsed ? 'Expand' : 'Collapse';
+      button.setAttribute('aria-expanded', String(!panel.collapsed));
+    });
+  });
+
+  if (isMobile) {
+    workspace.style.gridTemplateColumns = '1fr';
+  } else {
+    const controlsTrack = panelState.controls.collapsed ? collapsedWidth + 'px' : Math.round(panelState.controls.size) + 'px';
+    const editorTrack = panelState.editor.collapsed ? collapsedWidth + 'px' : Math.round(panelState.editor.size) + 'px';
+    const previewTrack = panelState.preview.collapsed ? collapsedWidth + 'px' : 'minmax(360px, 1fr)';
+    workspace.style.gridTemplateColumns = [controlsTrack, '12px', editorTrack, '12px', previewTrack].join(' ');
+  }
+
+  panelHandles['controls-editor'].classList.toggle('is-disabled', isMobile || panelState.controls.collapsed || panelState.editor.collapsed);
+  panelHandles['editor-preview'].classList.toggle('is-disabled', isMobile || panelState.editor.collapsed || panelState.preview.collapsed);
+}
+
+function initResizeHandles() {
+  panelHandles['controls-editor'].addEventListener('mousedown', (event) => {
+    startResize(event, 'controls-editor');
+  });
+
+  panelHandles['editor-preview'].addEventListener('mousedown', (event) => {
+    startResize(event, 'editor-preview');
+  });
+
+  panelHandles['controls-editor'].addEventListener('dblclick', () => {
+    panelState.controls.size = 360;
+    applyWorkspaceLayout();
+  });
+
+  panelHandles['editor-preview'].addEventListener('dblclick', () => {
+    panelState.editor.size = 520;
+    applyWorkspaceLayout();
+  });
+}
+
+function startResize(event, handleKey) {
+  if (window.innerWidth <= 960) return;
+
+  if (handleKey === 'controls-editor' && (panelState.controls.collapsed || panelState.editor.collapsed)) return;
+  if (handleKey === 'editor-preview' && (panelState.editor.collapsed || panelState.preview.collapsed)) return;
+
+  event.preventDefault();
+  const startX = event.clientX;
+  const startControls = panelState.controls.size;
+  const startEditor = panelState.editor.size;
+  document.body.style.userSelect = 'none';
+
+  function onMove(moveEvent) {
+    const delta = moveEvent.clientX - startX;
+
+    if (handleKey === 'controls-editor') {
+      panelState.controls.size = clamp(startControls + delta, panelState.controls.min, Math.max(panelState.controls.min, window.innerWidth - 560));
+    }
+
+    if (handleKey === 'editor-preview') {
+      panelState.editor.size = clamp(startEditor + delta, panelState.editor.min, Math.max(panelState.editor.min, window.innerWidth - 520));
+    }
+
+    applyWorkspaceLayout();
+  }
+
+  function onUp() {
+    document.body.style.userSelect = '';
+    window.removeEventListener('mousemove', onMove);
+    window.removeEventListener('mouseup', onUp);
+  }
+
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function updatePreviewLabels() {
+  const current = pages.find((page) => page.file === pageSelect.value) || pages[0];
+  previewTitle.textContent = current.label + ' ' + (currentPreviewMode === 'html' ? 'HTML' : 'Preview');
+  previewPath.textContent = current.file;
+}
+
+function applyCssToPreview() {
+  try {
+    const doc = previewFrame.contentDocument;
+    if (!doc) return;
+
+    let styleTag = doc.getElementById('live-style-overrides');
+    if (!styleTag) {
+      styleTag = doc.createElement('style');
+      styleTag.id = 'live-style-overrides';
+      doc.head.appendChild(styleTag);
+    }
+    styleTag.textContent = cssEditor.value;
+    applyStoredHeroOverride();
+  } catch (error) {
+    statusText.textContent = 'Preview injection failed. Open the editor through a local web server if needed.';
+  }
+}
+
+function applyStoredHeroOverride() {
+  const override = heroImageOverrides[pageSelect.value];
+  if (override) applyHeroOverride(override);
+}
+
+function getHeroElement(doc = previewFrame.contentDocument) {
+  if (!doc) return null;
+  return doc.querySelector('.hero, .page-hero, .checklist-hero');
+}
+
+function applyHeroOverride(url) {
+  try {
+    const doc = previewFrame.contentDocument;
+    const hero = getHeroElement(doc);
+    if (!hero) {
+      heroMeta.textContent = 'No supported hero section was found on this page.';
+      return;
+    }
+    hero.style.backgroundImage = "url('" + url.replace(/'/g, "\\'") + "')";
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = 'center';
+    heroMeta.textContent = 'Editing ' + describeHero(hero) + ' on ' + pageSelect.value + '. This change is live in the preview and kept for this editor session.';
+    updateHeroPreview(url, hero);
+  } catch (error) {
+    heroMeta.textContent = 'Hero image override could not be applied on this page.';
+  }
+}
+
+function syncHeroControls() {
+  const doc = previewFrame.contentDocument;
+  const hero = getHeroElement(doc);
+  const overriddenUrl = heroImageOverrides[pageSelect.value];
+  const detectedUrl = overriddenUrl || readHeroImageUrl(hero);
+  heroImageInput.value = detectedUrl || '';
+
+  if (!hero) {
+    heroMeta.textContent = 'No supported hero section was found on this page.';
+    updateHeroPreview('', null);
+    statusText.textContent = 'Loaded ' + pageSelect.value + '.';
+    return;
+  }
+
+  heroMeta.textContent = 'Detected ' + describeHero(hero) + ' on ' + pageSelect.value + '. ' + (detectedUrl ? 'Current image loaded in the field above.' : 'This hero currently uses gradients or non-image styling.');
+  updateHeroPreview(detectedUrl, hero);
+  statusText.textContent = 'Loaded ' + pageSelect.value + '.';
+}
+
+function syncHeroControlsWithRetry(switchToken, attempts = 0) {
+  if (switchToken !== pageSwitchToken) return;
+
+  const doc = previewFrame.contentDocument;
+  const hero = getHeroElement(doc);
+  const hasHero = Boolean(hero);
+  const readyState = doc ? doc.readyState : 'loading';
+
+  if (!hasHero && attempts < 8 && readyState !== 'complete') {
+    window.setTimeout(() => syncHeroControlsWithRetry(switchToken, attempts + 1), 80);
+    return;
+  }
+
+  syncHeroControls();
+}
+
+function readHeroImageUrl(hero) {
+  if (!hero) return '';
+  const fromStyle = hero.style.backgroundImage || '';
+  const computed = previewFrame.contentWindow.getComputedStyle(hero).backgroundImage || '';
+  return extractUrlFromBackgroundImage(fromStyle) || extractUrlFromBackgroundImage(computed) || '';
+}
+
+function extractUrlFromBackgroundImage(value) {
+  if (!value || value === 'none') return '';
+  const match = value.match(/url\((['"]?)(.*?)\1\)/);
+  return match ? match[2] : '';
+}
+
+function describeHero(hero) {
+  if (hero.classList.contains('hero')) return 'the home hero';
+  if (hero.classList.contains('page-hero')) return 'the page hero';
+  if (hero.classList.contains('checklist-hero')) return 'the checklist hero';
+  return 'the hero section';
+}
+
+function updateHeroPreview(url, hero) {
+  const hasUrl = Boolean(url);
+  heroPreviewImage.alt = hasUrl ? 'Preview of the current hero image' : 'No hero image detected';
+  heroPreviewImage.style.display = 'block';
+  if (hasUrl) {
+    heroPreviewImage.src = url;
+    heroPreviewLink.style.display = 'inline';
+    heroPreviewLink.href = url;
+    heroPreviewLink.textContent = url;
+  } else {
+    heroPreviewImage.removeAttribute('src');
+    heroPreviewLink.style.display = 'none';
+    heroPreviewLink.href = '#';
+    heroPreviewLink.textContent = '';
+  }
+  heroPreviewLabel.textContent = hero ? 'Current ' + describeHero(hero) : 'Current hero image';
+}
+
+async function updateHtmlSource(file, switchToken, attempts = 0) {
+  if (pageHtmlCache[file]) {
+    htmlSourceView.textContent = pageHtmlCache[file];
+    return;
+  }
+
+  try {
+    const response = await fetch(file, { cache: 'no-store' });
+    if (switchToken !== pageSwitchToken) return;
+    if (response.ok) {
+      const sourceText = await response.text();
+      pageHtmlCache[file] = sourceText;
+      htmlSourceView.textContent = sourceText;
+      return;
+    }
+  } catch (error) {
+    // Fall back to serialized iframe document below.
+  }
+
+  if (switchToken !== pageSwitchToken) return;
+  const doc = previewFrame.contentDocument;
+  const readyState = doc ? doc.readyState : 'loading';
+  const hasDocument = Boolean(doc && doc.documentElement && doc.documentElement.outerHTML);
+
+  if ((!hasDocument || readyState === 'loading') && attempts < 10) {
+    window.setTimeout(() => updateHtmlSource(file, switchToken, attempts + 1), 120);
+    return;
+  }
+
+  if (!hasDocument) {
+    htmlSourceView.textContent = 'HTML source is not available yet for ' + file + '. Try Reload Preview once the page finishes loading.';
+    return;
+  }
+
+  const serialized = serializeIframeDocument(doc);
+  if (serialized) {
+    pageHtmlCache[file] = serialized;
+    htmlSourceView.textContent = serialized;
+    return;
+  }
+
+  htmlSourceView.textContent = 'HTML source is not available yet for ' + file + '. Try Reload Preview once the page finishes loading.';
+}
+
+function captureCurrentPageHtml(file, switchToken, attempts = 0) {
+  if (switchToken !== pageSwitchToken) return;
+
+  const doc = previewFrame.contentDocument;
+  const serialized = serializeIframeDocument(doc);
+
+  if (serialized) {
+    pageHtmlCache[file] = serialized;
+    if (currentPreviewMode === 'html' && pageSelect.value === file) {
+      htmlSourceView.textContent = serialized;
+    }
+    return;
+  }
+
+  if (attempts < 10) {
+    window.setTimeout(() => captureCurrentPageHtml(file, switchToken, attempts + 1), 120);
+  }
+}
+
+function serializeIframeDocument(doc) {
+  if (!doc || !doc.documentElement) return '';
+
+  try {
+    const clone = doc.documentElement.cloneNode(true);
+    const injectedStyle = clone.querySelector('#live-style-overrides');
+    if (injectedStyle) injectedStyle.remove();
+
+    let doctype = '<!DOCTYPE html>';
+    if (doc.doctype) {
+      doctype = '<!DOCTYPE '
+        + doc.doctype.name
+        + (doc.doctype.publicId ? ' PUBLIC "' + doc.doctype.publicId + '"' : '')
+        + (!doc.doctype.publicId && doc.doctype.systemId ? ' SYSTEM' : '')
+        + (doc.doctype.systemId ? ' "' + doc.doctype.systemId + '"' : '')
+        + '>';
+    }
+
+    return doctype + '\n' + clone.outerHTML;
+  } catch (error) {
+    return '';
+  }
+}
+
+function openExternalSearch(url) {
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+async function searchPublicImages(query, source) {
+  if (!query) {
+    imageSearchStatus.textContent = 'Enter a search phrase first.';
+    return;
+  }
+
+  imageSearchStatus.textContent = 'Searching public image sources for "' + query + '"…';
+  imageResults.innerHTML = '';
+
+  try {
+    const tasks = [];
+    if (source === 'all' || source === 'unsplash') tasks.push(searchUnsplash(query));
+    if (source === 'all' || source === 'openverse') tasks.push(searchOpenverse(query));
+    if (source === 'all' || source === 'wikimedia') tasks.push(searchWikimedia(query));
+
+    const settled = await Promise.all(tasks);
+    const results = settled.flat().slice(0, 12);
+    renderImageResults(results);
+    imageSearchStatus.textContent = results.length
+      ? 'Found ' + results.length + ' results for "' + query + '".'
+      : 'No results found for "' + query + '". Try broader search terms.';
+  } catch (error) {
+    imageSearchStatus.textContent = error && error.message
+      ? error.message
+      : 'Search failed. Your browser may be blocking remote requests from a local file.';
+  }
+}
+
+async function searchUnsplash(query) {
+  const response = await fetch('unsplash-proxy.php?action=search&query=' + encodeURIComponent(query) + '&per_page=8');
+  if (!response.ok) {
+    throw new Error('Unsplash search needs the editor to run through a PHP-capable local server or host.');
+  }
+  const data = await response.json();
+  return Array.isArray(data.results) ? data.results : [];
+}
+
+async function searchOpenverse(query) {
+  const response = await fetch('https://api.openverse.org/v1/images/?q=' + encodeURIComponent(query) + '&page_size=8');
+  if (!response.ok) {
+    throw new Error('Openverse search is currently unavailable.');
+  }
+  const data = await response.json();
+  const results = Array.isArray(data.results) ? data.results : [];
+  return results
+    .filter((item) => item && item.url)
+    .map((item) => ({
+      title: item.title || 'Untitled image',
+      thumb: item.thumbnail || item.url,
+      imageUrl: item.url,
+      provider: 'Openverse / ' + (item.source || item.provider || 'public source'),
+      creator: item.creator || 'Unknown creator',
+      license: item.license ? String(item.license).toUpperCase() : 'License listed on source',
+      sourceUrl: item.foreign_landing_url || item.url,
+      photographerUrl: item.creator_url || item.foreign_landing_url || item.url
+    }));
+}
+
+async function searchWikimedia(query) {
+  const endpoint = 'https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch='
+    + encodeURIComponent(query)
+    + '&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=900&format=json&origin=*';
+  const response = await fetch(endpoint);
+  if (!response.ok) {
+    throw new Error('Wikimedia search is currently unavailable.');
+  }
+  const data = await response.json();
+  const pages = data && data.query && data.query.pages ? Object.values(data.query.pages) : [];
+  return pages
+    .filter((page) => page.imageinfo && page.imageinfo[0] && page.imageinfo[0].url)
+    .map((page) => {
+      const info = page.imageinfo[0];
+      const meta = info.extmetadata || {};
+      return {
+        title: page.title ? page.title.replace(/^File:/, '') : 'Wikimedia image',
+        thumb: info.thumburl || info.url,
+        imageUrl: info.url,
+        provider: 'Wikimedia Commons',
+        creator: sanitizeMetadata(meta.Artist && meta.Artist.value) || 'Wikimedia contributor',
+        license: sanitizeMetadata(meta.LicenseShortName && meta.LicenseShortName.value) || 'License listed on source',
+        sourceUrl: info.descriptionurl || info.url,
+        photographerUrl: info.descriptionurl || info.url
+      };
+    });
+}
+
+function sanitizeMetadata(value) {
+  if (!value) return '';
+  return value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function renderImageResults(results) {
+  imageResults.innerHTML = '';
+
+  results.forEach((result) => {
+    const article = document.createElement('article');
+    article.className = 'image-result';
+
+    const image = document.createElement('img');
+    image.src = result.thumb;
+    image.alt = result.title;
+
+    const body = document.createElement('div');
+    body.className = 'image-result-body';
+
+    const title = document.createElement('strong');
+    title.textContent = result.title;
+
+    const meta = document.createElement('span');
+    meta.textContent = result.provider + ' • ' + result.creator;
+
+    const license = document.createElement('span');
+    license.textContent = result.license;
+
+    const credit = document.createElement('a');
+    credit.href = result.photographerUrl || result.sourceUrl;
+    credit.target = '_blank';
+    credit.rel = 'noreferrer';
+    credit.textContent = 'Photographer / creator page';
+
+    const source = document.createElement('a');
+    source.href = result.sourceUrl;
+    source.target = '_blank';
+    source.rel = 'noreferrer';
+    source.textContent = 'Open source page';
+
+    const actions = document.createElement('div');
+    actions.className = 'image-result-actions';
+
+    const useButton = document.createElement('button');
+    useButton.type = 'button';
+    useButton.textContent = 'Use This Image';
+    useButton.addEventListener('click', async () => {
+      heroImageInput.value = result.imageUrl;
+      await trackImageSelection(result);
+      document.getElementById('applyHeroButton').click();
+    });
+
+    const copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.textContent = 'Copy URL';
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(result.imageUrl);
+        statusText.textContent = 'Image URL copied.';
+      } catch (error) {
+        statusText.textContent = 'Could not copy the image URL.';
+      }
+    });
+
+    actions.append(useButton, copyButton);
+    body.append(title, meta, license, credit, source, actions);
+    article.append(image, body);
+    imageResults.appendChild(article);
+  });
+}
+
+async function trackImageSelection(result) {
+  if (!result || result.provider !== 'Unsplash' || !result.downloadLocation) return;
+
+  try {
+    await fetch('unsplash-proxy.php?action=download&download_location=' + encodeURIComponent(result.downloadLocation));
+  } catch (error) {
+    statusText.textContent = 'Unsplash image applied, but download tracking could not be confirmed.';
+  }
+}
+
+function renderTokenControls() {
+  tokenControls.innerHTML = '';
+  tokenConfig.forEach((token) => {
+    const field = document.createElement('div');
+    field.className = 'field';
+
+    const label = document.createElement('label');
+    label.setAttribute('for', 'token-' + token.varName.slice(2));
+    label.textContent = token.label;
+
+    const input = document.createElement('input');
+    input.id = 'token-' + token.varName.slice(2);
+    input.type = token.type;
+    input.dataset.varName = token.varName;
+    input.value = readVarValue(token.varName);
+    input.addEventListener('input', () => {
+      updateVarValue(token.varName, input.value);
+      applyCssToPreview();
+      updateStats();
+      statusText.textContent = token.varName + ' updated.';
+    });
+
+    field.append(label, input);
+    tokenControls.appendChild(field);
+  });
+}
+
+function syncTokenInputs() {
+  tokenConfig.forEach((token) => {
+    const input = document.querySelector('[data-var-name="' + token.varName + '"]');
+    if (input) input.value = readVarValue(token.varName);
+  });
+}
+
+function readVarValue(varName) {
+  const match = cssEditor.value.match(new RegExp(varName.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + '\\s*:\\s*([^;]+);'));
+  return match ? match[1].trim() : '';
+}
+
+function updateVarValue(varName, nextValue) {
+  const safeVar = varName.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const regex = new RegExp('(' + safeVar + '\\s*:\\s*)([^;]+)(;)');
+  cssEditor.value = cssEditor.value.replace(regex, '$1' + nextValue + '$3');
+}
+
+function jumpToText(target) {
+  const index = cssEditor.value.indexOf(target);
+  if (index === -1) {
+    statusText.textContent = 'Could not find ' + target;
+    return;
+  }
+  cssEditor.focus();
+  cssEditor.setSelectionRange(index, index + target.length);
+  const rowsBefore = cssEditor.value.slice(0, index).split('\n').length;
+  const lineHeight = 21;
+  cssEditor.scrollTop = Math.max((rowsBefore - 4) * lineHeight, 0);
+  statusText.textContent = 'Jumped to ' + target;
+}
+
+function updateSaveSupport() {
+  const supported = 'showSaveFilePicker' in window;
+  saveSupportText.textContent = supported
+    ? 'File save: supported in this browser.'
+    : 'File save: not supported here, use Download instead.';
+}
+
+async function saveToFile() {
+  if (!('showSaveFilePicker' in window)) {
+    statusText.textContent = 'Direct file save is not available in this browser. Use Download instead.';
+    return;
+  }
+
+  try {
+    if (!fileHandle) {
+      fileHandle = await window.showSaveFilePicker({
+        suggestedName: 'styles.css',
+        types: [{
+          description: 'CSS Files',
+          accept: { 'text/css': ['.css'] }
+        }]
+      });
+    }
+
+    const writable = await fileHandle.createWritable();
+    await writable.write(cssEditor.value);
+    await writable.close();
+    statusText.textContent = 'Saved CSS to file.';
+  } catch (error) {
+    if (error && error.name === 'AbortError') {
+      statusText.textContent = 'Save cancelled.';
+      return;
+    }
+    statusText.textContent = 'Save failed. Use Download as a fallback.';
+  }
+}
+
+syncTokenInputs();
+updatePreviewLabels();
+syncHeroControls();
+</script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design for Restaurants | Online Orders | WPB</title>
+<meta name="description" content="Custom restaurant website design in South Florida. Direct online ordering (no commissions), Google Maps &amp; AI Search Optimization (SEO/GEO), and AI-powered customer engagement.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.pain-card{padding:2.25rem;border:1px solid var(--border);background:var(--bg);position:relative;overflow:hidden;transition:all .3s}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.pain-card:hover::before{transform:scaleX(1)}
+.pain-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
+.pain-card h3{font-family:var(--heading);font-size:.9rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.6rem}
+.pain-card p{font-size:.9rem;color:var(--text-secondary);line-height:1.75}
+
+.compare-table{width:100%;border-collapse:collapse;margin-top:2.5rem}
+.compare-table th{font-family:var(--heading);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:1rem 1.25rem;text-align:left;background:var(--tertiary);color:#fff;border-right:1px solid rgba(255,255,255,.1)}
+.compare-table th:last-child{border-right:none}
+.compare-table td{padding:.9rem 1.25rem;border:1px solid var(--border);font-size:.88rem;color:var(--text-secondary);vertical-align:middle}
+.compare-table tr:nth-child(even) td{background:var(--bg-ice)}
+.compare-table td:first-child{font-weight:700;color:var(--tertiary);font-family:var(--heading);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.compare-table td.bad{color:#c0392b}
+.compare-table td.good{color:#27ae60;font-weight:700}
+
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:3rem}
+.feature-card{padding:2rem;border:1px solid var(--border);background:var(--bg);transition:all .3s;position:relative;overflow:hidden}
+.feature-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.feature-card:hover::after{transform:scaleX(1)}
+.feature-icon{font-size:1.8rem;margin-bottom:1rem}
+.feature-card h3{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.5rem}
+.feature-card p{font-size:.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:.75rem}
+.feature-card ul{list-style:none;padding:0;margin:0}
+.feature-card ul li{font-size:.82rem;color:var(--text-muted);padding:.25rem 0;padding-left:1rem;position:relative}
+.feature-card ul li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+.roi-callout{background:var(--tertiary);color:#fff;padding:3rem;margin:3rem 0;position:relative;overflow:hidden}
+.roi-callout::before{content:'$';position:absolute;right:-1rem;top:-2rem;font-family:var(--heading);font-size:12rem;font-weight:800;color:rgba(255,255,255,.04);line-height:1}
+.roi-callout .roi-label{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.roi-callout p{font-size:1rem;line-height:1.8;color:rgba(255,255,255,.75);max-width:680px}
+.roi-callout strong{color:#fff}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
+.tag{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .85rem;border:1px solid var(--border);color:var(--text-secondary);background:var(--bg);transition:all .25s}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-top:2.5rem}
+.pricing-tier{padding:2.5rem 2rem;border-right:1px solid var(--border);position:relative}
+.pricing-tier:last-child{border-right:none}
+.pricing-tier.featured{background:var(--tertiary);color:#fff}
+.pricing-tier.featured .tier-name{color:var(--accent)}
+.pricing-tier.featured .tier-price{color:#fff}
+.pricing-tier.featured .tier-best{color:rgba(255,255,255,.55)}
+.pricing-tier.featured li{color:rgba(255,255,255,.75)}
+.tier-name{font-family:var(--heading);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.5rem}
+.tier-price{font-family:var(--heading);font-size:1.8rem;font-weight:800;color:var(--tertiary);line-height:1;margin-bottom:.3rem}
+.tier-best{font-size:.8rem;color:var(--text-muted);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.pricing-tier.featured .tier-best{border-color:rgba(255,255,255,.15)}
+.pricing-tier ul{list-style:none;padding:0;margin:0 0 1.5rem}
+.pricing-tier ul li{font-size:.85rem;color:var(--text-secondary);padding:.4rem 0;padding-left:1.25rem;position:relative}
+.pricing-tier ul li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.8rem}
+.tier-cta{display:block;text-align:center;padding:.75rem 1.5rem;font-family:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--accent);color:var(--accent);transition:all .3s;text-decoration:none}
+.tier-cta:hover,.pricing-tier.featured .tier-cta{background:var(--accent);color:#fff}
+
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--tertiary);letter-spacing:.02em}
+.faq-question .faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--accent);transition:all .3s}
+.faq-item.open .faq-icon{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+.faq-answer{display:none;padding:0 0 1.25rem;font-size:.9rem;color:var(--text-secondary);line-height:1.75}
+.faq-item.open .faq-answer{display:block}
+
+@media(max-width:768px){
+  .pain-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .pricing-tier{border-right:none;border-bottom:1px solid var(--border)}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/web-design-restaurants.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/web-design-restaurants.html">
+  <meta property="og:title" content="Web Design for Restaurants | Online Orders | WPB">
+  <meta property="og:description" content="Custom restaurant website design in South Florida. Direct online ordering (no commissions), Google Maps &amp; AI Search Optimization (SEO/GEO), and AI-powered customer engagement.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I keep using DoorDash and also have direct ordering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We integrate direct ordering on your website while you maintain your third-party delivery partnerships. Over time, you can shift more orders to your own platform and keep more profit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do customers pay on my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We integrate Stripe or Square for secure online payments. Customers can pay by credit card, Apple Pay, or Google Pay directly on your site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I update my menu myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every restaurant site we build includes a simple menu management system. Update prices, add specials, or change descriptions in minutes — no coding required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will this help me show up on Google Maps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We optimize your Google Business Profile, build local schema markup, and create location-specific content that helps you rank in the Maps 3-pack for your cuisine and neighborhood."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard restaurant website with online ordering launches in 3-4 weeks. Rush timelines are available for an additional fee."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <a href="resources.html">Industries</a> / <span>Restaurant Web Design</span></div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">Restaurant Web Design — Palm Beach County</div>
+    <h1 class="reveal stagger-1">Stop Paying 30% to DoorDash.<br><em>Own Your Online Ordering.</em></h1>
+    <p class="reveal stagger-2">Third-party delivery apps are eating your margins. A custom website with direct online ordering means every order goes straight to you — no middleman, no commissions, no giving away your customer data.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Get a Free Strategy Call</a>
+      <a href="case-studies.html" class="btn-secondary light">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why section -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Real Problem</div>
+      <h2 class="section-title reveal stagger-1">Why Your Restaurant Needs Its Own Website</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal stagger-1">
+        <h3>&#128073; The Third-Party Trap</h3>
+        <p>DoorDash, Uber Eats, and Grubhub charge 15–30% per order. On a $50 order, that's $7.50 to $15 gone per transaction. Those platforms also own your customer relationships — you can't email them, you can't build loyalty, and you're competing with every other restaurant in the app.</p>
+      </div>
+      <div class="pain-card reveal stagger-2">
+        <h3>&#128270; The Google Reality</h3>
+        <p>When someone searches "best Thai food near me" or "Italian restaurant Palm Beach," Google shows ads, the local map pack, and organic results. If your restaurant doesn't have a website optimized for local search, you're invisible in all three. A Facebook page isn't enough — you need a real site Google can rank.</p>
+      </div>
+    </div>
+
+    <div class="roi-callout reveal" style="margin-top:3rem">
+      <div class="roi-label">The Numbers Don't Lie</div>
+      <p>A restaurant doing <strong>$15,000/month in delivery</strong> through third-party apps pays <strong>$2,250–$4,500/month in commissions</strong>. Shifting even half of those orders to direct ordering saves <strong>$13,500–$27,000/year</strong> — more than enough to pay for a new website in month one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison table -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Platform vs. Your Site</div>
+      <h2 class="section-title reveal stagger-1">Direct Ordering vs. Third-Party Apps</h2>
+    </div>
+    <div class="reveal stagger-2" style="overflow-x:auto">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>DoorDash / Uber Eats</th>
+            <th>Your Own Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Commission per order</td><td class="bad">15–30%</td><td class="good">0%</td></tr>
+          <tr><td>Customer data ownership</td><td class="bad">They own it</td><td class="good">You own it</td></tr>
+          <tr><td>Repeat customer marketing</td><td class="bad">Can't reach them</td><td class="good">Email, SMS, loyalty</td></tr>
+          <tr><td>Google Maps visibility</td><td class="bad">Limited control</td><td class="good">Full control</td></tr>
+          <tr><td>Brand experience</td><td class="bad">Their app, their rules</td><td class="good">Your brand, your way</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Deliver</div>
+      <h2 class="section-title reveal stagger-1">Everything Your Restaurant Website Needs</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal stagger-1">
+        <div class="feature-icon">&#128722;</div>
+        <h3>Direct Online Ordering</h3>
+        <p>A branded ordering system built into your website. Customers order directly from you — no commissions, no third-party branding.</p>
+        <ul>
+          <li>Menu management in real time</li>
+          <li>Order customization & modifiers</li>
+          <li>Credit card, Apple Pay, Google Pay</li>
+          <li>Delivery zones with address validation</li>
+          <li>Pickup & curbside options</li>
+        </ul>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="feature-icon">&#128205;</div>
+        <h3>Google Maps &amp; AI-powered Local Search (SEO/GEO)</h3>
+        <p>We optimize your restaurant for the local map pack — the #1 source of restaurant discovery in your area.</p>
+        <ul>
+          <li>Google Business Profile optimization</li>
+          <li>Local citation building (Yelp, TripAdvisor)</li>
+          <li>Restaurant & Menu schema markup</li>
+          <li>Review generation strategy</li>
+          <li>Multi-location landing pages</li>
+        </ul>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="feature-icon">&#128241;</div>
+        <h3>Mobile-First Design</h3>
+        <p>85% of restaurant searches happen on mobile. Your site needs to load in under 2 seconds and make ordering effortless on a phone screen.</p>
+        <ul>
+          <li>Sub-2-second mobile load time</li>
+          <li>Tap-to-call in header</li>
+          <li>One-tap directions</li>
+          <li>Mobile-optimized menu display</li>
+        </ul>
+      </div>
+      <div class="feature-card reveal stagger-1">
+        <div class="feature-icon">&#129302;</div>
+        <h3>AI-Powered Customer Engagement</h3>
+        <p>An AI chatbot that answers questions about hours, dietary accommodations, reservations, and daily specials — even at midnight.</p>
+        <ul>
+          <li>Automated review requests after visits</li>
+          <li>Smart email/SMS marketing campaigns</li>
+          <li>Birthday and lapsed-customer flows</li>
+          <li>24/7 FAQ handling</li>
+        </ul>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="feature-icon">&#127859;</div>
+        <h3>Menu Design & Photography</h3>
+        <p>Your menu is your most important marketing tool. We design digital menus that are easy to browse and optimized for search engines.</p>
+        <ul>
+          <li>Visual, filterable digital menu</li>
+          <li>Dietary & allergen filters</li>
+          <li>Google indexes your menu items</li>
+          <li>Easy self-service updates</li>
+        </ul>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="feature-icon">&#128197;</div>
+        <h3>Reservation & Waitlist</h3>
+        <p>Integrated reservation systems that sync with your floor plan. Online waitlist with text notifications. No more "how long is the wait?" calls.</p>
+        <ul>
+          <li>Real-time table availability</li>
+          <li>Automated confirmation texts</li>
+          <li>Waitlist SMS notifications</li>
+          <li>Party size & special requests</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Restaurant types -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Who We Serve</div>
+      <h2 class="section-title reveal stagger-1">Every Type of Food & Beverage Business</h2>
+    </div>
+    <div class="tag-cloud reveal stagger-2" style="justify-content:center">
+      <span class="tag">Fine Dining</span>
+      <span class="tag">Casual Dining</span>
+      <span class="tag">Fast Casual & QSR</span>
+      <span class="tag">Cafes & Coffee Shops</span>
+      <span class="tag">Bars & Breweries</span>
+      <span class="tag">Food Trucks</span>
+      <span class="tag">Catering Companies</span>
+      <span class="tag">Multi-Location Groups</span>
+      <span class="tag">Ghost Kitchens</span>
+      <span class="tag">Bakeries & Dessert Shops</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Investment</div>
+      <h2 class="section-title reveal stagger-1">Restaurant Website Packages</h2>
+      <p class="section-desc reveal stagger-2">Fixed pricing — you know the cost before we start. Your strategy call will nail down exact scope.</p>
+    </div>
+    <div class="pricing-grid reveal stagger-3">
+      <div class="pricing-tier">
+        <div class="tier-name">Essential</div>
+        <div class="tier-price">$3,000 – $5,000</div>
+        <div class="tier-best">Best for single-location, menu + contact + basic ordering</div>
+        <ul>
+          <li>Custom design up to 5 pages</li>
+          <li>Mobile-responsive development</li>
+          <li>Basic menu display & online ordering</li>
+          <li>Contact form & Google Maps</li>
+          <li>Basic SEO, AEO &amp; GEO setup</li>
+          <li>Google Analytics 4</li>
+          <li>30 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+      <div class="pricing-tier featured">
+        <div class="tier-name">Growth — Most Popular</div>
+        <div class="tier-price">$5,000 – $10,000</div>
+        <div class="tier-best">Full ordering, SEO/GEO, AI chatbot, review automation</div>
+        <ul>
+          <li>Everything in Essential</li>
+          <li>Full direct online ordering system</li>
+          <li>AI chatbot (trained on your menu & FAQs)</li>
+          <li>Local SEO &amp; GEO (Google Maps &amp; AI focus)</li>
+          <li>Review generation automation</li>
+          <li>Email & SMS marketing setup</li>
+          <li>60 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+      <div class="pricing-tier">
+        <div class="tier-name">Multi-Location</div>
+        <div class="tier-price">$10,000 – $20,000+</div>
+        <div class="tier-best">Multiple locations, centralized management, advanced automation</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Multiple location pages</li>
+          <li>Centralized menu management</li>
+          <li>Location-specific SEO &amp; GEO strategy</li>
+          <li>Advanced loyalty & CRM integration</li>
+          <li>Custom automation workflows</li>
+          <li>90 days post-launch support</li>
+        </ul>
+        <a href="contact.html" class="tier-cta">Get Started</a>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted)">AI chatbot: $2,000 setup + $100–$200/month ongoing. All packages include mobile-responsive design and SSL.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container" style="max-width:800px">
+    <div class="section-center">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal stagger-1">Common Questions</h2>
+    </div>
+    <div class="reveal stagger-2">
+      <div class="faq-item">
+        <button class="faq-question">Can I keep using DoorDash and also have direct ordering? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Absolutely. Most restaurants do both. The goal is to shift as many orders as possible to direct (where you keep 100%) while maintaining visibility on third-party platforms. We'll help you build a strategy to incentivize direct orders.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do customers pay on my website? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">We integrate secure payment processing (Stripe, Square, or your preferred processor). Customers pay by credit card, Apple Pay, or Google Pay. Funds go directly to your bank account.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I update my menu myself? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes. We build a simple admin panel where you can add items, change prices, mark items as sold out, and add daily specials — no developer needed. Most restaurant owners manage it in minutes per week.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Will this help me show up on Google Maps? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes. Local SEO, AEO &amp; GEO is a core part of every restaurant package. We optimize your Google Business Profile, build consistent citations, and implement Restaurant schema markup that helps Google and AI engines understand and rank your site.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long does it take to build? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Most restaurant sites launch in 3–6 weeks, including online ordering setup. Complex multi-location projects may take 6–10 weeks. We'll give you a clear timeline on your strategy call.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.6)">Stop Losing Money</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:600px;margin:0 auto .75rem">Every Day Without Direct Ordering Is Money Left on the Table</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free strategy call and we'll show you exactly how much you're losing to third-party commissions — and how a custom website fixes it.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      <a href="pricing.html" class="btn-secondary light">See Pricing</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">Or call us directly: 561-291-9001</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design for Law Firms | AI-Powered | WPB</title>
+<meta name="description" content="Custom website design for law firms in South Florida. AI chatbots for client intake, SEO/AEO/GEO optimization for attorneys, and lead generation that works 24/7.">
+<link rel="canonical" href="https://webpalmbeaches.com/industries/law-firm-web-design">
+<link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Web Palm Beaches",
+      "description": "Custom website design and AI consulting for law firms in South Florida.",
+      "url": "https://webpalmbeaches.com",
+      "telephone": "+15612919001",
+      "areaServed": "Palm Beach County, FL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://webpalmbeaches.com"},
+        {"@type":"ListItem","position":2,"name":"Industries","item":"https://webpalmbeaches.com/industries"},
+        {"@type":"ListItem","position":3,"name":"Law Firm Web Design","item":"https://webpalmbeaches.com/industries/law-firm-web-design"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"How long does it take to build a law firm website?","acceptedAnswer":{"@type":"Answer","text":"Most law firm sites launch in 5-8 weeks. Complex sites with multiple practice areas and custom AI features may take 8-12 weeks."}},
+        {"@type":"Question","name":"Can you help us rank for '[practice area] lawyer [city]'?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every site includes foundational SEO, AEO &amp; GEO, and we offer ongoing SEO/GEO retainer packages specifically for law firms targeting local legal keywords and AI citation queries."}},
+        {"@type":"Question","name":"Is the AI chatbot compliant with attorney advertising rules?","acceptedAnswer":{"@type":"Answer","text":"Yes. We configure the chatbot to follow Florida Bar advertising guidelines. It doesn't provide legal advice — it qualifies inquiries and captures contact information."}},
+        {"@type":"Question","name":"Do you handle content writing for practice area pages?","acceptedAnswer":{"@type":"Answer","text":"We can. We offer content creation as an add-on, or we can work with copy you provide. For legal content, we recommend attorney review of all published material."}},
+        {"@type":"Question","name":"Can the chatbot integrate with our case management software?","acceptedAnswer":{"@type":"Answer","text":"In most cases, yes. We integrate with Clio, MyCase, PracticePanther, Lawmatics, and other popular legal CRMs."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* ── PAGE-SPECIFIC STYLES ── */
+
+/* Problem Grid */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.problem-card {
+  padding: 2.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  transition: all .3s;
+}
+.problem-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+  transform: translateY(-2px);
+}
+.problem-card .prob-num {
+  font-family: var(--heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: .18;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.problem-card h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  line-height: 1.75;
+}
+
+/* Feature Grid (What We Build) */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.feature-card {
+  padding: 2.25rem 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .4s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 45px rgba(0,0,0,.09);
+}
+.feature-card:hover::before { transform: scaleX(1); }
+.feature-card .fc-icon {
+  width: 52px; height: 52px;
+  background: var(--bg-ice);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  transition: all .3s;
+}
+.feature-card:hover .fc-icon {
+  background: var(--accent);
+  color: #fff;
+}
+.feature-card h3 {
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--tertiary);
+  margin-bottom: .65rem;
+}
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+
+/* AI Features — 2-col layout */
+.ai-features-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.ai-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.ai-feature-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.ai-feature-icon {
+  width: 48px; height: 48px;
+  flex-shrink: 0;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+}
+.ai-feature-item h3 {
+  font-family: var(--heading);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--tertiary);
+  margin-bottom: .5rem;
+}
+.ai-feature-item p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.75;
+}
+.ai-feature-item .stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .65rem;
+  font-family: var(--heading);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(205,97,85,.08);
+  padding: .35rem .8rem;
+}
+.ai-visual {
+  background: var(--bg-dark);
+  border-radius: 0;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.ai-visual::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  border: 2px solid rgba(205,97,85,.15);
+  border-radius: 50%;
+}
+.ai-visual::after {
+  content: '';
+  position: absolute;
+  bottom: -50px; left: -50px;
+  width: 180px; height: 180px;
+  border: 2px solid rgba(64,107,149,.25);
+  border-radius: 50%;
+}
+.chat-mockup {
+  position: relative;
+  z-index: 2;
+}
+.chat-bubble {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+.chat-bubble.right { flex-direction: row-reverse; }
+.chat-avatar {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .7rem;
+  font-family: var(--heading);
+  font-weight: 700;
+  color: #fff;
+  border-radius: 50%;
+}
+.chat-bubble.right .chat-avatar { background: var(--secondary); }
+.chat-text {
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.85);
+  font-family: var(--body);
+  font-size: .8rem;
+  line-height: 1.6;
+  padding: .75rem 1rem;
+  max-width: 220px;
+  border-radius: 2px 12px 12px 12px;
+}
+.chat-bubble.right .chat-text {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px 2px 12px 12px;
+}
+.chat-label {
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 1.5rem;
+}
+
+/* Practice area tags */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 2.5rem;
+  justify-content: center;
+}
+.practice-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .65rem 1.35rem;
+  font-family: var(--heading);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .3s;
+  cursor: default;
+}
+.practice-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.practice-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(205,97,85,.04);
+}
+
+/* Pricing Table */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+.pricing-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: all .3s;
+}
+.pricing-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.09);
+}
+.pricing-card.featured {
+  border-color: var(--accent);
+  border-width: 2px;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(205,97,85,.15);
+}
+.pricing-badge {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--heading);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: .4rem 1rem;
+  white-space: nowrap;
+}
+.pricing-tier {
+  font-family: var(--heading);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+.pricing-price {
+  font-family: var(--heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--tertiary);
+  line-height: 1.1;
+  margin-bottom: .5rem;
+}
+.pricing-for {
+  font-size: .83rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+  font-family: var(--body);
+}
+.pricing-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+}
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  padding: .5rem 0;
+  font-size: .875rem;
+  color: var(--text-secondary);
+  font-family: var(--body);
+  border-bottom: 1px solid rgba(0,0,0,.04);
+}
+.pricing-features li:last-child { border-bottom: none; }
+.pricing-features li::before {
+  content: '';
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  background: rgba(205,97,85,.12);
+  border-radius: 50%;
+  position: relative;
+  top: 2px;
+}
+.pricing-features li::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23cd6155' fill-opacity='.15'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%23cd6155' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.pricing-note {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-family: var(--body);
+  line-height: 1.7;
+}
+
+/* FAQ using details/summary */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 2.5rem;
+}
+details.faq-item {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+details.faq-item[open] {
+  border-color: rgba(205,97,85,.3);
+}
+details.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--heading);
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tertiary);
+  list-style: none;
+  background: var(--bg);
+  transition: background .2s;
+  user-select: none;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary:hover { background: var(--bg-ice); }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform .3s;
+  line-height: 1;
+}
+details.faq-item[open] summary::after {
+  content: '−';
+}
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: .93rem;
+  line-height: 1.8;
+  font-family: var(--body);
+  background: var(--bg);
+}
+
+/* Why Us section */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.why-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all .3s;
+}
+.why-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+.why-num {
+  font-family: var(--heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: .3;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.5rem;
+}
+.why-card h3 {
+  font-family: var(--heading);
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--tertiary);
+  margin-bottom: .5rem;
+}
+.why-card p {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+  .ai-features-wrap { grid-template-columns: 1fr; gap: 3rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.featured { transform: none; }
+  .why-grid { grid-template-columns: 1fr; }
+}
+@media(max-width: 680px) {
+  .problem-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/web-design-law-firms.html">
+  <meta property="og:title" content="Web Design for Law Firms | AI-Powered | WPB">
+  <meta property="og:description" content="Custom website design for law firms in South Florida. AI chatbots for client intake, SEO/AEO/GEO optimization for attorneys, and lead generation that works 24/7.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="#">Industries</a> / <span>Law Firm Web Design</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">Law Firm Web Design — South Florida</div>
+    <h1 class="reveal stagger-1">Your Law Firm's Website Should Be<br><em>Your Best Intake Coordinator</em></h1>
+    <p class="reveal stagger-2">Potential clients don't call five law firms anymore. They Google their problem and reach out to the firm that makes it easiest. We build AI-powered legal websites that capture leads around the clock, qualify potential clients automatically, and establish the authority your practice deserves.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Get a Free Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="case-studies.html" class="btn-secondary light">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM SECTION ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal stagger-1">The Problem With Most Law Firm Websites</h2>
+      <p class="section-desc reveal stagger-2">Most legal sites share the same four fatal flaws. If your firm's website has any of these, you're losing clients every day to competitors who don't.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal stagger-1">
+        <div class="prob-num">01</div>
+        <h3>They Look the Same</h3>
+        <p>Dark blue, stock photos of gavels and handshakes, generic "About Our Firm" copy. Your website should reflect what makes your practice different — not blend into a sea of identical legal sites.</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+        <div class="prob-num">02</div>
+        <h3>They Don't Capture Leads</h3>
+        <p>A contact form buried on a separate page isn't a lead capture strategy. The average website visitor spends 54 seconds on a page. If you don't engage them fast, they're gone — and calling your competitor.</p>
+      </div>
+      <div class="problem-card reveal stagger-3">
+        <div class="prob-num">03</div>
+        <h3>They're Invisible on Google</h3>
+        <p>Having a website isn't enough. If you don't rank for terms like "personal injury lawyer West Palm Beach" or "family law attorney Boca Raton," your site might as well not exist.</p>
+      </div>
+      <div class="problem-card reveal stagger-4">
+        <div class="prob-num">04</div>
+        <h3>They Can't Answer After Hours</h3>
+        <p>A potential client searching for a DUI attorney at 11 PM on a Saturday isn't going to wait until Monday morning. If your site can't help them right now, someone else's will.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT WE BUILD ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">What We Build</div>
+      <h2 class="section-title reveal stagger-1">Six Components Every Elite Law Firm Website Needs</h2>
+      <p class="section-desc reveal stagger-2">Every site we build for law firms is engineered around the same objective: turn anonymous visitors into qualified consultations — automatically.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#129302;</div>
+        <h3>AI-Powered Client Intake</h3>
+        <p>An intelligent chatbot that asks the right questions, collects contact details, and qualifies leads so your team only spends time on viable cases. Works 24/7, including weekends and holidays.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#128196;</div>
+        <h3>Practice Area Pages</h3>
+        <p>Dedicated, SEO/GEO-optimized pages for every practice area. Each page targets the specific keywords potential clients use: "[practice area] lawyer [city]" as well as conversational AI search intents. This is how you rank and earn citations for searches that matter.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128100;</div>
+        <h3>Attorney Profiles</h3>
+        <p>More than a headshot and bio. We build attorney profiles that establish credibility — education, case results, bar admissions, publications, and a personal message that builds trust before the first consultation.</p>
+      </div>
+      <div class="feature-card reveal stagger-1">
+        <div class="fc-icon">&#11088;</div>
+        <h3>Case Results &amp; Testimonials</h3>
+        <p>Social proof wins cases before they start. We design case results sections and testimonial displays that demonstrate your track record without violating Florida Bar ethical rules.</p>
+      </div>
+      <div class="feature-card reveal stagger-2">
+        <div class="fc-icon">&#128241;</div>
+        <h3>Mobile-First Design</h3>
+        <p>Over 60% of legal searches happen on mobile. Your site loads fast, looks sharp, and makes it dead simple to call or message your firm from a phone — because that's where clients are searching.</p>
+      </div>
+      <div class="feature-card reveal stagger-3">
+        <div class="fc-icon">&#128269;</div>
+        <h3>Legal SEO, AEO &amp; GEO</h3>
+        <p>Schema markup for attorneys and legal services, local citation building, Google Business Profile optimization, and content strategy targeting high-intent legal keywords in your specific market.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AI FEATURES ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="ai-features-wrap">
+      <div class="reveal-left">
+        <div class="section-label">AI Built for Legal</div>
+        <h2 class="section-title">Three AI Features That Turn Your Website Into a 24/7 Intake Machine</h2>
+        <p class="section-desc" style="margin-bottom:2.5rem">While your competitors rely on business-hours callbacks and missed opportunities, your AI-powered site is qualifying prospects and booking consultations around the clock.</p>
+        <div class="ai-features-list">
+          <div class="ai-feature-item">
+            <div class="ai-feature-icon">&#128172;</div>
+            <div>
+              <h3>Intelligent Chat Intake</h3>
+              <p>Your AI chatbot screens potential clients with configurable questions: type of legal matter, incident date, prior counsel, and best contact method. It scores each lead and routes details to your team via email, text, or directly into your CRM. Cases outside your practice areas get a polite referral message.</p>
+              <span class="stat-chip">Works 24/7 &mdash; including holidays</span>
+            </div>
+          </div>
+          <div class="ai-feature-item">
+            <div class="ai-feature-icon">&#127749;</div>
+            <div>
+              <h3>After-Hours Lead Capture</h3>
+              <p>68% of people searching for an attorney do so outside business hours. Your AI chatbot doesn't sleep, doesn't take lunch breaks, and never forgets to follow up. Every inquiry gets an immediate response and a next-day callback commitment.</p>
+              <span class="stat-chip">68% of legal searches happen after hours</span>
+            </div>
+          </div>
+          <div class="ai-feature-item">
+            <div class="ai-feature-icon">&#128197;</div>
+            <div>
+              <h3>Automated Appointment Scheduling</h3>
+              <p>Qualified leads book a consultation directly from the chat — synced with your calendar, with automatic confirmation and reminder emails sent before the appointment. No back-and-forth. No dropped balls.</p>
+              <span class="stat-chip">Integrates with Clio, MyCase, Lawmatics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="ai-visual">
+          <div class="chat-label">Live Intake — 11:42 PM Saturday</div>
+          <div class="chat-mockup">
+            <div class="chat-bubble">
+              <div class="chat-avatar">AI</div>
+              <div class="chat-text">Hi — I'm here to help connect you with our legal team. What type of legal matter do you need help with?</div>
+            </div>
+            <div class="chat-bubble right">
+              <div class="chat-avatar">JS</div>
+              <div class="chat-text">I was in a car accident 3 days ago. The other driver was at fault.</div>
+            </div>
+            <div class="chat-bubble">
+              <div class="chat-avatar">AI</div>
+              <div class="chat-text">I'm sorry to hear that. Have you received any medical treatment yet? And have you been contacted by the other driver's insurance?</div>
+            </div>
+            <div class="chat-bubble right">
+              <div class="chat-avatar">JS</div>
+              <div class="chat-text">Yes to both. Their insurance is already pressuring me to settle.</div>
+            </div>
+            <div class="chat-bubble">
+              <div class="chat-avatar">AI</div>
+              <div class="chat-text">Don't sign anything yet — that's exactly when an attorney can protect your claim. I can schedule a free consultation for first thing Monday. What's the best number to reach you?</div>
+            </div>
+            <div style="margin-top:1.5rem;padding:1rem;background:rgba(205,97,85,.15);border-left:3px solid var(--accent)">
+              <div style="font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.35rem">Lead Routed To Intake Team</div>
+              <div style="font-family:var(--body);font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.6">Personal Injury &bull; High Priority &bull; Monday 9 AM consultation booked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRACTICE AREAS ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Practice Areas</div>
+      <h2 class="section-title reveal stagger-1">We've Built Websites For Every Area of Law</h2>
+      <p class="section-desc reveal stagger-2">Don't see your practice area? We work with all types of legal practices. The principles are the same: authority, trust, and lead capture.</p>
+      <div class="tag-cloud reveal stagger-3">
+        <span class="practice-tag">Personal Injury</span>
+        <span class="practice-tag">Family Law &amp; Divorce</span>
+        <span class="practice-tag">Criminal Defense</span>
+        <span class="practice-tag">Immigration</span>
+        <span class="practice-tag">Real Estate Law</span>
+        <span class="practice-tag">Estate Planning &amp; Probate</span>
+        <span class="practice-tag">Business &amp; Corporate Law</span>
+        <span class="practice-tag">Employment Law</span>
+        <span class="practice-tag">Bankruptcy</span>
+        <span class="practice-tag">Medical Malpractice</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center" style="margin-bottom:0">
+      <div class="section-label reveal">Why Web Palm Beaches</div>
+      <h2 class="section-title reveal stagger-1">Why Law Firms Choose Us Over Legal Marketing Agencies</h2>
+      <p class="section-desc reveal stagger-2">We're not a legal marketing mill churning out template sites for 50 firms in the same market.</p>
+    </div>
+    <div class="why-grid" style="margin-top:3rem">
+      <div class="why-card reveal stagger-1">
+        <div class="why-num">01</div>
+        <div>
+          <h3>Every Site Is Custom</h3>
+          <p>We don't churn out template sites for dozens of firms in the same market. Every website is designed for your firm, your practice areas, and your local competitive landscape.</p>
+        </div>
+      </div>
+      <div class="why-card reveal stagger-2">
+        <div class="why-num">02</div>
+        <div>
+          <h3>AI Is Our Specialty</h3>
+          <p>Most legal marketing agencies bolt on a basic chat widget and call it AI. We build custom AI intake systems trained on your firm's specific practice areas and qualification criteria.</p>
+        </div>
+      </div>
+      <div class="why-card reveal stagger-3">
+        <div class="why-num">03</div>
+        <div>
+          <h3>We Know the Bar Rules</h3>
+          <p>We understand Florida Bar advertising and testimonial requirements. Your website will be compelling, conversion-focused, and fully compliant with attorney advertising rules.</p>
+        </div>
+      </div>
+      <div class="why-card reveal stagger-4">
+        <div class="why-num">04</div>
+        <div>
+          <h3>Fixed Pricing, No Surprises</h3>
+          <p>You'll know the exact cost before we begin. No hourly billing, no scope creep surprises — ironic for a law firm agency, we know. Straight pricing that lets you plan your investment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Investment</div>
+      <h2 class="section-title reveal stagger-1">What a Law Firm Website Costs</h2>
+      <p class="section-desc reveal stagger-2">Straightforward pricing with no hourly billing and no retainers to start. Every package includes mobile-responsive design, SEO, AEO &amp; GEO foundation, and post-launch support.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal stagger-1">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">$5,000 – $8,000</div>
+        <div class="pricing-for">Best for solo practitioners, new firms, and practices with 1–3 focus areas ready to establish a professional online presence.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Custom homepage + 5 core pages</li>
+          <li>Up to 3 practice area landing pages</li>
+          <li>Attorney profile page</li>
+          <li>Mobile-first responsive design</li>
+          <li>Contact form + click-to-call</li>
+          <li>SEO, AEO &amp; GEO foundation &amp; Google Business setup</li>
+          <li>30-day post-launch support</li>
+        </ul>
+        <a href="contact.html" class="btn-secondary" style="width:100%;justify-content:center">Get Started</a>
+      </div>
+      <div class="pricing-card featured reveal stagger-2">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price">$8,000 – $15,000</div>
+        <div class="pricing-for">Ideal for mid-size firms with multiple practice areas that need AI intake, serious SEO &amp; GEO optimization, and a competitive edge over larger local competitors.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>Up to 8 practice area landing pages</li>
+          <li>AI chatbot client intake system</li>
+          <li>Case results &amp; testimonials section</li>
+          <li>Schema markup for attorneys</li>
+          <li>Local citation building</li>
+          <li>60-day post-launch support</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center">Get Started
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="pricing-card reveal stagger-3">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price">$15,000 – $25,000+</div>
+        <div class="pricing-for">For multi-attorney firms, practices with multiple offices, or firms requiring custom CRM integrations and advanced automation workflows.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Everything in Professional</li>
+          <li>Unlimited practice area pages</li>
+          <li>Multi-attorney profiles</li>
+          <li>CRM integration (Clio, MyCase, etc.)</li>
+          <li>Custom AI intake logic &amp; lead scoring</li>
+          <li>Multi-location optimization</li>
+          <li>90-day post-launch support</li>
+        </ul>
+        <a href="contact.html" class="btn-secondary" style="width:100%;justify-content:center">Let's Talk</a>
+      </div>
+    </div>
+    <p class="pricing-note">AI chatbot integration starts at $2,000 setup + $150–$300/month for ongoing AI infrastructure. All packages available in Palm Beach County and throughout South Florida.</p>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div style="max-width:780px;margin:0 auto">
+      <div class="section-center" style="margin-bottom:0">
+        <div class="section-label reveal">FAQ</div>
+        <h2 class="section-title reveal stagger-1">Questions From Law Firms We've Worked With</h2>
+      </div>
+      <div class="faq-list reveal stagger-2">
+        <details class="faq-item">
+          <summary>How long does it take to build a law firm website?</summary>
+          <div class="faq-answer">Most law firm sites launch in 5–8 weeks from kickoff. Complex sites with multiple practice areas, custom AI features, and multi-attorney profiles may take 8–12 weeks. We'll give you a firm timeline during your strategy call before any work begins.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can you help us rank for "[practice area] lawyer [city]"?</summary>
+          <div class="faq-answer">Yes — that's the central goal of every practice area page we build. Every site includes foundational SEO, AEO &amp; GEO, and we offer ongoing monthly SEO &amp; GEO retainer packages specifically for law firms targeting high-intent local legal keywords and AI queries. We focus on the searches and citations that bring in actual consultation requests, not just traffic.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is the AI chatbot compliant with attorney advertising rules?</summary>
+          <div class="faq-answer">Yes. We configure the chatbot specifically to follow Florida Bar advertising guidelines. It doesn't provide legal advice — it qualifies inquiries, captures contact information, and connects potential clients with your intake team. We've built compliant intake systems for multiple South Florida firms.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you handle content writing for practice area pages?</summary>
+          <div class="faq-answer">We can. Content creation is available as an add-on service, or we can work efficiently with copy you provide. For legal content specifically, we recommend attorney review of all published material before launch — we build that review step into our process at no extra charge.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can the chatbot integrate with our case management software?</summary>
+          <div class="faq-answer">In most cases, yes. We integrate directly with Clio, MyCase, PracticePanther, Lawmatics, and other major legal CRMs. The chatbot captures intake information and routes it — with lead scoring — into your existing workflows. Custom integrations are available for less common platforms.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;color:rgba(255,255,255,.5)">Law Firm Web Design</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center;max-width:660px;margin:0 auto .75rem;color:#fff">Your Competitors Are Already Online. Are You Winning?</h2>
+    <p class="section-desc reveal stagger-2" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Book a free strategy call and we'll audit your current web presence, show you exactly where you're losing potential clients, and outline how an AI-powered website can change that.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book Your Free Strategy Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="services.html" class="btn-secondary light">View All Services</a>
+    </div>
+    <a href="tel:5612919001" class="phone-link reveal stagger-4">561-291-9001 &mdash; Mon–Fri 9am–6pm ET</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

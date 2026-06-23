@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
+  <url><loc>https://webpalmbeaches.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://webpalmbeaches.com/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://webpalmbeaches.com/solutions.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://webpalmbeaches.com/pricing.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://webpalmbeaches.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/case-studies.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/process.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://webpalmbeaches.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/clients.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Industry Pages -->
+  <url><loc>https://webpalmbeaches.com/web-design-law-firms.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/web-design-medical.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/web-design-real-estate.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/web-design-restaurants.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/web-design-contractors.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Location Pages -->
+  <url><loc>https://webpalmbeaches.com/ai-consulting-west-palm-beach.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/ai-consulting-boca-raton.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/ai-consulting-delray-beach.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webpalmbeaches.com/ai-consulting-jupiter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Resources -->
+  <url><loc>https://webpalmbeaches.com/resources.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://webpalmbeaches.com/ai-readiness-checklist.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://webpalmbeaches.com/resources-local-seo-guide-south-florida.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://webpalmbeaches.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-website-cost-palm-beach-county.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-wordpress-vs-custom-web-design.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-mobile-first-web-design-south-florida.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-what-is-ai-automation.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-five-tasks-to-automate-palm-beach.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-how-long-to-build-website.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-what-is-aeo-answer-engine-optimization.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-automate-google-reviews-ai.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-google-business-profile-optimization.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-how-to-get-more-google-reviews.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-website-speed-optimization.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-local-seo-vs-national-seo.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-rank-google-maps-west-palm-beach.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-ai-lead-generation-small-business.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-what-is-schema-markup.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-how-ai-can-help-south-florida-business.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-ai-chatbots-for-small-business.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://webpalmbeaches.com/blog-five-signs-website-costing-customers.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url>
+    <loc>https://webpalmbeaches.com/ai-for-small-business.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webpalmbeaches.com/ai-team-training.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webpalmbeaches.com/blog-ai-small-teams-vs-big-teams.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

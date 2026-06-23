@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Team Training &amp; Workshops | Web Palm Beaches</title>
+  <meta name="description" content="AI training workshops for South Florida teams. Learn to build AI workflows in 20 hours. No coding required. Hosted by Web Palm Beaches.">
+  <link rel="canonical" href="https://webpalmbeaches.com/ai-team-training.html">
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do participants need any coding experience?",
+            "acceptedAnswer": {"@type": "Answer", "text": "None at all. Our training is built for non-technical business owners and staff. We use no-code tools like Zapier, Make, and ChatGPT that are designed to be used without programming knowledge. The focus is on strategic thinking and workflow design, not writing code."}
+          },
+          {
+            "@type": "Question",
+            "name": "How many people can attend a workshop?",
+            "acceptedAnswer": {"@type": "Answer", "text": "The AI Quick Start fits up to 5 participants. The AI Team Immersion fits up to 10. The System Architect Program fits up to 5 for the intensive format. For larger teams, we offer custom enterprise workshops — contact us to discuss."}
+          },
+          {
+            "@type": "Question",
+            "name": "Are the workshops in-person or virtual?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Both options are available. In-person workshops are held at your location in Palm Beach County, or at our preferred venue in West Palm Beach. Virtual workshops are conducted via Zoom with screen sharing and hands-on live building sessions. Most clients prefer in-person for the collaborative energy, but virtual works just as well for distributed teams."}
+          },
+          {
+            "@type": "Question",
+            "name": "What tools will my team actually use after training?",
+            "acceptedAnswer": {"@type": "Answer", "text": "The core stack we teach is: ChatGPT and Claude for writing, research, and analysis; Zapier or Make for workflow automation; Notion AI for documentation and knowledge management; and Google Workspace AI for daily productivity. We customize the tool selection based on your industry and existing software."}
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between training and Done-For-You implementation?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Done-For-You means we build everything and you use the outputs. Training means your team learns to build and manage AI workflows themselves. Many clients do both — they start with a Done-For-You implementation to get immediate results, then add training so their team can extend and maintain the systems going forward."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    /* Why Training — 3 cols */
+    .training-why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .training-why-card {
+      padding: 2.25rem 2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: all .4s;
+    }
+    .training-why-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+    .training-why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 45px rgba(0,0,0,.09);
+    }
+    .training-why-card:hover::before { transform: scaleX(1); }
+    .training-why-icon {
+      width: 52px; height: 52px;
+      background: var(--bg-ice);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      transition: all .3s;
+    }
+    .training-why-card:hover .training-why-icon {
+      background: var(--accent);
+    }
+    .training-why-card h3 {
+      font-family: var(--heading);
+      font-size: .9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--tertiary);
+      margin-bottom: .65rem;
+    }
+    .training-why-card p {
+      color: var(--text-secondary);
+      font-size: .9rem;
+      line-height: 1.75;
+    }
+
+    /* 20-Hour Mastery — before/after */
+    .mastery-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      margin-top: 3rem;
+      align-items: stretch;
+    }
+    .mastery-side {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+    }
+    .mastery-side.before { background: var(--bg-alt); border-right: none; }
+    .mastery-side.after { background: var(--tertiary); border-left: none; }
+    .mastery-divider {
+      width: 4px;
+      background: var(--accent);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mastery-divider-label {
+      position: absolute;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--heading);
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .5rem .3rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      z-index: 2;
+    }
+    .mastery-label {
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .mastery-side.before .mastery-label { color: #bbb; }
+    .mastery-side.after .mastery-label { color: var(--accent); }
+    .mastery-side h3 {
+      font-family: var(--heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .mastery-side.before h3 { color: var(--tertiary); }
+    .mastery-side.after h3 { color: #fff; }
+    .mastery-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .mastery-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .875rem;
+      line-height: 1.55;
+    }
+    .mastery-side.before .mastery-list li { color: var(--text-secondary); }
+    .mastery-side.after .mastery-list li { color: rgba(255,255,255,.75); }
+    .mastery-list li::before {
+      content: '';
+      width: 8px; height: 8px;
+      flex-shrink: 0;
+      margin-top: .35rem;
+    }
+    .mastery-side.before .mastery-list li::before { background: #ccc; }
+    .mastery-side.after .mastery-list li::before { background: var(--accent); }
+    .mastery-stat {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-family: var(--heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .mastery-stat-label {
+      display: block;
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: .35rem;
+    }
+    .mastery-side.before .mastery-stat-label { color: var(--text-muted); }
+    .mastery-side.after .mastery-stat-label { color: rgba(255,255,255,.5); }
+
+    /* Training Formats */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .format-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all .3s;
+    }
+    .format-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,.09);
+    }
+    .format-card.featured {
+      border-color: var(--accent);
+      border-width: 2px;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(205,97,85,.15);
+    }
+    .format-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      white-space: nowrap;
+    }
+    .format-tier {
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .format-price {
+      font-family: var(--heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--tertiary);
+      line-height: 1.1;
+      margin-bottom: .35rem;
+    }
+    .format-meta {
+      font-size: .8rem;
+      color: var(--text-muted);
+      font-family: var(--heading);
+      letter-spacing: .05em;
+      margin-bottom: 1rem;
+    }
+    .format-desc {
+      font-size: .875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .format-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .format-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .format-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      padding: .45rem 0;
+      font-size: .875rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+    .format-features li:last-child { border-bottom: none; }
+    .format-features li::before {
+      content: '';
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23cd6155' fill-opacity='.15'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%23cd6155' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+      top: 2px;
+    }
+    .format-outcome {
+      background: rgba(205,97,85,.06);
+      border-left: 3px solid var(--accent);
+      padding: .75rem 1rem;
+      font-size: .8rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .format-outcome strong {
+      font-family: var(--heading);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: .3rem;
+    }
+
+    /* Tool grid */
+    .tools-section-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .85rem;
+    }
+    .tool-chip {
+      padding: .9rem .75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      transition: all .3s;
+    }
+    .tool-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(205,97,85,.04);
+      cursor: pointer;
+    }
+    /* Tool modals */
+    .tool-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}
+    .tool-modal-overlay.open{opacity:1;pointer-events:all}
+    .tool-modal{background:#fff;max-width:700px;width:100%;max-height:88vh;overflow-y:auto}
+    .tool-modal .modal-close-bar{display:flex;justify-content:flex-end;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+    .tool-modal .modal-close-bar button{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-secondary);padding:.25rem .5rem}
+    .tool-modal .tm-header{padding:2.5rem;background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));color:#fff}
+    .tool-modal .tm-icon{font-size:2.5rem;margin-bottom:.75rem}
+    .tool-modal .tm-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.45);margin-bottom:.4rem}
+    .tool-modal h2{font-family:var(--heading);font-size:1.6rem;font-weight:800;margin-bottom:.6rem}
+    .tool-modal .tm-tagline{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.6}
+    .tool-modal .tm-body{padding:2rem 2.5rem}
+    .tool-modal .tm-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.25rem;background:var(--bg-ice);margin-bottom:1.75rem}
+    .tool-modal .tm-meta-item{text-align:center}
+    .tool-modal .mm-val{font-family:var(--heading);font-size:1.3rem;font-weight:800;color:var(--accent);line-height:1}
+    .tool-modal .mm-key{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);margin-top:.25rem}
+    .tool-modal .tm-section{margin-bottom:1.5rem}
+    .tool-modal .tm-section h3{font-family:var(--heading);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.2rem;margin-bottom:.9rem}
+    .tool-modal .tm-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+    .tool-modal .tm-list li{padding-left:1.25rem;position:relative;font-size:.9rem;color:var(--text-secondary);line-height:1.6}
+    .tool-modal .tm-list li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+    .tool-modal .tm-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+    .tool-modal .tm-item{padding:.9rem 1rem;background:var(--bg-alt);border-left:3px solid var(--accent)}
+    .tool-modal .tm-item h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.3rem}
+    .tool-modal .tm-item p{font-size:.82rem;color:var(--text-secondary);line-height:1.55;margin:0}
+    .tool-modal .tm-cta{background:var(--bg-dark);padding:1.5rem;text-align:center;margin-top:.5rem}
+    .tool-modal .tm-cta h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+    .tool-modal .tm-cta p{font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem}
+    @media(max-width:600px){.tool-modal .tm-meta{grid-template-columns:1fr 1fr}.tool-modal .tm-grid{grid-template-columns:1fr}}
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .skills-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .skills-list li::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: .4rem;
+    }
+
+    /* Who it's for */
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .who-card {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-family: var(--heading);
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--tertiary);
+      transition: all .3s;
+    }
+    .who-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+    }
+    .who-card::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Testimonial */
+    .testimonial-block {
+      background: var(--bg-dark);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-block::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px; left: 2rem;
+      font-size: 10rem;
+      color: rgba(205,97,85,.15);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-text {
+      position: relative;
+      z-index: 2;
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,.85);
+      font-style: italic;
+      max-width: 700px;
+      margin-bottom: 1.75rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-avatar {
+      width: 48px; height: 48px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: .95rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: var(--heading);
+      font-size: .85rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+    .testimonial-role {
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+      font-family: var(--heading);
+      letter-spacing: .05em;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading);
+      gap: 1rem;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.25rem;
+      color: var(--accent);
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 0 1.25rem;
+      font-size: .95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    @media(max-width:900px) {
+      .training-why-grid { grid-template-columns: 1fr 1fr; }
+      .mastery-wrap { grid-template-columns: 1fr; }
+      .mastery-divider { display: none; }
+      .mastery-side.before { border-right: 1px solid var(--border); border-bottom: none; }
+      .mastery-side.after { border-left: 1px solid var(--border); }
+      .formats-grid { grid-template-columns: 1fr; }
+      .format-card.featured { transform: none; }
+      .tools-section-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .who-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:680px) {
+      .training-why-grid { grid-template-columns: 1fr; }
+      .tool-grid { grid-template-columns: 1fr 1fr; }
+      .who-grid { grid-template-columns: 1fr; }
+      .testimonial-block { padding: 2rem; }
+    }
+  </style>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/ai-team-training.html">
+  <meta property="og:title" content="AI Team Training &amp; Workshops | Web Palm Beaches">
+  <meta property="og:description" content="AI training workshops for South Florida teams. Learn to build AI workflows in 20 hours. No coding required. Hosted by Web Palm Beaches.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="index.html">Home</a> / <a href="solutions.html">AI Solutions</a> / <span>AI Team Training</span>
+    </div>
+    <div class="section-label reveal" style="color:rgba(255,255,255,.6);margin-bottom:.75rem">AI Training &amp; Workshops — South Florida</div>
+    <h1 class="reveal stagger-1">Train Your Team to Think Like<br><em>System Architects.</em></h1>
+    <p class="reveal stagger-2">20 hours of hands-on practice is enough to build functional, high-value AI workflows. No coding required. We turn your existing staff into AI-powered operators who multiply their own output.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book a Workshop
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#formats" class="btn-secondary light">View Formats &amp; Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY TRAINING CHANGES EVERYTHING ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Case for Training</div>
+      <h2 class="section-title reveal stagger-1">Why Training Changes Everything</h2>
+      <p class="section-desc reveal stagger-2">Done-For-You AI builds you a car. Training teaches your team to drive. Both are valuable — but only one compounds over time.</p>
+    </div>
+    <div class="training-why-grid">
+      <div class="training-why-card reveal stagger-1">
+        <div class="training-why-icon">⚡</div>
+        <h3>Speed to Value</h3>
+        <p>Trained teams implement new automations in days, not months. Instead of waiting for a vendor timeline, your staff can identify a problem on Monday and have an automated solution running by Friday.</p>
+      </div>
+      <div class="training-why-card reveal stagger-2">
+        <div class="training-why-icon">🎯</div>
+        <h3>Staff Retention</h3>
+        <p>Employees who learn in-demand AI skills stay longer, take on more responsibility, and find more meaning in their work. AI training is one of the highest-ROI employee investments available in 2026.</p>
+      </div>
+      <div class="training-why-card reveal stagger-3">
+        <div class="training-why-icon">📈</div>
+        <h3>Compound Returns</h3>
+        <p>Every new workflow your team builds compounds your productivity permanently. Unlike a one-time implementation, a trained team keeps building, refining, and expanding your AI infrastructure indefinitely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE 20-HOUR MASTERY ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">The Method</div>
+      <h2 class="section-title reveal stagger-1">The 20-Hour Mastery</h2>
+      <p class="section-desc reveal stagger-2">In 2026, AI fluency doesn't require an engineering degree or years of experience. 20 focused hours with the right tools and the right guidance is enough to produce a team member who can build and manage workflows that save hundreds of hours annually. Here's what that transformation looks like.</p>
+    </div>
+    <div class="mastery-wrap reveal stagger-1">
+      <div class="mastery-side before">
+        <div class="mastery-label">Before Training</div>
+        <h3>The Manual Worker</h3>
+        <ul class="mastery-list">
+          <li>Bottlenecked on every repetitive task</li>
+          <li>Can't scale output without working longer hours</li>
+          <li>Dependent on vendors for any automation</li>
+          <li>Feels like AI is intimidating or too complex</li>
+          <li>Hiring is the only way to do more</li>
+          <li>Inconsistent output quality across tasks</li>
+        </ul>
+        <div class="mastery-stat">8hrs</div>
+        <span class="mastery-stat-label">Average hours/week lost to tasks AI could handle</span>
+      </div>
+      <div class="mastery-divider">
+        <span class="mastery-divider-label">20 Hours</span>
+      </div>
+      <div class="mastery-side after">
+        <div class="mastery-label">After Training</div>
+        <h3>The System Architect</h3>
+        <ul class="mastery-list">
+          <li>Builds automations for repetitive tasks independently</li>
+          <li>Multiplies output without adding hours</li>
+          <li>Self-sufficient for new workflow creation</li>
+          <li>Fluent in AI tools and prompt engineering</li>
+          <li>Scales output by designing better systems</li>
+          <li>AI handles consistency; human handles judgment</li>
+        </ul>
+        <div class="mastery-stat" style="color:#fff">10x</div>
+        <span class="mastery-stat-label">Typical output multiplier for trained team members</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRAINING FORMATS ── -->
+<section class="bg-alt" id="formats">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Training Options</div>
+      <h2 class="section-title reveal stagger-1">Three Formats. One Goal: AI-Fluent Teams.</h2>
+      <p class="section-desc reveal stagger-2">Every format is hands-on. Every participant leaves with working automations — not just slides and theory.</p>
+    </div>
+    <div class="formats-grid">
+      <div class="format-card reveal stagger-1">
+        <div class="format-tier">AI Quick Start</div>
+        <div class="format-price">$1,500</div>
+        <div class="format-meta">Half-Day &bull; 4 Hours &bull; Up to 5 Participants</div>
+        <div class="format-desc">The fastest way to get your team off the sidelines and into AI. A concentrated half-day session covering the tools that deliver the most immediate value.</div>
+        <div class="format-divider"></div>
+        <ul class="format-features">
+          <li>ChatGPT &amp; Claude for daily business tasks</li>
+          <li>Zapier fundamentals — triggers, actions, filters</li>
+          <li>Building your first automation (live, during the session)</li>
+          <li>Prompt engineering basics for consistent output</li>
+          <li>In-person or virtual — your choice</li>
+        </ul>
+        <div class="format-outcome">
+          <strong>Guaranteed Outcome</strong>
+          Every participant leaves with 1 running, live automation connected to their actual business tools.
+        </div>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Book This Workshop</a>
+      </div>
+      <div class="format-card featured reveal stagger-2">
+        <div class="format-badge">Most Comprehensive</div>
+        <div class="format-tier">AI Team Immersion</div>
+        <div class="format-price">$3,500</div>
+        <div class="format-meta">Full-Day &bull; 8 Hours &bull; Up to 10 Participants</div>
+        <div class="format-desc">A full-day deep dive that transforms your team's relationship with AI. Every participant leaves with a role-specific playbook and multiple working automations.</div>
+        <div class="format-divider"></div>
+        <ul class="format-features">
+          <li>Full AI tools suite — ChatGPT, Claude, Zapier, Make, Notion AI</li>
+          <li>Workflow mapping for your specific business processes</li>
+          <li>3–5 custom automations built specifically for your team</li>
+          <li>Role-specific AI playbooks for each participant</li>
+          <li>Integration with your existing software stack</li>
+          <li>30-day post-workshop support included</li>
+        </ul>
+        <div class="format-outcome">
+          <strong>Guaranteed Outcome</strong>
+          Complete AI workflow library tailored to your business. Every team member leaves with documented systems they can maintain independently.
+        </div>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Book the Immersion</a>
+      </div>
+      <div class="format-card reveal stagger-3">
+        <div class="format-tier">System Architect Program</div>
+        <div class="format-price">$8,500</div>
+        <div class="format-meta">4-Week Intensive &bull; Up to 5 Participants</div>
+        <div class="format-desc">The complete transformation. Four weeks of guided intensive work that produces a fully trained team and a documented AI operating system for your entire business.</div>
+        <div class="format-divider"></div>
+        <ul class="format-features">
+          <li>Weekly 3-hour live sessions (in-person or virtual)</li>
+          <li>Async support between sessions via dedicated Slack channel</li>
+          <li>Full operational audit — every process mapped</li>
+          <li>Custom tool selection based on your industry</li>
+          <li>Complete AI workflow builds with your team</li>
+          <li>90-day post-program support and quarterly check-in</li>
+        </ul>
+        <div class="format-outcome">
+          <strong>Guaranteed Outcome</strong>
+          Fully documented AI operating system for your business — plus a trained team that can build, manage, and expand it indefinitely.
+        </div>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center">Apply for This Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TOOLS AND SKILLS ── -->
+<section>
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Curriculum</div>
+      <h2 class="section-title reveal stagger-1">What Your Team Will Learn</h2>
+      <p class="section-desc reveal stagger-2">We teach the tools your team will actually use — not theoretical frameworks. Every session produces working outputs.</p>
+    </div>
+    <div class="tools-section-wrap">
+      <div class="reveal stagger-1">
+        <h3 style="font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem">AI Tools We Cover</h3>
+        <div class="tool-grid">
+          <div class="tool-chip" onclick="openToolModal('tool-chatgpt')">ChatGPT</div>
+          <div class="tool-chip" onclick="openToolModal('tool-claude')">Claude</div>
+          <div class="tool-chip" onclick="openToolModal('tool-zapier')">Zapier</div>
+          <div class="tool-chip" onclick="openToolModal('tool-make')">Make</div>
+          <div class="tool-chip" onclick="openToolModal('tool-n8n')">n8n</div>
+          <div class="tool-chip" onclick="openToolModal('tool-notion')">Notion AI</div>
+          <div class="tool-chip" onclick="openToolModal('tool-google')">Google AI</div>
+          <div class="tool-chip" onclick="openToolModal('tool-perplexity')">Perplexity</div>
+          <div class="tool-chip" onclick="openToolModal('tool-midjourney')">Midjourney</div>
+        </div>
+        <p style="font-size:.8rem;color:var(--text-muted);margin-top:1.25rem;line-height:1.6">Tool selection is customized for each team based on your existing software stack and business needs.</p>
+      </div>
+      <div class="reveal stagger-2">
+        <h3 style="font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem">Skills Your Team Will Have</h3>
+        <ul class="skills-list">
+          <li>Prompt engineering for consistent, high-quality AI output</li>
+          <li>Workflow mapping and process documentation</li>
+          <li>Building multi-step automations with Zapier or Make</li>
+          <li>AI agent setup and oversight protocols</li>
+          <li>Quality control frameworks for AI-generated content</li>
+          <li>Integration between AI tools and existing software</li>
+          <li>Identifying automation opportunities in daily work</li>
+          <li>Building and maintaining an AI workflow library</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO THIS IS FOR ── -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label reveal">Ideal Fit</div>
+      <h2 class="section-title reveal stagger-1">Who This Is For</h2>
+      <p class="section-desc reveal stagger-2">Any team with repetitive processes they want to automate. If your team does the same types of tasks over and over, AI can handle most of them.</p>
+    </div>
+    <div class="who-grid reveal stagger-1">
+      <div class="who-card" onclick="openToolModal('who-smallbiz')">Small Businesses (2–20 employees)</div>
+      <div class="who-card" onclick="openToolModal('who-marketing')">Marketing &amp; Creative Teams</div>
+      <div class="who-card" onclick="openToolModal('who-professional')">Professional Services Firms</div>
+      <div class="who-card" onclick="openToolModal('who-realestate')">Real Estate Agencies</div>
+      <div class="who-card" onclick="openToolModal('who-restaurants')">Restaurants &amp; Hospitality</div>
+      <div class="who-card" onclick="openToolModal('who-legal')">Law Firms &amp; Legal Teams</div>
+      <div class="who-card" onclick="openToolModal('who-healthcare')">Healthcare Practices</div>
+      <div class="who-card" onclick="openToolModal('who-ecommerce')">E-Commerce Operators</div>
+      <div class="who-card" onclick="openToolModal('who-repetitive')">Any Business With Repetitive Processes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIAL ── -->
+<section>
+  <div class="container" style="max-width:820px">
+    <div class="testimonial-block reveal">
+      <p class="testimonial-text">"Before the AI Team Immersion, I thought AI was something for big tech companies with engineers on staff. After one day, my office manager had built a client follow-up sequence that runs on its own. We've closed four additional deals in the past six weeks that I'm confident we would have lost before. The ROI was immediate."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MC</div>
+        <div>
+          <div class="testimonial-name">Michael C.</div>
+          <div class="testimonial-role">Owner, Commercial Cleaning Company &mdash; Boca Raton, FL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="bg-alt">
+  <div class="container" style="max-width:800px">
+    <div class="section-label reveal" style="text-align:center">FAQ</div>
+    <h2 class="section-title reveal stagger-1" style="text-align:center">Common Questions</h2>
+    <div style="margin-top:2.5rem">
+      <div class="faq-item reveal stagger-1">
+        <div class="faq-question">Do participants need any coding experience?</div>
+        <div class="faq-answer">None at all. Our training is built for non-technical business owners and staff. We use no-code tools like Zapier, Make, and ChatGPT that are designed to be used without programming knowledge. The focus is on strategic thinking and workflow design, not writing code.</div>
+      </div>
+      <div class="faq-item reveal stagger-2">
+        <div class="faq-question">How many people can attend a workshop?</div>
+        <div class="faq-answer">The AI Quick Start fits up to 5 participants. The AI Team Immersion fits up to 10. The System Architect Program fits up to 5 for the intensive format. For larger teams, we offer custom enterprise workshops — contact us to discuss your needs and we'll build a custom curriculum.</div>
+      </div>
+      <div class="faq-item reveal stagger-3">
+        <div class="faq-question">Are the workshops in-person or virtual?</div>
+        <div class="faq-answer">Both options are available. In-person workshops are held at your location anywhere in Palm Beach County, or at our preferred venue in West Palm Beach. Virtual workshops are conducted via Zoom with screen sharing and live building sessions. Most clients prefer in-person for the collaborative energy, but virtual works just as well for distributed teams.</div>
+      </div>
+      <div class="faq-item reveal stagger-4">
+        <div class="faq-question">What tools will my team actually use after training?</div>
+        <div class="faq-answer">The core stack we teach is: ChatGPT and Claude for writing, research, and analysis; Zapier or Make for workflow automation; Notion AI for documentation and knowledge management; and Google Workspace AI for daily productivity. We customize the tool selection based on your industry and existing software — no team gets a generic curriculum.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What's the difference between training and Done-For-You implementation?</div>
+        <div class="faq-answer">Done-For-You means we build everything and you use the outputs. Training means your team learns to build and manage AI workflows themselves. Many clients do both — they start with a <a href="ai-for-small-business.html">Done-For-You implementation</a> to get immediate results, then add training so their team can extend and maintain the systems going forward. The combination is the most powerful approach.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Ready to Turn Your Team Into System Architects?</h2>
+    <p>Book a free discovery call. We'll assess your team's current AI readiness and recommend the right training format for your goals.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="ai-for-small-business.html" class="btn-secondary light">Explore Done-For-You AI</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHO THIS IS FOR MODALS -->
+<div class="tool-modal-overlay" id="who-smallbiz">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-smallbiz')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127970;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Small Businesses (2–20 Employees)</h2>
+      <p class="tm-tagline">The sweet spot for AI training — small enough that every hour saved matters enormously, large enough to have real workflows worth automating.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">10–20 hrs</div><div class="mm-key">Saved Per Week</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Day 1</div><div class="mm-key">Usable Skills</div></div>
+        <div class="tm-meta-item"><div class="mm-val">No IT</div><div class="mm-key">Dept Required</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>Why Small Businesses Are the Perfect AI Training Candidate</h3>
+        <p>In a 5-person business, one person wearing four hats is the norm — not the exception. Every hour that person spends on a repetitive task is an hour not spent on a customer, a sale, or a growth opportunity. AI training changes that math dramatically. A small team that gets 10 hours per week back collectively has effectively added a part-time employee — without the payroll.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Customer emails and inquiries get drafted and sent in a fraction of the time — consistently professional every time</li>
+          <li>Repetitive internal tasks (reports, summaries, scheduling coordination) get handed off to automated workflows</li>
+          <li>Marketing content — social posts, emails, blog articles — gets produced on a consistent schedule without a dedicated hire</li>
+          <li>The owner stops being the bottleneck for every task that requires thinking or writing</li>
+          <li>Staff handle more independently because they have AI as a first resource, not the boss</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Small Business Teams</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>ChatGPT + Claude</h4><p>Daily writing, communication, and research tasks handled by any staff member from day one.</p></div>
+          <div class="tm-item"><h4>Zapier</h4><p>Connect your website, CRM, and email so leads, follow-ups, and notifications happen automatically.</p></div>
+          <div class="tm-item"><h4>Notion AI</h4><p>Replace scattered Google Docs and email threads with a single knowledge base everyone can search.</p></div>
+          <div class="tm-item"><h4>Google AI</h4><p>Activate AI inside the Gmail, Docs, and Sheets your team already uses every day.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>Built Specifically for Teams Like Yours</h3>
+        <p>Our AI Quick Start workshop is designed for small teams — half a day, no technical background needed, real automations built before you leave.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-marketing">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-marketing')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127775;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Marketing &amp; Creative Teams</h2>
+      <p class="tm-tagline">AI removes the production bottleneck — so your team spends time on strategy and creativity instead of drafting, formatting, and publishing.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">10×</div><div class="mm-key">Content Output</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Consistent</div><div class="mm-key">Brand Voice at Scale</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Always On</div><div class="mm-key">Content Calendar</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Marketing Team AI Opportunity</h3>
+        <p>Marketing and creative teams are among the highest-value AI training targets because so much of their work is text and image production — exactly what AI excels at. The strategy, the creative direction, the brand instincts — those stay human. The drafting, formatting, resizing, scheduling, and reporting? AI handles it.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Blog posts, email campaigns, and social content drafted in minutes — team focuses on editing and strategy, not blank page syndrome</li>
+          <li>Ad creative variations generated and tested at 10× the previous volume — better data, better results</li>
+          <li>Monthly reporting automated — data pulled, formatted, and summarized without manual spreadsheet work</li>
+          <li>Brand voice documented in AI prompts so every output — from any team member — sounds consistent</li>
+          <li>Visual assets for social and ads produced with Midjourney — no photoshoot required for routine content</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Marketing Teams</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>ChatGPT + Claude</h4><p>Copy, captions, email sequences, ad scripts, and long-form content produced at scale in your brand voice.</p></div>
+          <div class="tm-item"><h4>Midjourney</h4><p>Custom visuals for social, ads, and campaigns — no stock photo subscriptions, no photoshoots for routine content.</p></div>
+          <div class="tm-item"><h4>Make / Zapier</h4><p>Automate publishing workflows, report generation, and lead handoff between your marketing stack tools.</p></div>
+          <div class="tm-item"><h4>Perplexity</h4><p>Real-time competitor research, trend monitoring, and sourced content briefs in minutes instead of hours.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>Let Your Team Create More With the Same Headcount</h3>
+        <p>We'll show your marketing team exactly how to build an AI-assisted content workflow that runs consistently — without burning anyone out.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-professional">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-professional')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128188;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Professional Services Firms</h2>
+      <p class="tm-tagline">Accountants, consultants, financial advisors, architects — firms where billable time is the product and admin overhead is the enemy.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">70%</div><div class="mm-key">Less Proposal Writing Time</div></div>
+        <div class="tm-meta-item"><div class="mm-val">More</div><div class="mm-key">Billable Hours Recovered</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Client Reporting</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Professional Services AI Opportunity</h3>
+        <p>In professional services, every hour spent on admin is an hour that could be billed. AI training doesn't change what your team is good at — it removes the overhead that surrounds it. Proposals that took three hours get drafted in twenty minutes. Client reports that required manual data assembly get automated. Intake that generated back-and-forth emails happens through a clean, AI-assisted form.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Proposals generated from a short intake form — customized, professional, ready to send in under 30 minutes</li>
+          <li>Client reporting automated — data pulled from your tools, formatted, and delivered on schedule without manual assembly</li>
+          <li>Meeting notes and action items extracted automatically from transcripts — no more manual follow-up documentation</li>
+          <li>New client onboarding handled through AI-assisted intake that collects everything needed before the first call</li>
+          <li>Complex documents summarized by Claude in seconds — contracts, reports, filings reviewed faster</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Professional Services</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Claude</h4><p>Long document analysis, proposal drafting, and high-stakes client communication that demands precision and the right tone.</p></div>
+          <div class="tm-item"><h4>Notion AI</h4><p>Centralized client knowledge base — matter notes, SOPs, and procedures accessible and searchable by every team member.</p></div>
+          <div class="tm-item"><h4>Make / n8n</h4><p>Automate client onboarding, reporting pipelines, and invoice workflows that currently require manual coordination.</p></div>
+          <div class="tm-item"><h4>Google AI</h4><p>AI-assisted Gmail and Docs — faster responses, smarter drafts, and automatic meeting summaries from every client call.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>Recover Billable Hours From Admin Overhead</h3>
+        <p>We'll map your highest-friction non-billable tasks and show you exactly which AI tools eliminate them fastest.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-realestate">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-realestate')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127968;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Real Estate Agencies</h2>
+      <p class="tm-tagline">Speed wins in real estate. AI-trained agents respond faster, follow up more consistently, and close more leads without working more hours.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">5 min</div><div class="mm-key">Lead Response Time</div></div>
+        <div class="tm-meta-item"><div class="mm-val">38%</div><div class="mm-key">Higher Conversion Rate</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Zero</div><div class="mm-key">After-Hours Leads Lost</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Real Estate AI Opportunity</h3>
+        <p>In Palm Beach County's competitive real estate market, the agent who responds first wins the client — and AI makes that possible 24 hours a day. Beyond lead response, AI eliminates the writing bottleneck that slows most agents down: listings, emails, CMAs, follow-up sequences. Trained agents produce more content, respond faster, and maintain larger pipelines without additional hours.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Property listing descriptions written in 2 minutes — personalized, SEO-optimized, and ready to post</li>
+          <li>Lead follow-up sequences built in Zapier fire automatically — every inquiry gets a response within minutes, not hours</li>
+          <li>CMA cover letters, buyer guides, and market reports drafted by AI from your data inputs</li>
+          <li>Showing requests, confirmations, and reminders handled automatically without admin support</li>
+          <li>Local market research (HOA docs, school ratings, neighborhood comps) summarized by Perplexity in seconds</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Real Estate Teams</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>ChatGPT</h4><p>Listing descriptions, buyer emails, offer letters, and market update newsletters written in your voice — fast.</p></div>
+          <div class="tm-item"><h4>Zapier</h4><p>Auto-add leads from Zillow, Realtor.com, and your site into your CRM and trigger follow-up sequences immediately.</p></div>
+          <div class="tm-item"><h4>Midjourney</h4><p>Lifestyle imagery for listings and social that captures the Palm Beach County lifestyle buyers are purchasing.</p></div>
+          <div class="tm-item"><h4>Perplexity</h4><p>Fast, sourced research on comps, HOA rules, school ratings, and neighborhood data for every new listing.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>The First Agent to Respond Wins. Let AI Make That Agent You.</h3>
+        <p>A West Palm Beach brokerage we trained saw a 38% conversion lift within the first quarter. Book a call to learn how.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-restaurants">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-restaurants')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127860;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Restaurants &amp; Hospitality</h2>
+      <p class="tm-tagline">High volume, thin margins, and a team that has zero time to spare — exactly why AI training delivers some of its fastest ROI in food service and hospitality.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">15 hrs</div><div class="mm-key">Saved Per Week</div></div>
+        <div class="tm-meta-item"><div class="mm-val">30%</div><div class="mm-key">Fewer No-Shows</div></div>
+        <div class="tm-meta-item"><div class="mm-val">4.9★</div><div class="mm-key">Review Score Achievable</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Restaurant &amp; Hospitality AI Opportunity</h3>
+        <p>Restaurants operate on razor-thin margins with staff stretched thin. Every hour saved on admin is an hour redirected to guests, food, or the dozens of other things that actually drive revenue. AI training gives restaurant teams the tools to handle reservations, reviews, marketing, and supplier coordination in a fraction of the time — without adding headcount.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Reservation confirmations, reminders, and no-show follow-ups sent automatically via Zapier + SMS — no staff time required</li>
+          <li>Google and Yelp review responses drafted by AI in your restaurant's voice — professional replies posted in under 60 seconds</li>
+          <li>Weekly specials emails and social posts written by ChatGPT in minutes, not an afternoon</li>
+          <li>Supplier reorder notifications automated — never run out of a key ingredient because someone forgot to check inventory</li>
+          <li>Post-visit loyalty sequences send personalized offers to bring guests back — automatically</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Restaurants &amp; Hospitality</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>ChatGPT</h4><p>Specials copy, social captions, review responses, and staff communications written fast — no marketing hire needed.</p></div>
+          <div class="tm-item"><h4>Zapier</h4><p>Reservation confirmations, reminder texts, and post-visit review requests triggered automatically from your booking system.</p></div>
+          <div class="tm-item"><h4>Midjourney</h4><p>Weekly food and ambiance photography for social — no photographer scheduled, no photoshoot budget required.</p></div>
+          <div class="tm-item"><h4>Notion AI</h4><p>Recipe SOPs, staff training guides, and supplier contacts in one place every manager can access from their phone.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>A Delray Beach Restaurant Saves 15 Hours a Week With These Exact Tools</h3>
+        <p>"The chatbot books reservations at 2am when I'm asleep." Book a call — we'll show you how to replicate those results.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-legal">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-legal')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#9878;&#65039;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Law Firms &amp; Legal Teams</h2>
+      <p class="tm-tagline">The firm that responds first wins the client. AI-trained legal teams respond faster, intake more efficiently, and spend more time on billable work — not administrative overhead.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Prospect Response</div></div>
+        <div class="tm-meta-item"><div class="mm-val">80%</div><div class="mm-key">Intake Automated</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Zero</div><div class="mm-key">After-Hours Leads Lost</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Legal Team AI Opportunity</h3>
+        <p>Law firms face a specific challenge: the work is highly specialized and billable, but surrounded by administrative overhead that eats into profitability. AI doesn't practice law — but it handles everything around the law: intake, scheduling, document drafting, client communication, and research summaries. A Boca Raton law firm we work with now has zero missed after-hours leads because their AI intake agent collects case details and books callbacks automatically.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Client intake handled by an AI agent that collects case details, screens for conflicts, and books consultations — around the clock</li>
+          <li>Contract and document review accelerated — Claude reads and summarizes entire agreements in seconds for attorney review</li>
+          <li>Client status update emails drafted from case notes automatically — no paralegal time spent on routine communication</li>
+          <li>Consultation follow-up sequences triggered automatically — no prospect falls through because of a missed follow-up</li>
+          <li>Research summaries generated by Perplexity as a sourced starting point before full legal research begins</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Law Firms</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Claude</h4><p>Long document analysis, contract review summaries, and client-facing communications that demand precision and professional tone.</p></div>
+          <div class="tm-item"><h4>Zapier / n8n</h4><p>Intake automation, consultation scheduling, and follow-up sequences that run without admin involvement.</p></div>
+          <div class="tm-item"><h4>Notion AI</h4><p>Matter notes, procedure guides, and client documentation organized in a searchable knowledge base.</p></div>
+          <div class="tm-item"><h4>Perplexity</h4><p>Sourced preliminary research on statutes, case precedents, and regulatory changes — a starting point before full legal research.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>Win More Clients by Responding Before the Competition</h3>
+        <p>We train legal teams on AI tools that are appropriate for their compliance environment — no shortcuts that create risk.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-healthcare">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-healthcare')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127973;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Healthcare Practices</h2>
+      <p class="tm-tagline">Reduce no-shows, cut front desk overhead, and communicate with patients automatically — while keeping every workflow HIPAA-aware and staff-controlled.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">40%</div><div class="mm-key">No-Show Reduction</div></div>
+        <div class="tm-meta-item"><div class="mm-val">4 hrs</div><div class="mm-key">Front Desk Time Saved Daily</div></div>
+        <div class="tm-meta-item"><div class="mm-val">$12K</div><div class="mm-key">Monthly Revenue Recovered</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Healthcare Practice AI Opportunity</h3>
+        <p>Healthcare practices deal with high administrative burden, sensitive patient communication, and staffing costs that can be partially offset with smart automation. AI training for healthcare teams focuses on the areas where technology is both appropriate and impactful: appointment management, patient communication, documentation, and internal knowledge management — all with an eye toward appropriate data handling.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Appointment reminder sequences built in Zapier reduce no-shows by up to 40% — automatically sent via SMS and email</li>
+          <li>Cancellation gaps filled automatically by AI waitlist management — revenue recovered without front desk intervention</li>
+          <li>Patient-facing content (prep instructions, post-visit summaries, FAQ responses) drafted by AI and reviewed by staff</li>
+          <li>Internal SOPs and clinical protocols stored in Notion AI — new staff find answers without pulling senior people away</li>
+          <li>Post-visit follow-up sequences for rebooking and review requests sent at exactly the right time automatically</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to Healthcare Practices</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Zapier / n8n</h4><p>Reminder sequences, waitlist management, and post-visit follow-ups that run automatically from your scheduling system.</p></div>
+          <div class="tm-item"><h4>ChatGPT</h4><p>Patient education content, FAQ responses, and staff communications drafted quickly and reviewed before sending.</p></div>
+          <div class="tm-item"><h4>Notion AI</h4><p>Clinical SOPs, administrative procedures, and compliance guides in one place — staff get accurate answers instantly.</p></div>
+          <div class="tm-item"><h4>Google AI</h4><p>Meeting summaries, internal communications, and administrative documents handled faster with AI built into existing tools.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>A West Palm Beach Practice Recovered $12K Per Month With These Tools</h3>
+        <p>We train healthcare teams on AI workflows that keep humans appropriately in the loop — fast results, no compliance shortcuts.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-ecommerce">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-ecommerce')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128722;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>E-Commerce Operators</h2>
+      <p class="tm-tagline">More products, more customers, more orders — AI lets your store scale without scaling your team proportionally.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">3×</div><div class="mm-key">Online Revenue Potential</div></div>
+        <div class="tm-meta-item"><div class="mm-val">41%</div><div class="mm-key">Cart Recovery Rate</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Auto</div><div class="mm-key">Customer Service &amp; Follow-Up</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The E-Commerce AI Opportunity</h3>
+        <p>E-commerce businesses generate enormous amounts of repetitive work — product descriptions, customer service replies, order follow-ups, review requests, inventory monitoring, and marketing content. AI training turns all of that into automated or near-automated workflows, freeing the business owner to focus on sourcing, strategy, and growth instead of the operational grind that consumes most of their day.</p>
+      </div>
+      <div class="tm-section">
+        <h3>What Changes After Training</h3>
+        <ul class="tm-list">
+          <li>Product descriptions written by ChatGPT in seconds — SEO-optimized, conversion-focused, scaled across hundreds of SKUs</li>
+          <li>Abandoned cart recovery sequences built in Zapier — automated SMS and email that bring buyers back</li>
+          <li>Customer service replies for order status, returns, and product questions handled by AI agents 24/7</li>
+          <li>Post-purchase review requests and upsell sequences sent automatically at the right moment</li>
+          <li>Inventory monitoring automation alerts you to reorder points before stockouts cost you sales</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>Tools Most Relevant to E-Commerce Operators</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>ChatGPT</h4><p>Product descriptions, email campaigns, ad copy, and customer service responses at scale — no copywriter required.</p></div>
+          <div class="tm-item"><h4>Zapier / Make</h4><p>Cart recovery, post-purchase sequences, inventory alerts, and review requests all automated from your store events.</p></div>
+          <div class="tm-item"><h4>Midjourney</h4><p>Product and lifestyle imagery for listings, social, and ads — a fraction of the cost and time of traditional photography.</p></div>
+          <div class="tm-item"><h4>Perplexity</h4><p>Competitor pricing research, trend monitoring, and supplier evaluation — always know where you stand in your market.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>A Palm Beach Boutique Grew Online Revenue 3× With These Workflows</h3>
+        <p>We'll map your current e-commerce operations and identify the automations with the fastest ROI — in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="who-repetitive">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('who-repetitive')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128260;</div>
+      <div class="tm-label">Ideal Fit</div>
+      <h2>Any Business With Repetitive Processes</h2>
+      <p class="tm-tagline">If your team does the same types of tasks over and over — writing, sending, scheduling, copying, reporting — AI can handle most of them. Industry doesn't matter.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Any</div><div class="mm-key">Industry</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Any</div><div class="mm-key">Team Size</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Same</div><div class="mm-key">Tasks Done Over &amp; Over</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>The Simple Test for AI Training Fit</h3>
+        <p>Ask yourself one question: does your team do the same types of tasks repeatedly? Writing similar emails. Copying data from one place to another. Answering the same questions from customers. Generating the same reports each week. Scheduling and confirming appointments. If the answer is yes to any of these, AI training will deliver measurable value — regardless of what industry you're in.</p>
+      </div>
+      <div class="tm-section">
+        <h3>The Most Common Repetitive Tasks AI Eliminates</h3>
+        <ul class="tm-list">
+          <li>Answering the same customer questions via email, phone, or chat — handled by AI agents 24/7</li>
+          <li>Writing first drafts of emails, proposals, reports, and communications — produced by AI in seconds for human review</li>
+          <li>Copying data between systems — automated with Zapier or Make so nothing requires manual entry</li>
+          <li>Generating weekly or monthly reports — pulled, formatted, and delivered automatically on schedule</li>
+          <li>Scheduling and confirming appointments — handled by booking automation with zero staff involvement</li>
+          <li>Requesting reviews, referrals, or follow-up actions from customers — automated sequences triggered by business events</li>
+        </ul>
+      </div>
+      <div class="tm-section">
+        <h3>How We Figure Out Where to Start</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Process Audit</h4><p>In your free strategy call, we map your team's weekly tasks and identify which ones are highest-volume and most automatable.</p></div>
+          <div class="tm-item"><h4>ROI Prioritization</h4><p>We rank opportunities by time saved and revenue impact — you start with the changes that pay off fastest.</p></div>
+          <div class="tm-item"><h4>Custom Curriculum</h4><p>Your training session is built around your specific workflows and tools — not a generic AI overview that doesn't apply to your business.</p></div>
+          <div class="tm-item"><h4>Live Build</h4><p>Every training session ends with at least one real automation built and running on your actual business systems.</p></div>
+        </div>
+      </div>
+      <div class="tm-cta">
+        <h3>Not Sure If AI Training Is Right for Your Business?</h3>
+        <p>Book a free 30-minute call. We'll listen to how your team works and tell you honestly whether AI training would deliver meaningful ROI — and where to start if it would.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL MODALS -->
+<div class="tool-modal-overlay" id="tool-chatgpt">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-chatgpt')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#129302;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>ChatGPT</h2>
+      <p class="tm-tagline">OpenAI's flagship conversational AI — the most widely used AI tool in the world and the fastest way to get your team producing real output on day one.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Day 1</div><div class="mm-key">Usable by Any Staff Member</div></div>
+        <div class="tm-meta-item"><div class="mm-val">10×</div><div class="mm-key">Writing Speed Increase</div></div>
+        <div class="tm-meta-item"><div class="mm-val">No-Code</div><div class="mm-key">Zero Technical Skill Required</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>ChatGPT is a conversational AI that can write, research, summarize, analyze, and problem-solve using plain-English instructions. It's the entry point for most teams — the tool that makes AI feel immediately useful and approachable, even for staff who've never touched technology beyond a smartphone.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Content &amp; Copywriting</h4><p>Draft emails, proposals, social posts, blog articles, service descriptions, and follow-up messages in minutes instead of hours.</p></div>
+          <div class="tm-item"><h4>Customer Communication</h4><p>Write review responses, complaint replies, and inquiry follow-ups that sound professional and on-brand every time.</p></div>
+          <div class="tm-item"><h4>Research &amp; Summaries</h4><p>Summarize long documents, research competitors, analyze contracts, and get quick answers to business questions without a consultant.</p></div>
+          <div class="tm-item"><h4>SOPs &amp; Training Docs</h4><p>Turn rough notes into polished procedures. Build staff training materials, onboarding checklists, and policy documents fast.</p></div>
+          <div class="tm-item"><h4>Sales &amp; Proposals</h4><p>Generate customized proposals, quote follow-ups, and sales scripts tailored to specific client situations in seconds.</p></div>
+          <div class="tm-item"><h4>Daily Task Acceleration</h4><p>Brainstorm, plan, schedule, draft agendas, summarize meetings, and tackle any text-based task that currently eats your day.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Restaurant owner writing weekly specials emails and responding to Yelp reviews — 45 minutes cut to 5</li>
+          <li>Law firm generating first-draft client intake summaries and follow-up letters automatically</li>
+          <li>Real estate agent creating personalized property listing descriptions for every new listing in under 2 minutes</li>
+          <li>Medical practice writing patient education content and appointment prep instructions at scale</li>
+          <li>Contractor generating professional estimate follow-ups and project update emails without hiring a writer</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Learn ChatGPT at a Level That Actually Changes Your Business</h3>
+        <p>Our training goes well beyond "ask it to write an email." We teach prompt engineering, custom instructions, and workflows that stack ChatGPT with your other tools.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-claude">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-claude')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128161;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Claude</h2>
+      <p class="tm-tagline">Anthropic's AI — preferred for long-document analysis, nuanced writing, and complex reasoning tasks where tone and accuracy matter most.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">200K</div><div class="mm-key">Token Context Window</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Best-in-Class</div><div class="mm-key">Long Document Handling</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Nuanced</div><div class="mm-key">Tone &amp; Voice Accuracy</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Claude is Anthropic's conversational AI — known for its exceptionally large context window (it can read and reason over entire contracts, reports, or knowledge bases in one session), its nuanced, human-sounding writing, and its strong performance on complex reasoning tasks. For businesses that work with long documents or need precise, trustworthy outputs, Claude often outperforms ChatGPT on specific tasks.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Contract &amp; Document Review</h4><p>Feed Claude an entire contract or lease and ask it to flag unusual clauses, summarize key terms, or compare against a standard template.</p></div>
+          <div class="tm-item"><h4>Brand Voice Writing</h4><p>Claude learns and maintains your specific brand voice across long pieces — ideal for businesses where tone and professionalism are non-negotiable.</p></div>
+          <div class="tm-item"><h4>Complex Analysis</h4><p>Analyze customer feedback at scale, identify patterns in operational data, and surface insights from reports your team doesn't have time to read.</p></div>
+          <div class="tm-item"><h4>Client-Facing Content</h4><p>Proposals, case study narratives, service brochures, and high-stakes communications that need to sound polished and persuasive.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Law firm using Claude to analyze discovery documents and draft case summaries for attorney review</li>
+          <li>Real estate brokerage feeding entire HOA documents into Claude and getting plain-English summaries for buyers</li>
+          <li>Medical practice using Claude to draft patient communications that strike the exact right clinical-yet-compassionate tone</li>
+          <li>Professional services firm using Claude to write detailed proposals from a short intake form — consistent quality every time</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>We Teach Both ChatGPT and Claude — and When to Use Each</h3>
+        <p>Knowing which tool to reach for — and how to prompt it correctly — is what separates a power user from someone who gave up after a week.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-zapier">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-zapier')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#9889;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Zapier</h2>
+      <p class="tm-tagline">The world's most popular no-code automation platform — connects 7,000+ apps and lets your team build powerful workflows without writing a single line of code.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">7,000+</div><div class="mm-key">App Integrations</div></div>
+        <div class="tm-meta-item"><div class="mm-val">No-Code</div><div class="mm-key">Zero Programming Needed</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Minutes</div><div class="mm-key">To Build First Automation</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Zapier connects your apps and automates the repetitive tasks that happen between them. When something happens in one tool (a new form submission, a payment, a calendar booking), Zapier automatically triggers actions in other tools — no human intervention required. It's the fastest way for non-technical staff to start eliminating manual work.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Lead Capture to CRM</h4><p>Every website form, Facebook lead ad, or chat inquiry flows directly into your CRM and triggers a follow-up sequence — automatically.</p></div>
+          <div class="tm-item"><h4>Appointment Notifications</h4><p>New bookings trigger SMS confirmations, calendar invites, and internal Slack alerts without anyone touching a keyboard.</p></div>
+          <div class="tm-item"><h4>Review Requests</h4><p>Job completed in your field software? Zapier fires a Google review request text to the customer 2 hours later — every time.</p></div>
+          <div class="tm-item"><h4>Invoice &amp; Payment Flows</h4><p>New invoice paid in Stripe or Square? Zapier updates your spreadsheet, notifies your team, and sends a receipt — all at once.</p></div>
+          <div class="tm-item"><h4>AI-Powered Zaps</h4><p>Combine Zapier with ChatGPT to auto-generate email responses, classify incoming messages, or summarize form submissions before routing them.</p></div>
+          <div class="tm-item"><h4>Reporting Automation</h4><p>Pull data from multiple tools into a Google Sheet daily — no manual copy-paste — and have a summary emailed to you every Monday morning.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Restaurant automating reservation confirmations, no-show follow-ups, and post-visit review requests via Zapier + Twilio SMS</li>
+          <li>Contractor sending estimate follow-up emails automatically 48 hours after every quote — close rate increased 30%</li>
+          <li>Medical practice triggering appointment reminder texts 24 hours before every scheduled visit — no-show rate dropped 40%</li>
+          <li>Real estate agent auto-adding every Zillow and website inquiry to HubSpot and triggering a 5-touch follow-up sequence</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Leave Our Training With a Live Zapier Automation Running</h3>
+        <p>In every session, participants build at least one real Zap connected to their actual business tools before they walk out the door.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-make">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-make')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#9881;&#65039;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Make</h2>
+      <p class="tm-tagline">The visual automation platform for businesses that have outgrown Zapier — more powerful, more flexible, and still no-code. Ideal for complex multi-step workflows with conditional logic.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Visual</div><div class="mm-key">Drag-and-Drop Builder</div></div>
+        <div class="tm-meta-item"><div class="mm-val">1,500+</div><div class="mm-key">App Integrations</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Advanced</div><div class="mm-key">Logic &amp; Branching</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Make (formerly Integromat) is a visual automation platform that lets you build sophisticated, multi-step workflows using a drag-and-drop canvas. Where Zapier excels at simple "if this, then that" automations, Make handles complex logic — conditional branches, loops, error handling, data transformation, and multi-path workflows. It's the tool of choice when your automation needs to think, not just relay.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Multi-Step Lead Routing</h4><p>Route incoming leads differently based on service type, location, or budget — each path triggers a different follow-up sequence automatically.</p></div>
+          <div class="tm-item"><h4>Data Transformation</h4><p>Pull data from one format, clean it, reformat it, and push it into another system — no spreadsheet gymnastics required.</p></div>
+          <div class="tm-item"><h4>Complex Notification Logic</h4><p>Notify different team members based on what type of inquiry comes in — service calls go to ops, sales leads go to the closer, complaints go to management.</p></div>
+          <div class="tm-item"><h4>AI Integration Workflows</h4><p>Feed customer messages into ChatGPT or Claude for classification and response drafting, then route the output back into your CRM or email platform.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>When We Recommend Make Over Zapier</h3>
+        <ul class="tm-list">
+          <li>Your workflow has more than 3–4 steps and involves conditional logic ("if the lead is from Boca, route it here; if from WPB, route it there")</li>
+          <li>You need to transform or reformat data between systems, not just pass it straight through</li>
+          <li>You're processing high volumes and Zapier's per-task pricing is becoming expensive</li>
+          <li>You want to build AI decision-making into the middle of an automation, not just at the start or end</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>We Teach Both Zapier and Make — and How to Choose</h3>
+        <p>The right tool depends on your workflows. Our training covers both so your team can make the right call independently.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-n8n">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-n8n')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128279;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>n8n</h2>
+      <p class="tm-tagline">The open-source automation powerhouse — self-hosted, infinitely customizable, and the platform of choice for businesses that need enterprise-grade workflows without enterprise pricing.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Open Source</div><div class="mm-key">Own Your Infrastructure</div></div>
+        <div class="tm-meta-item"><div class="mm-val">400+</div><div class="mm-key">Native Integrations</div></div>
+        <div class="tm-meta-item"><div class="mm-val">AI-Native</div><div class="mm-key">Built-In LLM Nodes</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>n8n is an open-source workflow automation platform that runs on your own server or cloud instance — meaning you own your data, your workflows, and your infrastructure. Unlike Zapier or Make, there are no per-task fees as you scale, and its built-in AI nodes make it the most capable platform for building sophisticated AI-powered agents and automations. It's the tool we use to build the most advanced client systems.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>AI Agent Orchestration</h4><p>Build multi-step AI agents that can search the web, read emails, query your CRM, and take action — all from a single n8n workflow.</p></div>
+          <div class="tm-item"><h4>Data-Heavy Automations</h4><p>Process large datasets, run batch operations, and handle high-volume workflows without worrying about per-task costs eating into your margins.</p></div>
+          <div class="tm-item"><h4>Custom Business Logic</h4><p>Write lightweight code snippets inside workflows to handle edge cases that no-code tools can't — without being a developer.</p></div>
+          <div class="tm-item"><h4>Private Data Workflows</h4><p>For healthcare, legal, and financial clients — keep sensitive data inside your own infrastructure while still getting the full power of AI automation.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Who We Teach n8n To</h3>
+        <ul class="tm-list">
+          <li>Business owners and operations leads who want to manage and modify their own automation systems independently</li>
+          <li>Medical and legal practices that need automation workflows to stay on private, HIPAA-aware infrastructure</li>
+          <li>Businesses with high automation volume where Zapier/Make per-task costs are scaling uncomfortably</li>
+          <li>Teams in the System Architect Program who want to build custom AI agents, not just connect off-the-shelf tools</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>n8n Is the Core of Our System Architect Program</h3>
+        <p>Our 4-week intensive covers n8n deeply — you leave able to build, deploy, and modify complex AI automation workflows without external help.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-notion">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-notion')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128203;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Notion AI</h2>
+      <p class="tm-tagline">Your team's AI-powered knowledge base — the tool that turns scattered information, SOPs, and meeting notes into a living, searchable brain your entire business can query.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">One Place</div><div class="mm-key">All Company Knowledge</div></div>
+        <div class="tm-meta-item"><div class="mm-val">AI Search</div><div class="mm-key">Ask Questions, Get Answers</div></div>
+        <div class="tm-meta-item"><div class="mm-val">50%</div><div class="mm-key">Faster Staff Onboarding</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Notion is an all-in-one workspace for notes, wikis, project management, and databases — and Notion AI adds an artificial intelligence layer on top. Staff can ask Notion AI questions in plain English and get answers sourced from your company's own documentation. It's the tool that ends "where do I find that?" and "I wasn't sure about the procedure, so I guessed."</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Company Knowledge Base</h4><p>SOPs, policies, pricing guides, service specs, and client notes all live in one searchable place — no more hunting through email threads or shared drives.</p></div>
+          <div class="tm-item"><h4>AI-Assisted Writing</h4><p>Ask Notion AI to draft, edit, summarize, or improve any document inside your workspace — meeting notes become action items in seconds.</p></div>
+          <div class="tm-item"><h4>Staff Onboarding</h4><p>New team members can ask Notion AI questions about your procedures and get accurate answers immediately — without pulling a senior person away from their work.</p></div>
+          <div class="tm-item"><h4>Project &amp; Task Management</h4><p>Track client projects, assign tasks, set deadlines, and let AI surface what's overdue or at risk — without a separate project management tool.</p></div>
+          <div class="tm-item"><h4>Meeting Intelligence</h4><p>Paste meeting transcripts into Notion and let AI extract decisions, action items, and follow-ups — your notes write themselves.</p></div>
+          <div class="tm-item"><h4>Client Deliverables</h4><p>Build proposal templates, reports, and client-facing documents that Notion AI can populate from your notes and data.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Contractor building a Notion knowledge base with every SOP, material spec, and subcontractor contact — field crews get answers instantly via mobile</li>
+          <li>Law firm storing client matter notes, procedure guides, and billing policies — new paralegals onboard in days instead of weeks</li>
+          <li>Restaurant group managing location-specific SOPs, staff schedules, and supplier contacts in one place all managers can access</li>
+          <li>Medical practice documenting clinical protocols and administrative procedures so compliance is consistent across all staff</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Turn Your Team's Knowledge Into a Company Asset</h3>
+        <p>We'll help you build a Notion workspace that captures what your best people know — and makes it available to everyone.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-google">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-google')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127758;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Google AI</h2>
+      <p class="tm-tagline">AI built directly into the tools your team already uses every day — Gmail, Docs, Sheets, and Meet — so the productivity gains happen without learning anything new.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Built In</div><div class="mm-key">No New Apps to Learn</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Gemini</div><div class="mm-key">Powered by Google's AI</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Workspace</div><div class="mm-key">Gmail, Docs, Sheets &amp; Meet</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Google AI — powered by Gemini — is embedded directly inside Google Workspace: Gmail, Google Docs, Google Sheets, Google Slides, and Google Meet. If your team already runs on Google tools, this is often the fastest path to AI adoption because there's nothing new to install or log into. The AI appears right where your team is already working.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Gmail — Smart Compose &amp; Drafts</h4><p>Gemini drafts email replies, summarizes long threads, and suggests responses — cutting inbox time dramatically for high-volume communicators.</p></div>
+          <div class="tm-item"><h4>Google Docs — Writing Assistant</h4><p>Generate first drafts, rewrite for tone, summarize long documents, and turn bullet notes into polished prose without leaving your Doc.</p></div>
+          <div class="tm-item"><h4>Google Sheets — Formula &amp; Data AI</h4><p>Ask Gemini to write formulas, clean data, build charts, and analyze trends in plain English — no spreadsheet expertise required.</p></div>
+          <div class="tm-item"><h4>Google Meet — Meeting Summaries</h4><p>Automatic meeting transcription and AI-generated summaries with action items sent to every participant after the call ends.</p></div>
+          <div class="tm-item"><h4>NotebookLM — Research AI</h4><p>Upload your own documents, reports, or research and ask Google's AI questions — it only answers from your sources, not the whole internet.</p></div>
+          <div class="tm-item"><h4>Google Business Profile AI</h4><p>AI-suggested responses to Google reviews and Q&amp;A, helping local businesses maintain a consistent, responsive presence on the platform that drives local search rankings.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Why This Is the Right Starting Point for Many Teams</h3>
+        <ul class="tm-list">
+          <li>Zero change management — staff use the same apps they used yesterday, just with AI features activated</li>
+          <li>Fastest adoption curve of any AI tool we teach — most staff are productive within the first training session</li>
+          <li>Immediate value in Gmail alone — the average professional spends 2.5 hours daily on email; AI cuts that significantly</li>
+          <li>Google Meet summaries eliminate the "I missed that meeting" problem and create automatic documentation of decisions</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Your Team Is Already Paying for Google — Let's Unlock the AI</h3>
+        <p>Most Google Workspace subscribers aren't using half the AI features included in their plan. We'll show your team exactly what's already available.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-perplexity">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-perplexity')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#128269;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Perplexity</h2>
+      <p class="tm-tagline">AI-powered research that cites its sources — the tool that replaces hours of Googling with accurate, sourced answers your team can actually trust and act on.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Real-Time</div><div class="mm-key">Live Web Research</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Cited</div><div class="mm-key">Every Answer Sourced</div></div>
+        <div class="tm-meta-item"><div class="mm-val">10×</div><div class="mm-key">Faster Than Manual Research</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Perplexity is an AI-powered search and research tool that answers questions using live web data — and cites every source so you can verify the answer. Unlike ChatGPT (which has a knowledge cutoff and can confabulate), Perplexity researches in real time and shows you exactly where it found its information. It's the tool your team uses when accuracy and recency matter.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Competitor Research</h4><p>Instantly research what competitors are offering, how they're pricing, and what customers are saying about them — in minutes, not hours.</p></div>
+          <div class="tm-item"><h4>Local Market Intelligence</h4><p>Research Palm Beach County market trends, local regulations, permit requirements, and industry developments with sourced, current answers.</p></div>
+          <div class="tm-item"><h4>Vendor &amp; Supplier Research</h4><p>Evaluate new vendors, check company reputation, compare product specs, and surface relevant reviews before making purchasing decisions.</p></div>
+          <div class="tm-item"><h4>Industry News Monitoring</h4><p>Ask Perplexity to summarize the latest developments in your industry every morning — a custom briefing without hiring a researcher.</p></div>
+          <div class="tm-item"><h4>Pricing Research</h4><p>Quickly understand market pricing for services or products in your area — so your quotes are competitive and your margins are protected.</p></div>
+          <div class="tm-item"><h4>Fact-Checking</h4><p>Verify claims in contracts, proposals, and client communications before they go out — Perplexity surfaces the source, not just the answer.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Real estate agent researching comparable sales, HOA rules, and neighborhood trends for every listing — 90% faster than manual research</li>
+          <li>Contractor researching permit requirements, material costs, and code changes in Palm Beach County before bidding a job</li>
+          <li>Restaurant owner monitoring competitor menus, pricing, and reviews across the county on a weekly cadence</li>
+          <li>Law firm using Perplexity for preliminary case research and statute lookups — attorneys get a sourced starting point in seconds</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Replace Hours of Googling With Minutes of Perplexity</h3>
+        <p>We teach your team how to ask the right questions — and how to verify AI-sourced answers before acting on them.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-modal-overlay" id="tool-midjourney">
+  <div class="tool-modal">
+    <div class="modal-close-bar"><button onclick="closeToolModal('tool-midjourney')">&#10005;</button></div>
+    <div class="tm-header">
+      <div class="tm-icon">&#127912;</div>
+      <div class="tm-label">AI Tool</div>
+      <h2>Midjourney</h2>
+      <p class="tm-tagline">Professional-grade AI image generation — create custom photos, graphics, marketing visuals, and brand imagery without a photographer, designer, or stock photo subscription.</p>
+    </div>
+    <div class="tm-body">
+      <div class="tm-meta">
+        <div class="tm-meta-item"><div class="mm-val">Seconds</div><div class="mm-key">From Prompt to Visual</div></div>
+        <div class="tm-meta-item"><div class="mm-val">Zero</div><div class="mm-key">Design Skills Needed</div></div>
+        <div class="tm-meta-item"><div class="mm-val">90%</div><div class="mm-key">Less Than Stock Photos</div></div>
+      </div>
+      <div class="tm-section">
+        <h3>What It Is</h3>
+        <p>Midjourney is an AI image generation tool that creates photorealistic and artistic visuals from text descriptions. Type what you want to see — a specific scene, a product in context, a marketing banner concept — and Midjourney produces professional-quality imagery in seconds. For South Florida businesses that need a constant stream of visual content for their website, social media, and marketing materials, it eliminates the cost and time of traditional photography and stock imagery.</p>
+      </div>
+      <div class="tm-section">
+        <h3>How Your Team Will Use It</h3>
+        <div class="tm-grid">
+          <div class="tm-item"><h4>Social Media Visuals</h4><p>Create on-brand images for Instagram, Facebook, and Google Business posts daily — unique, eye-catching visuals that don't look like generic stock photos.</p></div>
+          <div class="tm-item"><h4>Website Imagery</h4><p>Generate hero images, service section visuals, and blog post graphics that match your brand palette and aesthetic exactly.</p></div>
+          <div class="tm-item"><h4>Marketing &amp; Ads</h4><p>Concept and produce ad creative variations for Facebook and Google campaigns in minutes — test 10 visual concepts for the cost of one.</p></div>
+          <div class="tm-item"><h4>Menu &amp; Product Visuals</h4><p>Restaurants and retail businesses: generate polished food and product imagery for menus, online stores, and promotional materials without a photoshoot.</p></div>
+          <div class="tm-item"><h4>Local Scene Imagery</h4><p>Generate South Florida-specific scenes — palm-lined streets, waterfront settings, local landmarks as backdrops — that make your marketing feel grounded and local.</p></div>
+          <div class="tm-item"><h4>Proposals &amp; Presentations</h4><p>Make client-facing documents and pitch decks look polished and professional with custom imagery that fits the exact concept being presented.</p></div>
+        </div>
+      </div>
+      <div class="tm-section">
+        <h3>Real Use Cases for Palm Beach County Clients</h3>
+        <ul class="tm-list">
+          <li>Restaurant generating weekly specials imagery for Instagram without scheduling a photographer — consistent, appetizing, on-brand every week</li>
+          <li>Real estate agent creating lifestyle imagery for property listings that shows the Palm Beach County lifestyle buyers are purchasing, not just the house</li>
+          <li>Contractor building a visual portfolio of "before and after" concept imagery for service pages and estimates</li>
+          <li>Med spa producing high-end aspirational imagery for social and email campaigns that matches the premium feel of the brand</li>
+          <li>Boutique retail creating lookbook-style product imagery for e-commerce listings without a $3,000 photoshoot</li>
+        </ul>
+      </div>
+      <div class="tm-cta">
+        <h3>Stop Paying for Stock Photos and Photoshoots</h3>
+        <p>We teach your team how to prompt Midjourney for consistent, on-brand results — and how to combine it with your other AI tools into a full content production workflow.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openToolModal(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeToolModal(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.tool-modal-overlay').forEach(function(overlay){
+  overlay.addEventListener('click',function(e){
+    if(e.target===overlay) closeToolModal(overlay.id);
+  });
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.tool-modal-overlay.open').forEach(function(o){
+      closeToolModal(o.id);
+    });
+  }
+});
+</script>
+
+<script src="shared.js"></script>
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

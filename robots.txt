@@ -1,0 +1,6 @@
+# Web Palm Beaches — robots.txt
+User-agent: *
+Allow: /
+Disallow: /editor.html
+
+Sitemap: https://webpalmbeaches.com/sitemap.xml

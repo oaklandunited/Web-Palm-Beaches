@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Web Palm Beaches AI Consulting</title>
+<meta name="description" content="AI consulting, web design, workflow automation, and AI-powered search (SEO, AEO &amp; GEO) for South Florida businesses. Based in Palm Beach County.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === SERVICE CARDS WITH LEARN MORE === */
+.detail-card{cursor:default}
+.detail-card .card-learn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;transition:gap .2s}
+.detail-card .card-learn:hover{gap:.7rem}
+.detail-card .card-learn svg{transition:transform .2s}
+.detail-card .card-learn:hover svg{transform:translateX(3px)}
+
+/* === SERVICE MODAL === */
+.svc-modal-overlay{position:fixed;inset:0;background:rgba(5,22,57,.85);z-index:999;display:none;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(5px)}
+.svc-modal-overlay.open{display:flex}
+.svc-modal{background:var(--bg);max-width:820px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:svcModalIn .3s ease}
+@keyframes svcModalIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.svc-modal .modal-close-bar{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;padding:1rem 1.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.svc-modal .modal-close-bar button{background:none;border:1px solid var(--border);width:36px;height:36px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all .2s}
+.svc-modal .modal-close-bar button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.svc-modal .modal-header{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:3rem;color:var(--text-light)}
+.svc-modal .modal-header .mh-icon{font-size:2.5rem;margin-bottom:1rem}
+.svc-modal .modal-header .mh-label{font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.svc-modal .modal-header h2{font-family:var(--heading);font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.2;margin-bottom:.75rem}
+.svc-modal .modal-header p{font-size:.95rem;line-height:1.8;color:rgba(255,255,255,.65);max-width:580px}
+
+.svc-modal .modal-content{padding:3rem}
+.svc-modal .mc-section{margin-bottom:2.5rem}
+.svc-modal .mc-section h3{font-family:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem}
+.svc-modal .mc-section h3::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.svc-modal .mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem}
+.svc-modal .mc-item{padding:1.25rem;border:1px solid var(--border);background:var(--bg-ice);transition:border-color .2s}
+.svc-modal .mc-item:hover{border-color:var(--accent)}
+.svc-modal .mc-item h4{font-family:var(--heading);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.4rem}
+.svc-modal .mc-item p{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+
+.svc-modal .mc-list{list-style:none;margin-top:.5rem}
+.svc-modal .mc-list li{padding:.5rem 0;font-size:.9rem;color:var(--text-secondary);padding-left:1.5rem;position:relative;line-height:1.6;border-bottom:1px solid var(--border)}
+.svc-modal .mc-list li:last-child{border-bottom:none}
+.svc-modal .mc-list li::before{content:'';position:absolute;left:0;top:.95rem;width:6px;height:6px;background:var(--accent)}
+
+.svc-modal .mc-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0}
+.svc-modal .mc-meta-item{background:var(--bg);padding:1.5rem;text-align:center}
+.svc-modal .mc-meta-item .mm-val{font-family:var(--heading);font-size:1.2rem;font-weight:800;color:var(--accent);line-height:1}
+.svc-modal .mc-meta-item .mm-key{font-family:var(--heading);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:.35rem}
+
+.svc-modal .mc-cta{background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:2.5rem;text-align:center;color:var(--text-light)}
+.svc-modal .mc-cta h3{font-family:var(--heading);font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.65rem}
+.svc-modal .mc-cta p{font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem}
+
+/* === PROCESS STEPS INLINE === */
+.svc-steps{display:flex;flex-direction:column;gap:0;margin-top:.5rem;counter-reset:step-counter}
+.svc-step{display:flex;gap:1.25rem;align-items:start;padding:1.25rem 0;border-bottom:1px solid var(--border);counter-increment:step-counter}
+.svc-step:last-child{border-bottom:none}
+.svc-step .step-num{width:32px;height:32px;flex-shrink:0;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:.72rem;font-weight:800}
+.svc-step h4{font-family:var(--heading);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.3rem}
+.svc-step p{font-size:.85rem;color:var(--text-secondary);line-height:1.65}
+
+@media(max-width:768px){
+  .svc-modal .mc-grid{grid-template-columns:1fr}
+  .svc-modal .mc-meta{grid-template-columns:1fr 1fr}
+}
+</style>
+  <link rel="canonical" href="https://webpalmbeaches.com/services.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/services.html">
+  <meta property="og:title" content="Services — Web Palm Beaches AI Consulting">
+  <meta property="og:description" content="AI consulting, web design, workflow automation, and AI-powered search (SEO, AEO &amp; GEO) for South Florida businesses. Based in Palm Beach County.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI Consulting & Web Design",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Web Palm Beaches",
+    "telephone": "+1-561-291-9001",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "West Palm Beach",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "url": "https://webpalmbeaches.com",
+    "image": "https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Palm Beach County, Florida"
+  },
+  "description": "AI agent development, workflow automation, AI strategy consulting, web design, and AI-powered search (SEO, AEO &amp; GEO) services for South Florida businesses.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "2500",
+    "highPrice": "50000",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What AI services does Web Palm Beaches offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Web Palm Beaches offers dedicated AI services including custom AI agent and chatbot development, intelligent workflow automation (Make/Zapier), fractional AI strategy consulting, hands-on team AI training, and custom AI-powered web development."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can AI agents improve local business operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI agents automate time-consuming administrative tasks like patient or client intake, lead qualification, and appointment booking. They work 24/7 on your website, email, or SMS channels, allowing your staff to focus on high-value client work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you sign BAAs for medical/HIPAA compliant AI projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. For our healthcare clients, we design secure, HIPAA-compliant patient intake workflows and EHR/PMS integrations, utilizing tools that provide BAAs and signing BAAs ourselves where required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your legal AI solutions compliant with the Florida Bar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We configure legal chatbots to collect intake information and perform conflict checks without providing legal advice, fully complying with Florida Bar advertising and client confidentiality rules."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html" class="active">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>Services</span></div>
+    <h1 class="reveal stagger-1">AI-First Services Built on <em>Decades of Expertise</em></h1>
+    <p class="reveal stagger-2">Web Palm Beaches delivers end-to-end AI consulting, automation, and web solutions tailored for South Florida businesses ready to outpace the competition. Click any service to explore the full detail.</p>
+  </div>
+</section>
+
+<!-- Service Tabs -->
+<section>
+  <div class="container">
+    <div class="tabs reveal">
+      <button class="tab-btn active" data-tab="tab-ai-agents">AI Agents</button>
+      <button class="tab-btn" data-tab="tab-automation">Automation</button>
+      <button class="tab-btn" data-tab="tab-strategy">Strategy</button>
+      <button class="tab-btn" data-tab="tab-training">Team Training</button>
+      <button class="tab-btn" data-tab="tab-web">Websites</button>
+      <button class="tab-btn" data-tab="tab-seo">SEO, AEO &amp; GEO</button>
+      <button class="tab-btn" data-tab="tab-integration">Integration</button>
+    </div>
+
+    <!-- ===== AI AGENTS ===== -->
+    <div class="tab-panel active" id="tab-ai-agents">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div class="reveal-left">
+          <div class="section-label">Our Flagship Service</div>
+          <h2 class="section-title">Custom AI Agent Development</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Web Palm Beaches builds intelligent AI agents that become tireless members of your team. From customer-facing chatbots to internal workflow assistants, our agents learn, adapt, and deliver results around the clock.</p>
+          <ul style="list-style:none;margin-bottom:2rem">
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Customer support bots with natural language understanding</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Lead qualification agents that route hot prospects instantly</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Appointment scheduling and follow-up automation</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Internal knowledge base assistants for your team</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Multi-channel deployment (web, SMS, email, voice)</li>
+          </ul>
+          <a href="contact.html" class="btn-primary">Discuss Your AI Agent</a>
+        </div>
+        <div class="reveal-right" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="detail-card">
+            <div class="card-icon">&#128172;</div>
+            <h3>Chat Agents</h3>
+            <p>24/7 conversational agents that handle inquiries, resolve issues, and convert visitors into customers.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-chat-agents')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="detail-card" style="margin-top:2rem">
+            <div class="card-icon">&#128202;</div>
+            <h3>Analytics Agents</h3>
+            <p>Agents that monitor your data, surface insights, and alert you to opportunities or anomalies.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-analytics-agents')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="detail-card">
+            <div class="card-icon">&#128197;</div>
+            <h3>Scheduling Agents</h3>
+            <p>Automated booking, rescheduling, and reminder systems integrated with your calendar tools.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-scheduling-agents')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="detail-card" style="margin-top:2rem">
+            <div class="card-icon">&#128101;</div>
+            <h3>Internal Agents</h3>
+            <p>Knowledge base assistants that help your team find answers, complete tasks, and onboard faster.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-internal-agents')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AUTOMATION ===== -->
+    <div class="tab-panel" id="tab-automation">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Eliminate Busywork</div>
+          <h2 class="section-title">Intelligent Workflow Automation</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Stop wasting hours on repetitive tasks. Web Palm Beaches builds automation systems that think — connecting your tools, processing data, and making intelligent decisions at machine speed.</p>
+          <ul style="list-style:none;margin-bottom:2rem">
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Email and communication automation</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Document processing and data extraction</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Invoice and payment workflow automation</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> CRM data sync and enrichment</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Custom API integrations and webhooks</li>
+          </ul>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="contact.html" class="btn-primary">Automate Your Workflows</a>
+            <button class="btn-secondary" onclick="openSvcModal('svc-automation')">See Full Detail</button>
+          </div>
+        </div>
+        <div style="background:var(--bg-alt);padding:2.5rem;border:1px solid var(--border)">
+          <h3 style="font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:1.5rem">Typical ROI Metrics</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+            <div><div class="counter" data-count="80" data-suffix="%">0%</div><div class="counter-label">Less Manual Work</div></div>
+            <div><div class="counter" data-count="60" data-suffix="%">0%</div><div class="counter-label">Faster Processing</div></div>
+            <div><div class="counter" data-count="45" data-suffix="%">0%</div><div class="counter-label">Cost Reduction</div></div>
+            <div><div class="counter" data-count="99" data-suffix="%">0%</div><div class="counter-label">Error Reduction</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STRATEGY ===== -->
+    <div class="tab-panel" id="tab-strategy">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Your AI Roadmap</div>
+          <h2 class="section-title">AI Strategy Consulting</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Not sure where AI fits in your business? Web Palm Beaches conducts thorough audits, identifies high-impact opportunities, and builds a prioritized roadmap you can act on immediately.</p>
+          <div class="accordion-item open">
+            <div class="accordion-header">Operational Audit <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>We map your current workflows, technology stack, and pain points to identify where AI can make the biggest difference — often in places you haven't considered.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">Opportunity Scoring <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>Each opportunity is scored on impact, feasibility, and ROI potential, so you invest in the right initiatives first.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">Technology Selection <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>We recommend the right AI tools, platforms, and providers for your specific needs — no vendor lock-in, no unnecessary complexity.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">Implementation Roadmap <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>A phased plan with clear milestones, timelines, and budget estimates that your team can follow with confidence.</p></div>
+          </div>
+          <div style="margin-top:1.5rem">
+            <button class="btn-secondary" onclick="openSvcModal('svc-strategy')" style="margin-right:1rem">See Full Detail</button>
+          </div>
+        </div>
+        <div>
+          <div style="background:linear-gradient(135deg,var(--bg-dark),var(--tertiary));padding:3rem;color:var(--text-light)">
+            <h3 style="font-family:var(--heading);font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem">Free Strategy Session</h3>
+            <p style="font-size:1rem;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:1.5rem">Every engagement starts with a complimentary 30-minute strategy call. We'll discuss your business, identify quick wins, and outline a path forward — no obligation.</p>
+            <a href="contact.html" class="btn-primary">Book Your Free Session</a>
+            <a href="tel:5612919001" style="display:block;margin-top:1rem;font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.05em">Or call: 561-291-9001</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TRAINING ===== -->
+    <div class="tab-panel" id="tab-training">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Done-With-You</div>
+          <h2 class="section-title">AI Team Training &amp; Workshops</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">You don't need to outsource everything. We train your existing team to build and manage AI workflows — no coding required. 20 focused hours turns any motivated employee into a System Architect who multiplies their own output.</p>
+          <div class="accordion-item open">
+            <div class="accordion-header">AI Quick Start Workshop <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>Half-day session (4 hours) for up to 5 team members. Covers ChatGPT & Claude for daily tasks, Zapier basics, and building your first live automation. Every participant leaves with one running workflow. From $1,500.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">AI Team Immersion <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>Full-day workshop (8 hours) for up to 10 team members. Role-specific playbooks, 3–5 automations built to your business, and a complete AI workflow library your team can use immediately. From $3,500.</p></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">System Architect Program <div class="accordion-icon"></div></div>
+            <div class="accordion-body"><p>4-week intensive with weekly 3-hour sessions and async support. Full operational audit, custom workflow builds, and a documented AI operating system for your business. Up to 5 participants. From $8,500.</p></div>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
+            <a href="ai-team-training.html" class="btn-primary">Explore Training Options</a>
+            <a href="contact.html" class="btn-secondary">Book a Free Call</a>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="detail-card"><div class="card-icon">&#127891;</div><h3>ChatGPT & Claude</h3><p>Practical prompt engineering and daily workflow integration — beyond the basics.</p></div>
+          <div class="detail-card"><div class="card-icon">&#9889;</div><h3>Zapier & Make</h3><p>Connect your tools and build multi-step automations without writing a single line of code.</p></div>
+          <div class="detail-card"><div class="card-icon">&#128202;</div><h3>Process Mapping</h3><p>Identify every repeatable task in your business and decide which ones to automate first.</p></div>
+          <div class="detail-card"><div class="card-icon">&#129302;</div><h3>AI Agent Oversight</h3><p>Learn to manage, audit, and continuously improve automated systems your team deploys.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== WEBSITES ===== -->
+    <div class="tab-panel" id="tab-web">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Web + AI</div>
+          <h2 class="section-title">AI-Powered Websites</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Web Palm Beaches builds websites that don't just look great — they think. AI-enhanced search, personalization, chatbots, and dynamic content that adapts to every visitor.</p>
+          <ul style="list-style:none;margin-bottom:2rem">
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> WordPress & custom web development</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> AI-powered site search and recommendations</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Embedded conversational chatbots</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Dynamic content personalization</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Performance optimization & Core Web Vitals</li>
+          </ul>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="contact.html" class="btn-primary">Start Your Web Project</a>
+            <button class="btn-secondary" onclick="openSvcModal('svc-web')">See Full Detail</button>
+          </div>
+        </div>
+        <div style="display:grid;gap:1rem">
+          <div class="detail-card">
+            <div class="card-icon">&#127912;</div>
+            <h3>Design & UX</h3>
+            <p>Custom designs that reflect your brand, engage visitors, and guide them toward conversion — every pixel with purpose.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-web')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="detail-card">
+            <div class="card-icon">&#9889;</div>
+            <h3>Performance</h3>
+            <p>Lightning-fast load times, mobile-first responsiveness, and Core Web Vitals optimization built in from day one.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-web')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="detail-card">
+            <div class="card-icon">&#128274;</div>
+            <h3>Security</h3>
+            <p>SSL, firewall, malware scanning, and regular updates to keep your site — and your customers — protected.</p>
+            <button class="card-learn" onclick="openSvcModal('svc-web')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SEO ===== -->
+    <div class="tab-panel" id="tab-seo">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Be Cited &amp; Answered</div>
+          <h2 class="section-title">SEO, AEO &amp; GEO Strategy</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Traditional search optimization is no longer enough. We build websites optimized for human search engines and Generative AI engines (SearchGPT, Perplexity, Gemini, Claude, Copilot) using custom JSON-LD schemas, citation logic, and LLM-friendly semantic structures.</p>
+          <ul style="list-style:none;margin-bottom:2rem">
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Technical SEO, AEO &amp; GEO visibility audits</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Custom semantic JSON-LD schema engineering</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Citable resource blueprints optimized for AI references</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Local search authority and Map Pack optimization</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Multi-engine performance analytics and AI index tracking</li>
+          </ul>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="contact.html" class="btn-primary">Optimize for the AI Age</a>
+            <button class="btn-secondary" onclick="openSvcModal('svc-seo')">See Full Detail</button>
+          </div>
+        </div>
+        <div style="background:var(--bg-alt);padding:2.5rem;border:1px solid var(--border)">
+          <h3 style="font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:1.5rem">What You Get</h3>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div style="display:flex;gap:1rem;align-items:start"><div style="width:36px;height:36px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.8rem">1</div><div><strong style="font-family:var(--heading);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary)">AI &amp; Search Visibility Audit</strong><p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin-top:.25rem">Full analysis of crawl accessibility, index schemas, and LLM reference rates</p></div></div>
+            <div style="display:flex;gap:1rem;align-items:start"><div style="width:36px;height:36px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.8rem">2</div><div><strong style="font-family:var(--heading);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary)">Schema Engineering</strong><p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin-top:.25rem">Bespoke JSON-LD microdata formatting to directly feed search graphs and AI indexes</p></div></div>
+            <div style="display:flex;gap:1rem;align-items:start"><div style="width:36px;height:36px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.8rem">3</div><div><strong style="font-family:var(--heading);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary)">Citable Content Blueprint</strong><p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin-top:.25rem">Information-dense layout designs optimized for LLM search citations</p></div></div>
+            <div style="display:flex;gap:1rem;align-items:start"><div style="width:36px;height:36px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.8rem">4</div><div><strong style="font-family:var(--heading);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary)">Multi-Engine Tracking</strong><p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6;margin-top:.25rem">Monitoring search rankings alongside AI engine citations and references</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== INTEGRATION ===== -->
+    <div class="tab-panel" id="tab-integration">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+        <div>
+          <div class="section-label">Connect Everything</div>
+          <h2 class="section-title">System Integration</h2>
+          <p class="section-desc" style="margin-bottom:1.5rem">Your tools should work together, not against each other. Web Palm Beaches connects your CRM, email, social, payment, and business systems through intelligent integrations that keep everything in sync.</p>
+          <ul style="list-style:none;margin-bottom:2rem">
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> CRM integrations (Salesforce, HubSpot, Pipedrive)</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Payment and invoicing connections</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Marketing platform sync (Mailchimp, ActiveCampaign)</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Custom API development and webhooks</li>
+            <li style="padding:.6rem 0;font-size:.95rem;color:var(--text-secondary);padding-left:1.5rem;position:relative"><span style="position:absolute;left:0;color:var(--accent);font-weight:700">&#10003;</span> Real-time data synchronization</li>
+          </ul>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="contact.html" class="btn-primary">Connect Your Systems</a>
+            <button class="btn-secondary" onclick="openSvcModal('svc-integration')">See Full Detail</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="detail-card"><div class="card-icon">&#128231;</div><h3>Email</h3><p>Automated email workflows triggered by customer actions and business events.</p><button class="card-learn" onclick="openSvcModal('svc-integration')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+          <div class="detail-card"><div class="card-icon">&#128176;</div><h3>Payments</h3><p>Stripe, Square, PayPal — connected to your invoicing and accounting tools.</p><button class="card-learn" onclick="openSvcModal('svc-integration')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+          <div class="detail-card"><div class="card-icon">&#128241;</div><h3>Social</h3><p>Unified social media management with AI-powered scheduling and analytics.</p><button class="card-learn" onclick="openSvcModal('svc-integration')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+          <div class="detail-card"><div class="card-icon">&#9729;&#65039;</div><h3>Cloud</h3><p>AWS, Google Cloud, Azure integrations for scalable, reliable infrastructure.</p><button class="card-learn" onclick="openSvcModal('svc-integration')">Deep Dive <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="bg-ice" style="padding:5rem 0">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto">
+      <div class="section-center" style="margin-bottom:3rem">
+        <div class="section-label reveal" style="justify-content:center">FAQ</div>
+        <h2 class="section-title reveal stagger-1">Frequently Asked Questions</h2>
+        <p class="section-desc reveal stagger-2" style="margin:0 auto">Common questions about our AI, automation, and design services.</p>
+      </div>
+      <div class="reveal stagger-2">
+        <div class="accordion-item">
+          <div class="accordion-header">What AI services does Web Palm Beaches offer?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Web Palm Beaches offers dedicated AI services including custom AI agent and chatbot development, intelligent workflow automation (Make/Zapier), fractional AI strategy consulting, hands-on team AI training, and custom AI-powered web development.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">How can AI agents improve local business operations?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>AI agents automate time-consuming administrative tasks like patient or client intake, lead qualification, and appointment booking. They work 24/7 on your website, email, or SMS channels, allowing your staff to focus on high-value client work.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Do you sign BAAs for medical/HIPAA compliant AI projects?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Yes. For our healthcare clients, we design secure, HIPAA-compliant patient intake workflows and EHR/PMS integrations, utilizing tools that provide BAAs and signing BAAs ourselves where required.</p></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Are your legal AI solutions compliant with the Florida Bar?<span class="accordion-icon"></span></div>
+          <div class="accordion-body"><p>Yes. We configure legal chatbots to collect intake information and perform conflict checks without providing legal advice, fully complying with Florida Bar advertising and client confidentiality rules.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">Ready to Start?</div>
+    <h2 class="section-title reveal stagger-1">Let's discuss which services<br>are right for your business</h2>
+    <p class="section-desc reveal stagger-2" style="margin:0 auto">Every business is different. Book a free strategy call with Web Palm Beaches to explore tailored solutions.</p>
+    <div class="cta-actions reveal stagger-3">
+      <a href="contact.html" class="btn-primary">Book Free Strategy Call</a>
+      <a href="tel:5612919001" class="btn-secondary light">Call 561-291-9001</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+
+          <h5>Company</h5>
+
+          <a href="about.html">About Us</a>
+
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+
+          <a href="pricing.html">Pricing</a>
+
+          <a href="process.html">Our Process</a>
+
+          <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h5>Resources</h5>
+
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO, AEO &amp; GEO Guide</a>
+
+          <a href="blog-how-ai-can-help-south-florida-business.html">AI for Business</a>
+
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     SERVICE MODALS
+================================================================ -->
+
+<!-- CHAT AGENTS -->
+<div class="svc-modal-overlay" id="svc-chat-agents">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-chat-agents')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128172;</div>
+      <div class="mh-label">AI Agent Development</div>
+      <h2>Customer-Facing Chat Agents</h2>
+      <p>Intelligent conversational agents that engage your website visitors, answer questions, qualify leads, and book appointments — 24 hours a day, 7 days a week, without a single staff member involved.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">3 sec</div><div class="mm-key">Avg Response Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">85%</div><div class="mm-key">Inquiries Resolved</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$2,500+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What It Does</h3>
+        <ul class="mc-list">
+          <li>Answers frequently asked questions about your products, services, pricing, and hours in natural language</li>
+          <li>Qualifies leads by asking the right questions and routing high-intent visitors to book a call or contact your team</li>
+          <li>Books appointments and adds them directly to your calendar — no back-and-forth required</li>
+          <li>Escalates complex issues to a human staff member with full conversation context</li>
+          <li>Collects contact information and pushes it directly to your CRM</li>
+          <li>Handles multiple conversations simultaneously — no hold times, no dropped inquiries</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Deployment Options</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Website Widget</h4><p>Embedded chat widget on any page of your site — customized to match your brand colors and voice.</p></div>
+          <div class="mc-item"><h4>SMS / Text</h4><p>Conversational agent via text message — great for service businesses with mobile-first customers.</p></div>
+          <div class="mc-item"><h4>WhatsApp</h4><p>Meet customers where they already communicate — deployed directly to your WhatsApp Business number.</p></div>
+          <div class="mc-item"><h4>Facebook Messenger</h4><p>Automated DM responses and lead capture directly from your Facebook Business page.</p></div>
+        </div>
+      </div>
+      <div class="mc-section">
+        <h3>How We Build It</h3>
+        <div class="svc-steps">
+          <div class="svc-step"><div class="step-num">1</div><div><h4>Discovery & Training</h4><p>We learn your business, services, FAQs, and tone of voice. Your agent is trained specifically on your content — not generic templates.</p></div></div>
+          <div class="svc-step"><div class="step-num">2</div><div><h4>Build & Integration</h4><p>We build the agent, connect it to your CRM and calendar, and configure escalation rules and lead routing logic.</p></div></div>
+          <div class="svc-step"><div class="step-num">3</div><div><h4>Testing & Tuning</h4><p>We run through hundreds of test conversations, refine responses, and ensure the agent handles edge cases gracefully.</p></div></div>
+          <div class="svc-step"><div class="step-num">4</div><div><h4>Launch & Monitor</h4><p>We go live and monitor the first 30 days closely — improving responses based on real conversation data.</p></div></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready to Build Your Chat Agent?</h3>
+        <p>Book a free call and we'll design the right agent for your specific business and customer base.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYTICS AGENTS -->
+<div class="svc-modal-overlay" id="svc-analytics-agents">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-analytics-agents')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128202;</div>
+      <div class="mh-label">AI Agent Development</div>
+      <h2>Analytics & Monitoring Agents</h2>
+      <p>AI agents that watch your business data around the clock — surfacing insights, flagging anomalies, and alerting you to opportunities before they pass or problems before they escalate.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Monitoring</div></div>
+        <div class="mc-meta-item"><div class="mm-val">&lt;5 min</div><div class="mm-key">Alert Response Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$3,500+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What It Does</h3>
+        <ul class="mc-list">
+          <li>Monitors sales pipeline, revenue, and KPI dashboards in real time — no manual check-ins required</li>
+          <li>Sends proactive alerts via Slack, email, or SMS when metrics fall outside defined thresholds</li>
+          <li>Generates weekly performance summaries automatically and delivers them to your inbox</li>
+          <li>Identifies trends and anomalies in your data before they become visible in standard reports</li>
+          <li>Answers natural language questions about your data ("What were our top revenue sources last month?")</li>
+          <li>Connects to your existing data sources — Google Analytics, CRM, POS, spreadsheets, and more</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Common Use Cases</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Sales Pipeline Monitoring</h4><p>Alert when deals go stale, conversion rates drop, or pipeline value falls below targets.</p></div>
+          <div class="mc-item"><h4>Website Performance</h4><p>Track traffic, conversions, and Core Web Vitals — flag drops before they impact revenue.</p></div>
+          <div class="mc-item"><h4>Financial Alerts</h4><p>Monitor cash flow, overdue invoices, and budget variance with automated daily digests.</p></div>
+          <div class="mc-item"><h4>Operational KPIs</h4><p>Watch fulfillment times, customer satisfaction scores, and staff productivity metrics.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Stop Discovering Problems Too Late</h3>
+        <p>Let's talk about what data you need to stay on top of — and build an agent that watches it for you.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULING AGENTS -->
+<div class="svc-modal-overlay" id="svc-scheduling-agents">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-scheduling-agents')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128197;</div>
+      <div class="mh-label">AI Agent Development</div>
+      <h2>Scheduling & Booking Agents</h2>
+      <p>Fully automated appointment booking, rescheduling, and reminder systems that fill your calendar without a single back-and-forth email or phone call.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">30%</div><div class="mm-key">Fewer No-Shows</div></div>
+        <div class="mc-meta-item"><div class="mm-val">24/7</div><div class="mm-key">Booking Availability</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$2,000+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What It Does</h3>
+        <ul class="mc-list">
+          <li>Lets customers book, reschedule, and cancel appointments online — any time, from any device</li>
+          <li>Sends automated confirmation, reminder (24hr and 2hr), and follow-up messages via SMS and email</li>
+          <li>Syncs in real time with Google Calendar, Outlook, Calendly, or your existing booking software</li>
+          <li>Handles intake questions before the appointment — so you arrive prepared with full context</li>
+          <li>Triggers a re-booking sequence after cancellations or no-shows to recover lost appointments</li>
+          <li>Integrates with your CRM to log every booking as a contact record automatically</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Who It's For</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Medical & Healthcare</h4><p>Patient scheduling with intake forms, insurance reminders, and HIPAA-compliant communications.</p></div>
+          <div class="mc-item"><h4>Professional Services</h4><p>Consultation booking for law firms, financial advisors, consultants, and coaches.</p></div>
+          <div class="mc-item"><h4>Beauty & Wellness</h4><p>Salon, spa, and fitness studio booking with service selection and staff assignment.</p></div>
+          <div class="mc-item"><h4>Home Services</h4><p>Estimate and service appointment booking with geographic routing and crew assignment.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready to Automate Your Booking System?</h3>
+        <p>We'll build a scheduling system around your specific workflow in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERNAL AGENTS -->
+<div class="svc-modal-overlay" id="svc-internal-agents">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-internal-agents')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128101;</div>
+      <div class="mh-label">AI Agent Development</div>
+      <h2>Internal Team Agents</h2>
+      <p>AI assistants built for your team — not your customers. Knowledge base agents, onboarding assistants, and internal automation tools that make every employee more efficient from day one.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">50%</div><div class="mm-key">Faster Onboarding</div></div>
+        <div class="mc-meta-item"><div class="mm-val">4 hrs</div><div class="mm-key">Avg Weekly Time Saved/Employee</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$3,000+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What It Does</h3>
+        <ul class="mc-list">
+          <li>Answers staff questions about company policies, procedures, and processes instantly — no more digging through shared drives</li>
+          <li>Onboards new employees by guiding them through training materials and answering questions contextually</li>
+          <li>Assists with task completion — drafting emails, summarizing documents, preparing reports, and more</li>
+          <li>Connects to your internal tools (Slack, Notion, Google Workspace, SharePoint) to surface the right information in context</li>
+          <li>Learns from your internal documentation — updated automatically as policies change</li>
+          <li>Accessible from Slack, Teams, or a custom internal portal</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Built Around Your Knowledge Base</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>SOPs & Policies</h4><p>Upload your procedures and policies — staff get instant, accurate answers without hunting for documents.</p></div>
+          <div class="mc-item"><h4>Product Knowledge</h4><p>Train the agent on your products and services so every team member speaks with expert-level accuracy.</p></div>
+          <div class="mc-item"><h4>HR & Compliance</h4><p>Benefits, time-off policies, compliance requirements — answered instantly, reducing HR inbox volume.</p></div>
+          <div class="mc-item"><h4>Task Automation</h4><p>Trigger internal workflows, create tasks, and log activities — all through natural language commands.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready to Give Your Team an AI Assistant?</h3>
+        <p>We'll design the right internal agent for your team size, tools, and workflows in a free strategy call.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTOMATION -->
+<div class="svc-modal-overlay" id="svc-automation">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-automation')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#9881;&#65039;</div>
+      <div class="mh-label">Workflow Automation</div>
+      <h2>Intelligent Workflow Automation</h2>
+      <p>We map your most time-consuming manual processes and systematically eliminate them — connecting your tools, automating decisions, and giving your team hours back every single week.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">80%</div><div class="mm-key">Less Manual Work</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Month 1</div><div class="mm-key">Typical ROI</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$2,500+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What We Automate</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Email & Communications</h4><p>Auto-responses, follow-up sequences, internal notifications, and client update emails triggered by events in your systems.</p></div>
+          <div class="mc-item"><h4>Document Processing</h4><p>AI-powered OCR and data extraction from invoices, contracts, and forms — directly into your database or CRM.</p></div>
+          <div class="mc-item"><h4>Reporting & Dashboards</h4><p>Weekly and monthly reports assembled automatically from multiple data sources and delivered on schedule.</p></div>
+          <div class="mc-item"><h4>Lead Management</h4><p>Capture, score, route, and nurture leads automatically across every channel — web, social, email, and ads.</p></div>
+          <div class="mc-item"><h4>Invoice & Billing</h4><p>Invoice generation, approval routing, payment reminders, and reconciliation — automated end-to-end.</p></div>
+          <div class="mc-item"><h4>Data Sync</h4><p>Keep your CRM, accounting, project management, and marketing tools in sync — automatically, in real time.</p></div>
+        </div>
+      </div>
+      <div class="mc-section">
+        <h3>Our Process</h3>
+        <div class="svc-steps">
+          <div class="svc-step"><div class="step-num">1</div><div><h4>Process Mapping</h4><p>We document every manual task, its frequency, who does it, and how long it takes — identifying the highest-ROI targets first.</p></div></div>
+          <div class="svc-step"><div class="step-num">2</div><div><h4>Architecture Design</h4><p>We design the automation architecture — which tools to connect, what logic to apply, and how errors should be handled.</p></div></div>
+          <div class="svc-step"><div class="step-num">3</div><div><h4>Build & Test</h4><p>We build each automation with extensive testing using real data before anything touches your live systems.</p></div></div>
+          <div class="svc-step"><div class="step-num">4</div><div><h4>Deploy & Monitor</h4><p>We go live with monitoring in place — catching any exceptions and iterating quickly in the first 30 days.</p></div></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>What Would You Do With 20 Extra Hours a Week?</h3>
+        <p>Tell us your biggest time-wasters. We'll show you exactly how to automate them.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STRATEGY -->
+<div class="svc-modal-overlay" id="svc-strategy">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-strategy')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#127919;</div>
+      <div class="mh-label">AI Strategy Consulting</div>
+      <h2>AI Strategy & Roadmap Development</h2>
+      <p>Not sure where to start with AI? We audit your entire operation, score every opportunity by ROI potential, and hand you a prioritized, phased roadmap you can act on immediately — or hand to a board.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">2 weeks</div><div class="mm-key">Delivery Time</div></div>
+        <div class="mc-meta-item"><div class="mm-val">30 min</div><div class="mm-key">Free Discovery Call</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$3,500+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What's Included</h3>
+        <ul class="mc-list">
+          <li>Operations audit — we map every key workflow, tool, and team process from discovery to delivery</li>
+          <li>AI opportunity identification — every process evaluated for automation feasibility and ROI potential</li>
+          <li>Opportunity scoring matrix — ranked by impact, implementation effort, and time-to-value</li>
+          <li>Technology recommendations — specific tools, platforms, and vendors for each opportunity (no kickbacks, no bias)</li>
+          <li>Phased implementation roadmap — 3-month, 6-month, and 12-month plans with milestones and budget ranges</li>
+          <li>Executive summary document — presentation-ready for stakeholder or board review</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Who It's For</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>AI-Curious Leaders</h4><p>You've heard about AI, you know it's coming, but you don't know where it fits in your specific business yet.</p></div>
+          <div class="mc-item"><h4>Growing Companies</h4><p>You're scaling and need to build AI infrastructure now — before manual processes become a bottleneck.</p></div>
+          <div class="mc-item"><h4>Pre-Investment</h4><p>You want a credible, data-backed AI strategy document before committing to a larger implementation budget.</p></div>
+          <div class="mc-item"><h4>Competitive Response</h4><p>Your competitors are adopting AI and you need to understand where your gaps are and how to close them fast.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Start With a Free 30-Minute Discovery Call</h3>
+        <p>We'll tell you whether a full strategy engagement makes sense for your business — and what we'd look at if it does.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEB -->
+<div class="svc-modal-overlay" id="svc-web">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-web')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128187;</div>
+      <div class="mh-label">AI-Powered Websites</div>
+      <h2>Website Design & Development</h2>
+      <p>We build websites that are fast, beautiful, and intelligent — with AI features built in from day one. Not bolted on after the fact.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">4–8 wks</div><div class="mm-key">Typical Timeline</div></div>
+        <div class="mc-meta-item"><div class="mm-val">94+</div><div class="mm-key">Lighthouse Score</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$5,000+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What's Included</h3>
+        <ul class="mc-list">
+          <li>Custom design — built around your brand, audience, and conversion goals. No templates, no shortcuts.</li>
+          <li>Mobile-first development — optimized for every screen size and device from the ground up</li>
+          <li>AI lead qualification chatbot — embedded and trained on your services and FAQs at launch</li>
+          <li>Core Web Vitals optimization — sub-2-second load times and 90+ Lighthouse performance scores</li>
+          <li>On-page SEO, AEO &amp; GEO — structured data, meta optimization, sitemap, and Google Business Profile integration</li>
+          <li>SSL, security hardening, and automated backups — enterprise-grade protection regardless of size</li>
+          <li>CMS training — full walkthrough so your team can manage content without touching code</li>
+          <li>30-day post-launch support included</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>AI Features We Build In</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>Conversational Chatbot</h4><p>Trained on your content, deployed on launch day — answers questions and captures leads 24/7.</p></div>
+          <div class="mc-item"><h4>Smart Contact Forms</h4><p>Multi-step forms with lead scoring logic that qualifies visitors before they hit your inbox.</p></div>
+          <div class="mc-item"><h4>AI Site Search</h4><p>Semantic search that understands intent — visitors find exactly what they're looking for, faster.</p></div>
+          <div class="mc-item"><h4>Personalization</h4><p>Content that adapts based on visitor source, behavior, and returning status to improve conversion.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Ready for a Website That Actually Works?</h3>
+        <p>Book a free call. We'll audit your current site, identify the biggest gaps, and show you what we'd build instead.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Website Audit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO -->
+<div class="svc-modal-overlay" id="svc-seo">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-seo')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128269;</div>
+      <div class="mh-label">SEO, AEO &amp; GEO Strategy</div>
+      <h2>Search, Answer &amp; Generative Engine Optimization</h2>
+      <p>We optimize your business to satisfy both traditional search crawlers and modern AI answer engines. Custom JSON-LD schema engineering, technical discoverability, and citable semantic formatting that keep your business at the top of organic rankings and AI answers.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">30-60 days</div><div class="mm-key">To AI Citation Growth</div></div>
+        <div class="mc-meta-item"><div class="mm-val">AEO/GEO</div><div class="mm-key">Standard Built-In</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$1,500+/mo</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>What's Included Monthly</h3>
+        <ul class="mc-list">
+          <li>Advanced schema engineering — regular injection and updates of FAQ, LocalBusiness, Service, and Breadcrumb JSON-LD structures</li>
+          <li>AEO &amp; GEO technical maintenance — optimizing file structure, robots.txt, and headers for LLM crawler access (e.g. GPTBot, OAI-SearchBot)</li>
+          <li>Citable content updates — creation of fact-dense, structured articles optimized for generative answer citation cards</li>
+          <li>Google Business Profile &amp; Map pack tracking — maintaining local citation coordinates and reviews for Map packs</li>
+          <li>AI citation gap analysis — scanning competitor mentions in AI search logs and executing content campaigns to capture those citation shares</li>
+          <li>Multi-engine analytics reporting — unified metrics showing Google SERPs alongside Perplexity, SearchGPT, and Gemini referrals</li>
+        </ul>
+      </div>
+      <div class="mc-section">
+        <h3>Modern Search Advantage</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>AI Citation Capture</h4><p>Formatting content specifically for LLM attention mechanisms, ensuring your brand gets quoted as the primary source.</p></div>
+          <div class="mc-item"><h4>Bespoke JSON-LD Graphs</h4><p>Deep nesting of structured data entities to describe business services, authors, and regions clearly to machine spiders.</p></div>
+          <div class="mc-item"><h4>Map Pack Dominance</h4><p>Intense optimization of NAP details and review volume to capture local high-intent "near me" Google search results.</p></div>
+          <div class="mc-item"><h4>Voice &amp; Conversational queries</h4><p>Targeting natural language query clusters rather than single keywords, aligning with voice prompts and chatbot logs.</p></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Is Your Website Visible to AI Assistants?</h3>
+        <p>Get a comprehensive SEO/GEO/AEO diagnostic check. We'll run prompt simulation tests and show you exactly where your citations stand.</p>
+        <a href="contact.html" class="btn-primary">Get a Free AI, GEO &amp; SEO Audit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTEGRATION -->
+<div class="svc-modal-overlay" id="svc-integration">
+  <div class="svc-modal">
+    <div class="modal-close-bar"><button onclick="closeSvcModal('svc-integration')">&#10005;</button></div>
+    <div class="modal-header">
+      <div class="mh-icon">&#128279;</div>
+      <div class="mh-label">System Integration</div>
+      <h2>Business System Integration</h2>
+      <p>Your CRM, email platform, website, payment system, and project tools were all built by different companies with no intention of talking to each other. We make them talk — and build smart automation on top of the connection.</p>
+    </div>
+    <div class="modal-content">
+      <div class="mc-meta">
+        <div class="mc-meta-item"><div class="mm-val">Zero</div><div class="mm-key">Leads Lost</div></div>
+        <div class="mc-meta-item"><div class="mm-val">Real-time</div><div class="mm-key">Data Sync</div></div>
+        <div class="mc-meta-item"><div class="mm-val">$3,000+</div><div class="mm-key">Starting Investment</div></div>
+      </div>
+      <div class="mc-section">
+        <h3>Platforms We Integrate</h3>
+        <div class="mc-grid">
+          <div class="mc-item"><h4>CRM Systems</h4><p>Salesforce, HubSpot, Pipedrive, Zoho, Keap — bidirectional sync with your website, email, and ad platforms.</p></div>
+          <div class="mc-item"><h4>Email & Marketing</h4><p>Mailchimp, ActiveCampaign, Klaviyo, Constant Contact — triggered automations based on CRM and website events.</p></div>
+          <div class="mc-item"><h4>Payments & Billing</h4><p>Stripe, Square, PayPal, QuickBooks — connected to your CRM and project management for end-to-end billing automation.</p></div>
+          <div class="mc-item"><h4>Project Management</h4><p>Asana, Monday.com, ClickUp, Notion — auto-create tasks when deals close or milestones are hit.</p></div>
+          <div class="mc-item"><h4>Communication</h4><p>Slack, Microsoft Teams — automated notifications, approvals, and alerts routed to the right channels and people.</p></div>
+          <div class="mc-item"><h4>Custom APIs</h4><p>If it has an API, we can connect it. We've built custom integrations for industry-specific software in healthcare, legal, and real estate.</p></div>
+        </div>
+      </div>
+      <div class="mc-section">
+        <h3>Our Integration Process</h3>
+        <div class="svc-steps">
+          <div class="svc-step"><div class="step-num">1</div><div><h4>Stack Audit</h4><p>We document every tool you use, how data flows between them today, and where it breaks or gets lost.</p></div></div>
+          <div class="svc-step"><div class="step-num">2</div><div><h4>Integration Architecture</h4><p>We design the full data flow — what connects to what, which system is the source of truth, and what automation logic sits on top.</p></div></div>
+          <div class="svc-step"><div class="step-num">3</div><div><h4>Build & Test</h4><p>Each integration built and tested in a staging environment — verified against real data scenarios before touching your live systems.</p></div></div>
+          <div class="svc-step"><div class="step-num">4</div><div><h4>Monitor & Maintain</h4><p>We watch the integration in the first 30 days and provide ongoing monitoring for any API changes or errors.</p></div></div>
+        </div>
+      </div>
+      <div class="mc-cta">
+        <h3>Are Your Tools Working Against Each Other?</h3>
+        <p>Tell us what you're running. We'll map the connections and show you what a unified stack would look like.</p>
+        <a href="contact.html" class="btn-primary">Book a Free Tech Stack Audit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+function openSvcModal(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeSvcModal(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+}
+document.querySelectorAll('.svc-modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeSvcModal(o.id); });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.svc-modal-overlay.open').forEach(o => closeSvcModal(o.id));
+});
+</script>
+</body>
+</html>

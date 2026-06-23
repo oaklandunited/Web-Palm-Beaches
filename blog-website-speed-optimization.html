@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Speed Optimization: Fix a Slow Site</title>
+  <meta name="description" content="Slow websites lose customers and rankings. Learn which performance issues hurt you most and exactly how to fix them.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Why does website speed matter?","acceptedAnswer":{"@type":"Answer","text":"Website speed directly affects SEO rankings, user experience, and conversion rates. Google uses Core Web Vitals (including load speed) as a ranking factor. A 1-second delay in page load time reduces conversions by approximately 7%. On mobile, 53% of users abandon a site that takes more than 3 seconds to load."}},
+    {"@type":"Question","name":"How fast should a website load?","acceptedAnswer":{"@type":"Answer","text":"Google's target for Largest Contentful Paint (LCP) — how quickly the main content loads — is under 2.5 seconds. For Time to Interactive, under 3.8 seconds is considered good. On Google PageSpeed Insights, scores of 90+ on both mobile and desktop are achievable and should be the target for any professional website."}},
+    {"@type":"Question","name":"What causes a slow website?","acceptedAnswer":{"@type":"Answer","text":"The most common causes are: unoptimized images (the #1 culprit), cheap shared hosting, too many plugins or scripts, render-blocking JavaScript, no caching, large CSS files, and third-party embeds like chat widgets or social feeds. WordPress sites are particularly vulnerable to plugin bloat."}},
+    {"@type":"Question","name":"How do I check my website speed?","acceptedAnswer":{"@type":"Answer","text":"Use Google PageSpeed Insights (pagespeed.web.dev) for a comprehensive score with specific recommendations. GTmetrix provides additional detail on waterfall loading. Both are free. Test your mobile score specifically — Google uses mobile performance for ranking, not desktop."}},
+    {"@type":"Question","name":"Does page speed affect SEO rankings?","acceptedAnswer":{"@type":"Answer","text":"Yes. Google confirmed Core Web Vitals — which include loading speed, interactivity, and visual stability — as a ranking signal in 2021. Sites with poor Core Web Vitals scores are at a disadvantage in search rankings, even with strong content. For local businesses competing in Palm Beach County, speed can be a meaningful differentiator."}}
+  ]}
+  </script>
+  <style>
+    .article-hero{background:var(--bg-alt);padding:4rem 0 3rem;border-bottom:1px solid var(--border)}
+    .breadcrumb{font-size:.8rem;color:var(--text-muted);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
+    .breadcrumb a{color:var(--text-muted);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 .5rem;opacity:.5}
+    .article-meta{display:flex;gap:1.5rem;align-items:center;margin-top:1rem;font-size:.8rem;color:var(--text-muted);font-family:var(--heading);letter-spacing:.05em;flex-wrap:wrap}
+    .article-meta .tag{background:var(--accent);color:#fff;padding:.2rem .6rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .article-wrap{display:grid;grid-template-columns:1fr 320px;gap:4rem;padding:4rem 0}
+    .article-body h2{font-family:var(--heading);font-size:1.5rem;font-weight:700;color:var(--heading);margin:2.5rem 0 1rem}
+    .article-body h3{font-family:var(--heading);font-size:1.1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 .75rem}
+    .article-body p{font-size:1rem;line-height:1.8;color:var(--text-secondary);margin-bottom:1.25rem}
+    .article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:var(--text-secondary);line-height:1.9}
+    .article-body li{margin-bottom:.4rem}
+    .article-body a{color:var(--accent);font-weight:600}.article-body a:hover{text-decoration:underline}
+    .callout{background:var(--bg-alt);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+    .callout p{margin:0;font-size:.95rem}
+    .fix-table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+    .fix-table th{background:var(--tertiary);color:#fff;padding:.75rem 1rem;text-align:left;font-family:var(--heading);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+    .fix-table td{padding:.75rem 1rem;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--text-secondary);vertical-align:top}
+    .fix-table tr:nth-child(even) td{background:var(--bg-alt)}
+    .impact{display:inline-block;padding:.15rem .5rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .impact.high{background:rgba(34,197,94,.15);color:#16a34a}
+    .impact.med{background:rgba(234,179,8,.15);color:#ca8a04}
+    .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-cta{background:var(--tertiary);padding:1.75rem}
+    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
+    .sticky-wrap{position:sticky;top:100px}
+    .author-box{display:flex;gap:1.25rem;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);padding:1.5rem;margin-top:2.5rem}
+    .author-avatar{width:60px;height:60px;border-radius:50%;background:var(--tertiary);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--heading);font-weight:700;font-size:1.1rem;flex-shrink:0}
+    .author-info h5{font-family:var(--heading);font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.25rem}
+    .author-info p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6}
+    .faq-section{padding:3rem 0;border-top:1px solid var(--border)}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;font-family:var(--heading);font-weight:700;font-size:1rem;color:var(--heading);gap:1rem}
+    .faq-question::after{content:'+';font-size:1.25rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-question::after{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:0 0 1.25rem;font-size:.95rem;color:var(--text-secondary);line-height:1.8}
+    .faq-item.open .faq-answer{display:block}
+    @media(max-width:900px){.article-wrap{grid-template-columns:1fr;gap:2rem}.article-sidebar{display:none}}
+  </style>
+  <link rel="canonical" href="https://webpalmbeaches.com/blog-website-speed-optimization.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webpalmbeaches.com/blog-website-speed-optimization.html">
+  <meta property="og:title" content="Website Speed Optimization: Fix a Slow Site">
+  <meta property="og:description" content="Slow websites lose customers and rankings. Learn which performance issues hurt you most and exactly how to fix them.">
+  <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<div class="article-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="blog.html">Blog</a><span>›</span>
+      Why Website Speed Matters
+    </div>
+    <div class="article-meta">
+      <span class="tag">Web Design</span>
+      <span>2026</span>
+      <span>6 min read</span>
+    </div>
+    <h1 style="font-family:var(--heading);font-size:2.2rem;font-weight:700;color:var(--heading);margin-top:.75rem;max-width:700px;line-height:1.3">Why Website Speed Matters and How to Fix a Slow South Florida Business Website</h1>
+    <p style="font-size:1.05rem;color:var(--text-secondary);margin-top:.75rem;max-width:620px;line-height:1.7">A slow website loses you leads, drops your Google rankings, and signals amateur hour to first-time visitors. Here's how to diagnose and fix it.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article-wrap">
+    <article class="article-body">
+
+      <p>Most business owners don't know their website's page speed score. Most would be alarmed if they did. The average small business website scores below 50 on Google PageSpeed mobile — meaning it loads slowly enough to be actively hurting their rankings and conversions every single day.</p>
+
+      <h2>What Page Speed Actually Affects</h2>
+      <p>Speed isn't just a technical metric. It directly impacts three things that matter to your bottom line:</p>
+      <ul>
+        <li><strong>Google rankings:</strong> Core Web Vitals (which include LCP, INP, and CLS) are official ranking signals. Slow sites rank lower.</li>
+        <li><strong>Bounce rate:</strong> 53% of mobile visitors leave if a page takes longer than 3 seconds to load. They don't wait.</li>
+        <li><strong>Conversions:</strong> A 1-second improvement in load time increases conversions by ~7%. For a business generating $10K/month from its website, that's $700/month per second of improvement.</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Check your score right now:</strong> Go to pagespeed.web.dev and enter your URL. Look at the mobile score specifically — that's what Google uses for ranking. Under 50 is poor. 50–89 is needs improvement. 90+ is good. Most professional sites built with performance in mind score 90+.</p>
+      </div>
+
+      <h2>The Most Common Causes of Slow Websites</h2>
+
+      <h3>1. Unoptimized Images (the #1 Culprit)</h3>
+      <p>Most websites serve images at 3000x2000px when they're displayed at 600x400px. Uploading a 4MB photo when a 120KB version would look identical is the single fastest speed improvement available. Images should be compressed, resized to display dimensions, and served in next-gen formats like WebP.</p>
+
+      <h3>2. Cheap Shared Hosting</h3>
+      <p>A $5/month hosting plan shares server resources with hundreds of other websites. When those sites have traffic spikes, your site slows down. Good hosting for a business site costs $30–$80/month (managed WordPress) or $20–$50/month (quality VPS). The performance difference is dramatic.</p>
+
+      <h3>3. Too Many WordPress Plugins</h3>
+      <p>Each plugin adds code that loads on every page. A WordPress site with 30+ plugins — each adding tracking scripts, CSS files, and JavaScript — loads like a freight train. Audit your plugins quarterly and remove anything that isn't essential.</p>
+
+      <h3>4. No Caching</h3>
+      <p>Without caching, your server rebuilds every page from scratch for every visitor. A caching plugin stores a static version so returning visitors (and first-time visitors to cached pages) get near-instant loads. This is one of the easiest fixes available.</p>
+
+      <h3>5. Render-Blocking JavaScript</h3>
+      <p>Scripts that load in the &lt;head&gt; of your page block the browser from displaying anything until they've downloaded. Moving non-critical scripts to load asynchronously or at the end of the page can improve perceived load time significantly.</p>
+
+      <h2>The Speed Fix Priority Table</h2>
+      <table class="fix-table">
+        <thead><tr><th>Fix</th><th>Difficulty</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>Compress &amp; resize images</td><td>Easy</td><td><span class="impact high">High</span></td></tr>
+          <tr><td>Upgrade to quality hosting</td><td>Medium</td><td><span class="impact high">High</span></td></tr>
+          <tr><td>Enable caching</td><td>Easy</td><td><span class="impact high">High</span></td></tr>
+          <tr><td>Remove unused plugins/scripts</td><td>Medium</td><td><span class="impact med">Medium</span></td></tr>
+          <tr><td>Enable a CDN</td><td>Easy</td><td><span class="impact med">Medium</span></td></tr>
+          <tr><td>Minify CSS and JavaScript</td><td>Medium</td><td><span class="impact med">Medium</span></td></tr>
+          <tr><td>Lazy-load images below the fold</td><td>Easy</td><td><span class="impact med">Medium</span></td></tr>
+          <tr><td>Eliminate render-blocking resources</td><td>Hard</td><td><span class="impact high">High</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2>When to Rebuild vs. When to Fix</h2>
+      <p>If your site scores below 30 on mobile, is built on a page builder like Divi or Elementor, and has accumulated years of plugins and design revisions — it's often faster and more cost-effective to rebuild than to fix. The performance ceiling on an over-engineered WordPress site is lower than a site built clean from the start.</p>
+      <p>If your site is relatively clean and just needs some tuning — image optimization, hosting upgrade, caching configuration — that can often be done for a few hundred dollars. A site audit will tell you which category you're in. See our guide to <a href="blog-five-signs-website-costing-customers.html">5 signs your website is costing you customers</a>.</p>
+
+      <div class="author-box">
+        <div class="author-avatar">WP</div>
+        <div class="author-info">
+          <h5>Web Palm Beaches Team</h5>
+          <p>Every website we build targets 90+ PageSpeed scores on both mobile and desktop. Based in West Palm Beach, serving Palm Beach County businesses.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sticky-wrap">
+        <div class="sidebar-widget sidebar-cta">
+          <h4>Get a Free Speed Audit</h4>
+          <p>We'll test your site's performance and give you a prioritized list of fixes — at no cost.</p>
+          <a href="contact.html" class="btn-primary">Request a Free Audit</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Related Articles</h4>
+          <a href="blog-five-signs-website-costing-customers.html">5 Signs Your Website Is Costing You</a>
+          <a href="blog-mobile-first-web-design-south-florida.html">Mobile-First Web Design</a>
+          <a href="blog-wordpress-vs-custom-web-design.html">WordPress vs. Custom Web Design</a>
+          <a href="blog-what-is-schema-markup.html">What Is Schema Markup?</a>
+          <a href="blog-website-cost-palm-beach-county.html">Website Cost Guide</a>
+        </div>
+        <div class="sidebar-widget">
+          <h4>Web Design Services</h4>
+          <a href="services.html">All Services</a>
+          <a href="pricing.html">View Pricing</a>
+          <a href="process.html">Our Process</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="container" style="max-width:760px">
+    <h2 class="section-title" style="text-align:left;font-size:1.6rem;margin-bottom:2rem">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">Why does website speed matter?</div>
+      <div class="faq-answer">Website speed directly affects SEO rankings, user experience, and conversion rates simultaneously. Google uses Core Web Vitals including page load speed as a ranking factor. A 1-second delay reduces conversions by approximately 7%. On mobile, 53% of users abandon a site that takes more than 3 seconds to load — and most local searches happen on mobile.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How fast should a website load?</div>
+      <div class="faq-answer">Google's target for Largest Contentful Paint (LCP) — how quickly main content loads — is under 2.5 seconds. On Google PageSpeed Insights, scores of 90+ on both mobile and desktop are the target for any professionally built site. Most quality agency-built websites achieve this; most DIY or old template-based sites do not.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What causes a slow website?</div>
+      <div class="faq-answer">The most common causes are: unoptimized large images (the #1 culprit), cheap shared hosting, WordPress plugin bloat, lack of caching, render-blocking JavaScript, and third-party embeds like chat widgets or social feeds. Websites built on heavy page builders like Divi or Elementor are also frequently slow without significant optimization work.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I check my website speed?</div>
+      <div class="faq-answer">Use Google PageSpeed Insights (pagespeed.web.dev) for a comprehensive score with specific improvement recommendations. Test your mobile score specifically — that's what Google uses for ranking decisions. GTmetrix provides additional technical detail. Both tools are free and require only your URL.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Does page speed affect SEO rankings?</div>
+      <div class="faq-answer">Yes. Google confirmed Core Web Vitals — which include Largest Contentful Paint, Interaction to Next Paint, and Cumulative Layout Shift — as official ranking signals in 2021. Sites with poor Core Web Vitals scores are at a measurable disadvantage in search rankings. For local businesses competing in Palm Beach County, page speed can differentiate between ranking in the top 3 or not appearing on the first page.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <div class="container">
+    <h2>Is Your Website Slow Enough to Be Hurting Your Rankings?</h2>
+    <p>We'll audit your site's performance and show you exactly what to fix — free, no obligation.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="contact.html" class="btn-primary">Get a Free Speed Audit</a>
+      <a href="pricing.html" class="btn-secondary light">See Our Pricing</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+
+          <a href="clients.html">Client Stories</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+        <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms-of-service.html">Terms of Service</a> | 
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+<script>document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
