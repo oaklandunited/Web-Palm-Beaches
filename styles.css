@@ -113,7 +113,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .bg-dark .section-desc{color:rgba(255,255,255,.65)}
 
 /* === CTA BANNER === */
-.cta-banner{padding:5rem 0;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-dark) 0%,var(--tertiary) 100%);color:var(--text-light)}
+.cta-banner{padding:5rem 0;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(5,22,57,.93) 0%,rgba(41,80,130,.86) 100%),url('https://images.unsplash.com/photo-1493558103817-58b2924bce98?w=1920&q=80') center/cover no-repeat;color:var(--text-light)}
 .cta-banner .section-title{color:var(--text-light);margin:0 auto .75rem}
 .cta-banner .section-desc{margin:0 auto 2rem;text-align:center;color:rgba(255,255,255,.7)}
 .cta-banner .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
