@@ -2,6 +2,12 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Scroll progress bar — width driven by CSS scroll-driven animation (no scroll listener)
+const progressBar = document.createElement('div');
+progressBar.className = 'scroll-progress';
+progressBar.setAttribute('aria-hidden', 'true');
+document.body.prepend(progressBar);
+
 // Nav scroll effect — IntersectionObserver sentinel (no per-frame scroll handler)
 const nav = document.getElementById('nav');
 if (nav) {
