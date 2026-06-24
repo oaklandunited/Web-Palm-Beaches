@@ -46,8 +46,9 @@ a{color:inherit;text-decoration:none}
 
 /* Respect reduced-motion: no reveals, pulses, parallax, or counters */
 @media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
-  .js-reveal .reveal,.js-reveal .reveal-left,.js-reveal .reveal-right,.js-reveal .reveal-scale{opacity:1 !important;transform:none !important}
+  /* Disable autonomous/looping motion (keyframes, parallax, scroll bar) but keep short hover/focus transitions. */
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important}
+  .js-reveal .reveal,.js-reveal .reveal-left,.js-reveal .reveal-right,.js-reveal .reveal-scale{opacity:1 !important;transform:none !important;transition:none !important}
 }
 
 /* === NAV === */
