@@ -21,6 +21,7 @@
   --text-light:#ffffff;
   --accent:#cd6155;
   --accent-hover:#b8534a;
+  --accent-ink:#b8534a;
   --secondary:#406b95;
   --tertiary:#295082;
   --border:rgba(0,0,0,0.08);
@@ -48,11 +49,11 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
 .footer-brand .nav-logo img{height:36px;filter:brightness(0) invert(1)}
 .nav-links{display:flex;gap:2rem;align-items:center}
 .nav-links a{font-family:var(--heading);font-size:.8rem;font-weight:600;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
-.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover{color:var(--accent-ink)}
 .nav-cta{background:var(--accent);color:var(--text-light);padding:.7rem 1.5rem;font-family:var(--heading);font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;border:none}
 .nav-cta:hover{background:var(--accent-hover);box-shadow:0 4px 15px rgba(205,97,85,.3)}
 .nav-phone{font-family:var(--heading);font-size:.8rem;font-weight:700;color:var(--tertiary);letter-spacing:.05em;transition:color .3s}
-.nav-phone:hover{color:var(--accent)}
+.nav-phone:hover{color:var(--accent-ink)}
 .mobile-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer}
 
 /* === HERO === */
@@ -84,7 +85,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
 
 /* === SECTION COMMON === */
 section{padding:6rem 0}
-.section-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:1rem}
 .section-label::before{content:'';width:24px;height:2px;background:var(--accent)}
 .section-title{font-family:var(--heading);font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;font-weight:800;margin-bottom:1rem;color:var(--tertiary)}
 .section-desc{color:var(--text-secondary);font-family:var(--body);font-size:1.05rem;line-height:1.8;max-width:560px}
@@ -117,7 +118,7 @@ section{padding:6rem 0}
 .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;position:relative}
 .process-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:2px;background:var(--border)}
 .step{text-align:center;position:relative}
-.step-marker{width:56px;height:56px;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--accent);position:relative;z-index:2;transition:all .4s;letter-spacing:.05em}
+.step-marker{width:56px;height:56px;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--accent-ink);position:relative;z-index:2;transition:all .4s;letter-spacing:.05em}
 .step:hover .step-marker{border-color:var(--accent);background:var(--accent);color:var(--text-light);box-shadow:0 4px 20px rgba(205,97,85,.25)}
 .step h4{font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;color:var(--tertiary)}
 .step p{color:var(--text-secondary);font-size:.85rem;line-height:1.7;font-family:var(--body)}
@@ -399,11 +400,11 @@ footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgb
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>AI Team Training</h3>
         <p>Done-With-You workshops that turn your existing staff into System Architects. 20 hours of hands-on practice, no coding required. Your team builds real workflows.</p>
-        <a href="ai-team-training.html" style="display:inline-block;margin-top:.75rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Learn More →</a>
+        <a href="ai-team-training.html" style="display:inline-block;margin-top:.75rem;font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)">Learn More →</a>
       </div>
     </div>
     <div class="reveal stagger-3" style="text-align:center;margin-top:2rem">
-      <a href="ai-for-small-business.html" style="font-family:var(--heading);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:.6rem 1.5rem;display:inline-block;transition:all .3s">Small Team? See packages built for 1-10 person businesses →</a>
+      <a href="ai-for-small-business.html" style="font-family:var(--heading);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);border:1px solid var(--accent);padding:.6rem 1.5rem;display:inline-block;transition:all .3s">Small Team? See packages built for 1-10 person businesses →</a>
     </div>
   </div>
 </section>
