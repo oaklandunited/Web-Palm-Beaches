@@ -39,19 +39,16 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 // js-reveal flag tells CSS it is safe to hide-then-animate; without JS, content stays visible.
 document.documentElement.classList.add('js-reveal');
 const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-if (prefersReducedMotion) {
-  revealEls.forEach(el => el.classList.add('visible'));
-} else {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-}
+// Always observe. Full motion = slide+fade; reduced motion = opacity-only fade (handled in CSS).
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
 
 // Smooth scroll for same-page anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
