@@ -351,3 +351,10 @@ footer{background:var(--bg-dark);border-top:none;padding:3.5rem 0 2rem;color:rgb
   }
 }
 @keyframes scrollProgress{to{transform:scaleX(1)}}
+
+/* === LOCATION CARDS (link to per-city service pages) === */
+.location-card{display:block;padding:1.5rem;border:1px solid var(--border);background:var(--bg);color:inherit;text-decoration:none;transition:transform .3s cubic-bezier(0.16,1,0.3,1),border-color .3s,box-shadow .3s}
+.location-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.location-card .loc-icon{font-size:1.5rem;margin-bottom:.5rem}
+.location-card .loc-name{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);transition:color .3s}
+.location-card:hover .loc-name{color:var(--accent-ink)}
