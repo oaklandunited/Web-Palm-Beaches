@@ -1,10 +1,24 @@
 /* === WEB PALM BEACHES — SHARED JS === */
 
-// Nav scroll effect
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Scroll progress bar — width driven by CSS scroll-driven animation (no scroll listener)
+const progressBar = document.createElement('div');
+progressBar.className = 'scroll-progress';
+progressBar.setAttribute('aria-hidden', 'true');
+document.body.prepend(progressBar);
+
+// Nav scroll effect — IntersectionObserver sentinel (no per-frame scroll handler)
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+if (nav) {
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:50px;pointer-events:none';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([entry]) => {
+    nav.classList.toggle('scrolled', !entry.isIntersecting);
+  }, { threshold: 0 }).observe(sentinel);
+}
 
 // Mobile menu toggle
 const mobileToggle = document.querySelector('.mobile-toggle');
@@ -22,11 +36,15 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 });
 
 // Scroll reveal (supports .reveal, .reveal-left, .reveal-right, .reveal-scale)
+// js-reveal flag tells CSS it is safe to hide-then-animate; without JS, content stays visible.
+document.documentElement.classList.add('js-reveal');
 const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+// Always observe. Full motion = slide+fade; reduced motion = opacity-only fade (handled in CSS).
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
@@ -118,15 +136,43 @@ const counterObserver = new IntersectionObserver((entries) => {
 const counterSection = document.querySelector('.counters-row');
 if (counterSection) counterObserver.observe(counterSection);
 
-// Parallax subtle effect on page hero
-const pageHero = document.querySelector('.page-hero');
-if (pageHero) {
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    if (scrolled < 600) {
-      pageHero.style.backgroundPositionY = scrolled * 0.3 + 'px';
-    }
+// Hero stat counter (homepage .hero-stats .stat-number, e.g. "20+", "100+")
+function animateHeroStats() {
+  document.querySelectorAll('.hero-stats .stat-number').forEach(el => {
+    const text = el.textContent;
+    const match = text.match(/(\d+)/);
+    if (!match) return;
+    const target = parseInt(match[0], 10);
+    const suffix = text.slice(match.index + match[0].length);
+    const prefix = text.slice(0, match.index);
+    const increment = Math.max(1, Math.ceil(target / 40));
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = prefix + current + suffix;
+    }, 30);
   });
+}
+
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) {
+  if (prefersReducedMotion) {
+    // leave the final values in place
+  } else {
+    const heroStatsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateHeroStats();
+          heroStatsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    heroStatsObserver.observe(heroStats);
+  }
 }
 
 // ============================================================
