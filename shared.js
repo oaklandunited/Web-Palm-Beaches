@@ -1,142 +1,190 @@
 /* === WEB PALM BEACHES — SHARED JS === */
+(function() {
+  'use strict';
 
-// Nav scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+  // Cache DOM elements
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelector('.nav-links');
+  const mobileToggle = document.querySelector('.mobile-toggle');
 
-// Mobile menu toggle
-const mobileToggle = document.querySelector('.mobile-toggle');
-if (mobileToggle) {
-  mobileToggle.addEventListener('click', () => {
-    document.querySelector('.nav-links').classList.toggle('show');
-  });
-}
-
-// Close mobile menu on link click
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => {
-    document.querySelector('.nav-links').classList.remove('show');
-  });
-});
-
-// Scroll reveal (supports .reveal, .reveal-left, .reveal-right, .reveal-scale)
-const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => observer.observe(el));
-
-// Smooth scroll for same-page anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const href = a.getAttribute('href');
-    if (href === '#') return;
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-// Tab system
-function initTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-  if (!tabBtns.length) return;
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(target).classList.add('active');
-    });
-  });
-}
-initTabs();
-
-// Accordion system
-function initAccordions() {
-  const headers = document.querySelectorAll('.accordion-header');
-  if (!headers.length) return;
-
-  headers.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
-      const wasOpen = item.classList.contains('open');
-
-      // Close all in same group
-      item.parentElement.querySelectorAll('.accordion-item').forEach(i => {
-        i.classList.remove('open');
+  // Throttle helper for scroll events
+  let ticking = false;
+  function throttleScroll(callback) {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        callback();
+        ticking = false;
       });
+      ticking = true;
+    }
+  }
 
-      if (!wasOpen) item.classList.add('open');
+  // Nav scroll effect (throttled)
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      throttleScroll(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      });
+    }, { passive: true });
+  }
+
+  // Mobile menu toggle with event delegation
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
     });
-  });
-}
-initAccordions();
 
-// Counter animation
-function animateCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  counters.forEach(el => {
-    const target = parseInt(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    const prefix = el.dataset.prefix || '';
-    const duration = 1500;
-    const steps = 50;
-    const stepTime = duration / steps;
-    let current = 0;
-    const increment = target / steps;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
+    // Close mobile menu on link click (event delegation)
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        navLinks.classList.remove('show');
       }
-      el.textContent = prefix + Math.round(current) + suffix;
-    }, stepTime);
-  });
-}
+    });
+  }
 
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounters();
-      counterObserver.disconnect();
+  // Scroll reveal with optimized observer
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  if (revealEls.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+
+  // Smooth scroll with event delegation
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
-}, { threshold: 0.3 });
+})();
 
-const counterSection = document.querySelector('.counters-row');
-if (counterSection) counterObserver.observe(counterSection);
+// Tab system with event delegation
+(function() {
+  'use strict';
+  const tabsContainer = document.querySelector('.tabs');
+  if (!tabsContainer) return;
 
-// Parallax subtle effect on page hero
-const pageHero = document.querySelector('.page-hero');
-if (pageHero) {
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabsContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+
+    const target = btn.dataset.tab;
+    const tabBtns = tabsContainer.querySelectorAll('.tab-btn');
+
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+
+    const panel = document.getElementById(target);
+    if (panel) panel.classList.add('active');
+  });
+})();
+
+// Accordion system with event delegation
+(function() {
+  'use strict';
+  const accordionContainer = document.querySelector('.accordion');
+  if (!accordionContainer) return;
+
+  accordionContainer.addEventListener('click', (e) => {
+    const header = e.target.closest('.accordion-header');
+    if (!header) return;
+
+    const item = header.parentElement;
+    const wasOpen = item.classList.contains('open');
+
+    // Close all siblings efficiently
+    const siblings = item.parentElement.querySelectorAll('.accordion-item.open');
+    siblings.forEach(i => i.classList.remove('open'));
+
+    if (!wasOpen) item.classList.add('open');
+  });
+})();
+
+// Counter animation with requestAnimationFrame
+(function() {
+  'use strict';
+  function animateCounters() {
+    const counters = document.querySelectorAll('[data-count]');
+    counters.forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 1500;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = target * progress;
+
+        el.textContent = prefix + Math.round(current) + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        counterObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const counterSection = document.querySelector('.counters-row');
+  if (counterSection) counterObserver.observe(counterSection);
+})();
+
+// Parallax effect with throttling
+(function() {
+  'use strict';
+  const pageHero = document.querySelector('.page-hero');
+  if (!pageHero) return;
+
+  let rafId = null;
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    if (scrolled < 600) {
-      pageHero.style.backgroundPositionY = scrolled * 0.3 + 'px';
-    }
-  });
-}
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      const scrolled = window.scrollY;
+      if (scrolled < 600) {
+        pageHero.style.backgroundPositionY = scrolled * 0.3 + 'px';
+      }
+      rafId = null;
+    });
+  }, { passive: true });
+})();
 
 // ============================================================
 // SITE-WIDE SEARCH
 // ============================================================
 (function() {
+  'use strict';
   // Inject search button — inside .nav-links (before the phone link) on desktop,
   // and as a standalone icon sibling for mobile (before .mobile-toggle)
   const navLinks = document.querySelector('.nav-links');
   const mobileBtn = document.querySelector('.mobile-toggle');
+  const nav = document.getElementById('nav');
 
   const makeBtn = (cls) => {
     const btn = document.createElement('button');
@@ -155,7 +203,7 @@ if (pageHero) {
   }
 
   // Mobile: inject as nav sibling before hamburger (visible only on mobile via CSS)
-  if (mobileBtn) {
+  if (mobileBtn && nav) {
     const mobileSearchBtn = makeBtn('search-toggle search-toggle-mobile');
     nav.insertBefore(mobileSearchBtn, mobileBtn);
   }
@@ -189,12 +237,11 @@ if (pageHero) {
 
   let searchIndex = null;
   let activeIdx = -1;
+  let debounceTimer = null;
 
   // Load index (fetch once, cache)
   function loadIndex() {
     if (searchIndex) return Promise.resolve(searchIndex);
-    // Resolve path relative to site root regardless of current page depth
-    const base = document.querySelector('base') ? document.querySelector('base').href : window.location.origin + '/';
     return fetch('search-index.json')
       .then(r => r.json())
       .then(data => { searchIndex = data; return data; });
@@ -206,9 +253,7 @@ if (pageHero) {
     input.value = '';
     results.innerHTML = '';
     activeIdx = -1;
-    // Pre-load index silently
     loadIndex();
-    // Small delay so transition completes before focus
     setTimeout(() => input.focus(), 50);
   }
 
@@ -255,14 +300,20 @@ if (pageHero) {
     if (items[activeIdx]) items[activeIdx].scrollIntoView({ block: 'nearest' });
   }
 
-  // Search logic
+  // Search logic with memoization
+  const highlightCache = new Map();
   function highlight(text, terms) {
     if (!text) return '';
+    const cacheKey = text + '|' + terms.join('|');
+    if (highlightCache.has(cacheKey)) return highlightCache.get(cacheKey);
+
     let safe = text.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
     terms.forEach(t => {
       const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      safe = safe.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+      safe = safe.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
     });
+
+    highlightCache.set(cacheKey, safe);
     return safe;
   }
 
@@ -272,29 +323,28 @@ if (pageHero) {
     const lDesc = entry.description.toLowerCase();
     const lHeadings = (entry.headings || []).join(' ').toLowerCase();
     const lBody = (entry.body || '').toLowerCase();
-    terms.forEach(t => {
-      const tl = t.toLowerCase();
+    for (let i = 0; i < terms.length; i++) {
+      const tl = terms[i].toLowerCase();
       if (lTitle.includes(tl)) s += 20;
-      if (lDesc.includes(tl)) s += 10;
-      if (lHeadings.includes(tl)) s += 8;
-      if (lBody.includes(tl)) s += 3;
-    });
+      else if (lDesc.includes(tl)) s += 10;
+      else if (lHeadings.includes(tl)) s += 8;
+      else if (lBody.includes(tl)) s += 3;
+    }
     return s;
   }
 
   function getSnippet(entry, terms) {
     const text = entry.description || entry.body || '';
     if (!text) return '';
-    // Find best position
     const lText = text.toLowerCase();
     let bestPos = 0;
-    terms.forEach(t => {
-      const pos = lText.indexOf(t.toLowerCase());
+    for (let i = 0; i < terms.length; i++) {
+      const pos = lText.indexOf(terms[i].toLowerCase());
       if (pos > -1) bestPos = Math.max(0, pos - 40);
-    });
+    }
     let snippet = text.substring(bestPos, bestPos + 140);
-    if (bestPos > 0) snippet = '…' + snippet;
-    if (bestPos + 140 < text.length) snippet += '…';
+    if (bestPos > 0) snippet = '\u2026' + snippet;
+    if (bestPos + 140 < text.length) snippet += '\u2026';
     return snippet;
   }
 
@@ -318,33 +368,37 @@ if (pageHero) {
       return;
     }
 
-    loadIndex().then(data => {
-      const terms = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
-      if (!terms.length) { results.innerHTML = ''; return; }
+    // Debounce search
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      loadIndex().then(data => {
+        const terms = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
+        if (!terms.length) { results.innerHTML = ''; return; }
 
-      const scored = data
-        .map(entry => ({ entry, s: score(entry, terms) }))
-        .filter(x => x.s > 0)
-        .sort((a, b) => b.s - a.s)
-        .slice(0, 8);
+        const scored = data
+          .map(entry => ({ entry, s: score(entry, terms) }))
+          .filter(x => x.s > 0)
+          .sort((a, b) => b.s - a.s)
+          .slice(0, 8);
 
-      if (!scored.length) {
-        results.innerHTML = `<div class="search-empty"><strong>No results found</strong>Try different keywords or browse the <a href="blog.html" style="color:var(--accent)">blog</a> or <a href="resources.html" style="color:var(--accent)">resources</a>.</div>`;
-        return;
-      }
+        if (!scored.length) {
+          results.innerHTML = '<div class="search-empty"><strong>No results found</strong>Try different keywords or browse the <a href="blog.html" style="color:var(--accent)">blog</a> or <a href="resources.html" style="color:var(--accent)">resources</a>.</div>';
+          return;
+        }
 
-      results.innerHTML = scored.map(({ entry }) => {
-        const icon = sectionIcons[entry.section] || sectionIcons['default'];
-        const snippet = getSnippet(entry, terms);
-        return `<a class="search-result" href="${entry.url}" data-url="${entry.url}" role="option">
-          <div class="search-result-icon">${icon}</div>
-          <div class="search-result-body">
-            <div class="search-result-title">${highlight(entry.title, terms)}</div>
-            <div class="search-result-desc">${highlight(snippet, terms)}</div>
-          </div>
-          <div class="search-result-tag">${entry.section}</div>
-        </a>`;
-      }).join('');
-    });
+        results.innerHTML = scored.map(({ entry }) => {
+          const icon = sectionIcons[entry.section] || sectionIcons['default'];
+          const snippet = getSnippet(entry, terms);
+          return '<a class="search-result" href="' + entry.url + '" data-url="' + entry.url + '" role="option">' +
+            '<div class="search-result-icon">' + icon + '</div>' +
+            '<div class="search-result-body">' +
+            '<div class="search-result-title">' + highlight(entry.title, terms) + '</div>' +
+            '<div class="search-result-desc">' + highlight(snippet, terms) + '</div>' +
+            '</div>' +
+            '<div class="search-result-tag">' + entry.section + '</div>' +
+            '</a>';
+        }).join('');
+      });
+    }, 150);
   });
 })();
