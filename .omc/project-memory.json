@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1782863063818,
+  "projectRoot": "/Users/greggmaynard/Library/CloudStorage/CloudMounter-GoDaddy/public_html/webpalmbeaches.com",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "cgi-bin": {
+      "path": "cgi-bin",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1782863063803,
+      "keyFiles": []
+    },
+    "new": {
+      "path": "new",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1782863063808,
+      "keyFiles": []
+    },
+    "wp-admin": {
+      "path": "wp-admin",
+      "purpose": null,
+      "fileCount": 96,
+      "lastAccessed": 1782863063808,
+      "keyFiles": [
+        "about.php",
+        "admin-ajax.php",
+        "admin-footer.php",
+        "admin-functions.php",
+        "admin-header.php"
+      ]
+    },
+    "wp-content": {
+      "path": "wp-content",
+      "purpose": null,
+      "fileCount": 13,
+      "lastAccessed": 1782863063809,
+      "keyFiles": [
+        "index.php",
+        "temp-write-test-66cbc39f8e6743-96966423",
+        "temp-write-test-6753466c7491f2-22206070",
+        "temp-write-test-675347092ae171-67719570",
+        "temp-write-test-6753470fee3967-44062461"
+      ]
+    },
+    "wp-includes": {
+      "path": "wp-includes",
+      "purpose": null,
+      "fileCount": 256,
+      "lastAccessed": 1782863063809,
+      "keyFiles": [
+        "abilities-api.php",
+        "abilities.php",
+        "admin-bar.php",
+        "ai-client.php",
+        "atomlib.php"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "index.html",
+      "accessCount": 7,
+      "lastAccessed": 1782438975378,
+      "type": "file"
+    },
+    {
+      "path": "contact.html",
+      "accessCount": 1,
+      "lastAccessed": 1782411066484,
+      "type": "file"
+    },
+    {
+      "path": "shared.js",
+      "accessCount": 1,
+      "lastAccessed": 1782411066543,
+      "type": "file"
+    },
+    {
+      "path": "styles.css",
+      "accessCount": 1,
+      "lastAccessed": 1782411173948,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

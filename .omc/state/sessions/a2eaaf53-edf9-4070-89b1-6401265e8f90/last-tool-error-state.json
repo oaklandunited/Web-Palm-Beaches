@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"for f in ~/.claude.json ./.mcp.json ./.claude/settings.json ./.claude/settings.local.json; do echo \\\"=== $f ===\\\"; if [ -f \\\"$f\\\" ]; then grep -l \\\"novamira\\\\|mcpServers\\\" \\\"$f\\\" 2>/dev/nu...",
+  "error": "Exit code 1\n=== /Users/greggmaynard/.claude.json ===\n/Users/greggmaynard/.claude.json\n(exists)\n=== ./.mcp.json ===\n(not found)\n=== ./.claude/settings.json ===\n=== ./.claude/settings.local.json ===",
+  "timestamp": "2026-06-30T23:45:11.517Z",
+  "retry_count": 1
+}

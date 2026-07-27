@@ -1,0 +1,15 @@
+{
+  "id": "session-1782863061123",
+  "startedAt": "2026-06-30T23:44:21.123Z",
+  "cwd": "/Users/greggmaynard/Library/CloudStorage/CloudMounter-GoDaddy/public_html/webpalmbeaches.com",
+  "context": {},
+  "metrics": {
+    "edits": 0,
+    "commands": 0,
+    "tasks": 0,
+    "errors": 0
+  },
+  "restoredAt": "2026-06-30T23:44:21.225Z",
+  "endedAt": "2026-06-30T23:44:26.081Z",
+  "duration": 4958
+}
