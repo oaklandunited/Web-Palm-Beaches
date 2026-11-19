@@ -1,0 +1,86 @@
+name: Rollback website
+
+on:
+  workflow_dispatch:
+    inputs:
+      backup_name:
+        description: 'Target backup directory path (or "latest")'
+        type: string
+        default: 'latest'
+        required: true
+      confirm_rollback:
+        description: 'Type "ROLLBACK" to confirm restoring overwritten files and removing introduced files'
+        type: string
+        default: ''
+        required: true
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    name: Rollback to Prior Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Verify Confirmation
+        run: |
+          if [ "${{ inputs.confirm_rollback }}" != "ROLLBACK" ]; then
+            echo "::error::Rollback halted! You must type 'ROLLBACK' to proceed."
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet paramiko
+
+      - name: Setup SSH Known Hosts (if provided)
+        if: ${{ secrets.SSH_KNOWN_HOSTS != '' }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          echo "SSH_KNOWN_HOSTS_FILE=$HOME/.ssh/known_hosts" >> $GITHUB_ENV
+
+      - name: Setup SSH Private Key (if provided)
+        if: ${{ secrets.DEPLOY_KEY != '' }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "DEPLOY_KEY_FILE=$HOME/.ssh/deploy_key" >> $GITHUB_ENV
+
+      - name: Execute Rollback Engine
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PROTOCOL: ${{ secrets.DEPLOY_PROTOCOL || 'sftp' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || 'public_html' }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          python3 deploy/rollback.py "${{ inputs.backup_name }}"
+
+      - name: Post-Rollback HTTPS Health Checks
+        env:
+          DEPLOY_CHECK_BASE_URL: 'https://webpalmbeaches.com'
+        run: |
+          echo "Waiting 5 seconds for web server buffers to flush..."
+          sleep 5
+          python3 deploy/healthcheck.py || echo "::warning::Health check returned warnings after rollback. Please review server state."

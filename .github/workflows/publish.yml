@@ -1,0 +1,107 @@
+name: Publish website
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry Run Mode (previews changes, no remote files modified)'
+        type: boolean
+        default: true
+        required: true
+      confirm_deploy:
+        description: 'Type "DEPLOY" to confirm live publishing (ignored during dry run)'
+        type: string
+        default: ''
+        required: false
+
+  # Optional Scheduled Trigger (Disabled initially as requested)
+  # To enable nightly automated deployment of approved commits:
+  # 1. Uncomment the schedule block below.
+  # 2. When enabled, the workflow checks if HEAD is already deployed before running.
+  # schedule:
+  #   - cron: '0 4 * * *' # 04:00 UTC daily
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Validate & Publish
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository at immutable commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Set up PHP toolchain
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: php-cli
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deployment dependencies
+        run: |
+          pip install --quiet paramiko
+
+      - name: Verify Live Deployment Confirmation
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.dry_run }}
+        run: |
+          if [ "${{ inputs.confirm_deploy }}" != "DEPLOY" ]; then
+            echo "::error::Live deployment halted! You must type 'DEPLOY' in the confirm_deploy input to publish live changes."
+            exit 1
+          fi
+
+      - name: Pre-Deployment Validation (Commit, Manifest, PHP & HTML References)
+        run: |
+          python3 deploy/validate.py "${{ github.sha }}"
+
+      - name: Setup SSH Known Hosts (if provided)
+        if: ${{ secrets.SSH_KNOWN_HOSTS != '' }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          echo "SSH_KNOWN_HOSTS_FILE=$HOME/.ssh/known_hosts" >> $GITHUB_ENV
+
+      - name: Setup SSH Private Key (if provided)
+        if: ${{ secrets.DEPLOY_KEY != '' }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "DEPLOY_KEY_FILE=$HOME/.ssh/deploy_key" >> $GITHUB_ENV
+
+      - name: Execute Deployment Engine (Dry-Run or Live)
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PROTOCOL: ${{ secrets.DEPLOY_PROTOCOL || 'sftp' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || 'public_html' }}
+          DRY_RUN: ${{ github.event_name == 'schedule' && 'false' || inputs.dry_run }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          python3 deploy/deploy.py
+
+      - name: Post-Deployment HTTPS Health Checks
+        if: ${{ (github.event_name == 'schedule' || !inputs.dry_run) && success() }}
+        env:
+          DEPLOY_CHECK_BASE_URL: 'https://webpalmbeaches.com'
+        run: |
+          echo "Waiting 5 seconds for web server buffers to flush..."
+          sleep 5
+          python3 deploy/healthcheck.py

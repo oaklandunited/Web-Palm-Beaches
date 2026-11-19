@@ -1,0 +1,93 @@
+# Web Palm Beaches — Production Publish Manifest
+#
+# Only files listed here are approved for deployment to the live server.
+# The deployment script validates this manifest and refuses to run if any
+# unapproved, test, or server-only files are present.
+#
+# DO NOT add server secrets (.env, config.local.php, wp-config.php) or
+# WordPress core/content directories to this manifest.
+
+# --- Server Configuration & Routing ---
+.htaccess
+robots.txt
+sitemap.xml
+search-index.json
+
+# --- Styles & Client Scripts ---
+styles.css
+shared.js
+
+# --- Core Pages ---
+index.html
+services.html
+solutions.html
+case-studies.html
+pricing.html
+project-brief.html
+about.html
+contact.html
+clients.html
+process.html
+thank-you.html
+editor.html
+
+# --- Legal & Compliance ---
+privacy-policy.html
+terms-of-service.html
+accessibility-statement.html
+
+# --- Solution & Location Pages ---
+ai-for-small-business.html
+ai-readiness-checklist.html
+ai-team-training.html
+ai-consulting-west-palm-beach.html
+ai-consulting-boca-raton.html
+ai-consulting-delray-beach.html
+ai-consulting-jupiter.html
+solutions-healthcare-ai-palm-beach.html
+solutions-legal-ai-compliance.html
+solutions-real-estate-ai-automation.html
+
+# --- Industry Web Design Pages ---
+web-design-contractors.html
+web-design-law-firms.html
+web-design-medical.html
+web-design-real-estate.html
+web-design-restaurants.html
+
+# --- Resources & Guides ---
+resources.html
+resources-ai-tool-audit-template.html
+resources-local-seo-guide-south-florida.html
+
+# --- Blog & Articles ---
+blog.html
+blog-ai-chatbots-for-small-business.html
+blog-ai-lead-generation-small-business.html
+blog-ai-small-teams-vs-big-teams.html
+blog-automate-google-reviews-ai.html
+blog-five-signs-website-costing-customers.html
+blog-five-tasks-to-automate-palm-beach.html
+blog-florida-ai-compliance-directory.html
+blog-google-business-profile-optimization.html
+blog-hipaa-compliance-ai-chatbots-florida.html
+blog-how-ai-can-help-south-florida-business.html
+blog-how-long-to-build-website.html
+blog-how-to-get-more-google-reviews.html
+blog-local-seo-vs-national-seo.html
+blog-mobile-first-web-design-south-florida.html
+blog-rank-google-maps-west-palm-beach.html
+blog-website-cost-palm-beach-county.html
+blog-website-speed-optimization.html
+blog-what-is-aeo-answer-engine-optimization.html
+blog-what-is-ai-automation.html
+blog-what-is-schema-markup.html
+blog-wordpress-vs-custom-web-design.html
+
+# --- Approved PHP Endpoints & Loaders ---
+config.example.php
+config_loader.php
+contact_handler.php
+project-brief-api.php
+send_email.php
+unsplash-proxy.php
