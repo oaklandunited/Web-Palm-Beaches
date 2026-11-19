@@ -1,4 +1,4 @@
 .DS_Store
 config.local.php
 .env
-*.log
+*.log__pycache__/
