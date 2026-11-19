@@ -2,9 +2,10 @@
 // Prevent warnings from breaking the fetch response
 error_reporting(0);
 
-// Resend.com API Key Configuration
-// IMPORTANT: Replace this placeholder with your actual Resend API Key (starts with re_)
-$resend_api_key = 're_J3dt71cn_JvF7oKg6Qv9dHY9xUkash9zj';
+require_once __DIR__ . '/config_loader.php';
+
+// Resend.com API Key Configuration (loaded from server config or environment)
+$resend_api_key = (string) wpb_config('RESEND_API_KEY', '');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -16,27 +17,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 2. reCAPTCHA v3 verification
-    $recaptcha_secret = '6LfDwJ8sAAAAAJ6Je6so_ZY0TvCJPK5PSyObq2MY';
+    $recaptcha_secret = (string) wpb_config('RECAPTCHA_SECRET_KEY', '');
     $recaptcha_token  = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
-    if (empty($recaptcha_token)) {
-        http_response_code(400);
-        echo "reCAPTCHA token missing.";
-        exit;
-    }
-    $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'secret'   => $recaptcha_secret,
-        'response' => $recaptcha_token
-    ]));
-    $verify      = curl_exec($ch);
-    curl_close($ch);
-    $verify_data = json_decode($verify, true);
-    if (!$verify_data['success'] || $verify_data['score'] < 0.5) {
-        http_response_code(400);
-        echo "reCAPTCHA verification failed.";
-        exit;
+    if ($recaptcha_secret !== '') {
+        if (empty($recaptcha_token)) {
+            http_response_code(400);
+            echo "reCAPTCHA token missing.";
+            exit;
+        }
+        $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+            'secret'   => $recaptcha_secret,
+            'response' => $recaptcha_token
+        ]));
+        $verify      = curl_exec($ch);
+        curl_close($ch);
+        $verify_data = json_decode($verify, true);
+        if (!$verify_data['success'] || $verify_data['score'] < 0.5) {
+            http_response_code(400);
+            echo "reCAPTCHA verification failed.";
+            exit;
+        }
     }
 
     // 3. Modern, PHP 8+ Safe Data Collection

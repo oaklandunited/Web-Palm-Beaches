@@ -1,1 +1,4 @@
-(empty)
+.DS_Store
+config.local.php
+.env
+*.log

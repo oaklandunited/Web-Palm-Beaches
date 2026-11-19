@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Project Brief Generator — Web Palm Beaches</title>
+<meta name="description" content="Turn your business goals into a tailored AI and web project brief in seconds. Get recommended Web Palm Beaches services, a phased roadmap, and discovery questions.">
+<link rel="canonical" href="https://webpalmbeaches.com/project-brief">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webpalmbeaches.com/project-brief">
+<meta property="og:title" content="AI Project Brief Generator — Web Palm Beaches">
+<meta property="og:description" content="Describe your business goals and get an instant, tailored project brief with recommended services, a phased roadmap, and discovery questions.">
+<meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === PROJECT BRIEF LAYOUT === */
+.brief-section{padding:4.5rem 0 6rem;background:var(--bg-alt);border-top:1px solid var(--border)}
+.brief-layout{display:grid;grid-template-columns:1fr;gap:2rem;max-width:920px;margin:0 auto}
+
+.brief-card{background:var(--bg);border:1px solid var(--border);padding:2.5rem;box-shadow:0 6px 30px rgba(5,22,57,.04)}
+.brief-card-header{margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.brief-card-header h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tertiary);margin-bottom:.4rem}
+.brief-card-header p{color:var(--text-secondary);font-size:.95rem;line-height:1.65}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.field-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.4rem;font-size:.78rem;color:var(--text-muted);gap:1rem}
+.field-meta .char-count{font-variant-numeric:tabular-nums;white-space:nowrap}
+.field-meta .char-count.warn{color:var(--accent);font-weight:700}
+.field-error{display:none;margin-top:.4rem;font-size:.82rem;color:var(--accent);font-weight:700}
+.form-group.has-error input,.form-group.has-error textarea{border-color:var(--accent)}
+.form-group.has-error .field-error{display:block}
+
+/* Starter chips */
+.starter-prompts{margin:0 0 1.25rem}
+.starter-label{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.55rem;display:block}
+.starter-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.starter-chip{background:var(--bg-ice);border:1px solid var(--border);color:var(--tertiary);font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.05em;padding:.45rem .85rem;cursor:pointer;transition:all .2s}
+.starter-chip:hover{border-color:var(--accent);color:var(--accent);background:#fff}
+
+/* Consent checkbox */
+.consent-box{display:flex;align-items:flex-start;gap:.75rem;padding:1rem 1.15rem;background:var(--bg-ice);border:1px solid var(--border);margin:1.25rem 0 1.5rem}
+.consent-box input[type="checkbox"]{width:18px;height:18px;margin-top:.15rem;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.consent-box label{font-family:var(--body);font-size:.86rem;line-height:1.55;color:var(--text-secondary);text-transform:none;letter-spacing:0;font-weight:400;margin:0;cursor:pointer}
+.consent-box a{color:var(--tertiary);text-decoration:underline;font-weight:700}
+.consent-box.has-error{border-color:var(--accent);background:rgba(196,77,65,.06)}
+
+.form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.btn-stop{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.75rem;background:var(--bg-dark);color:var(--text-light);font-family:var(--heading);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.btn-stop:hover{background:#122b5c}
+.btn-ghost{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.25rem;background:transparent;color:var(--tertiary);font-family:var(--heading);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--tertiary);background:var(--bg-ice)}
+.btn-ghost:disabled,.btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Alert banner */
+.brief-alert{display:none;padding:1.15rem 1.35rem;margin-top:1.25rem;border-left:4px solid var(--accent);background:rgba(196,77,65,.08);color:var(--text-primary);font-size:.92rem;line-height:1.6}
+.brief-alert.visible{display:block}
+.brief-alert strong{display:block;font-family:var(--heading);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.25rem}
+.brief-alert-actions{margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+
+/* Output card */
+.brief-output-card{display:none;background:var(--bg);border:1px solid var(--border);box-shadow:0 10px 40px rgba(5,22,57,.07)}
+.brief-output-card.visible{display:block}
+
+.brief-status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 2rem;background:var(--bg-dark);color:var(--text-light)}
+.brief-status-left{display:flex;align-items:center;gap:.75rem;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.status-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.status-dot.streaming{animation:briefPulse 1.2s ease-in-out infinite}
+.status-dot.done{background:#4caf50;animation:none}
+@keyframes briefPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+
+.brief-toolbar{display:flex;flex-wrap:wrap;gap:.6rem;padding:1rem 2rem;background:var(--bg-ice);border-bottom:1px solid var(--border);align-items:center}
+.brief-disclaimer{padding:.9rem 2rem;background:#fff8f0;border-bottom:1px solid rgba(196,77,65,.2);font-size:.84rem;color:var(--text-secondary);line-height:1.55}
+.brief-disclaimer strong{color:var(--tertiary)}
+
+/* Rendered markdown output */
+.brief-content{padding:2.25rem 2.5rem;font-size:1rem;line-height:1.78;color:var(--text-primary)}
+.brief-content h2{font-family:var(--heading);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin:2rem 0 .75rem;padding-bottom:.45rem;border-bottom:2px solid var(--bg-ice)}
+.brief-content h2:first-child{margin-top:0}
+.brief-content h3{font-family:var(--heading);font-size:.95rem;font-weight:700;color:var(--secondary);margin:1.25rem 0 .45rem}
+.brief-content p{margin-bottom:.95rem;color:var(--text-primary)}
+.brief-content ul,.brief-content ol{margin:0 0 1.15rem 1.35rem}
+.brief-content li{margin-bottom:.45rem;color:var(--text-secondary)}
+.brief-content li strong{color:var(--text-primary)}
+.brief-content code{background:var(--bg-ice);padding:.12rem .35rem;font-size:.9em}
+.brief-cursor{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:text-bottom;margin-left:3px;animation:cursorBlink .9s steps(1) infinite}
+@keyframes cursorBlink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+/* Post-brief CTA */
+.brief-next-cta{margin:0 2.5rem 2.5rem;padding:2.25rem;background:linear-gradient(135deg,var(--bg-dark) 0%,var(--tertiary) 100%);color:var(--text-light);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem}
+.brief-next-cta h3{font-family:var(--heading);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.4rem}
+.brief-next-cta p{color:rgba(255,255,255,.8);font-size:.92rem;max-width:480px;line-height:1.6}
+.brief-next-actions{display:flex;flex-wrap:wrap;gap:.85rem;align-items:center}
+
+/* How it works strip */
+.brief-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1rem}
+.brief-pillar{background:var(--bg);border:1px solid var(--border);padding:1.5rem}
+.brief-pillar h3{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.45rem}
+.brief-pillar p{font-size:.88rem;line-height:1.65;color:var(--text-secondary)}
+
+@media(max-width:768px){
+  .brief-card{padding:1.5rem}
+  .field-row{grid-template-columns:1fr}
+  .brief-status-bar,.brief-toolbar,.brief-disclaimer{padding-left:1.25rem;padding-right:1.25rem}
+  .brief-content{padding:1.5rem 1.25rem}
+  .brief-next-cta{margin:0 1.25rem 1.5rem;padding:1.5rem}
+  .brief-pillars{grid-template-columns:1fr}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Web Palm Beaches AI Project Brief Generator",
+  "url": "https://webpalmbeaches.com/project-brief",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Free interactive AI Project Brief generator for South Florida businesses. Turns business goals into a tailored scope, recommended services, phased roadmap, and discovery questions.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Web Palm Beaches",
+    "telephone": "+1-561-291-9001",
+    "url": "https://webpalmbeaches.com"
+  }
+}
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav id="nav" aria-label="Primary navigation">
+  <a href="index.html" class="nav-logo">
+    <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="solutions.html">AI Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="project-brief.html" class="active">Project Brief</a>
+    <a href="about.html">About</a>
+    <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
+    <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
+  </div>
+  <button class="mobile-toggle" aria-label="Toggle navigation menu">&#9776;</button>
+</nav>
+
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &nbsp;/&nbsp; <span>AI Project Brief</span>
+    </div>
+    <h1>Instant AI <em>Project Brief</em></h1>
+    <p>Describe your goals and get a tailored project brief in seconds — complete with recommended Web Palm Beaches services, a phased roadmap, and discovery questions you can copy or download before our strategy call.</p>
+  </div>
+</section>
+
+<main id="main-content" class="brief-section">
+  <div class="container">
+    <div class="brief-layout">
+
+      <!-- FORM CARD -->
+      <section class="brief-card" id="brief-form-card" aria-labelledby="brief-form-heading">
+        <div class="brief-card-header">
+          <span class="section-label">Free Scoping Tool</span>
+          <h2 id="brief-form-heading">Tell Us About Your Project</h2>
+          <p>Enter your email, optional business name, and what you want to achieve. Your brief streams live as it is written.</p>
+        </div>
+
+        <form id="briefForm" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="website_hp" id="website_hp" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="field-row">
+            <div class="form-group" id="group-email">
+              <label for="prospectEmail">Work or Personal Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="prospectEmail" name="email" placeholder="you@yourcompany.com" autocomplete="email" maxlength="254" required aria-describedby="emailError">
+              <div class="field-error" id="emailError" role="alert">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group" id="group-business">
+              <label for="businessName">Business Name <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+              <input type="text" id="businessName" name="businessName" placeholder="e.g., Palm Beach Dental Group" maxlength="160" aria-describedby="bizMeta bizError">
+              <div class="field-meta" id="bizMeta">
+                <span>Helps personalize your brief</span>
+                <span class="char-count" id="bizCount">0 / 160</span>
+              </div>
+              <div class="field-error" id="bizError" role="alert">Business name must be 160 characters or fewer.</div>
+            </div>
+          </div>
+
+          <div class="starter-prompts">
+            <span class="starter-label">Need inspiration? Try a starter example:</span>
+            <div class="starter-chips">
+              <button type="button" class="starter-chip" data-prompt="We run a 12-person medical practice in Palm Beach County. Our front desk spends 3+ hours a day answering repetitive scheduling questions and chasing no-shows. We want a HIPAA-aware AI intake and scheduling assistant on our website, plus automated SMS/email appointment reminders synced with our CRM.">Medical Intake &amp; Scheduling AI</button>
+              <button type="button" class="starter-chip" data-prompt="We are a residential real estate brokerage in West Palm Beach. Web leads wait hours for a reply on evenings and weekends, and our outdated WordPress site doesn't show up in Google Maps or ChatGPT recommendations. We need a faster conversion-focused website, AEO/GEO optimization, and instant AI lead qualification.">Real Estate Site + AI Lead Follow-Up</button>
+              <button type="button" class="starter-chip" data-prompt="Our 8-person home services company wants to automate Google review requests, quote follow-ups, and weekly reporting between our CRM and invoicing software. We also want hands-on AI training so our office staff can manage everyday automations themselves.">Workflow Automation + Team Training</button>
+            </div>
+          </div>
+
+          <div class="form-group" id="group-goals">
+            <label for="projectGoals">Project Goals &amp; Challenges <span aria-hidden="true">*</span></label>
+            <textarea id="projectGoals" name="goals" rows="6" maxlength="6000" required placeholder="What bottlenecks are slowing your team down? What tools or website do you have today, and what does success look like in the next 3–6 months?" aria-describedby="goalsMeta goalsError"></textarea>
+            <div class="field-meta" id="goalsMeta">
+              <span>Minimum 20 characters &bull; Be as specific as you like</span>
+              <span class="char-count" id="goalsCount">0 / 6,000</span>
+            </div>
+            <div class="field-error" id="goalsError" role="alert">Please describe your goals in 20 to 6,000 characters.</div>
+          </div>
+
+          <div class="consent-box" id="group-consent">
+            <input type="checkbox" id="consentCheck" name="consent" required aria-describedby="consentError">
+            <div>
+              <label for="consentCheck">I agree that Web Palm Beaches may use my email to follow up on my project inquiry. <strong>Privacy notice:</strong> In v1, your project goals and generated brief are <em>not</em> stored on our servers. See our <a href="privacy-policy.html">Privacy Policy</a>.</label>
+              <div class="field-error" id="consentError" role="alert">Please check this box to continue.</div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" id="generateBtn">
+              Generate Project Brief
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" class="btn-stop" id="stopBtn" hidden>Stop Generating</button>
+            <button type="button" class="btn-ghost" id="resetFormBtn">Clear Form</button>
+          </div>
+
+          <div class="brief-alert" id="briefAlert" role="alert" aria-live="assertive">
+            <strong id="briefAlertTitle">Notice</strong>
+            <span id="briefAlertMsg"></span>
+            <div class="brief-alert-actions">
+              <button type="button" class="btn-ghost" id="retryBtn">Try Again</button>
+              <a href="contact.html" class="btn-ghost">Book a Strategy Call</a>
+              <a href="tel:5612919001" style="font-family:var(--heading);font-size:.78rem;font-weight:700;color:var(--tertiary)">Call 561-291-9001</a>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- LIVE OUTPUT CARD -->
+      <section class="brief-output-card" id="briefOutputCard" aria-labelledby="briefOutputHeading">
+        <div class="brief-status-bar">
+          <div class="brief-status-left">
+            <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+            <span id="briefOutputHeading">Your Tailored Project Brief</span>
+          </div>
+          <div id="statusText" style="font-size:.8rem;color:rgba(255,255,255,.78)">Preparing…</div>
+        </div>
+
+        <div class="brief-disclaimer">
+          <strong>AI-Generated Estimate:</strong> This brief is generated automatically for planning and discovery purposes and is <em>not</em> a formal quote or binding scope. Every Web Palm Beaches project receives a fixed-price proposal after a strategy call.
+        </div>
+
+        <div class="brief-toolbar" role="toolbar" aria-label="Project brief actions">
+          <button type="button" class="btn-ghost" id="copyBtn" disabled>Copy Brief</button>
+          <button type="button" class="btn-ghost" id="downloadBtn" disabled>Download (.md)</button>
+          <button type="button" class="btn-ghost" id="reviseBtn">Revise Goals</button>
+          <button type="button" class="btn-ghost" id="startOverBtn">Start Over</button>
+        </div>
+
+        <div class="brief-content" id="briefContent" aria-live="polite" aria-busy="false"></div>
+
+        <div class="brief-next-cta">
+          <div>
+            <h3>Ready to Turn This Brief Into a Fixed-Price Plan?</h3>
+            <p>Bring this brief to a free 30-minute Strategy Call with our Palm Beach County team. We'll validate scope, timeline, and exact investment—no pressure, no jargon.</p>
+          </div>
+          <div class="brief-next-actions">
+            <a href="contact.html" class="btn-primary">Book a Strategy Call</a>
+            <a href="tel:5612919001" class="btn-secondary light">Call 561-291-9001</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE PILLARS -->
+      <div class="brief-pillars" aria-label="How the AI Project Brief works">
+        <div class="brief-pillar">
+          <h3>Grounded in Real Services</h3>
+          <p>Recommendations draw strictly from Web Palm Beaches' actual offerings—AI Agents, Automation, Strategy, Team Training, Websites, SEO/AEO/GEO, and Integrations.</p>
+        </div>
+        <div class="brief-pillar">
+          <h3>Revise Anytime</h3>
+          <p>Stop generation mid-stream, refine your goals without losing what you typed, and regenerate until your brief captures your exact priorities.</p>
+        </div>
+        <div class="brief-pillar">
+          <h3>Private by Design</h3>
+          <p>API keys and prompts stay strictly on the server. Your goals and generated brief are streamed directly to your browser and are not stored in a database.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg" alt="Web Palm Beaches">
+        </a>
+        <p>AI consulting and web innovation for South Florida businesses. Based in Palm Beach County, serving clients who are ready to lead with technology.</p>
+        <a href="tel:5612919001" class="footer-phone">561-291-9001</a>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html">AI Agent Development</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">AI Strategy Consulting</a>
+          <a href="ai-team-training.html">AI Team Training</a>
+          <a href="services.html">Web Design</a>
+          <a href="services.html">SEO, AEO &amp; GEO</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="case-studies.html">Case Studies</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="project-brief.html">AI Project Brief</a>
+          <a href="process.html">Our Process</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="resources.html">Resource Hub</a>
+          <a href="blog.html">Blog</a>
+          <a href="ai-readiness-checklist.html">AI Checklist</a>
+          <a href="resources-local-seo-guide-south-florida.html">Local SEO Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Locations</h5>
+          <a href="ai-consulting-west-palm-beach.html">West Palm Beach</a>
+          <a href="ai-consulting-boca-raton.html">Boca Raton</a>
+          <a href="ai-consulting-delray-beach.html">Delray Beach</a>
+          <a href="ai-consulting-jupiter.html">Jupiter</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Web Palm Beaches. All rights reserved.</span>
+      <span class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a> |
+        <a href="terms-of-service.html">Terms of Service</a> |
+        <a href="accessibility-statement.html">Accessibility Statement</a>
+      </span>
+      <span>Palm Beach County, Florida</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const API_ENDPOINT = 'project-brief-api.php';
+
+  const form = document.getElementById('briefForm');
+  const emailInput = document.getElementById('prospectEmail');
+  const bizInput = document.getElementById('businessName');
+  const goalsInput = document.getElementById('projectGoals');
+  const consentInput = document.getElementById('consentCheck');
+  const hpInput = document.getElementById('website_hp');
+
+  const bizCount = document.getElementById('bizCount');
+  const goalsCount = document.getElementById('goalsCount');
+
+  const groupEmail = document.getElementById('group-email');
+  const groupBiz = document.getElementById('group-business');
+  const groupGoals = document.getElementById('group-goals');
+  const groupConsent = document.getElementById('group-consent');
+  const goalsError = document.getElementById('goalsError');
+
+  const generateBtn = document.getElementById('generateBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const resetFormBtn = document.getElementById('resetFormBtn');
+
+  const briefAlert = document.getElementById('briefAlert');
+  const briefAlertTitle = document.getElementById('briefAlertTitle');
+  const briefAlertMsg = document.getElementById('briefAlertMsg');
+  const retryBtn = document.getElementById('retryBtn');
+
+  const outputCard = document.getElementById('briefOutputCard');
+  const statusDot = document.getElementById('statusDot');
+  const statusText = document.getElementById('statusText');
+  const briefContent = document.getElementById('briefContent');
+
+  const copyBtn = document.getElementById('copyBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const reviseBtn = document.getElementById('reviseBtn');
+  const startOverBtn = document.getElementById('startOverBtn');
+
+  let abortController = null;
+  let isStreaming = false;
+  let rawMarkdown = '';
+
+  function updateCounters() {
+    const bLen = bizInput.value.length;
+    bizCount.textContent = bLen + ' / 160';
+    bizCount.classList.toggle('warn', bLen > 160);
+
+    const gLen = goalsInput.value.length;
+    goalsCount.textContent = gLen.toLocaleString() + ' / 6,000';
+    goalsCount.classList.toggle('warn', gLen > 6000 || (gLen > 0 && gLen < 20));
+  }
+
+  bizInput.addEventListener('input', () => {
+    updateCounters();
+    if (bizInput.value.length <= 160) groupBiz.classList.remove('has-error');
+  });
+
+  goalsInput.addEventListener('input', () => {
+    updateCounters();
+    const len = goalsInput.value.trim().length;
+    if (len >= 20 && len <= 6000) groupGoals.classList.remove('has-error');
+  });
+
+  emailInput.addEventListener('input', () => {
+    if (isValidEmail(emailInput.value.trim())) groupEmail.classList.remove('has-error');
+  });
+
+  consentInput.addEventListener('change', () => {
+    if (consentInput.checked) groupConsent.classList.remove('has-error');
+  });
+
+  // Starter prompt chips
+  document.querySelectorAll('.starter-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      goalsInput.value = chip.dataset.prompt || '';
+      updateCounters();
+      groupGoals.classList.remove('has-error');
+      goalsInput.focus();
+    });
+  });
+
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val) && val.length <= 254;
+  }
+
+  function showAlert(title, message) {
+    briefAlertTitle.textContent = title;
+    briefAlertMsg.textContent = message;
+    briefAlert.classList.add('visible');
+  }
+
+  function hideAlert() {
+    briefAlert.classList.remove('visible');
+  }
+
+  function validateForm() {
+    let valid = true;
+    let firstInvalid = null;
+
+    const email = emailInput.value.trim();
+    if (!isValidEmail(email)) {
+      groupEmail.classList.add('has-error');
+      valid = false;
+      firstInvalid = firstInvalid || emailInput;
+    } else {
+      groupEmail.classList.remove('has-error');
+    }
+
+    const biz = bizInput.value.trim();
+    if (biz.length > 160) {
+      groupBiz.classList.add('has-error');
+      valid = false;
+      firstInvalid = firstInvalid || bizInput;
+    } else {
+      groupBiz.classList.remove('has-error');
+    }
+
+    const goals = goalsInput.value.trim();
+    if (goals.length < 20) {
+      goalsError.textContent = 'Please describe your project goals in at least 20 characters (currently ' + goals.length + ').';
+      groupGoals.classList.add('has-error');
+      valid = false;
+      firstInvalid = firstInvalid || goalsInput;
+    } else if (goals.length > 6000) {
+      goalsError.textContent = 'Project goals must be 6,000 characters or fewer (currently ' + goals.length.toLocaleString() + ').';
+      groupGoals.classList.add('has-error');
+      valid = false;
+      firstInvalid = firstInvalid || goalsInput;
+    } else {
+      groupGoals.classList.remove('has-error');
+    }
+
+    if (!consentInput.checked) {
+      groupConsent.classList.add('has-error');
+      valid = false;
+      firstInvalid = firstInvalid || consentInput;
+    } else {
+      groupConsent.classList.remove('has-error');
+    }
+
+    if (firstInvalid) firstInvalid.focus();
+    return valid;
+  }
+
+  // XSS-safe lightweight Markdown renderer for streaming briefs
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function formatInline(text) {
+    let html = escapeHtml(text);
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    return html;
+  }
+
+  function renderMarkdown(md, streaming) {
+    const lines = md.replace(/\r\n/g, '\n').split('\n');
+    let out = [];
+    let inUl = false;
+    let inOl = false;
+
+    const closeLists = () => {
+      if (inUl) { out.push('</ul>'); inUl = false; }
+      if (inOl) { out.push('</ol>'); inOl = false; }
+    };
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) {
+        closeLists();
+        continue;
+      }
+
+      if (line.startsWith('### ')) {
+        closeLists();
+        out.push('<h3>' + formatInline(line.slice(4)) + '</h3>');
+      } else if (line.startsWith('## ')) {
+        closeLists();
+        out.push('<h2>' + formatInline(line.slice(3)) + '</h2>');
+      } else if (line.startsWith('# ')) {
+        closeLists();
+        out.push('<h2>' + formatInline(line.slice(2)) + '</h2>');
+      } else if (/^[-*•]\s+/.test(line)) {
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        if (!inUl) { out.push('<ul>'); inUl = true; }
+        out.push('<li>' + formatInline(line.replace(/^[-*•]\s+/, '')) + '</li>');
+      } else if (/^\d+\.\s+/.test(line)) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (!inOl) { out.push('<ol>'); inOl = true; }
+        out.push('<li>' + formatInline(line.replace(/^\d+\.\s+/, '')) + '</li>');
+      } else {
+        closeLists();
+        out.push('<p>' + formatInline(line) + '</p>');
+      }
+    }
+    closeLists();
+
+    let html = out.join('');
+    if (streaming) {
+      html += '<span class="brief-cursor" aria-hidden="true"></span>';
+    }
+    return html;
+  }
+
+  function setStreamingUI(active) {
+    isStreaming = active;
+    generateBtn.disabled = active;
+    stopBtn.hidden = !active;
+    briefContent.setAttribute('aria-busy', active ? 'true' : 'false');
+    statusDot.classList.toggle('streaming', active);
+    if (active) {
+      statusDot.classList.remove('done');
+    }
+    const hasText = rawMarkdown.trim().length > 0;
+    copyBtn.disabled = active || !hasText;
+    downloadBtn.disabled = active || !hasText;
+  }
+
+  async function generateBrief() {
+    hideAlert();
+    if (!validateForm()) return;
+
+    if (abortController) abortController.abort();
+    abortController = new AbortController();
+
+    rawMarkdown = '';
+    outputCard.classList.add('visible');
+    briefContent.innerHTML = '<p style="color:var(--text-muted)">Analyzing your goals and tailoring recommendations…<span class="brief-cursor" aria-hidden="true"></span></p>';
+    statusText.textContent = 'Writing your brief…';
+    setStreamingUI(true);
+
+    outputCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'text/event-stream'
+        },
+        body: JSON.stringify({
+          email: emailInput.value.trim(),
+          businessName: bizInput.value.trim(),
+          goals: goalsInput.value.trim(),
+          consent: consentInput.checked,
+          website_hp: hpInput.value
+        }),
+        signal: abortController.signal
+      });
+
+      const contentType = response.headers.get('content-type') || '';
+
+      if (!response.ok || contentType.includes('application/json')) {
+        let errMsg = 'We could not generate your brief right now. Please try again or call 561-291-9001.';
+        let errTitle = 'Unable to Generate Brief';
+        try {
+          const data = await response.json();
+          if (data && data.message) errMsg = data.message;
+          if (response.status === 429) errTitle = 'Usage Limit Reached';
+          else if (response.status === 503) errTitle = 'Service Temporarily Unavailable';
+        } catch (_) {}
+        setStreamingUI(false);
+        statusText.textContent = 'Not completed';
+        if (!rawMarkdown) outputCard.classList.remove('visible');
+        showAlert(errTitle, errMsg);
+        return;
+      }
+
+      if (!response.body) {
+        throw new Error('Streaming is not supported by this browser.');
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+      let streamError = null;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true }).replace(/\r\n/g, '\n');
+        let boundary = buffer.indexOf('\n\n');
+        while (boundary !== -1) {
+          const rawEvent = buffer.slice(0, boundary);
+          buffer = buffer.slice(boundary + 2);
+          boundary = buffer.indexOf('\n\n');
+
+          let eventName = 'message';
+          const dataLines = [];
+          rawEvent.split('\n').forEach((line) => {
+            if (line.startsWith('event:')) eventName = line.slice(6).trim();
+            else if (line.startsWith('data:')) dataLines.push(line.slice(5).trim());
+          });
+
+          if (!dataLines.length) continue;
+          let payload = null;
+          try {
+            payload = JSON.parse(dataLines.join('\n'));
+          } catch (_) {
+            continue;
+          }
+
+          if (eventName === 'delta' && payload && typeof payload.text === 'string') {
+            rawMarkdown += payload.text;
+            briefContent.innerHTML = renderMarkdown(rawMarkdown, true);
+          } else if (eventName === 'error' && payload) {
+            streamError = payload.message || 'Generation was interrupted. Please try again.';
+          }
+        }
+      }
+
+      setStreamingUI(false);
+
+      if (streamError) {
+        if (rawMarkdown.trim()) {
+          briefContent.innerHTML = renderMarkdown(rawMarkdown, false);
+          statusText.textContent = 'Interrupted';
+        } else {
+          outputCard.classList.remove('visible');
+        }
+        showAlert('Service Busy', streamError);
+        return;
+      }
+
+      if (!rawMarkdown.trim()) {
+        outputCard.classList.remove('visible');
+        showAlert('No Brief Returned', 'We did not receive a response from the AI service. Please try again or call 561-291-9001.');
+        return;
+      }
+
+      briefContent.innerHTML = renderMarkdown(rawMarkdown, false);
+      statusDot.classList.add('done');
+      statusText.textContent = 'Complete — ready to copy or download';
+    } catch (err) {
+      setStreamingUI(false);
+      if (err && err.name === 'AbortError') {
+        if (rawMarkdown.trim()) {
+          briefContent.innerHTML = renderMarkdown(rawMarkdown, false);
+          statusText.textContent = 'Stopped by user';
+        } else {
+          outputCard.classList.remove('visible');
+        }
+      } else {
+        if (rawMarkdown.trim()) {
+          briefContent.innerHTML = renderMarkdown(rawMarkdown, false);
+          statusText.textContent = 'Connection interrupted';
+        } else {
+          outputCard.classList.remove('visible');
+        }
+        showAlert('Connection Issue', 'We lost connection while generating your brief. Your goals are still in the form—please try again or call 561-291-9001.');
+      }
+    } finally {
+      abortController = null;
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    generateBrief();
+  });
+
+  retryBtn.addEventListener('click', () => {
+    generateBrief();
+  });
+
+  stopBtn.addEventListener('click', () => {
+    if (abortController) abortController.abort();
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    if (!rawMarkdown.trim()) return;
+    const header = (bizInput.value.trim() ? '# Project Brief — ' + bizInput.value.trim() + '\n\n' : '# Web Palm Beaches — Project Brief\n\n')
+                 + '_AI-generated estimate for planning purposes only (not a formal quote)._\n\n';
+    try {
+      await navigator.clipboard.writeText(header + rawMarkdown);
+      const prev = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = prev; }, 2000);
+    } catch (_) {
+      showAlert('Copy Unavailable', 'Your browser blocked clipboard access. Use the Download (.md) button instead.');
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!rawMarkdown.trim()) return;
+    const slug = (bizInput.value.trim() || 'web-palm-beaches')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 50) || 'project';
+    const header = (bizInput.value.trim() ? '# Project Brief — ' + bizInput.value.trim() + '\n\n' : '# Web Palm Beaches — Project Brief\n\n')
+                 + '_AI-generated estimate for planning purposes only (not a formal quote). Book a free strategy call at https://webpalmbeaches.com/contact.html or 561-291-9001._\n\n';
+    const blob = new Blob([header + rawMarkdown], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = slug + '-project-brief.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  reviseBtn.addEventListener('click', () => {
+    document.getElementById('brief-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => goalsInput.focus(), 350);
+  });
+
+  function clearAll() {
+    if (abortController) abortController.abort();
+    form.reset();
+    rawMarkdown = '';
+    briefContent.innerHTML = '';
+    outputCard.classList.remove('visible');
+    hideAlert();
+    [groupEmail, groupBiz, groupGoals, groupConsent].forEach((g) => g.classList.remove('has-error'));
+    updateCounters();
+    setStreamingUI(false);
+  }
+
+  resetFormBtn.addEventListener('click', clearAll);
+  startOverBtn.addEventListener('click', () => {
+    clearAll();
+    document.getElementById('brief-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => emailInput.focus(), 350);
+  });
+
+  updateCounters();
+})();
+</script>
+</body>
+</html>

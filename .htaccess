@@ -92,6 +92,30 @@ DirectoryIndex index.html index.php
 	</IfModule>
 # END iThemes Security - Do not modify or remove this line
 
+# Protect Web Palm Beaches server config files
+<FilesMatch "^(config\.local\.php|config\.example\.php|config_loader\.php|\.env)$">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+	</IfModule>
+</FilesMatch>
+
+# Disable gzip/proxy buffering for SSE streaming endpoint
+<Files "project-brief-api.php">
+	<IfModule mod_env.c>
+		SetEnv no-gzip 1
+	</IfModule>
+</Files>
+
+# Clean URL for AI Project Brief (/project-brief -> project-brief.html)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^project-brief/?$ project-brief.html [L,NC]
+</IfModule>
+
 # BEGIN WordPress
 # The directives (lines) between "BEGIN WordPress" and "END WordPress" are
 # dynamically generated, and should only be modified via WordPress filters.

@@ -622,30 +622,7 @@
   }
 }
 
-/* Mobile nav */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    flex-direction: column;
-    padding: 1.5rem 2rem;
-    gap: 1rem;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .mobile-toggle {
-    display: block;
-  }
-}
-
+/* Mobile nav handled by styles.css (1200px breakpoint) */
 </style>
   <link rel="canonical" href="https://webpalmbeaches.com/pricing.html">
   <meta property="og:type" content="website">
@@ -714,7 +691,8 @@
     <a href="services.html">Services</a>
     <a href="solutions.html">AI Solutions</a>
     <a href="case-studies.html">Case Studies</a>
-    <a href="pricing.html">Pricing</a>
+    <a href="pricing.html" class="active">Pricing</a>
+    <a href="project-brief.html">Project Brief</a>
     <a href="about.html">About</a>
     <a href="tel:5612919001" class="nav-phone">561-291-9001</a>
     <a href="contact.html" class="nav-cta">Book a Strategy Call</a>
