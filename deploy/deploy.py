@@ -22,6 +22,16 @@ from datetime import datetime
 import ftplib
 import ssl
 
+class ReusedSessionFTP_TLS(ftplib.FTP_TLS):
+    """FTP_TLS that reuses the control-connection TLS session on data connections
+    (required by many shared hosts, e.g. GoDaddy/cPanel pure-ftpd)."""
+    def ntransfercmd(self, cmd, rest=None):
+        conn, size = ftplib.FTP.ntransfercmd(self, cmd, rest)
+        if self._prot_p:
+            conn = self.context.wrap_socket(
+                conn, server_hostname=self.host, session=self.sock.session)
+        return conn, size
+
 try:
     import paramiko
     HAS_PARAMIKO = True
@@ -71,6 +81,7 @@ class RemoteClient:
         self.sftp = None
         self.ssh = None
         self.ftps = None
+        self._dir_cache = {}
 
     def connect(self):
         if self.protocol == "sftp":
@@ -101,15 +112,73 @@ class RemoteClient:
             self.sftp = self.ssh.open_sftp()
             print(f"Connected via SFTP to {self.user}@{self.host}:{self.port}")
         elif self.protocol in ("ftps", "ftp"):
-            # Explicit FTPS
-            self.ftps = ftplib.FTP_TLS(timeout=25)
-            self.ftps.connect(self.host, int(self.port))
-            self.ftps.auth()
-            self.ftps.prot_p() # Secure data connection
-            self.ftps.login(self.user, self.password)
-            print(f"Connected via FTPS (TLS) to {self.user}@{self.host}:{self.port}")
+            self._connect_ftps()
         else:
             raise ValueError(f"Unsupported protocol: {self.protocol}")
+
+    def _connect_ftps(self):
+        """Open (or re-open) an explicit-FTPS connection."""
+        if self.ftps:
+            try: self.ftps.close()
+            except Exception: pass
+        self.ftps = ReusedSessionFTP_TLS(timeout=60)
+        self.ftps.connect(self.host, int(self.port))
+        self.ftps.auth()
+        self.ftps.login(self.user, self.password)
+        self.ftps.prot_p()  # Secure data connection
+        self._dir_cache = {}
+        print(f"Connected via FTPS (TLS) to {self.user}@{self.host}:{self.port}")
+
+    def _ftp_retry(self, func, attempts=4):
+        """Run func(); on a dropped connection, reconnect and retry."""
+        last = None
+        for i in range(attempts):
+            try:
+                return func()
+            except (ssl.SSLError, EOFError, ConnectionError, OSError, ftplib.error_temp) as e:
+                if isinstance(e, ftplib.error_perm):
+                    raise
+                last = e
+                wait = 2 * (i + 1)
+                print(f"NOTICE: FTPS connection problem ({type(e).__name__}: {e}); reconnecting in {wait}s (attempt {i+1}/{attempts})", file=sys.stderr)
+                time.sleep(wait)
+                self._connect_ftps()
+        raise last
+
+    def _list_dir(self, remote_dir):
+        """Return set of entry names in remote_dir (cached; one listing per directory)."""
+        key = remote_dir.strip("/")
+        if key in self._dir_cache:
+            return self._dir_cache[key]
+        target = key or "."
+
+        def _do():
+            names = set()
+            try:
+                for name, _facts in self.ftps.mlsd(target, facts=["type"]):
+                    if name not in (".", ".."):
+                        names.add(name)
+            except ftplib.error_perm as e:
+                if str(e).startswith("5"):
+                    # MLSD unsupported or directory missing; fall back to NLST
+                    try:
+                        for n in self.ftps.nlst(target):
+                            n = n.rstrip("/").split("/")[-1]
+                            if n and n not in (".", ".."):
+                                names.add(n)
+                    except ftplib.error_perm:
+                        pass  # empty dir (550 No files found) or missing dir
+                else:
+                    raise
+            return names
+
+        names = self._ftp_retry(_do)
+        self._dir_cache[key] = names
+        return names
+
+    def _invalidate(self, remote_path):
+        parent = os.path.dirname(remote_path.strip("/"))
+        self._dir_cache.pop(parent, None)
 
     def close(self):
         if self.sftp:
@@ -134,27 +203,20 @@ class RemoteClient:
             except Exception:
                 return False
         else:
-            try:
-                self.ftps.size(remote_path)
-                return True
-            except:
-                # Could be a directory
-                cur = self.ftps.pwd()
-                try:
-                    self.ftps.cwd(remote_path)
-                    self.ftps.cwd(cur)
-                    return True
-                except:
-                    return False
+            path = remote_path.strip("/")
+            parent, name = os.path.dirname(path), os.path.basename(path)
+            return name in self._list_dir(parent)
 
     def get_file_bytes(self, remote_path):
         if self.protocol == "sftp":
             with self.sftp.file(remote_path, "rb") as f:
                 return f.read()
         else:
-            data = bytearray()
-            self.ftps.retrbinary(f"RETR {remote_path}", data.extend)
-            return bytes(data)
+            def _do():
+                data = bytearray()
+                self.ftps.retrbinary(f"RETR {remote_path}", data.extend)
+                return bytes(data)
+            return self._ftp_retry(_do)
 
     def put_file_bytes(self, remote_path, data):
         self.ensure_remote_dir(os.path.dirname(remote_path))
@@ -163,14 +225,17 @@ class RemoteClient:
                 f.write(data)
         else:
             import io
-            bio = io.BytesIO(data)
-            self.ftps.storbinary(f"STOR {remote_path}", bio)
+            def _do():
+                self.ftps.storbinary(f"STOR {remote_path}", io.BytesIO(data))
+            self._ftp_retry(_do)
+            self._invalidate(remote_path)
 
     def delete_file(self, remote_path):
         if self.protocol == "sftp":
             self.sftp.remove(remote_path)
         else:
-            self.ftps.delete(remote_path)
+            self._ftp_retry(lambda: self.ftps.delete(remote_path))
+            self._invalidate(remote_path)
 
     def ensure_remote_dir(self, remote_dir):
         if not remote_dir or remote_dir in (".", "/"):
@@ -187,9 +252,10 @@ class RemoteClient:
                         pass
                 else:
                     try:
-                        self.ftps.mkd(current)
-                    except:
+                        self._ftp_retry(lambda: self.ftps.mkd(current))
+                    except ftplib.error_perm:
                         pass
+                    self._invalidate(current)
 
 class DeploymentManager:
     def __init__(self, client, docroot="public_html", dry_run=True, commit_sha=None):
