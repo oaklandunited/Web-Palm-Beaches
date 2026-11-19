@@ -33,6 +33,9 @@ jobs:
     name: Validate & Publish
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    env:
+      HAS_SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS != '' }}
+      HAS_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY != '' }}
 
     steps:
       - name: Checkout repository at immutable commit
@@ -68,7 +71,7 @@ jobs:
           python3 deploy/validate.py "${{ github.sha }}"
 
       - name: Setup SSH Known Hosts (if provided)
-        if: ${{ secrets.SSH_KNOWN_HOSTS != '' }}
+        if: ${{ env.HAS_SSH_KNOWN_HOSTS == 'true' }}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
@@ -76,7 +79,7 @@ jobs:
           echo "SSH_KNOWN_HOSTS_FILE=$HOME/.ssh/known_hosts" >> $GITHUB_ENV
 
       - name: Setup SSH Private Key (if provided)
-        if: ${{ secrets.DEPLOY_KEY != '' }}
+        if: ${{ env.HAS_DEPLOY_KEY == 'true' }}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
