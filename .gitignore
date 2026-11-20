@@ -1,5 +1,17 @@
 .DS_Store
 config.local.php
 .env
-*.log__pycache__/
+*.log
+__pycache__/
 **/__pycache__/
+
+# WordPress / hosting server files: never commit (contain credentials and logs)
+wp-*.php
+wp-config.php
+wp-admin/
+wp-content/
+wp-includes/
+xmlrpc.php
+error_log
+*.backup.*
+bv_connector_*.php
