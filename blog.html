@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | Web Design, AI & Local SEO | WPB</title>
   <meta name="description" content="Practical guides on web design, AI automation, and local SEO for Palm Beach County businesses. Written by the team at Web Palm Beaches.">
-  <link rel="stylesheet" href="styles.css">
+  <script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="stylesheet" href="styles.css?v=20261120-theme">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Blog","name":"Web Palm Beaches Blog","description":"Practical guides on web design, AI automation, and local SEO for South Florida businesses","url":"https://webpalmbeaches.com/blog.html","publisher":{"@type":"Organization","name":"Web Palm Beaches","address":{"@type":"PostalAddress","addressLocality":"West Palm Beach","addressRegion":"FL","postalCode":"33401"}}}
   </script>
@@ -14,13 +15,13 @@
     .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(205,97,85,.15) 0%,transparent 60%)}
     .page-hero .container{position:relative;z-index:1}
     .breadcrumb{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1rem;font-family:var(--heading);letter-spacing:.05em}
-    .breadcrumb a{color:rgba(255,255,255,.5);transition:color .3s}.breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb a{color:rgba(255,255,255,.5);transition:color .3s}.breadcrumb a:hover{color:var(--accent-ink)}
     .breadcrumb span{margin:0 .5rem;opacity:.5}
     .page-hero h1{font-family:var(--heading);font-size:2.5rem;font-weight:700;color:var(--text-light);line-height:1.2;max-width:600px}
     .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);margin-top:.75rem;max-width:520px;line-height:1.7}
     .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:3rem;padding:4rem 0}
     .blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-    .blog-card{border:1px solid var(--border);background:#fff;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+    .blog-card{border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
     .blog-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);transform:translateY(-3px)}
     .blog-card-img{height:180px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden;position:relative}
     .blog-card-img .cat-badge{position:absolute;top:.75rem;left:.75rem;background:var(--accent);color:#fff;font-family:var(--heading);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem}
@@ -29,20 +30,20 @@
     .blog-card-body h3{font-family:var(--heading);font-size:1rem;font-weight:700;color:var(--heading);line-height:1.4;margin-bottom:.5rem}
     .blog-card-body p{font-size:.875rem;color:var(--text-secondary);line-height:1.65;flex:1;margin-bottom:.75rem}
     .blog-card-meta{font-family:var(--heading);font-size:.7rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
-    .blog-card-body a.read-more{font-family:var(--heading);font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+    .blog-card-body a.read-more{font-family:var(--heading);font-size:.75rem;font-weight:700;color:var(--accent-ink);letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
     .blog-card-body a.read-more:hover{gap:.6rem}
     .blog-sidebar{}
     .sidebar-widget{background:var(--bg-alt);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
-    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:1rem}
+    .sidebar-widget h4{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-ink);margin-bottom:1rem}
     .sidebar-widget p{font-size:.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1rem}
-    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent)}
+    .sidebar-widget a{display:block;font-size:.875rem;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);transition:color .3s}.sidebar-widget a:last-child{border:none}.sidebar-widget a:hover{color:var(--accent-ink)}
     .sidebar-cta{background:var(--tertiary);padding:1.75rem}
-    .sidebar-cta h4{color:var(--accent)}.sidebar-cta p{color:rgba(255,255,255,.7)}
+    .sidebar-cta h4{color:var(--accent-ink)}.sidebar-cta p{color:rgba(255,255,255,.7)}
     .sidebar-cta .btn-primary{display:block;text-align:center;margin-top:.75rem;font-size:.8rem}
     .category-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
     .cat-btn{background:none;border:1px solid var(--border);font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);padding:.4rem .9rem;cursor:pointer;transition:all .25s}
     .cat-btn:hover,.cat-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-    .section-label{font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+    .section-label{font-family:var(--heading);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:.5rem}
     @media(max-width:1000px){.blog-layout{grid-template-columns:1fr}.blog-sidebar{display:none}}
     @media(max-width:700px){.blog-grid{grid-template-columns:1fr}}
   </style>
@@ -420,7 +421,7 @@
   </div>
 </footer>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 <script>
 function filterPosts(cat, btn) {
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));

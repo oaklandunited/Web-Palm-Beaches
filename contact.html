@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Web Palm Beaches</title>
-<link rel="stylesheet" href="styles.css">
+<script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="stylesheet" href="styles.css?v=20261120-theme">
 <script src="https://www.google.com/recaptcha/api.js?render=6LfDwJ8sAAAAAIQjuj2glcLYBM8DlKZboLlLEU9_"></script>
 <style>
 .contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start}
@@ -13,14 +14,14 @@
 .contact-method:last-child{border-bottom:none}
 .contact-method .cm-icon{width:44px;height:44px;flex-shrink:0;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s}
 .contact-method:hover .cm-icon{background:var(--accent);color:var(--text-light)}
-.contact-method h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);margin-bottom:.25rem}
+.contact-method h4{font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary-ink);margin-bottom:.25rem}
 .contact-method p{font-size:.9rem;color:var(--text-secondary);line-height:1.5}
-.contact-method a{color:var(--accent);font-weight:700;transition:color .3s}
-.contact-method a:hover{color:var(--accent-hover)}
+.contact-method a{color:var(--accent-ink);font-weight:700;transition:color .3s}
+.contact-method a:hover{color:var(--accent-hover-ink)}
 
 .form-card{padding:3rem;background:var(--bg);border:1px solid var(--border);position:relative;overflow:hidden}
 .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
-.form-card h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.5rem}
+.form-card h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary-ink);margin-bottom:.5rem}
 .form-card .form-subtitle{font-size:.95rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.6}
 
 .form-progress{display:flex;gap:0;margin-bottom:2.5rem;border:1px solid var(--border)}
@@ -45,15 +46,15 @@
 
 .budget-options{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:.25rem}
 .budget-option{text-align:center;padding:.75rem;border:2px solid var(--border);cursor:pointer;transition:all .3s;font-family:var(--heading);font-size:.75rem;font-weight:700;letter-spacing:.05em;color:var(--text-muted)}
-.budget-option:hover{border-color:var(--accent);color:var(--accent)}
+.budget-option:hover{border-color:var(--accent);color:var(--accent-ink)}
 .budget-option input{display:none}
-.budget-option input:checked + span{color:var(--accent)}
-.budget-option:has(input:checked){border-color:var(--accent);background:rgba(205,97,85,.05);color:var(--accent)}
+.budget-option input:checked + span{color:var(--accent-ink)}
+.budget-option:has(input:checked){border-color:var(--accent);background:rgba(205,97,85,.05);color:var(--accent-ink)}
 
 .success-message{display:none;text-align:center;padding:3rem 2rem}
 .success-message.show{display:block}
 .success-message .success-icon{font-size:3rem;margin-bottom:1rem}
-.success-message h3{font-family:var(--heading);font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin-bottom:.75rem}
+.success-message h3{font-family:var(--heading);font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary-ink);margin-bottom:.75rem}
 .success-message p{color:var(--text-secondary);font-size:1rem;line-height:1.7;max-width:400px;margin:0 auto}
 
 @media(max-width:768px){
@@ -320,7 +321,7 @@
           <div class="success-icon">&#9989;</div>
           <h3>Thank You!</h3>
           <p>Your inquiry has been received. Web Palm Beaches will get back to you within 24 hours to schedule your free strategy session.</p>
-          <p style="margin-top:1rem;font-size:.9rem">Can't wait? Call us now at <a href="tel:5612919001" style="color:var(--accent);font-weight:700">561-291-9001</a></p>
+          <p style="margin-top:1rem;font-size:.9rem">Can't wait? Call us now at <a href="tel:5612919001" style="color:var(--accent-ink);font-weight:700">561-291-9001</a></p>
         </div>
       </div>
 
@@ -338,19 +339,19 @@
     <div class="reveal stagger-3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem;text-align:center">
       <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
         <div style="font-size:1.5rem;margin-bottom:.5rem">&#127796;</div>
-        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">West Palm Beach</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink)">West Palm Beach</div>
       </div>
       <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
         <div style="font-size:1.5rem;margin-bottom:.5rem">&#127965;</div>
-        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Boca Raton</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink)">Boca Raton</div>
       </div>
       <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
         <div style="font-size:1.5rem;margin-bottom:.5rem">&#9728;&#65039;</div>
-        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Delray Beach</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink)">Delray Beach</div>
       </div>
       <div style="padding:1.5rem;border:1px solid var(--border);background:var(--bg)">
         <div style="font-size:1.5rem;margin-bottom:.5rem">&#127754;</div>
-        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary)">Jupiter</div>
+        <div style="font-family:var(--heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink)">Jupiter</div>
       </div>
     </div>
   </div>
@@ -429,7 +430,7 @@
   </div>
 </footer>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 <script>
 // Multi-step form logic
 const form = document.getElementById('contactForm');

@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Web Design for Medical Practices | AI | WPB</title>
 <meta name="description" content="Custom website design for doctors, dentists, and medical practices in South Florida. Online scheduling, AI patient FAQ, HIPAA-aware design.">
-<link rel="stylesheet" href="styles.css">
+<script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="stylesheet" href="styles.css?v=20261120-theme">
 <style>
 /* === MEDICAL PAGE STYLES === */
 .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--tertiary)}
 .stat-block{padding:3rem 2.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.1);position:relative}
 .stat-block:last-child{border-right:none}
-.stat-block .stat-number{font-family:var(--heading);font-size:clamp(2.2rem,4vw,3rem);font-weight:800;color:var(--accent);line-height:1;margin-bottom:.5rem}
+.stat-block .stat-number{font-family:var(--heading);font-size:clamp(2.2rem,4vw,3rem);font-weight:800;color:var(--accent-ink);line-height:1;margin-bottom:.5rem}
 .stat-block .stat-label{font-family:var(--heading);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.55);line-height:1.5}
 .stat-block .stat-desc{font-size:.82rem;color:rgba(255,255,255,.4);margin-top:.5rem;font-family:var(--body);line-height:1.5}
 
@@ -22,12 +23,12 @@
 .feature-card:hover::before{transform:scaleX(1)}
 .feature-card .fc-icon{width:52px;height:52px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.25rem;transition:all .3s}
 .feature-card:hover .fc-icon{background:var(--accent);color:#fff}
-.feature-card h3{font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.6rem}
+.feature-card h3{font-family:var(--heading);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink);margin-bottom:.6rem}
 .feature-card p{color:var(--text-secondary);font-size:.875rem;line-height:1.75}
 
 .specialty-cloud{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem;justify-content:center}
-.specialty-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;border:1px solid var(--border);font-family:var(--heading);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary);background:var(--bg);transition:all .3s;cursor:default}
-.specialty-tag:hover{border-color:var(--accent);color:var(--accent);background:var(--bg-ice)}
+.specialty-tag{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;border:1px solid var(--border);font-family:var(--heading);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tertiary-ink);background:var(--bg);transition:all .3s;cursor:default}
+.specialty-tag:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--bg-ice)}
 .specialty-tag::before{content:'';width:6px;height:6px;background:var(--accent);flex-shrink:0}
 
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
@@ -35,7 +36,7 @@
 .pricing-card.featured{border-color:var(--accent);box-shadow:0 12px 50px rgba(205,97,85,.12)}
 .pricing-card .pricing-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-family:var(--heading);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:.4rem 1.25rem;white-space:nowrap}
 .pricing-card .pricing-tier{font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:.75rem}
-.pricing-card .pricing-price{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary);margin-bottom:.4rem;line-height:1}
+.pricing-card .pricing-price{font-family:var(--heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--tertiary-ink);margin-bottom:.4rem;line-height:1}
 .pricing-card .pricing-desc{font-size:.85rem;color:var(--text-secondary);margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border);line-height:1.6}
 .pricing-card ul{list-style:none;margin-bottom:2rem}
 .pricing-card ul li{padding:.45rem 0;font-size:.875rem;color:var(--text-secondary);padding-left:1.25rem;position:relative;line-height:1.5}
@@ -43,14 +44,14 @@
 .pricing-card .pricing-cta{display:block;text-align:center;padding:.9rem 1.5rem;font-family:var(--heading);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;transition:all .3s}
 .pricing-card .pricing-cta.primary{background:var(--accent);color:#fff}
 .pricing-card .pricing-cta.primary:hover{background:var(--accent-hover);box-shadow:0 6px 20px rgba(205,97,85,.3)}
-.pricing-card .pricing-cta.outline{border:2px solid var(--tertiary);color:var(--tertiary)}
+.pricing-card .pricing-cta.outline{border:2px solid var(--tertiary);color:var(--tertiary-ink)}
 .pricing-card .pricing-cta.outline:hover{background:var(--tertiary);color:#fff}
 .pricing-note{text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);font-family:var(--body)}
 
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .why-card{padding:2.5rem 2rem;background:var(--bg);border:1px solid var(--border);border-top:4px solid var(--accent);text-align:left}
-.why-card .why-num{font-family:var(--heading);font-size:2.5rem;font-weight:800;color:var(--accent);opacity:.2;line-height:1;margin-bottom:.5rem}
-.why-card h3{font-family:var(--heading);font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.75rem}
+.why-card .why-num{font-family:var(--heading);font-size:2.5rem;font-weight:800;color:var(--accent-ink);opacity:.2;line-height:1;margin-bottom:.5rem}
+.why-card h3{font-family:var(--heading);font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink);margin-bottom:.75rem}
 .why-card p{color:var(--text-secondary);font-size:.9rem;line-height:1.75}
 
 @media(max-width:900px){
@@ -440,6 +441,6 @@
   ]
 }
 </script>
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 </body>
 </html>

@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Web Design for Contractors | Lead Gen | WPB</title>
 <meta name="description" content="Custom website design for contractors in South Florida. Service area pages, Google Maps &amp; AI Search Optimization (SEO/GEO), AI lead capture, and before/after project galleries.">
-<link rel="stylesheet" href="styles.css">
+<script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="stylesheet" href="styles.css?v=20261120-theme">
 <style>
 .reasons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
 .reason-card{padding:2.25rem;border:1px solid var(--border);background:var(--bg);position:relative;overflow:hidden;transition:all .3s}
@@ -13,7 +14,7 @@
 .reason-card:hover::before{transform:scaleX(1)}
 .reason-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
 .reason-num{font-family:var(--heading);font-size:3rem;font-weight:800;color:var(--bg-ice);line-height:1;margin-bottom:.5rem}
-.reason-card h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.6rem}
+.reason-card h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink);margin-bottom:.6rem}
 .reason-card p{font-size:.9rem;color:var(--text-secondary);line-height:1.75}
 
 .features-stack{display:flex;flex-direction:column;gap:0;margin-top:3rem}
@@ -21,8 +22,8 @@
 .feature-row:last-child{border-bottom:1px solid var(--border)}
 .feature-row:hover{background:var(--bg-ice);border-color:var(--accent)}
 .feature-row:hover .feature-num{background:var(--accent);color:#fff}
-.feature-num{width:48px;height:48px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1.1rem;font-weight:800;color:var(--accent);transition:all .3s;flex-shrink:0}
-.feature-row h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary);margin-bottom:.4rem}
+.feature-num{width:48px;height:48px;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:1.1rem;font-weight:800;color:var(--accent-ink);transition:all .3s;flex-shrink:0}
+.feature-row h3{font-family:var(--heading);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tertiary-ink);margin-bottom:.4rem}
 .feature-row p{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
 
 .roi-table{width:100%;border-collapse:collapse;margin-top:2.5rem}
@@ -30,35 +31,35 @@
 .roi-table th:last-child{border-right:none}
 .roi-table td{padding:.9rem 1.25rem;border:1px solid var(--border);font-size:.88rem;color:var(--text-secondary);vertical-align:middle}
 .roi-table tr:nth-child(even) td{background:var(--bg-ice)}
-.roi-table tr.highlight td{background:rgba(205,97,85,.06);font-weight:700;color:var(--tertiary)}
-.roi-table tr.highlight td:first-child{color:var(--accent)}
-.roi-table td:first-child{font-weight:600;color:var(--tertiary)}
+.roi-table tr.highlight td{background:rgba(205,97,85,.06);font-weight:700;color:var(--tertiary-ink)}
+.roi-table tr.highlight td:first-child{color:var(--accent-ink)}
+.roi-table td:first-child{font-weight:600;color:var(--tertiary-ink)}
 
 .tag-cloud{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
 .tag{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .85rem;border:1px solid var(--border);color:var(--text-secondary);background:var(--bg);transition:all .25s}
-.tag:hover{border-color:var(--accent);color:var(--accent)}
+.tag:hover{border-color:var(--accent);color:var(--accent-ink)}
 
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-top:2.5rem}
 .pricing-tier{padding:2.5rem 2rem;border-right:1px solid var(--border);position:relative}
 .pricing-tier:last-child{border-right:none}
 .pricing-tier.featured{background:var(--tertiary);color:#fff}
-.pricing-tier.featured .tier-name{color:var(--accent)}
+.pricing-tier.featured .tier-name{color:var(--accent-ink)}
 .pricing-tier.featured .tier-price{color:#fff}
 .pricing-tier.featured .tier-best{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.15)}
 .pricing-tier.featured li{color:rgba(255,255,255,.75)}
-.tier-name{font-family:var(--heading);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.5rem}
-.tier-price{font-family:var(--heading);font-size:1.8rem;font-weight:800;color:var(--tertiary);line-height:1;margin-bottom:.3rem}
+.tier-name{font-family:var(--heading);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-ink);margin-bottom:.5rem}
+.tier-price{font-family:var(--heading);font-size:1.8rem;font-weight:800;color:var(--tertiary-ink);line-height:1;margin-bottom:.3rem}
 .tier-best{font-size:.8rem;color:var(--text-muted);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .pricing-tier ul{list-style:none;padding:0;margin:0 0 1.5rem}
 .pricing-tier ul li{font-size:.85rem;color:var(--text-secondary);padding:.4rem 0;padding-left:1.25rem;position:relative}
-.pricing-tier ul li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.8rem}
-.tier-cta{display:block;text-align:center;padding:.75rem 1.5rem;font-family:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--accent);color:var(--accent);transition:all .3s;text-decoration:none}
+.pricing-tier ul li::before{content:'✓';position:absolute;left:0;color:var(--accent-ink);font-weight:700;font-size:.8rem}
+.tier-cta{display:block;text-align:center;padding:.75rem 1.5rem;font-family:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--accent);color:var(--accent-ink);transition:all .3s;text-decoration:none}
 .tier-cta:hover,.pricing-tier.featured .tier-cta{background:var(--accent);color:#fff}
 
 .faq-item{border-bottom:1px solid var(--border)}
 .faq-item:first-child{border-top:1px solid var(--border)}
-.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--tertiary)}
-.faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--accent);transition:all .3s}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--heading);font-size:.9rem;font-weight:700;color:var(--tertiary-ink)}
+.faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--accent-ink);transition:all .3s}
 .faq-item.open .faq-icon{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
 .faq-answer{display:none;padding:0 0 1.25rem;font-size:.9rem;color:var(--text-secondary);line-height:1.75}
 .faq-item.open .faq-answer{display:block}
@@ -456,7 +457,7 @@
   </div>
 </footer>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 <script>
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
