@@ -59,7 +59,7 @@
 .team-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
 .team-photo{width:100%;aspect-ratio:4/3;background:var(--bg-ice);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .team-photo img{width:100%;height:100%;object-fit:cover}
-.team-photo-placeholder{font-size:4rem;color:var(--text-muted)}
+.team-photo-placeholder{font-family:var(--heading);font-size:4.5rem;font-weight:800;letter-spacing:.04em;color:var(--tertiary-ink);opacity:.28}
 .team-accent{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--accent)}
 .team-info{padding:1.75rem}
 .team-info h3{font-family:var(--heading);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary-ink);margin-bottom:.2rem}
@@ -324,7 +324,7 @@
 
       <div class="team-card reveal stagger-1">
         <div class="team-photo">
-          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-photo-placeholder" aria-hidden="true">GM</div>
           <div class="team-accent"></div>
         </div>
         <div class="team-info">
@@ -345,7 +345,7 @@
 
       <div class="team-card reveal stagger-2">
         <div class="team-photo">
-          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-photo-placeholder" aria-hidden="true">RW</div>
           <div class="team-accent"></div>
         </div>
         <div class="team-info">
@@ -366,7 +366,7 @@
 
       <div class="team-card reveal stagger-3">
         <div class="team-photo">
-          <div class="team-photo-placeholder">&#128100;</div>
+          <div class="team-photo-placeholder" aria-hidden="true">TM</div>
           <div class="team-accent"></div>
         </div>
         <div class="team-info">
@@ -421,42 +421,42 @@
       <div class="reveal-right">
         <div class="creds-grid">
           <div class="cred-item" onclick="openAbtModal('cred-ga')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#128202;</div>
             <div class="cred-name">Google Analytics</div>
             <div class="cred-issuer">Google Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-gads')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#128227;</div>
             <div class="cred-name">Google Ads</div>
             <div class="cred-issuer">Google Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-hubspot')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#128199;</div>
             <div class="cred-name">HubSpot CRM</div>
             <div class="cred-issuer">HubSpot Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-n8n')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#9881;&#65039;</div>
             <div class="cred-name">AI Automation</div>
             <div class="cred-issuer">n8n Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-meta')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#128241;</div>
             <div class="cred-name">Meta Blueprint</div>
             <div class="cred-issuer">Meta Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-semrush')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#128269;</div>
             <div class="cred-name">Semrush SEO</div>
             <div class="cred-issuer">Semrush Certified</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-prompt')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#9997;&#65039;</div>
             <div class="cred-name">Prompt Engineering</div>
             <div class="cred-issuer">DeepLearning.AI</div>
           </div>
           <div class="cred-item" onclick="openAbtModal('cred-aws')">
-            <div class="cred-icon">&#127881;</div>
+            <div class="cred-icon">&#9729;&#65039;</div>
             <div class="cred-name">Cloud Architecture</div>
             <div class="cred-issuer">AWS Fundamentals</div>
           </div>
@@ -584,11 +584,11 @@
         <div class="city-name">Boca Raton</div>
       </a>
       <a href="ai-consulting-delray-beach.html" class="city-tile">
-        <div class="city-icon">&#9728;&#65039;</div>
+        <div class="city-icon">&#127958;&#65039;</div>
         <div class="city-name">Delray Beach</div>
       </a>
       <a href="ai-consulting-jupiter.html" class="city-tile">
-        <div class="city-icon">&#127754;</div>
+        <div class="city-icon">&#9973;</div>
         <div class="city-name">Jupiter</div>
       </a>
     </div>
@@ -726,7 +726,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('abt-gregg')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#128100;</div>
+      <div class="mh-icon">&#129517;</div>
       <div class="mh-label">Founder &amp; AI Strategy Lead</div>
       <h2>Gregg Maynard</h2>
       <div class="abt-role">Founder &amp; AI Strategy Lead</div>
@@ -767,7 +767,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('abt-ryan')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#128736;</div>
+      <div class="mh-icon">&#129302;</div>
       <div class="mh-label">Lead AI Engineer</div>
       <h2>Ryan Westerman</h2>
       <div class="abt-role">Lead AI Engineer</div>
@@ -849,7 +849,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-ga')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#128202;</div>
       <div class="mh-label">Google Certified</div>
       <h2>Google Analytics 4</h2>
       <div class="abt-role">Measurement &amp; Conversion Tracking</div>
@@ -878,7 +878,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-gads')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#128227;</div>
       <div class="mh-label">Google Certified</div>
       <h2>Google Ads</h2>
       <div class="abt-role">Search, Display &amp; Performance Max</div>
@@ -907,7 +907,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-hubspot')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#128199;</div>
       <div class="mh-label">HubSpot Certified</div>
       <h2>HubSpot CRM</h2>
       <div class="abt-role">CRM Setup, Automation &amp; Reporting</div>
@@ -936,7 +936,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-n8n')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#9881;&#65039;</div>
       <div class="mh-label">n8n Certified</div>
       <h2>AI Automation</h2>
       <div class="abt-role">Workflow Automation &amp; AI Agent Orchestration</div>
@@ -965,7 +965,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-meta')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#128241;</div>
       <div class="mh-label">Meta Certified</div>
       <h2>Meta Blueprint</h2>
       <div class="abt-role">Facebook &amp; Instagram Advertising</div>
@@ -994,7 +994,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-semrush')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#128269;</div>
       <div class="mh-label">Semrush Certified</div>
       <h2>Semrush SEO</h2>
       <div class="abt-role">Keyword Research, Technical SEO &amp; Competitive Analysis</div>
@@ -1023,7 +1023,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-prompt')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#9997;&#65039;</div>
       <div class="mh-label">DeepLearning.AI</div>
       <h2>Prompt Engineering</h2>
       <div class="abt-role">LLM Optimization &amp; AI Agent Design</div>
@@ -1052,7 +1052,7 @@
   <div class="abt-modal">
     <div class="modal-close-bar"><button onclick="closeAbtModal('cred-aws')">&#10005;</button></div>
     <div class="modal-header">
-      <div class="mh-icon">&#127881;</div>
+      <div class="mh-icon">&#9729;&#65039;</div>
       <div class="mh-label">AWS Fundamentals</div>
       <h2>Cloud Architecture</h2>
       <div class="abt-role">Scalable Infrastructure &amp; Deployment</div>
