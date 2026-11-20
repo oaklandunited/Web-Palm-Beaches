@@ -23,6 +23,7 @@
   --accent-ink:var(--accent);
   --tertiary-ink:var(--tertiary);
   --secondary-ink:var(--secondary);
+  --accent-hover-ink:var(--accent-hover);
   --surface:#ffffff;
   --nav-bg:rgba(255,255,255,0.95);
   --nav-bg-solid:rgba(255,255,255,.98);
@@ -339,7 +340,9 @@ html[data-theme="dark"]{
   --accent-ink:#f3897c;      /*  6.8:1  coral, lifted for text          */
   --tertiary-ink:#a8c7ee;    /*  9.4:1  headings                        */
   --secondary-ink:#8db4dc;   /*  7.5:1 */
+  --accent-hover-ink:#ff9e94;  /* 8.2:1+ hover text */
   --border:rgba(255,255,255,0.1);
+  --accent-ink-on-fill:#ffb3a9; /* coral on --tertiary fill 4.8:1, on navy 10.4:1 */
   --nav-bg:rgba(11,31,66,0.92);
   --nav-bg-solid:rgba(11,31,66,.98);
 }
@@ -354,8 +357,11 @@ html[data-theme="dark"] .btn-secondary:not(.light){color:var(--tertiary-ink);bor
 html[data-theme="dark"] .btn-secondary:not(.light):hover{background:var(--tertiary-ink);color:var(--bg-dark)}
 html[data-theme="dark"] .brief-disclaimer{background:rgba(196,77,65,.12)}
 /* Smooth the switch itself, but only for color properties */
-html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{
-  transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
+/* Skipped entirely for visitors who ask the OS for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{
+    transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
+}
 
 /* === THEME TOGGLE ===
    Sits beside the search icon and shares its look: bare navy icon,
@@ -375,3 +381,28 @@ html[data-theme="dark"] .theme-toggle .i-moon{display:none}
   .theme-toggle-mobile{display:flex}
 }
 @media print{.theme-toggle{display:none}}
+
+/* Coral labels that sit on the blue --tertiary / navy fills (sidebar CTAs,
+   stat boxes, modal headers, code keys...). The page-level coral is too dark
+   against #295082, so these get a lighter coral in dark mode only. */
+html[data-theme="dark"] .barbell-side.right h3,
+html[data-theme="dark"] .cli-modal .modal-header .big-quote,
+html[data-theme="dark"] .cli-modal .modal-header .cli-stars,
+html[data-theme="dark"] .code-block .key,
+html[data-theme="dark"] .compliance-box h3,
+html[data-theme="dark"] .cs-modal .modal-hero .modal-badge,
+html[data-theme="dark"] .factor-label,
+html[data-theme="dark"] .featured-testimonial .ft-visual .big-quote,
+html[data-theme="dark"] .featured-testimonial .ft-visual .ft-stars,
+html[data-theme="dark"] .how-we-price-aside .aside-label,
+html[data-theme="dark"] .mastery-side.after .mastery-label,
+html[data-theme="dark"] .pricing-tier.featured .tier-name,
+html[data-theme="dark"] .results-box .rb-label,
+html[data-theme="dark"] .roi-callout .roi-label,
+html[data-theme="dark"] .sidebar-cta h4,
+html[data-theme="dark"] .solution-showcase .visual .big-num,
+html[data-theme="dark"] .stat-box .num,
+html[data-theme="dark"] .svc-modal .modal-header .mh-label,
+html[data-theme="dark"] .task-num,
+html[data-theme="dark"] .who-aside .aside-label,
+html[data-theme="dark"] .who-aside .stat-num{color:var(--accent-ink-on-fill)}
