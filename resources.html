@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Resources | Web Design & AI Guides | WPB</title>
   <meta name="description" content="Free guides, checklists, and articles on web design, AI for business, local SEO, and digital marketing for South Florida businesses.">
-  <link rel="stylesheet" href="styles.css">
+  <script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="stylesheet" href="styles.css?v=20261120-theme">
   <style>
     /* === RESOURCES HUB === */
     .featured-resource {
@@ -44,7 +45,7 @@
       font-family: var(--heading);
       font-size: 1.5rem;
       font-weight: 800;
-      color: var(--tertiary);
+      color: var(--tertiary-ink);
       text-transform: uppercase;
       letter-spacing: .02em;
       margin-bottom: .5rem;
@@ -61,7 +62,7 @@
       opacity: .15;
       font-family: var(--heading);
       font-weight: 800;
-      color: var(--accent);
+      color: var(--accent-ink);
       line-height: 1;
     }
 
@@ -83,7 +84,7 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: .12em;
-      color: var(--tertiary);
+      color: var(--tertiary-ink);
     }
     .category-tag {
       display: inline-block;
@@ -94,13 +95,13 @@
       text-transform: uppercase;
       padding: .25rem .65rem;
       background: var(--bg-ice);
-      color: var(--tertiary);
+      color: var(--tertiary-ink);
       border: 1px solid var(--border);
     }
-    .category-tag.ai { background: rgba(205,97,85,.08); color: var(--accent); border-color: rgba(205,97,85,.2); }
-    .category-tag.web { background: rgba(41,80,130,.08); color: var(--tertiary); border-color: rgba(41,80,130,.2); }
+    .category-tag.ai { background: rgba(205,97,85,.08); color: var(--accent-ink); border-color: rgba(205,97,85,.2); }
+    .category-tag.web { background: rgba(41,80,130,.08); color: var(--tertiary-ink); border-color: rgba(41,80,130,.2); }
     .category-tag.seo { background: rgba(42,157,143,.08); color: #2a9d8f; border-color: rgba(42,157,143,.2); }
-    .category-tag.advice { background: rgba(64,107,149,.08); color: var(--secondary); border-color: rgba(64,107,149,.2); }
+    .category-tag.advice { background: rgba(64,107,149,.08); color: var(--secondary-ink); border-color: rgba(64,107,149,.2); }
 
     .articles-grid {
       display: grid;
@@ -131,7 +132,7 @@
     .article-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(0,0,0,.07);
-      border-color: rgba(0,0,0,.1);
+      border-color: var(--border);
     }
     .article-card:hover::after { transform: scaleX(1); }
     .article-card .card-category {
@@ -143,7 +144,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .03em;
-      color: var(--tertiary);
+      color: var(--tertiary-ink);
       margin-bottom: .6rem;
       line-height: 1.35;
     }
@@ -160,7 +161,7 @@
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-ink);
       display: inline-flex;
       align-items: center;
       gap: .4rem;
@@ -199,13 +200,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .08em;
-      color: var(--tertiary);
+      color: var(--tertiary-ink);
       margin-bottom: .35rem;
     }
     .industry-card span {
       font-family: var(--body);
       font-size: .78rem;
-      color: var(--accent);
+      color: var(--accent-ink);
       font-weight: 600;
     }
 
@@ -579,7 +580,7 @@
 <section class="cta-banner">
   <div class="container">
     <div class="section-label" style="color:rgba(255,255,255,.5);justify-content:center;display:flex;">Ready to Grow?</div>
-    <h2 class="section-title" style="text-align:center;max-width:640px;margin:0 auto .75rem;">Let's Build Something That<br><em style="font-style:normal;color:var(--accent)">Actually Works</em></h2>
+    <h2 class="section-title" style="text-align:center;max-width:640px;margin:0 auto .75rem;">Let's Build Something That<br><em style="font-style:normal;color:var(--accent-ink)">Actually Works</em></h2>
     <p class="section-desc" style="text-align:center;margin:0 auto 2rem;color:rgba(255,255,255,.65)">Reading is a great start. Talking with us is better. Book a free strategy call and let's map out exactly what your business needs.</p>
     <div class="cta-actions">
       <a href="contact.html" class="btn-primary">Book a Free Strategy Call</a>
@@ -662,6 +663,6 @@
     </div>
   </div>
 </footer>
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 </body>
 </html>

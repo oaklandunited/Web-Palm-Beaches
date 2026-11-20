@@ -488,7 +488,7 @@
           .slice(0, 8);
 
         if (!scored.length) {
-          results.innerHTML = '<div class="search-empty"><strong>No results found</strong>Try different keywords or browse the <a href="blog.html" style="color:var(--accent)">blog</a> or <a href="resources.html" style="color:var(--accent)">resources</a>.</div>';
+          results.innerHTML = '<div class="search-empty"><strong>No results found</strong>Try different keywords or browse the <a href="blog.html" style="color:var(--accent-ink)">blog</a> or <a href="resources.html" style="color:var(--accent-ink)">resources</a>.</div>';
           return;
         }
 
@@ -507,4 +507,61 @@
       });
     }, 150);
   });
+})();
+
+// === LIGHT / DARK THEME TOGGLE ===
+// The <head> snippet has already set data-theme before first paint. This adds
+// the buttons next to the search icon (desktop inside .nav-links, mobile beside
+// the hamburger, same pattern as search), syncs labels, and saves the choice.
+(function() {
+  'use strict';
+  const root = document.documentElement;
+  const KEY = 'wpb-theme';
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+  const navLinks = nav.querySelector('.nav-links');
+  const mobileBtn = nav.querySelector('.mobile-toggle');
+  const ICONS =
+    '<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>' +
+    '<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const buttons = [];
+  const current = () => root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
+  const sync = () => {
+    const next = current() === 'dark' ? 'light' : 'dark';
+    buttons.forEach(b => { b.setAttribute('aria-label', 'Switch to ' + next + ' theme'); b.title = 'Switch to ' + next + ' theme'; });
+  };
+  const setTheme = (t, persist) => {
+    root.classList.add('theme-anim');
+    root.setAttribute('data-theme', t);
+    sync();
+    if (persist) { try { localStorage.setItem(KEY, t); } catch (e) {} }
+    setTimeout(() => root.classList.remove('theme-anim'), 400);
+  };
+  const makeBtn = (cls) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'theme-toggle ' + cls;
+    b.innerHTML = ICONS;
+    b.addEventListener('click', () => setTheme(current() === 'dark' ? 'light' : 'dark', true));
+    buttons.push(b);
+    return b;
+  };
+
+  if (navLinks) {
+    const phone = navLinks.querySelector('.nav-phone');
+    navLinks.insertBefore(makeBtn('theme-toggle-desktop'), phone || null);
+  }
+  if (mobileBtn) nav.insertBefore(makeBtn('theme-toggle-mobile'), mobileBtn);
+
+  // Follow OS changes live, but only until the visitor picks a theme themselves
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e) => {
+      let saved = null; try { saved = localStorage.getItem(KEY); } catch (err) {}
+      if (!saved) setTheme(e.matches ? 'dark' : 'light', false);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+  }
+  sync();
 })();

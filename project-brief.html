@@ -12,7 +12,8 @@
 <meta property="og:description" content="Describe your business goals and get an instant, tailored project brief with recommended services, a phased roadmap, and discovery questions.">
 <meta property="og:image" content="https://webpalmbeaches.com/wp-content/uploads/2024/02/Web-Palm-Beaches-Banner-with-Title.svg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="styles.css">
+<script>/* theme: saved choice > OS preference > light. Runs before paint so there is no flash. */(function(){var t;try{t=localStorage.getItem('wpb-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="stylesheet" href="styles.css?v=20261120-theme">
 <style>
 /* === PROJECT BRIEF LAYOUT === */
 .brief-section{padding:4.5rem 0 6rem;background:var(--bg-alt);border-top:1px solid var(--border)}
@@ -20,14 +21,14 @@
 
 .brief-card{background:var(--bg);border:1px solid var(--border);padding:2.5rem;box-shadow:0 6px 30px rgba(5,22,57,.04)}
 .brief-card-header{margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
-.brief-card-header h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tertiary);margin-bottom:.4rem}
+.brief-card-header h2{font-family:var(--heading);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tertiary-ink);margin-bottom:.4rem}
 .brief-card-header p{color:var(--text-secondary);font-size:.95rem;line-height:1.65}
 
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
 .field-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.4rem;font-size:.78rem;color:var(--text-muted);gap:1rem}
 .field-meta .char-count{font-variant-numeric:tabular-nums;white-space:nowrap}
-.field-meta .char-count.warn{color:var(--accent);font-weight:700}
-.field-error{display:none;margin-top:.4rem;font-size:.82rem;color:var(--accent);font-weight:700}
+.field-meta .char-count.warn{color:var(--accent-ink);font-weight:700}
+.field-error{display:none;margin-top:.4rem;font-size:.82rem;color:var(--accent-ink);font-weight:700}
 .form-group.has-error input,.form-group.has-error textarea{border-color:var(--accent)}
 .form-group.has-error .field-error{display:block}
 
@@ -35,27 +36,27 @@
 .starter-prompts{margin:0 0 1.25rem}
 .starter-label{font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.55rem;display:block}
 .starter-chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.starter-chip{background:var(--bg-ice);border:1px solid var(--border);color:var(--tertiary);font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.05em;padding:.45rem .85rem;cursor:pointer;transition:all .2s}
-.starter-chip:hover{border-color:var(--accent);color:var(--accent);background:#fff}
+.starter-chip{background:var(--bg-ice);border:1px solid var(--border);color:var(--tertiary-ink);font-family:var(--heading);font-size:.68rem;font-weight:700;letter-spacing:.05em;padding:.45rem .85rem;cursor:pointer;transition:all .2s}
+.starter-chip:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--surface)}
 
 /* Consent checkbox */
 .consent-box{display:flex;align-items:flex-start;gap:.75rem;padding:1rem 1.15rem;background:var(--bg-ice);border:1px solid var(--border);margin:1.25rem 0 1.5rem}
 .consent-box input[type="checkbox"]{width:18px;height:18px;margin-top:.15rem;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
 .consent-box label{font-family:var(--body);font-size:.86rem;line-height:1.55;color:var(--text-secondary);text-transform:none;letter-spacing:0;font-weight:400;margin:0;cursor:pointer}
-.consent-box a{color:var(--tertiary);text-decoration:underline;font-weight:700}
+.consent-box a{color:var(--tertiary-ink);text-decoration:underline;font-weight:700}
 .consent-box.has-error{border-color:var(--accent);background:rgba(196,77,65,.06)}
 
 .form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
 .btn-stop{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.75rem;background:var(--bg-dark);color:var(--text-light);font-family:var(--heading);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
 .btn-stop:hover{background:#122b5c}
-.btn-ghost{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.25rem;background:transparent;color:var(--tertiary);font-family:var(--heading);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.btn-ghost{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.25rem;background:transparent;color:var(--tertiary-ink);font-family:var(--heading);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;transition:all .2s}
 .btn-ghost:hover{border-color:var(--tertiary);background:var(--bg-ice)}
 .btn-ghost:disabled,.btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 
 /* Alert banner */
 .brief-alert{display:none;padding:1.15rem 1.35rem;margin-top:1.25rem;border-left:4px solid var(--accent);background:rgba(196,77,65,.08);color:var(--text-primary);font-size:.92rem;line-height:1.6}
 .brief-alert.visible{display:block}
-.brief-alert strong{display:block;font-family:var(--heading);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.25rem}
+.brief-alert strong{display:block;font-family:var(--heading);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);margin-bottom:.25rem}
 .brief-alert-actions{margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
 
 /* Output card */
@@ -71,13 +72,13 @@
 
 .brief-toolbar{display:flex;flex-wrap:wrap;gap:.6rem;padding:1rem 2rem;background:var(--bg-ice);border-bottom:1px solid var(--border);align-items:center}
 .brief-disclaimer{padding:.9rem 2rem;background:#fff8f0;border-bottom:1px solid rgba(196,77,65,.2);font-size:.84rem;color:var(--text-secondary);line-height:1.55}
-.brief-disclaimer strong{color:var(--tertiary)}
+.brief-disclaimer strong{color:var(--tertiary-ink)}
 
 /* Rendered markdown output */
 .brief-content{padding:2.25rem 2.5rem;font-size:1rem;line-height:1.78;color:var(--text-primary)}
-.brief-content h2{font-family:var(--heading);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary);margin:2rem 0 .75rem;padding-bottom:.45rem;border-bottom:2px solid var(--bg-ice)}
+.brief-content h2{font-family:var(--heading);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--tertiary-ink);margin:2rem 0 .75rem;padding-bottom:.45rem;border-bottom:2px solid var(--bg-ice)}
 .brief-content h2:first-child{margin-top:0}
-.brief-content h3{font-family:var(--heading);font-size:.95rem;font-weight:700;color:var(--secondary);margin:1.25rem 0 .45rem}
+.brief-content h3{font-family:var(--heading);font-size:.95rem;font-weight:700;color:var(--secondary-ink);margin:1.25rem 0 .45rem}
 .brief-content p{margin-bottom:.95rem;color:var(--text-primary)}
 .brief-content ul,.brief-content ol{margin:0 0 1.15rem 1.35rem}
 .brief-content li{margin-bottom:.45rem;color:var(--text-secondary)}
@@ -95,7 +96,7 @@
 /* How it works strip */
 .brief-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1rem}
 .brief-pillar{background:var(--bg);border:1px solid var(--border);padding:1.5rem}
-.brief-pillar h3{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary);margin-bottom:.45rem}
+.brief-pillar h3{font-family:var(--heading);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tertiary-ink);margin-bottom:.45rem}
 .brief-pillar p{font-size:.88rem;line-height:1.65;color:var(--text-secondary)}
 
 @media(max-width:768px){
@@ -232,7 +233,7 @@
             <div class="brief-alert-actions">
               <button type="button" class="btn-ghost" id="retryBtn">Try Again</button>
               <a href="contact.html" class="btn-ghost">Book a Strategy Call</a>
-              <a href="tel:5612919001" style="font-family:var(--heading);font-size:.78rem;font-weight:700;color:var(--tertiary)">Call 561-291-9001</a>
+              <a href="tel:5612919001" style="font-family:var(--heading);font-size:.78rem;font-weight:700;color:var(--tertiary-ink)">Call 561-291-9001</a>
             </div>
           </div>
         </form>
@@ -350,7 +351,7 @@
   </div>
 </footer>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20261120-theme"></script>
 <script>
 (function() {
   'use strict';
